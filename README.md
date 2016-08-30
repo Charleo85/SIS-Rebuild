@@ -16,6 +16,9 @@ $ git clone https://github.com/Charleo85/SIS-Rebuild
 Update Timeline
 =================== 
 
-- Aug.30th Project Setup
+- August 30th Project Setup
 	- repository init
-	- cloud container configured (Digital Ocean)  
+	- cloud container configured (Digital Ocean)
+
+- Cloud Server Credentials
+	- visit homepage at: [162.243.117.39:8001](http://162.243.117.39:8001) 
