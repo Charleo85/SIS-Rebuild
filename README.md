@@ -21,4 +21,4 @@ Update Timeline
 	- cloud container configured (Digital Ocean)
 
 - Cloud Server Credentials
-	- visit homepage at: [162.243.117.39:8001](162.243.117.39:8001) 
+	- visit homepage at: [162.243.117.39:8001](http://162.243.117.39:8001) 
