@@ -16,7 +16,7 @@ $ git clone https://github.com/Charleo85/SIS-Rebuild
 
 - Cloud Server Credentials
 
-	- visit homepage at: [162.243.117.39:8001](http://162.243.117.39:8001)
+	- visit project server homepage at: [162.243.117.39:8001](http://162.243.117.39:8001)
 	- visit admin site: [162.243.117.39:8001/admin](http://162.243.117.39:8001/admin/)
 	- login to admin: user = 'admin', pw = '135246789'
 
@@ -27,8 +27,8 @@ Update Timeline
 - August 30th Project Setup
 
 	- repository init
-<<<<<<< HEAD
-	- cloud container configured (Digital Ocean)  
+	- cloud container configured ([Digital Ocean](https://www.digitalocean.com/))
+	- project 1 (helloworld) finished
 
 
 Contact Us
@@ -40,7 +40,3 @@ Contact Us
 	- Tong Qiu [tq7bw@virginia.edu](mailto:tq7bw@virginia.edu)
 
 - You are very welcome to join us!!!
-=======
-	- cloud container configured ([Digital Ocean](https://www.digitalocean.com/))
-	- project 1 (helloworld) finished
->>>>>>> ac43f61cab60f097ab61674923b90137684ba82c
