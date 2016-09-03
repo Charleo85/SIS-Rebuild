@@ -19,3 +19,14 @@ Update Timeline
 - Aug.30th Project Setup
 	- repository init
 	- cloud container configured (Digital Ocean)  
+
+
+Contact Us
+===================
+
+- Current Collaborators
+
+	- Charlie Wu [jw7jb@virginia.edu](mailto:jw7jb@virginia.edu)
+	- Tong Qiu [tq7bw@virginia.edu](mailto:tq7bw@virginia.edu)
+
+- You are very welcome to join us!!!
