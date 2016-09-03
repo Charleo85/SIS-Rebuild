@@ -76,8 +76,11 @@ WSGI_APPLICATION = 'isa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'cs4501',
+        'USER': 'www',
+        'PASSWORD': '$3cureUS',
+        'HOST': 'db',
     }
 }
 
@@ -119,3 +122,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
