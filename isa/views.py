@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404
 from django.core import serializers
 from django.forms.models import model_to_dict
+from django.core.exceptions import ObjectDoesNotExist
 
 from models import *
 
@@ -11,7 +12,7 @@ def course_detail(request, mne, num):
                 mnemonic=mne.upper(),
                 number=num,
             )
-        except DoesNotExist:
+        except ObjectDoesNotExist:
             raise Http404('Class does not exist')
 
         data = model_to_dict(target_course)
