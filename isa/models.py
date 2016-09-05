@@ -17,15 +17,6 @@ class Instructor(Profile):
         return name + ' ' + instructor_id
 
 
-class Student(Profile):
-    taking_courses = models.ManyToManyField(Course, through='Enrollment')
-
-    def __str__(self):
-        name = self.first_name + ' ' + self.last_name
-        student_id = '(' + self.computing_id + ')'
-        return name + ' ' + student_id
-
-
 class Course(models.Model):
     mnemonic = models.CharField(max_length=4)
     number = models.SmallIntegerField()
@@ -45,6 +36,15 @@ class Course(models.Model):
 
     class Meta:
         ordering = ['mnemonic', 'number']
+
+
+class Student(Profile):
+    taking_courses = models.ManyToManyField(Course, through='Enrollment')
+
+    def __str__(self):
+        name = self.first_name + ' ' + self.last_name
+        student_id = '(' + self.computing_id + ')'
+        return name + ' ' + student_id
 
 
 class Enrollment(models.Model):
