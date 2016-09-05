@@ -14,12 +14,23 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import home
+from . import home, views
 
 from django.conf.urls.static import static
 from django.conf import settings
 
-urlpatterns = [
+statics = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+misc = [
     url(r'^$', home.index, name='index'),
     url(r'^admin/', include(admin.site.urls)),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+course_lookup = [
+    url(
+        r'^course/(?P<mne>[a-zA-Z]{0,4})/(?P<num>[0-9]{4})/',
+        views.course_detail,
+    ),
+]
+
+urlpatterns = statics + misc + course_lookup
