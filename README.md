@@ -1,10 +1,38 @@
-Overview
+CS4501 SIS Rebuild Project
 =========
 This project attempts to integrate the current functionality of [UVa SIS](https://sisuva.admin.virginia.edu), [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com), in order to provide students and faculties an efficient way to do academic planning.
 
+Models.py
+---------
+- course
+	- mnemonic (math)
+	- course number (5653)
+	- section id (001)
+	- course id (17000)
+	- instructor (m. ershov)
+	- title (number theory)
+	- time (tuth 2:00-3:15pm)
+	- location (chem305)
+	- description (this is a class...)
+	- enrollment ([student1, student2, ...])
+
+- student
+	- profile
+		- name
+		- computing id
+	- courses
+		- planned
+		- enrolled
+		- waitlisted
+
+- instructor
+	- profile
+		- name
+		- computing id
+	- teaching courses
 
 Setup
-===================
+-----
 - For initial setup, refer to [Project1](https://github.com/thomaspinckney3/cs4501/blob/master/Project1.md)
 
 - Pull down the current project for Django:
@@ -22,7 +50,7 @@ $ git clone https://github.com/Charleo85/SIS-Rebuild
 
 
 Update Timeline
-===================
+---------------
 
 - August 30th Project Setup
 
