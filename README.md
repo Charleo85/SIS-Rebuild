@@ -15,7 +15,6 @@ Models.py
 	- location (chem305)
 	- description (this is a class...)
 	- enrollment ([student1, student2, ...])
-
 - student
 	- profile
 		- name
@@ -24,7 +23,6 @@ Models.py
 		- planned
 		- enrolled
 		- waitlisted
-
 - instructor
 	- profile
 		- name
