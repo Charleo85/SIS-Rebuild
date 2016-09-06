@@ -3,7 +3,7 @@ from django.db import models
 class Profile(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
-    computing_id = models.CharField(max_length=6)
+    computing_id = models.CharField(max_length=6, unique=True)
 
     class Meta:
         abstract = True
@@ -19,9 +19,9 @@ class Instructor(Profile):
 
 class Course(models.Model):
     mnemonic = models.CharField(max_length=4)
-    number = models.SmallIntegerField()
-    section = models.SmallIntegerField()
-    sis_id = models.IntegerField()
+    number = models.CharField(max_length=4)
+    section = models.CharField(max_length=3)
+    sis_id = models.CharField(max_length=5, unique=True)
 
     instructor = models.ForeignKey(Instructor)
     title = models.CharField(max_length=100)
@@ -29,7 +29,7 @@ class Course(models.Model):
 
     meet_time = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
-    max_students = models.SmallIntegerField()
+    max_students = models.SmallIntegerField(default=0)
 
     def __str__(self):
         return self.mnemonic + ' ' + str(self.number)

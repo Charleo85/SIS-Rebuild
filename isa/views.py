@@ -16,6 +16,8 @@ def course_detail(request, mne, num):
             raise Http404('Class does not exist')
 
         data = model_to_dict(target_course)
+        data['instructor'] = target_course.instructor.__str__()
+
         return JsonResponse(data)
     else:
         raise Http404('Not a GET request')
