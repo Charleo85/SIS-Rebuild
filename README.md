@@ -5,29 +5,31 @@ This project attempts to integrate the current functionality of [UVa SIS](https:
 Models.py
 ---------
 - course
-	- mnemonic (math)
-	- course number (5653)
-	- section id (001)
-	- course id (17000)
-	- instructor (m. ershov)
-	- title (number theory)
-	- time (tuth 2:00-3:15pm)
-	- location (chem305)
-	- description (this is a class...)
-	- enrollment ([student1, student2, ...])
+	- mnemonic (CS)
+	- number (4501)
+	- section (005)
+	- sis id (17000)
+	- instructor (Thomas Pinckney, via instructor model)
+	- title (Internet Scale Application)
+	- meet time (TuTh 2:00-3:15pm)
+	- location (Olsson Hall 120)
+	- description (Use Django and Docker to ...)
+	- enrolled students (tracked via enrollment model)
 - student
 	- profile
-		- name
-		- computing id
-	- courses
-		- planned
-		- enrolled
-		- waitlisted
+		- first name (Tong)
+		- last name (Qiu)
+		- computing id (tq7bw)
+	- courses (tracked via enrollment model)
 - instructor
 	- profile
-		- name
-		- computing id
-	- teaching courses
+		- first name (Thomas)
+		- last name (Pinckney)
+		- computing id (tp3ks)
+- enrollment (Django ManyToManyField)
+	- student model
+	- course model
+	- status (enrolled/waitlist/planned/dropped)
 
 Setup
 -----
