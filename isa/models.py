@@ -32,7 +32,7 @@ class Course(models.Model):
     max_students = models.SmallIntegerField()
 
     def __str__(self):
-        return self.mnemonic + ' ' + str(self.course_number)
+        return self.mnemonic + ' ' + str(self.number)
 
     class Meta:
         ordering = ['mnemonic', 'number']
