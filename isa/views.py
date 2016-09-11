@@ -12,20 +12,23 @@ def index(request):
     return render(request, 'home.html')
 
 
-def course_detail(request, mne, num, sec):
+def course_detail(request, sisid):
     try:
-        target_course = Course.objects.get(
-            mnemonic=mne.upper(),
-            number=num,
-            section=sec,
-        )
+        target_course = Course.objects.get(id=sisid)
     except ObjectDoesNotExist:
-        raise Http404('Class does not exist')
+        raise Http404('Course does not exist')
     
     if request.method == 'GET':
         data = model_to_dict(target_course)
         data['instructor'] = target_course.instructor.__str__()
         return JsonResponse(data)
+    elif request.method == 'POST':
+        if request.POST.get('id') == sisid:
+            form = CourseForm(request.POST, instance=target_course)
+            if form.is_valid():
+                form.save()
+                return HttpResponse('Success')
+        return HttpResponse('Failure')
     else:
         raise Http404('Not a correct request')
 
@@ -34,11 +37,7 @@ def course_form(request):
     if request.method == 'POST':
         exist = True
         try:
-            target_course = Course.objects.get(
-                mnemonic=request.POST.get('mnemonic'),
-                number=request.POST.get('number'),
-                section=request.POST.get('section'),
-            )
+            target_course = Course.objects.get(id=request.POST.get('id'))
         except ObjectDoesNotExist:
             exist = False
         
@@ -49,9 +48,7 @@ def course_form(request):
         
         if form.is_valid():
             form.save()
-            url = '/course/' + form.cleaned_data['mnemonic'] + '/'
-            url += form.cleaned_data['number'] + '/'
-            url += form.cleaned_data['section'] + '/'
+            url = '/course/' + str(form.cleaned_data['id']) + '/'
             return HttpResponseRedirect(url)
 
     elif request.method == 'GET':
@@ -60,5 +57,24 @@ def course_form(request):
     else:
         raise Http404('Not a correct request')
 
-    return render(request, 'course.html', {'form': form})
+    return render(request, 'postform.html', {'form': form, 'model': 'Course'})
+
+
+def course_create(request):
+    if request.method == 'POST':
+        exist = True
+        try:
+            target_course = Course.objects.get(id=request.POST.get('id'))
+        except ObjectDoesNotExist:
+            exist = False
+        
+        if not exist:
+            form = CourseForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponse('Success')
+        
+        return HttpResponse('Failure')
+    else:
+        raise Http404('Not a correct request')
 

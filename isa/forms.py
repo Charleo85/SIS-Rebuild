@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from .models import *
 
 class CourseForm(ModelForm):
@@ -8,6 +8,8 @@ class CourseForm(ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
+        widgets = { 'instructor': TextInput() }
+        labels = { 'instructor': 'Instructor ID' }
 
 class StudentForm(ModelForm):
     class Meta:

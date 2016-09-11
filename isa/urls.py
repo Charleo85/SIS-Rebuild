@@ -28,10 +28,11 @@ misc = [
 
 course = [
     url(
-        r'^course/(?P<mne>[a-zA-Z]{0,4})/(?P<num>[0-9]{4})/(?P<sec>[0-9]{3})/$',
+        r'^course/(?P<sisid>[0-9]{5})/$',
         views.course_detail,
     ),
     url(r'^course/$', views.course_form),
+    url(r'^course/create/$', views.course_create),
 ]
 
 urlpatterns = statics + misc + course
