@@ -1,0 +1,25 @@
+from django.forms import ModelForm
+from .models import *
+
+class CourseForm(ModelForm):
+    def clean_mnemonic(self):
+        return self.cleaned_data['mnemonic'].upper()
+
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+class StudentForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = '__all__'
+
+class InstructorForm(ModelForm):
+    class Meta:
+        model = Instructor
+        fields = '__all__'
+
+class EnrollmentForm(ModelForm):
+    class Meta:
+        model = Enrollment
+        fields = '__all__'

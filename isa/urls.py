@@ -1,4 +1,4 @@
-"""helloworld URL Configuration
+"""isa URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -14,7 +14,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import home, views
+from . import views
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -22,15 +22,16 @@ from django.conf import settings
 statics = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 misc = [
-    url(r'^$', home.index, name='index'),
+    url(r'^$', views.index, name='index'),
     url(r'^admin/', include(admin.site.urls)),
 ]
 
 course_lookup = [
     url(
-        r'^course/(?P<mne>[a-zA-Z]{0,4})/(?P<num>[0-9]{4})/',
+        r'^course/(?P<mne>[a-zA-Z]{0,4})/(?P<num>[0-9]{4})/(?P<sec>[0-9]{3})/$',
         views.course_detail,
     ),
+    url(r'^course/$', views.course_form),
 ]
 
 urlpatterns = statics + misc + course_lookup

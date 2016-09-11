@@ -21,14 +21,15 @@ class Course(models.Model):
     mnemonic = models.CharField(max_length=4)
     number = models.CharField(max_length=4)
     section = models.CharField(max_length=3)
-    sis_id = models.CharField(max_length=5, unique=True)
+    sis_id = models.IntegerField(default=0, unique=True)
 
-    instructor = models.ForeignKey(Instructor)
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-
-    meet_time = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
+    instructor = models.ForeignKey('Instructor')
+    title = models.CharField(blank=True, max_length=100)
+    description = models.TextField(blank=True)
+    website = models.URLField(blank=True, default='')
+    
+    meet_time = models.CharField(blank=True, max_length=100)
+    location = models.CharField(blank=True, max_length=100)
     max_students = models.SmallIntegerField(default=0)
 
     def __str__(self):
@@ -39,7 +40,7 @@ class Course(models.Model):
 
 
 class Student(Profile):
-    taking_courses = models.ManyToManyField(Course, through='Enrollment')
+    taking_courses = models.ManyToManyField('Course', through='Enrollment')
 
     def __str__(self):
         name = self.first_name + ' ' + self.last_name
@@ -48,8 +49,8 @@ class Student(Profile):
 
 
 class Enrollment(models.Model):
-    course = models.ForeignKey(Course)
-    student = models.ForeignKey(Student)
+    course = models.ForeignKey('Course')
+    student = models.ForeignKey('Student')
 
     STATUS = (
         ('E', 'Enrolled'),
