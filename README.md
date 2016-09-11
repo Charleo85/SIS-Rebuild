@@ -2,9 +2,9 @@ CS4501 SIS Rebuild Project
 =========
 This project attempts to integrate the current functionality of [UVa SIS](https://sisuva.admin.virginia.edu), [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com), in order to provide students and faculties an efficient way to do academic planning.
 
-Models.py
----------
-- course
+Django Models
+-------------
+- Course
 	- mnemonic (CS)
 	- number (4501)
 	- section (005)
@@ -16,18 +16,18 @@ Models.py
 	- location (Olsson Hall 120)
 	- description (Use Django and Docker to ...)
 	- enrolled students (tracked via enrollment model)
-- student
+- Student
 	- profile (abstract model)
 		- first name (Tong)
 		- last name (Qiu)
 		- computing id (tq7bw)
 	- courses (tracked via enrollment model)
-- instructor
+- Instructor
 	- profile (abstract model)
 		- first name (Thomas)
 		- last name (Pinckney)
 		- computing id (tp3ks)
-- enrollment (Django ManyToManyField)
+- Enrollment (Django ManyToManyField)
 	- student model
 	- course model
 	- status (enrolled/waitlist/planned/dropped)
@@ -66,8 +66,7 @@ Contact Us
 ----------
 
 - Current Collaborators
-
 	- Charlie Wu [jw7jb@virginia.edu](mailto:jw7jb@virginia.edu)
 	- Tong Qiu [tq7bw@virginia.edu](mailto:tq7bw@virginia.edu)
-
+	- Zakey Faieq [zaf2xk@virginia.edu](mailto:zaf2xk@virginia.edu)
 - You are very welcome to join us!!!
