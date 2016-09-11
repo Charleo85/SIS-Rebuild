@@ -26,7 +26,7 @@ misc = [
     url(r'^admin/', include(admin.site.urls)),
 ]
 
-course_lookup = [
+course = [
     url(
         r'^course/(?P<mne>[a-zA-Z]{0,4})/(?P<num>[0-9]{4})/(?P<sec>[0-9]{3})/$',
         views.course_detail,
@@ -34,4 +34,4 @@ course_lookup = [
     url(r'^course/$', views.course_form),
 ]
 
-urlpatterns = statics + misc + course_lookup
+urlpatterns = statics + misc + course

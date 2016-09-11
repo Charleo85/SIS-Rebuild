@@ -3,29 +3,32 @@ from django.forms.models import model_to_dict
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 
+import requests, json
+
 from .models import *
 from .forms import *
 
 def index(request):
     return render(request, 'home.html')
 
-def course_detail(request, mne, num, sec):
-    if request.method == 'GET':
-        try:
-            target_course = Course.objects.get(
-                mnemonic=mne.upper(),
-                number=num,
-                section=sec,
-            )
-        except ObjectDoesNotExist:
-            raise Http404('Class does not exist')
 
+def course_detail(request, mne, num, sec):
+    try:
+        target_course = Course.objects.get(
+            mnemonic=mne.upper(),
+            number=num,
+            section=sec,
+        )
+    except ObjectDoesNotExist:
+        raise Http404('Class does not exist')
+    
+    if request.method == 'GET':
         data = model_to_dict(target_course)
         data['instructor'] = target_course.instructor.__str__()
-
         return JsonResponse(data)
     else:
-        raise Http404('Not a GET request')
+        raise Http404('Not a correct request')
+
 
 def course_form(request):
     if request.method == 'POST':
@@ -43,9 +46,9 @@ def course_form(request):
             form = CourseForm(request.POST, instance=target_course)
         else:
             form = CourseForm(request.POST)
+        
         if form.is_valid():
             form.save()
-
             url = '/course/' + form.cleaned_data['mnemonic'] + '/'
             url += form.cleaned_data['number'] + '/'
             url += form.cleaned_data['section'] + '/'
@@ -53,6 +56,7 @@ def course_form(request):
 
     elif request.method == 'GET':
         form = CourseForm()
+
     else:
         raise Http404('Not a correct request')
 
