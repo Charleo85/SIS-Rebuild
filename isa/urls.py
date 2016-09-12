@@ -46,6 +46,8 @@ student = [
 
 enrollment = [
     url(r'^enrollment/$', views.enrollment_form),
+    url(r'^enrollment/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
+    url(r'^enrollment/create/$', views.enrollment_create),
 ]
 
 urlpatterns = statics + misc + course + instructor + student + enrollment
