@@ -82,3 +82,91 @@ def course_create(request):
 
     else:
         raise Http404('Not a correct request')
+
+
+def instructor_detail(request, compid):
+    try:
+        ins = Instructor.objects.get(id=compid)
+    except ObjectDoesNotExist:
+        raise Http404('Instructor does not exist')
+
+    if request.method == 'GET':
+        data = model_to_dict(ins)
+        return JsonResponse(data)
+
+    elif request.method == 'POST':
+        if request.POST.get('id') == compid:
+            form = InstructorForm(request.POST, instance=ins)
+
+            if form.is_valid():
+                form.save()
+                return HttpResponse('Success')
+
+        return HttpResponse('Failure')
+
+    else:
+        raise Http404('Not a correct request')
+
+
+def instructor_create(request):
+    if request.method == 'POST':
+        exist = True
+        try:
+            ins = Instructor.objects.get(id=request.POST.get('id'))
+        except ObjectDoesNotExist:
+            exist = False
+
+        if not exist:
+            form = InstructorForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponse('Success')
+
+        return HttpResponse('Failure')
+
+    else:
+        raise Http404('Not a correct request')
+
+
+def student_detail(request, compid):
+    try:
+        stud = Student.objects.get(id=compid)
+    except ObjectDoesNotExist:
+        raise Http404('Instructor does not exist')
+
+    if request.method == 'GET':
+        data = model_to_dict(stud)
+        return JsonResponse(data)
+
+    elif request.method == 'POST':
+        if request.POST.get('id') == compid:
+            form = StudentForm(request.POST, instance=stud)
+
+            if form.is_valid():
+                form.save()
+                return HttpResponse('Success')
+
+        return HttpResponse('Failure')
+
+    else:
+        raise Http404('Not a correct request')
+
+
+def instructor_create(request):
+    if request.method == 'POST':
+        exist = True
+        try:
+            stud = Student.objects.get(id=request.POST.get('id'))
+        except ObjectDoesNotExist:
+            exist = False
+
+        if not exist:
+            form = StudentForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponse('Success')
+
+        return HttpResponse('Failure')
+
+    else:
+        raise Http404('Not a correct request')
