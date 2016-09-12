@@ -222,3 +222,33 @@ def student_create(request):
 
     else:
         raise Http404('Not a correct request')
+
+
+def enrollment_form(request):
+    if request.method == 'POST':
+        exist = True
+        try:
+            enroll = Enrollment.objects.get(
+                student=request.POST.get('student'),
+                course=request.POST.get('course'),
+            )
+        except ObjectDoesNotExist:
+            exist = False
+
+        if exist:
+            enroll = EnrollmentForm(request.POST, instance=enroll)
+        else:
+            enroll = EnrollmentForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            url = '/student/' + str(form.cleaned_data['student']) + '/'
+            return HttpResponseRedirect(url)
+
+    elif request.method == 'GET':
+        form = EnrollmentForm()
+
+    else:
+        raise Http404('Not a correct request')
+
+    return render(request, 'postform.html', {'form': form, 'model': 'enrollment'})
