@@ -159,9 +159,13 @@ def student_detail(request, compid):
 
     if request.method == 'GET':
         data = model_to_dict(stud)
-        data['taking_courses'] = []
-        for course in stud.taking_courses:
-            data['taking_courses'].append(course.__str__())
+
+        courses_result = []
+        for course_id in data['taking_courses']:
+            course_name = Course.objects.get(id=course_id).__str__()
+            courses_result.append(course_name)
+        data['taking_courses'] = courses_result
+
         return JsonResponse(data)
 
     elif request.method == 'POST':
@@ -228,7 +232,7 @@ def enrollment_detail(request, enrid):
     try:
         enroll = Enrollment.objects.get(id=enrid)
     except ObjectDoesNotExist:
-        raise Http404('Student does not exist')
+        raise Http404('Enrollment does not exist')
 
     if request.method == 'GET':
         data = model_to_dict(enroll)
@@ -236,9 +240,9 @@ def enrollment_detail(request, enrid):
 
     elif request.method == 'POST':
         credential1 = (request.POST.get('student') == enroll.student.id)
-        credential2 = (request.POST.get('course') == enroll.course.id)
+        credential2 = (int(request.POST.get('course')) == enroll.course.id)
 
-        if credential1 && credential2:
+        if credential1 and credential2:
             form = EnrollmentForm(request.POST, instance=enroll)
             if form.is_valid():
                 form.save()
@@ -256,7 +260,7 @@ def enrollment_form(request):
         try:
             enroll = Enrollment.objects.get(
                 student=request.POST.get('student'),
-                course=request.POST.get('course'),
+                course=int(request.POST.get('course')),
             )
         except ObjectDoesNotExist:
             exist = False
@@ -286,7 +290,7 @@ def enrollment_create(request):
         try:
             enroll = Enrollment.objects.get(
                 student=request.POST.get('student'),
-                course=request.POST.get('course'),
+                course=int(request.POST.get('course')),
             )
         except ObjectDoesNotExist:
             exist = False
