@@ -33,13 +33,14 @@ course = [
 ]
 
 instructor = [
-    url(r'instructor/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.instructor_detail),
-    url(r'instructor/create/$', views.instructor_create),
+    url(r'^instructor/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.instructor_detail),
+    url(r'^instructor/create/$', views.instructor_create),
 ]
 
 student = [
-    url(r'student/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.student_detail),
-    url(r'student/create/$', views.student_create),
+    url(r'^student/$', views.student_form),
+    url(r'^student/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.student_detail),
+    url(r'^student/create/$', views.student_create),
 ]
 
 urlpatterns = statics + misc + course + instructor + student

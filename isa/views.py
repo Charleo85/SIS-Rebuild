@@ -152,6 +152,33 @@ def student_detail(request, compid):
         raise Http404('Not a correct request')
 
 
+def student_form(request):
+    if request.method == 'POST':
+        exist = True
+        try:
+            target_course = Student.objects.get(id=request.POST.get('id'))
+        except ObjectDoesNotExist:
+            exist = False
+
+        if exist:
+            form = StudentForm(request.POST, instance=target_course)
+        else:
+            form = StudentForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            url = '/student/' + str(form.cleaned_data['id']) + '/'
+            return HttpResponseRedirect(url)
+
+    elif request.method == 'GET':
+        form = CourseForm()
+
+    else:
+        raise Http404('Not a correct request')
+
+    return render(request, 'postform.html', {'form': form, 'model': 'Student'})
+
+
 def student_create(request):
     if request.method == 'POST':
         exist = True
