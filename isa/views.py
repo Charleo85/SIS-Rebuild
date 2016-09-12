@@ -236,9 +236,9 @@ def enrollment_form(request):
             exist = False
 
         if exist:
-            enroll = EnrollmentForm(request.POST, instance=enroll)
+            form = EnrollmentForm(request.POST, instance=enroll)
         else:
-            enroll = EnrollmentForm(request.POST)
+            form = EnrollmentForm(request.POST)
 
         if form.is_valid():
             form.save()
