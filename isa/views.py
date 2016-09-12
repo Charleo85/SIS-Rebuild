@@ -242,7 +242,7 @@ def enrollment_form(request):
 
         if form.is_valid():
             form.save()
-            url = '/student/' + str(form.cleaned_data['student']) + '/'
+            url = '/student/' + str(form.cleaned_data['student'].id) + '/'
             return HttpResponseRedirect(url)
 
     elif request.method == 'GET':

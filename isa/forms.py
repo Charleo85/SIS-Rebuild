@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, TextInput, NumberInput
 from .models import *
 
 class CourseForm(ModelForm):
@@ -25,3 +25,11 @@ class EnrollmentForm(ModelForm):
     class Meta:
         model = Enrollment
         fields = '__all__'
+        widgets = {
+            'student': TextInput(),
+            'course':  NumberInput(),
+        }
+        labels = {
+            'student': 'Student ID',
+            'course': 'Course SIS ID',
+        }
