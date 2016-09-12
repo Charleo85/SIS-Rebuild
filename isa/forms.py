@@ -14,7 +14,7 @@ class CourseForm(ModelForm):
 class StudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = '__all__'
+        exclude = ('taking_courses',)
 
 class InstructorForm(ModelForm):
     class Meta:

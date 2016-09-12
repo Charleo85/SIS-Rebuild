@@ -33,6 +33,7 @@ course = [
 ]
 
 instructor = [
+    url(r'^instructor/$', views.instructor_form),
     url(r'^instructor/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.instructor_detail),
     url(r'^instructor/create/$', views.instructor_create),
 ]

@@ -61,7 +61,7 @@ def course_form(request):
     else:
         raise Http404('Not a correct request')
 
-    return render(request, 'postform.html', {'form': form, 'model': 'Course'})
+    return render(request, 'postform.html', {'form': form, 'model': 'course'})
 
 
 def course_create(request):
@@ -106,6 +106,33 @@ def instructor_detail(request, compid):
 
     else:
         raise Http404('Not a correct request')
+
+
+def instructor_form(request):
+    if request.method == 'POST':
+        exist = True
+        try:
+            ins = Instructor.objects.get(id=request.POST.get('id'))
+        except ObjectDoesNotExist:
+            exist = False
+
+        if exist:
+            form = InstructorForm(request.POST, instance=ins)
+        else:
+            form = InstructorForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            url = '/instructor/' + str(form.cleaned_data['id']) + '/'
+            return HttpResponseRedirect(url)
+
+    elif request.method == 'GET':
+        form = InstructorForm()
+
+    else:
+        raise Http404('Not a correct request')
+
+    return render(request, 'postform.html', {'form': form, 'model': 'instructor'})
 
 
 def instructor_create(request):
@@ -156,12 +183,12 @@ def student_form(request):
     if request.method == 'POST':
         exist = True
         try:
-            target_course = Student.objects.get(id=request.POST.get('id'))
+            stud = Student.objects.get(id=request.POST.get('id'))
         except ObjectDoesNotExist:
             exist = False
 
         if exist:
-            form = StudentForm(request.POST, instance=target_course)
+            form = StudentForm(request.POST, instance=stud)
         else:
             form = StudentForm(request.POST)
 
@@ -171,12 +198,12 @@ def student_form(request):
             return HttpResponseRedirect(url)
 
     elif request.method == 'GET':
-        form = CourseForm()
+        form = StudentForm()
 
     else:
         raise Http404('Not a correct request')
 
-    return render(request, 'postform.html', {'form': form, 'model': 'Student'})
+    return render(request, 'postform.html', {'form': form, 'model': 'student'})
 
 
 def student_create(request):

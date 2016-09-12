@@ -40,7 +40,7 @@ class Course(models.Model):
 
 
 class Student(Profile):
-    taking_courses = models.ManyToManyField('Course', through='Enrollment')
+    taking_courses = models.ManyToManyField('Course', through='Enrollment', blank=True)
 
     def __str__(self):
         name = self.first_name + ' ' + self.last_name

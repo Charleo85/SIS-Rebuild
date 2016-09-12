@@ -29,7 +29,7 @@
     <h1>POST request generation form <span>({{ model }})</span></h1>
 </div>
 <div id="courseform">
-    <form action="/course/" method="post">
+    <form action="/{{ model }}/" method="post">
         {% csrf_token %}
         {{ form }} 
         <input style="margin-top: 10px;" type="submit" value="Submit POST Request" />
