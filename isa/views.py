@@ -132,7 +132,7 @@ def student_detail(request, compid):
     try:
         stud = Student.objects.get(id=compid)
     except ObjectDoesNotExist:
-        raise Http404('Instructor does not exist')
+        raise Http404('Student does not exist')
 
     if request.method == 'GET':
         data = model_to_dict(stud)
@@ -152,7 +152,7 @@ def student_detail(request, compid):
         raise Http404('Not a correct request')
 
 
-def instructor_create(request):
+def student_create(request):
     if request.method == 'POST':
         exist = True
         try:
