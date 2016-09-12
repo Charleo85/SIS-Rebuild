@@ -27,10 +27,7 @@ misc = [
 ]
 
 course = [
-    url(
-        r'^course/(?P<sisid>[0-9]{5})/$',
-        views.course_detail,
-    ),
+    url(r'^course/(?P<sisid>[0-9]{5})/$', views.course_detail),
     url(r'^course/$', views.course_form),
     url(r'^course/create/$', views.course_create),
 ]

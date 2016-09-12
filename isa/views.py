@@ -17,18 +17,22 @@ def course_detail(request, sisid):
         target_course = Course.objects.get(id=sisid)
     except ObjectDoesNotExist:
         raise Http404('Course does not exist')
-    
+
     if request.method == 'GET':
         data = model_to_dict(target_course)
         data['instructor'] = target_course.instructor.__str__()
         return JsonResponse(data)
+
     elif request.method == 'POST':
         if request.POST.get('id') == sisid:
             form = CourseForm(request.POST, instance=target_course)
+
             if form.is_valid():
                 form.save()
                 return HttpResponse('Success')
+
         return HttpResponse('Failure')
+
     else:
         raise Http404('Not a correct request')
 
@@ -40,12 +44,12 @@ def course_form(request):
             target_course = Course.objects.get(id=request.POST.get('id'))
         except ObjectDoesNotExist:
             exist = False
-        
+
         if exist:
             form = CourseForm(request.POST, instance=target_course)
         else:
             form = CourseForm(request.POST)
-        
+
         if form.is_valid():
             form.save()
             url = '/course/' + str(form.cleaned_data['id']) + '/'
@@ -67,14 +71,14 @@ def course_create(request):
             target_course = Course.objects.get(id=request.POST.get('id'))
         except ObjectDoesNotExist:
             exist = False
-        
+
         if not exist:
             form = CourseForm(request.POST)
             if form.is_valid():
                 form.save()
                 return HttpResponse('Success')
-        
+
         return HttpResponse('Failure')
+
     else:
         raise Http404('Not a correct request')
-
