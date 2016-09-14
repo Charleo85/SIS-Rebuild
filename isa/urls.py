@@ -19,11 +19,8 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 
-statics = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-misc = [
+indexpage = [
     url(r'^$', views.index, name='index'),
-    url(r'^admin/', include(admin.site.urls)),
 ]
 
 course = [
@@ -50,4 +47,4 @@ enrollment = [
     url(r'^enrollment/create/$', views.enrollment_create),
 ]
 
-urlpatterns = statics + misc + course + instructor + student + enrollment
+urlpatterns = indexpage + course + instructor + student + enrollment
