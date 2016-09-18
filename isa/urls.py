@@ -12,6 +12,7 @@ Class-based views
 Including another URLconf
     1. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
 from django.conf.urls import include, url
 from django.contrib import admin
 from . import views
@@ -25,24 +26,20 @@ indexpage = [
 
 course = [
     url(r'^course/(?P<sisid>[0-9]{5})/$', views.course_detail),
-    url(r'^course/$', views.course_form),
     url(r'^course/create/$', views.course_create),
 ]
 
 instructor = [
-    url(r'^instructor/$', views.instructor_form),
     url(r'^instructor/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.instructor_detail),
     url(r'^instructor/create/$', views.instructor_create),
 ]
 
 student = [
-    url(r'^student/$', views.student_form),
     url(r'^student/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.student_detail),
     url(r'^student/create/$', views.student_create),
 ]
 
 enrollment = [
-    url(r'^enrollment/$', views.enrollment_form),
     url(r'^enrollment/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
     url(r'^enrollment/create/$', views.enrollment_create),
 ]
