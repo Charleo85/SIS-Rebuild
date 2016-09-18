@@ -39,10 +39,7 @@ def course_detail(request, sisid):
                 form.save()
                 return success(form.cleaned_data, 'course')
 
-        return failure()
-
-    else:
-        return failure()
+    return failure()
 
 
 def course_create(request):
@@ -57,7 +54,9 @@ def course_create(request):
             form = CourseForm(request.POST)
             if form.is_valid():
                 form.save()
-                return success(form.cleaned_data, 'course')
+                data = form.cleaned_data
+                data['instructor'] = data['instructor'].__str__()
+                return success(data, 'course')
 
     return failure()
 
@@ -147,10 +146,11 @@ def enrollment_detail(request, enrid):
     try:
         enroll = Enrollment.objects.get(id=enrid)
     except ObjectDoesNotExist:
-        raise Http404('Enrollment does not exist')
+        return failure()
 
     if request.method == 'GET':
         data = model_to_dict(enroll)
+        data['enroll_status'] = enroll.get_enroll_status_display()
         return success(data, 'enrollment')
 
     elif request.method == 'POST':
@@ -161,6 +161,12 @@ def enrollment_detail(request, enrid):
             form = EnrollmentForm(request.POST, instance=enroll)
             if form.is_valid():
                 form.save()
+
+                data = form.cleaned_data
+                data['student'] = data['student'].__str__()
+                data['course'] = data['course'].__str__()
+                data['enroll_status'] = enroll.get_enroll_status_display()
+                                
                 return success(form.cleaned_data, 'enrollment')
 
     return failure()
@@ -181,6 +187,12 @@ def enrollment_create(request):
             form = EnrollmentForm(request.POST)
             if form.is_valid():
                 form.save()
+                
+                data = form.cleaned_data
+                data['student'] = data['student'].__str__()
+                data['course'] = data['course'].__str__()
+                data['enroll_status'] = form.get_enroll_status_display()
+
                 return success(form.cleaned_data, 'enrollment')
 
     return failure()
