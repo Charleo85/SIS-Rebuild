@@ -167,7 +167,7 @@ def enrollment_detail(request, enrid):
                 data['course'] = data['course'].__str__()
                 data['enroll_status'] = enroll.get_enroll_status_display()
                                 
-                return success(form.cleaned_data, 'enrollment')
+                return success(data, 'enrollment')
 
     return failure()
 
@@ -193,6 +193,6 @@ def enrollment_create(request):
                 data['course'] = data['course'].__str__()
                 data['enroll_status'] = form.get_enroll_status_display()
 
-                return success(form.cleaned_data, 'enrollment')
+                return success(data, 'enrollment')
 
     return failure()
