@@ -26,11 +26,11 @@ $ curl 127.0.0.1:8001
 ```
 
 - We also have a working webpage on a DigitalOcean droplet.
+
 	- visit project server homepage at: [162.243.117.39:8001](http://162.243.117.39:8001)
 	- visit admin site: [162.243.117.39:8001/admin](http://162.243.117.39:8001/admin/)
 	- login to admin: user = 'root', pw = '135246789'
 
-&nbsp;
 
 Project 2
 ---------
@@ -131,8 +131,9 @@ Project 2
 		- If one or more requirements fail, a json is returned with "ok" = false
 
 	- **All POST requests should use form-encoded data**
+        
+        - Currently, `id` for instructors and students only support uva computing id format, i.e. ab(c)3d(e)
 
-&nbsp;
 
 Update Timeline
 ---------------
