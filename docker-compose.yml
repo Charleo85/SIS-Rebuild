@@ -2,9 +2,9 @@ web:
     container_name: web
     image: tp33/django
     volumes:
-        - .:/app
+        - ../:/app
     ports:
         - "8001:8000"
     external_links:
         - mysql:db
-    command: bash -c "/app/SIS-Rebuild/manage.py makemigrations isa; /app/SIS-Rebuild/manage.py migrate; mod_wsgi-express start-server --reload-on-change -- working-directory /app/SIS-Rebuild /app/SIS-Rebuild/SIS-Rebuild/wsgi.py &"
+    command: bash -c "/app/SIS-Rebuild/manage.py makemigrations isa; /app/SIS-Rebuild/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app/SIS-Rebuild /app/SIS-Rebuild/SIS-Rebuild/wsgi.py"
