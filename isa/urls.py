@@ -1,4 +1,4 @@
-"""helloworld URL Configuration
+"""isa URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -12,14 +12,36 @@ Class-based views
 Including another URLconf
     1. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import home
+from . import views
 
 from django.conf.urls.static import static
 from django.conf import settings
 
-urlpatterns = [
-    url(r'^$', home.index, name='index'),
-    url(r'^admin/', include(admin.site.urls)),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+indexpage = [
+    url(r'^$', views.index, name='index'),
+]
+
+course = [
+    url(r'^course/(?P<sisid>[0-9]{5})/$', views.course_detail),
+    url(r'^course/create/$', views.course_create),
+]
+
+instructor = [
+    url(r'^instructor/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.instructor_detail),
+    url(r'^instructor/create/$', views.instructor_create),
+]
+
+student = [
+    url(r'^student/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.student_detail),
+    url(r'^student/create/$', views.student_create),
+]
+
+enrollment = [
+    url(r'^enrollment/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
+    url(r'^enrollment/create/$', views.enrollment_create),
+]
+
+urlpatterns = indexpage + course + instructor + student + enrollment
