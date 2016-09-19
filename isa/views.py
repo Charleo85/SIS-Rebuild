@@ -49,7 +49,7 @@ def course_create(request):
         exist = True
         try:
             target_course = Course.objects.get(id=request.POST.get('id'))
-        except ObjectDoesNotExist:
+        except (ObjectDoesNotExist, ValueError):
             exist = False
 
         if not exist:
