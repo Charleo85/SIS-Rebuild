@@ -132,7 +132,7 @@ Project 2
 
 	- **All POST requests should use form-encoded data**
         
-        - Currently, `id` for instructors and students only support uva computing id format, i.e. ab(c)3d(e)
+    - Currently, `id` for instructors and students only support uva computing id format, i.e. ab(c)3d(e)
 
 
 Update Timeline
