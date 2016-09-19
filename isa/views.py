@@ -37,7 +37,9 @@ def course_detail(request, sisid):
             form = CourseForm(request.POST, instance=target_course)
             if form.is_valid():
                 form.save()
-                return success(form.cleaned_data, 'course')
+                data = form.cleaned_data
+                data['instructor'] = data['instructor'].__str__()
+                return success(data, 'course')
 
     return failure()
 
