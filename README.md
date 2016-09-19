@@ -30,6 +30,7 @@ $ curl 127.0.0.1:8001
 	- visit admin site: [162.243.117.39:8001/admin](http://162.243.117.39:8001/admin/)
 	- login to admin: user = 'root', pw = '135246789'
 
+&nbsp;
 
 Project 2
 ---------
@@ -131,6 +132,7 @@ Project 2
 
 	- **All POST requests should use form-encoded data**
 
+&nbsp;
 
 Update Timeline
 ---------------
