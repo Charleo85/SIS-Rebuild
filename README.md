@@ -134,6 +134,13 @@ Project 2
         
     - Currently, `id` for instructors and students only support uva computing id format, i.e. ab(c)3d(e)
 
+- Fixtures:
+
+    - Course: id = 17894, instructor = "tp3ks", mnemonic = "CS", number = "4501", section = "004", title = "ISA", max students = 50.
+    - Instructor: first name = "Thomas", last name = "Pinckney", id = "tp3ks".
+    - Student: first name = "Tong", last name = "Qiu", id = "tq7bw".
+    - Enrollment: student = "tq7bw", course = 17894, enroll status = "E" (enrolled).
+    
 
 Update Timeline
 ---------------

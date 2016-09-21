@@ -1,0 +1,44 @@
+[
+    {
+        "model": "isa.Instructor",
+        "pk": 1,
+        "fields": {
+            "first_name" : "Thomas",
+            "last_name": "Pinckney",
+            "id": "tp3ks"
+        }
+    },
+    {
+        "model": "isa.Student",
+        "pk": 2,
+        "fields": {
+            "first_name": "Tong",
+            "last_name": "Qiu",
+            "id": "tq7bw"
+        }
+    },
+    {
+        "model": "isa.Course",
+        "pk": 3,
+        "fields": {
+            "id" : 17894,
+            "instructor" : "tp3ks",
+            "max_students": 50,
+            "mnemonic": "CS",
+            "number": "4501",
+            "section": "004",
+            "title": "ISA"
+        }
+    },
+    {
+        "model": "isa.Enrollment",
+        "pk": 4,
+        "fields": {
+            "student": "tq7bw",
+            "course": 17894,
+            "enroll_status": "E"
+        }
+    }
+]
+
+

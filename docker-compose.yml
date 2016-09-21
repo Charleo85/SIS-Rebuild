@@ -7,4 +7,4 @@ web:
         - "8001:8000"
     external_links:
         - mysql:db
-    command: bash -c "/app/SIS-Rebuild/manage.py makemigrations isa; /app/SIS-Rebuild/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app/SIS-Rebuild /app/SIS-Rebuild/SIS-Rebuild/wsgi.py"
+    command: bash -c "/app/SIS-Rebuild/manage.py makemigrations isa; /app/SIS-Rebuild/manage.py migrate; /app/SIS-Rebuild/manage.py loaddata /app/SIS-Rebuild/data.json; mod_wsgi-express start-server --reload-on-change --working-directory /app/SIS-Rebuild /app/SIS-Rebuild/SIS-Rebuild/wsgi.py"
