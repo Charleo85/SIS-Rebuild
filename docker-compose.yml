@@ -7,4 +7,4 @@ models:
         - "8001:8000"
     external_links:
         - mysql:db
-    command: bash -c "/app/models/manage.py makemigrations isa; /app/models/manage.py migrate; /app/models/manage.py loaddata /app/models/data.json; mod_wsgi-express start-server --reload-on-change --working-directory /app/models /app/models/models/wsgi.py"
+    command: bash -c "/app/models/manage.py makemigrations api; /app/models/manage.py migrate; /app/models/manage.py loaddata /app/models/data.json; mod_wsgi-express start-server --reload-on-change --working-directory /app/models /app/models/models/wsgi.py"
