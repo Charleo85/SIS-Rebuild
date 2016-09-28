@@ -21,13 +21,13 @@ class Course(models.Model):
     mnemonic = models.CharField(max_length=4)
     number = models.CharField(max_length=4)
     section = models.CharField(max_length=3, blank=True)
-    id = models.IntegerField(default=0, unique=True, primary_key=True)
+    id = models.CharField(max_length=5, unique=True, primary_key=True)
 
     instructor = models.ForeignKey('Instructor')
     title = models.CharField(blank=True, max_length=100)
     description = models.TextField(blank=True)
     website = models.URLField(blank=True, default='')
-    
+
     meet_time = models.CharField(blank=True, max_length=100)
     location = models.CharField(blank=True, max_length=100)
     max_students = models.SmallIntegerField(default=0)

@@ -1,6 +1,6 @@
 [
     {
-        "model": "isa.Instructor",
+        "model": "api.Instructor",
         "pk": 1,
         "fields": {
             "first_name" : "Thomas",
@@ -9,7 +9,7 @@
         }
     },
     {
-        "model": "isa.Student",
+        "model": "api.Student",
         "pk": 2,
         "fields": {
             "first_name": "Tong",
@@ -18,10 +18,10 @@
         }
     },
     {
-        "model": "isa.Course",
+        "model": "api.Course",
         "pk": 3,
         "fields": {
-            "id" : 17894,
+            "id" : "17894",
             "instructor" : "tp3ks",
             "max_students": 50,
             "mnemonic": "CS",
@@ -31,14 +31,12 @@
         }
     },
     {
-        "model": "isa.Enrollment",
+        "model": "api.Enrollment",
         "pk": 4,
         "fields": {
             "student": "tq7bw",
-            "course": 17894,
+            "course": "17894",
             "enroll_status": "E"
         }
     }
 ]
-
-

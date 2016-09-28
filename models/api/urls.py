@@ -1,4 +1,4 @@
-"""isa URL Configuration
+"""models URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 indexpage = [
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.index),
 ]
 
 course = [

@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404, JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse
 from django.forms.models import model_to_dict
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
@@ -7,13 +7,13 @@ from .models import *
 from .forms import *
 
 
-def success(data_dict, model_name):
-    correct = { 'ok' : True, model_name : data_dict }
+def success(data_dict, model_name, code):
+    correct = { 'status_code' : code, model_name : data_dict }
     return JsonResponse(correct)
 
 
-def failure():
-    error = { 'ok' : False }
+def failure(code):
+    error = { 'status_code' : code }
     return JsonResponse(error)
 
 
@@ -25,12 +25,12 @@ def course_detail(request, sisid):
     try:
         target_course = Course.objects.get(id=sisid)
     except ObjectDoesNotExist:
-        return failure()
+        return failure(404)
 
     if request.method == 'GET':
         data = model_to_dict(target_course)
         data['instructor'] = target_course.instructor.__str__()
-        return success(data, 'course')
+        return success(data, 'course', 200)
 
     elif request.method == 'POST':
         if request.POST.get('id') == sisid:
@@ -39,9 +39,9 @@ def course_detail(request, sisid):
                 form.save()
                 data = form.cleaned_data
                 data['instructor'] = data['instructor'].__str__()
-                return success(data, 'course')
+                return success(data, 'course', 202)
 
-    return failure()
+    return failure(400)
 
 
 def course_create(request):
@@ -58,29 +58,29 @@ def course_create(request):
                 form.save()
                 data = form.cleaned_data
                 data['instructor'] = data['instructor'].__str__()
-                return success(data, 'course')
+                return success(data, 'course', 201)
 
-    return failure()
+    return failure(400)
 
 
 def instructor_detail(request, compid):
     try:
         ins = Instructor.objects.get(id=compid)
     except ObjectDoesNotExist:
-        return failure()
+        return failure(404)
 
     if request.method == 'GET':
         data = model_to_dict(ins)
-        return success(data, 'instructor')
+        return success(data, 'instructor', 200)
 
     elif request.method == 'POST':
         if request.POST.get('id') == compid:
             form = InstructorForm(request.POST, instance=ins)
             if form.is_valid():
                 form.save()
-                return success(form.cleaned_data, 'instructor')
+                return success(form.cleaned_data, 'instructor', 202)
 
-    return failure()
+    return failure(400)
 
 
 def instructor_create(request):
@@ -95,16 +95,16 @@ def instructor_create(request):
             form = InstructorForm(request.POST)
             if form.is_valid():
                 form.save()
-                return success(form.cleaned_data, 'instructor')
+                return success(form.cleaned_data, 'instructor', 201)
 
-    return failure()
+    return failure(400)
 
 
 def student_detail(request, compid):
     try:
         stud = Student.objects.get(id=compid)
     except ObjectDoesNotExist:
-        return failure()
+        return failure(404)
 
     if request.method == 'GET':
         data = model_to_dict(stud)
@@ -115,16 +115,16 @@ def student_detail(request, compid):
             courses_result.append(course_name)
         data['taking_courses'] = courses_result
 
-        return success(data, 'student')
+        return success(data, 'student', 200)
 
     elif request.method == 'POST':
         if request.POST.get('id') == compid:
             form = StudentForm(request.POST, instance=stud)
             if form.is_valid():
                 form.save()
-                return success(form.cleaned_data, 'student')
+                return success(form.cleaned_data, 'student', 202)
 
-    return failure()
+    return failure(400)
 
 
 def student_create(request):
@@ -139,25 +139,25 @@ def student_create(request):
             form = StudentForm(request.POST)
             if form.is_valid():
                 form.save()
-                return success(form.cleaned_data, 'student')
+                return success(form.cleaned_data, 'student', 201)
 
-    return failure()
+    return failure(400)
 
 
 def enrollment_detail(request, enrid):
     try:
         enroll = Enrollment.objects.get(id=enrid)
     except ObjectDoesNotExist:
-        return failure()
+        return failure(404)
 
     if request.method == 'GET':
         data = model_to_dict(enroll)
         data['enroll_status'] = enroll.get_enroll_status_display()
-        return success(data, 'enrollment')
+        return success(data, 'enrollment', 200)
 
     elif request.method == 'POST':
         credential1 = (request.POST.get('student') == enroll.student.id)
-        credential2 = (int(request.POST.get('course')) == enroll.course.id)
+        credential2 = (request.POST.get('course') == enroll.course.id)
 
         if credential1 and credential2:
             form = EnrollmentForm(request.POST, instance=enroll)
@@ -168,10 +168,10 @@ def enrollment_detail(request, enrid):
                 data['student'] = data['student'].__str__()
                 data['course'] = data['course'].__str__()
                 data['enroll_status'] = enroll.get_enroll_status_display()
-                                
-                return success(data, 'enrollment')
 
-    return failure()
+                return success(data, 'enrollment', 202)
+
+    return failure(400)
 
 
 def enrollment_create(request):
@@ -180,7 +180,7 @@ def enrollment_create(request):
         try:
             enroll = Enrollment.objects.get(
                 student=request.POST.get('student'),
-                course=int(request.POST.get('course')),
+                course=request.POST.get('course'),
             )
         except ObjectDoesNotExist:
             exist = False
@@ -189,12 +189,12 @@ def enrollment_create(request):
             form = EnrollmentForm(request.POST)
             if form.is_valid():
                 form.save()
-                
+
                 data = form.cleaned_data
                 data['student'] = data['student'].__str__()
                 data['course'] = data['course'].__str__()
                 data['enroll_status'] = form.get_enroll_status_display()
 
-                return success(data, 'enrollment')
+                return success(data, 'enrollment', 201)
 
-    return failure()
+    return failure(400)
