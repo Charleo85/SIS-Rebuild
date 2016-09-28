@@ -15,9 +15,9 @@ exp:
         - .:/app
     ports:
         - "8002:8000"
-    external_links:
-        - mysql:db
-    command: bash -c "/app/exp/manage.py makemigrations api; /app/exp/manage.py migrate; /app/exp/manage.py loaddata /app/exp/data.json; mod_wsgi-express start-server --reload-on-change --working-directory /app/exp /app/exp/exp/wsgi.py"
+    links:
+        - models:models-api
+    command: bash -c "/app/exp/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app/exp /app/exp/exp/wsgi.py"
 web:
     container_name: web
     image: tp33/django
@@ -25,6 +25,6 @@ web:
         - .:/app
     ports:
         - "8000:8000"
-    external_links:
-        - mysql:db
-    command: bash -c "/app/web/manage.py makemigrations api; /app/web/manage.py migrate; /app/web/manage.py loaddata /app/web/data.json; mod_wsgi-express start-server --reload-on-change --working-directory /app/web /app/web/web/wsgi.py"
+    links:
+        - exp:exp-api
+    command: bash -c "/app/web/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app/web /app/web/web/wsgi.py"

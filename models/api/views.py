@@ -18,7 +18,7 @@ def failure(code):
 
 
 def index(request):
-    return render(request, 'home.html')
+    return HttpResponse("Success!")
 
 
 def course_detail(request, sisid):
