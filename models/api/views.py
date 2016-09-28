@@ -8,12 +8,12 @@ from .forms import *
 
 
 def success(data_dict, model_name, code):
-    correct = { 'status' : code, model_name : data_dict }
+    correct = { 'status_code' : code, model_name : data_dict }
     return JsonResponse(correct)
 
 
 def failure(code):
-    error = { 'status' : code }
+    error = { 'status_code' : code }
     return JsonResponse(error)
 
 

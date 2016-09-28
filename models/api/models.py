@@ -21,7 +21,7 @@ class Course(models.Model):
     mnemonic = models.CharField(max_length=4)
     number = models.CharField(max_length=4)
     section = models.CharField(max_length=3, blank=True)
-    id = models.CharField(unique=True, primary_key=True)
+    id = models.CharField(max_length=5, unique=True, primary_key=True)
 
     instructor = models.ForeignKey('Instructor')
     title = models.CharField(blank=True, max_length=100)
