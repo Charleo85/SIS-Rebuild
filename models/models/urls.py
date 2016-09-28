@@ -1,4 +1,4 @@
-"""isa URL Configuration
+"""models URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -21,7 +21,7 @@ from django.conf import settings
 statics = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 mains = [
-    url(r'', include('isa.urls')),
+    url(r'^api/', include('api.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
 
