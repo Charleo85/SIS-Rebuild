@@ -15,14 +15,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from django.conf.urls.static import static
-from django.conf import settings
+from . import views
 
-statics = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-mains = [
-    url(r'^$', include('api.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+urlpatterns = [
+    url(r'^$', views.home_page, name='home'),
+    url(r'^course/', views.all_courses, name='course'),
+    url(r'^course/(?P<sisid>[0-9]{5})/$', views.course_detail, name='course_detail'),
 ]
-
-urlpatterns = mains + statics
