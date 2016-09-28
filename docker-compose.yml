@@ -8,3 +8,23 @@ models:
     external_links:
         - mysql:db
     command: bash -c "/app/models/manage.py makemigrations api; /app/models/manage.py migrate; /app/models/manage.py loaddata /app/models/data.json; mod_wsgi-express start-server --reload-on-change --working-directory /app/models /app/models/models/wsgi.py"
+exp:
+    container_name: exp
+    image: tp33/django
+    volumes:
+        - .:/app
+    ports:
+        - "8002:8000"
+    external_links:
+        - mysql:db
+    command: bash -c "/app/exp/manage.py makemigrations api; /app/exp/manage.py migrate; /app/exp/manage.py loaddata /app/exp/data.json; mod_wsgi-express start-server --reload-on-change --working-directory /app/exp /app/exp/exp/wsgi.py"
+web:
+    container_name: web
+    image: tp33/django
+    volumes:
+        - .:/app
+    ports:
+        - "8000:8000"
+    external_links:
+        - mysql:db
+    command: bash -c "/app/web/manage.py makemigrations api; /app/web/manage.py migrate; /app/web/manage.py loaddata /app/web/data.json; mod_wsgi-express start-server --reload-on-change --working-directory /app/web /app/web/web/wsgi.py"
