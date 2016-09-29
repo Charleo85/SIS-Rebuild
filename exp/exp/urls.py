@@ -15,6 +15,16 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-urlpatterns = [
+from . import views
+
+misc = [
+    url(r'^$', views.index),
     url(r'^admin/', include(admin.site.urls)),
 ]
+
+course = [
+    url(r'^course/$', views.course_all),
+    url(r'^course/(?P<sisid>[0-9]{5})/$', views.course_detail),
+]
+
+urlpatterns = misc + course
