@@ -27,21 +27,25 @@ indexpage = [
 course = [
     url(r'^course/(?P<sisid>[0-9]{5})/$', views.course_detail),
     url(r'^course/create/$', views.course_create),
+    url(r'^course/all/$', views.course_all),
 ]
 
 instructor = [
     url(r'^instructor/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.instructor_detail),
     url(r'^instructor/create/$', views.instructor_create),
+    url(r'^instructor/all/$', views.instructor_all),
 ]
 
 student = [
     url(r'^student/(?P<compid>[a-z]{2,3}[0-9]{1}[a-z]{1,2})/$', views.student_detail),
     url(r'^student/create/$', views.student_create),
+    url(r'^student/all/$', views.student_all),
 ]
 
 enrollment = [
     url(r'^enrollment/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
     url(r'^enrollment/create/$', views.enrollment_create),
+    url(r'^enrollment/all/$', views.enrollment_all),
 ]
 
 urlpatterns = indexpage + course + instructor + student + enrollment

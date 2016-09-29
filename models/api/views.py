@@ -63,6 +63,19 @@ def course_create(request):
     return failure(400)
 
 
+def course_all(request):
+    if request.method == 'GET':
+        courses = Course.objects.all()
+        course_list = []
+        for course in courses:
+            data = model_to_dict(course)
+            data['instructor'] = course.instructor.__str__()
+            course_list.append(data)
+        return success(course_list, 'all_courses', 200)
+
+    return failure(400)
+
+
 def instructor_detail(request, compid):
     try:
         ins = Instructor.objects.get(id=compid)
@@ -100,6 +113,18 @@ def instructor_create(request):
     return failure(400)
 
 
+def instructor_all(request):
+    if request.method == 'GET':
+        instructors = Instructor.objects.all()
+        instructor_list = []
+        for ins in instructors:
+            data = model_to_dict(ins)
+            instructor_list.append(data)
+        return success(instructor_list, 'all_instructors', 200)
+
+    return failure(400)
+
+
 def student_detail(request, compid):
     try:
         stud = Student.objects.get(id=compid)
@@ -109,11 +134,11 @@ def student_detail(request, compid):
     if request.method == 'GET':
         data = model_to_dict(stud)
 
-        courses_result = []
+        course_results = []
         for course_id in data['taking_courses']:
             course_name = Course.objects.get(id=course_id).__str__()
-            courses_result.append(course_name)
-        data['taking_courses'] = courses_result
+            course_results.append(course_name)
+        data['taking_courses'] = course_results
 
         return success(data, 'student', 200)
 
@@ -140,6 +165,25 @@ def student_create(request):
             if form.is_valid():
                 form.save()
                 return success(form.cleaned_data, 'student', 201)
+
+    return failure(400)
+
+
+def student_all(request):
+    if request.method == 'GET':
+        students = Student.objects.all()
+        student_list = []
+
+        for stud in students:
+            data = model_to_dict(stud)
+            course_results = []
+            for course_id in data['taking_courses']:
+                course_name = Course.objects.get(id=course_id).__str__()
+                course_results.append(course_name)
+            data['taking_courses'] = course_results
+            student_list.append(data)
+
+        return success(student_list, 'all_students', 200)
 
     return failure(400)
 
@@ -196,5 +240,18 @@ def enrollment_create(request):
                 data['enroll_status'] = form.get_enroll_status_display()
 
                 return success(data, 'enrollment', 201)
+
+    return failure(400)
+
+
+def enrollment_all(request):
+    if request.method == 'GET':
+        enrollments = Enrollment.objects.all()
+        enrollment_list = []
+        for enr in enrollments:
+            data = model_to_dict(enr
+            data['enroll_status'] = enr.get_enroll_status_display())
+            enrollment_list.append(data)
+        return success(enrollment_list, 'all_enrollments', 200)
 
     return failure(400)
