@@ -249,8 +249,8 @@ def enrollment_all(request):
         enrollments = Enrollment.objects.all()
         enrollment_list = []
         for enr in enrollments:
-            data = model_to_dict(enr
-            data['enroll_status'] = enr.get_enroll_status_display())
+            data = model_to_dict(enr)
+            data['enroll_status'] = enr.get_enroll_status_display()
             enrollment_list.append(data)
         return success(enrollment_list, 'all_enrollments', 200)
 
