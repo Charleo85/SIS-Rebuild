@@ -84,7 +84,7 @@ def course_detail(request, sisid):
             if new_dict[key] == '':
                 new_dict.pop(key, None)
 
-        new_dict['instructor'] = getInstructor(resp['instructor'])
+        new_dict['instructor'] = getInstructor(new_dict['instructor'])
         resp['course'] = new_dict
 
     return JsonResponse(resp)
