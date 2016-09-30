@@ -9,18 +9,30 @@
 <meta name="author" content="">
 
 <link href="static/css/bootstrap.css" rel="stylesheet" />
+
 <link href="static/css/rubick_pres.css" rel="stylesheet"/>
+<!--     Fonts and icons     -->
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
 <link href="static/css/fonts/pe-icon-7-stroke.css" rel="stylesheet">
 <link href="static/css/fonts/Rubik-Fonts.css" rel="stylesheet" />
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="static/js/bootstrap.min.js"></script>
+<!--   file for adding vertical points where we activate the elements animation   -->
+<script type="text/javascript" src="static/js/jquery.waypoints.min.js"></script>
+<!--  js library for devices recognition -->
+<script type="text/javascript" src="static/js/modernizr.js"></script>
+<!--  script for google maps   -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<!--   file where we handle all the script from the Rubik page   -->
+<script type="text/javascript" src="static/js/rubick_pres.js"></script>
 
 
 
-<title>Home</title>
+<title>CS4501 Project</title>
 
 
 
@@ -40,17 +52,43 @@
               <span class="icon-bar bar2"></span>
               <span class="icon-bar bar3"></span>
               </button>
-              <a target="_blank" href="http://162.243.117.39:8001" class="navbar-brand">
-              CS 4501 Project
+              <a target="_blank" href="http://162.243.117.39:8000" class="navbar-brand">
+              CS 4501 SIS-Rebuild Project
               </a>
           </div>
           <div class="collapse navbar-collapse" >
               <ul class="nav navbar-nav navbar-right navbar-uppercase">
-                  <li>
-                      <a href="about.html" data-scroll="true">
-                      About
-                      </a>
-                  </li>
+
+                <li class="social-links">
+                  <a href="https://github.com/Charleo85/SIS-Rebuild">
+                    <i class="fa fa-code-fork"></i>
+                  </a>
+                  <a href="https://github.com/thomaspinckney3/cs4501">
+                    <i class="fa fa-github-square"></i>
+                  </a>
+                  <a href="/admin">
+                    <i class="fa fa-users"></i>
+                  </a>
+
+                </li>
+                <li>
+                    <a href="/">
+                    Home
+                    </a>
+                </li>
+                <li>
+                    <a href="course.html">
+                    Course
+                    </a>
+                </li>
+                <li>
+                    <a href="about.html">
+                    About
+                    </a>
+                </li>
+
+
+
               </ul>
           </div>
           <!-- /.navbar-collapse -->
