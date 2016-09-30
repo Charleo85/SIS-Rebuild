@@ -1,4 +1,6 @@
 from django.shortcuts import render
+import urllib.request
+import json
 
 def home_page(request):
     return render(request, 'homepage.html')
