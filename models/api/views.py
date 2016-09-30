@@ -29,7 +29,6 @@ def course_detail(request, sisid):
 
     if request.method == 'GET':
         data = model_to_dict(target_course)
-        data['instructor'] = target_course.instructor.__str__()
         return success(data, 'course', 200)
 
     elif request.method == 'POST':
@@ -69,7 +68,6 @@ def course_all(request):
         course_list = []
         for course in courses:
             data = model_to_dict(course)
-            data['instructor'] = course.instructor.__str__()
             course_list.append(data)
         return success(course_list, 'all_courses', 200)
 
@@ -133,13 +131,6 @@ def student_detail(request, compid):
 
     if request.method == 'GET':
         data = model_to_dict(stud)
-
-        course_results = []
-        for course_id in data['taking_courses']:
-            course_name = Course.objects.get(id=course_id).__str__()
-            course_results.append(course_name)
-        data['taking_courses'] = course_results
-
         return success(data, 'student', 200)
 
     elif request.method == 'POST':
@@ -176,11 +167,6 @@ def student_all(request):
 
         for stud in students:
             data = model_to_dict(stud)
-            course_results = []
-            for course_id in data['taking_courses']:
-                course_name = Course.objects.get(id=course_id).__str__()
-                course_results.append(course_name)
-            data['taking_courses'] = course_results
             student_list.append(data)
 
         return success(student_list, 'all_students', 200)
@@ -207,12 +193,8 @@ def enrollment_detail(request, enrid):
             form = EnrollmentForm(request.POST, instance=enroll)
             if form.is_valid():
                 form.save()
-
                 data = form.cleaned_data
-                data['student'] = data['student'].__str__()
-                data['course'] = data['course'].__str__()
                 data['enroll_status'] = enroll.get_enroll_status_display()
-
                 return success(data, 'enrollment', 202)
 
     return failure(400)
@@ -233,12 +215,8 @@ def enrollment_create(request):
             form = EnrollmentForm(request.POST)
             if form.is_valid():
                 form.save()
-
                 data = form.cleaned_data
-                data['student'] = data['student'].__str__()
-                data['course'] = data['course'].__str__()
                 data['enroll_status'] = form.get_enroll_status_display()
-
                 return success(data, 'enrollment', 201)
 
     return failure(400)
