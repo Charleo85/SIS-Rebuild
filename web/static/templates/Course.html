@@ -1,12 +1,16 @@
 <html>
 <head>
-<title>{{ mnemonic }} {{ number }}</title>
-
+<title>List of All Courses</title>
 </head>
 <body>
-
-  <h1>{{ title }}</h1>
-
-
+{% if status_code == 200 %}
+  <h1>List of All Courses</h1><hr>
+  {% for c in all_courses %}
+    <h2><a href="{{ c.href }}">{{ c.course_name }}</a></h2>
+    <h3>{{ c.instructor }}</h3><br>
+  {% end for %}
+{% else %}
+  <h1>Bad Request!</h1><hr>
+{% end if %}
 </body>
 </html>
