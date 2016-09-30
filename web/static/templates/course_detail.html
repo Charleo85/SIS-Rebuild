@@ -5,8 +5,8 @@
 <body>
 {% if status_code == 200 %}
   <h1>Course: {{ course.mnemonic }} {{ course.number }}</h1><hr>
-  {% for (key, value) in course %}
-    <h3><b>{{ key }}</b>: {{ value }}</h3>
+  {% for key, value in course.items %}
+    <p><b>{{ key }}</b>: {{ value }}</p>
   {% endfor %}
 {% else %}
   <h1>Bad Request!</h1><hr>
