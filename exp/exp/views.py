@@ -21,7 +21,7 @@ def course_all(request):
 
     course_data = []
     for course_dict in resp['all_courses']:
-        new_dict = []
+        new_dict = {}
         new_dict['href'] = course_dict['id'] + '/'
         new_dict['course_name'] = course_dict['mnemonic'] + " " + course_dict['number']
         if course_dict['section'] != '':
