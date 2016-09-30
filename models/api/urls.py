@@ -37,7 +37,7 @@ instructor = [
 ]
 
 student = [
-    url(r'^instructor/all/$', views.instructor_all),
+    url(r'^student/all/$', views.student_all),
     url(r'^student/detail/(?P<compid>[a-zA-Z0-9]+)/$', views.student_detail),
     url(r'^student/create/$', views.student_create),
 ]
