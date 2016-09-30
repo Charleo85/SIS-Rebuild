@@ -24,8 +24,8 @@ statics = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 pages = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.home_page, name='home'),
-    url(r'^about', views.about, name='about'),
-    url(r'^course', views.all_courses, name='course'),
+    url(r'^about/$', views.about, name='about'),
+    url(r'^course/$', views.all_courses, name='course'),
     url(r'^course/(?P<sisid>[0-9]{5})/$', views.course_detail, name='course_detail'),
 ]
 
