@@ -12,7 +12,7 @@ def index(request):
 
 def getInstructor(ins_id):
     req_ins = urllib.request.Request(
-        'http://models-api:8000/api/instructor/' + ins_id + '/'
+        'http://models-api:8000/api/instructor/detail/' + ins_id + '/'
     )
     resp_json_ins = urllib.request.urlopen(req_ins).read().decode('utf-8')
     resp_ins = json.loads(resp_json_ins)
@@ -25,7 +25,7 @@ def getInstructor(ins_id):
 
 def getStudent(stud_id):
     req_stud = urllib.request.Request(
-        'http://models-api:8000/api/student/' + stud_id + '/'
+        'http://models-api:8000/api/student/detail/' + stud_id + '/'
     )
     resp_json_stud = urllib.request.urlopen(req_stud).read().decode('utf-8')
     resp_stud = json.loads(resp_json_stud)
@@ -38,7 +38,7 @@ def getStudent(stud_id):
 
 def getCourse(course_id):
     req_c = urllib.request.Request(
-        'http://models-api:8000/api/course/' + course_id + '/'
+        'http://models-api:8000/api/course/detail/' + course_id + '/'
     )
     resp_json_c = urllib.request.urlopen(req_c).read().decode('utf-8')
     resp_c = json.loads(resp_json_c)
@@ -73,7 +73,7 @@ def course_all(request):
 
 def course_detail(request, sisid):
     req = urllib.request.Request(
-        'http://models-api:8000/api/course/' + sisid + '/'
+        'http://models-api:8000/api/course/detail/' + sisid + '/'
     )
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
@@ -113,7 +113,7 @@ def instructor_all(request):
 
 def instructor_detail(request, compid):
     req = urllib.request.Request(
-        'http://models-api:8000/api/instructor/' + compid + '/'
+        'http://models-api:8000/api/instructor/detail/' + compid + '/'
     )
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
@@ -124,8 +124,8 @@ def student_all(request):
     req = urllib.request.Request('http://models-api:8000/api/student/all/')
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
-    
-    if resp['status_code'] == 200:    
+
+    if resp['status_code'] == 200:
         new_dict = resp['course']
         for key in list(new_dict):
             if new_dict[key] == '':
@@ -150,7 +150,7 @@ def student_all(request):
 
 def student_detail(request, compid):
     req = urllib.request.Request(
-        'http://models-api:8000/api/instructor/' + compid + '/'
+        'http://models-api:8000/api/instructor/detail/' + compid + '/'
     )
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
@@ -189,7 +189,7 @@ def enrollment_all(request):
 
 def enrollment_detail(request, enrid):
     req = urllib.request.Request(
-        'http://models-api:8000/api/enrollment/' + enrid + '/'
+        'http://models-api:8000/api/enrollment/detail/' + enrid + '/'
     )
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)

@@ -25,25 +25,25 @@ indexpage = [
 ]
 
 course = [
-    url(r'^course/(?P<sisid>[0-9]{5})/$', views.course_detail),
+    url(r'^course/detail/(?P<sisid>[a-zA-Z0-9]+)/$', views.course_detail),
     url(r'^course/create/$', views.course_create),
     url(r'^course/all/$', views.course_all),
 ]
 
 instructor = [
     url(r'^instructor/all/$', views.instructor_all),
-    url(r'^instructor/(?P<compid>[a-zA-Z0-9]+)/$', views.instructor_detail),
+    url(r'^instructor/detail/(?P<compid>[a-zA-Z0-9]+)/$', views.instructor_detail),
     url(r'^instructor/create/$', views.instructor_create),
 ]
 
 student = [
     url(r'^instructor/all/$', views.instructor_all),
-    url(r'^student/(?P<compid>[a-zA-Z0-9]+)/$', views.student_detail),
+    url(r'^student/detail/(?P<compid>[a-zA-Z0-9]+)/$', views.student_detail),
     url(r'^student/create/$', views.student_create),
 ]
 
 enrollment = [
-    url(r'^enrollment/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
+    url(r'^enrollment/detail/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
     url(r'^enrollment/create/$', views.enrollment_create),
     url(r'^enrollment/all/$', views.enrollment_all),
 ]
