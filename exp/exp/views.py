@@ -40,10 +40,11 @@ def course_detail(request, sisid):
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
     
-    new_dict = resp['course']
-    for key in list(new_dict):
-        if new_dict[key] == '':
-            new_dict.pop(key, None)
-    resp['course'] = new_dict
+    if resp['status_code'] == 200:    
+        new_dict = resp['course']
+        for key in list(new_dict):
+            if new_dict[key] == '':
+                new_dict.pop(key, None)
+        resp['course'] = new_dict
 
     return JsonResponse(resp)
