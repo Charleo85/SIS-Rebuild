@@ -124,7 +124,6 @@ def student_all(request):
     req = urllib.request.Request('http://models-api:8000/api/student/all/')
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
-<<<<<<< HEAD
     
     if resp['status_code'] == 200:    
         new_dict = resp['course']
@@ -132,7 +131,6 @@ def student_all(request):
             if new_dict[key] == '':
                 new_dict.pop(key, None)
         resp['course'] = new_dict
-=======
 
     new_data = {}
     new_data['status_code'] = resp['status_code']
