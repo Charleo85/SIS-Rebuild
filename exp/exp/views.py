@@ -12,14 +12,14 @@ def index(request):
 
 
 def course_all(request):
-    req = urllib.request.Request('http://models-api/api/course/all/')
+    req = urllib.request.Request('http://models-api:8000/api/course/all/')
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
     return JsonResponse(resp)
 
 
 def course_detail(request, sisid):
-    req = urllib.request.Request('http://models-api/api/course/' + sisid + '/')
+    req = urllib.request.Request('http://models-api:8000/api/course/' + sisid + '/')
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
     return JsonResponse(resp)
