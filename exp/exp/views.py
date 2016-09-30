@@ -39,9 +39,11 @@ def course_detail(request, sisid):
     req = urllib.request.Request('http://models-api:8000/api/course/' + sisid + '/')
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
-
-    for key in resp.keys:
-        if resp[key] == '':
-            resp.pop(key)
+    
+    new_dict = resp['course']
+    for key in list(new_dict):
+        if new_dict[key] == '':
+            new_dict.pop(key, None)
+    resp['course'] = new_dict
 
     return JsonResponse(resp)
