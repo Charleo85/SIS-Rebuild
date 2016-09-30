@@ -64,7 +64,7 @@ def course_all(request):
         if course_dict['title'] != '':
             new_dict['course_name'] += ": " + course_dict['title']
 
-        new_dict['instructor'] = getInstructor(new_dict['instructor'])
+        new_dict['instructor'] = getInstructor(course_dict['instructor'])
         course_data.append(new_dict)
 
     new_data['all_courses'] = course_data
@@ -84,7 +84,7 @@ def course_detail(request, sisid):
             if new_dict[key] == '':
                 new_dict.pop(key, None)
 
-        new_dict['instructor'] = getInstructor(new_dict['instructor'])
+        new_dict['instructor'] = getInstructor(resp['instructor'])
         resp['course'] = new_dict
 
     return JsonResponse(resp)
@@ -126,7 +126,7 @@ def student_all(request):
     resp = json.loads(resp_json)
 
     if resp['status_code'] == 200:
-        new_dict = resp['course']
+        new_dict = resp['student']
         for key in list(new_dict):
             if new_dict[key] == '':
                 new_dict.pop(key, None)
@@ -150,7 +150,7 @@ def student_all(request):
 
 def student_detail(request, compid):
     req = urllib.request.Request(
-        'http://models-api:8000/api/instructor/detail/' + compid + '/'
+        'http://models-api:8000/api/student/detail/' + compid + '/'
     )
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)

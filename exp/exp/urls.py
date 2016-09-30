@@ -39,7 +39,7 @@ stud = [
 
 enr = [
     url(r'^enrollment/$', views.enrollment_all),
-    url(r'^instructor/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
+    url(r'^enrollment/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
 ]
 
 urlpatterns = misc + course + ins + stud + enr
