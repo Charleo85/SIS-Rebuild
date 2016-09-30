@@ -7,9 +7,9 @@
   <h1>Course: {{ course.mnemonic }} {{ course.number }}</h1><hr>
   {% for (key, value) in course %}
     <h3><b>{{ key }}</b>: {{ value }}</h3>
-  {% end for %}
+  {% endfor %}
 {% else %}
   <h1>Bad Request!</h1><hr>
-{% end if %}
+{% endif %}
 </body>
 </html>
