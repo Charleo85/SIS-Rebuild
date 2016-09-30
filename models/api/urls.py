@@ -31,15 +31,15 @@ course = [
 ]
 
 instructor = [
+    url(r'^instructor/all/$', views.instructor_all),
     url(r'^instructor/(?P<compid>[a-zA-Z0-9]+)/$', views.instructor_detail),
     url(r'^instructor/create/$', views.instructor_create),
-    url(r'^instructor/all/$', views.instructor_all),
 ]
 
 student = [
+    url(r'^instructor/all/$', views.instructor_all),
     url(r'^student/(?P<compid>[a-zA-Z0-9]+)/$', views.student_detail),
     url(r'^student/create/$', views.student_create),
-    url(r'^student/all/$', views.student_all),
 ]
 
 enrollment = [
