@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>List of All Courses</title>
+</head>
+<body>
+{% if status_code == 200 %}
+  <h1>List of All Courses</h1><hr>
+  {% for c in all_courses %}
+    <p><b><a href="{{ c.href }}">{{ c.course_name }}</a></b> - Instructor: {{ c.instructor }}</p><br>
+  {% endfor %}
+{% else %}
+  <h1>Bad Request!</h1><hr>
+{% endif %}
+</body>
+</html>
