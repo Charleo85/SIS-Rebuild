@@ -27,4 +27,19 @@ course = [
     url(r'^course/(?P<sisid>[0-9]{5})/$', views.course_detail),
 ]
 
-urlpatterns = misc + course
+ins = [
+    url(r'^instructor/$', views.instructor_all),
+    url(r'^instructor/(?P<compid>[a-zA-Z0-9]+)/$', views.instructor_detail),
+]
+
+stud = [
+    url(r'^student/$', views.student_all),
+    url(r'^student/(?P<compid>[a-zA-Z0-9]+)/$', views.student_detail),
+]
+
+enr = [
+    url(r'^enrollment/$', views.enrollment_all),
+    url(r'^instructor/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
+]
+
+urlpatterns = misc + course + ins + stud + enr
