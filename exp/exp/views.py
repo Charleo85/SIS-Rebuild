@@ -15,11 +15,33 @@ def course_all(request):
     req = urllib.request.Request('http://models-api:8000/api/course/all/')
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
-    return JsonResponse(resp)
+
+    new_data = {}
+    new_data['status_code'] = resp['status_code']
+
+    course_data = []
+    for course_dict in resp['all_courses']:
+        new_dict = []
+        new_dict['href'] = course_dict['id'] + '/'
+        new_dict['course_name'] = course_dict['mnemonic'] + " " + course_dict['number']
+        if course_dict['section'] != '':
+            new_dict['course_name'] += " - " + course_dict['section']
+        if course_dict['title'] != '':
+            new_dict['course_name'] += ": " + course_dict['title']
+        new_dict['instructor'] = course_dict['instructor']
+        course_data.append(new_dict)
+    new_data['all_courses'] = course_data
+
+    return JsonResponse(new_data)
 
 
 def course_detail(request, sisid):
     req = urllib.request.Request('http://models-api:8000/api/course/' + sisid + '/')
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
+
+    for key in resp.keys:
+        if resp[key] == '':
+            resp.pop(key)
+
     return JsonResponse(resp)
