@@ -8,9 +8,9 @@
   {% for c in all_courses %}
     <h2><a href="{{ c.href }}">{{ c.course_name }}</a></h2>
     <h3>{{ c.instructor }}</h3><br>
-  {% end for %}
+  {% endfor %}
 {% else %}
   <h1>Bad Request!</h1><hr>
-{% end if %}
+{% endif %}
 </body>
 </html>
