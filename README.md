@@ -22,13 +22,13 @@ $ docker-compose up -d
 
 - Verify that the website is working (you should see a helloworld page):
 ```bash
-$ curl 127.0.0.1:8001
+$ curl 127.0.0.1:8000
 ```
 
 - We also have a working webpage on a DigitalOcean droplet.
 
-	- visit project server homepage at: [162.243.117.39:8001](http://162.243.117.39:8001)
-	- visit admin site: [162.243.117.39:8001/admin](http://162.243.117.39:8001/admin/)
+	- visit project server homepage at: [162.243.117.39:8000](http://162.243.117.39:8000)
+	- visit admin site: [162.243.117.39:8000/admin](http://162.243.117.39:8000/admin/)
 	- login to admin: user = 'root', pw = '135246789'
 
 
@@ -131,7 +131,7 @@ Project 2
 		- If one or more requirements fail, a json is returned with "ok" = false
 
 	- **All POST requests should use form-encoded data**
-        
+
     - Currently, `id` for instructors and students only support uva computing id format, i.e. ab(c)3d(e)
 
 - Fixtures:
@@ -140,7 +140,7 @@ Project 2
     - Instructor: first name = "Thomas", last name = "Pinckney", id = "tp3ks".
     - Student: first name = "Tong", last name = "Qiu", id = "tq7bw".
     - Enrollment: student = "tq7bw", course = 17894, enroll status = "E" (enrolled).
-    
+
 
 Update Timeline
 ---------------
