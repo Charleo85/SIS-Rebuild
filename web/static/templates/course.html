@@ -1,21 +1,22 @@
 <html>
 {% include 'TopBar.html' %}
 
-{% if status_code == 200 %}
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
+  {% if status_code == 200 %}
     <h1>List of All Courses</h1>
+  {% else %}
+    <h1>Bad Request!</h1>
+  {% endif %}
   </div>
 </div>
 
+{% if status_code == 200 %}
 <ul class="list-group">
   {% for c in all_courses %}
   <li class="list-group-item list-group-item-action"><a href="{{ c.href }}">{{ c.course_name }}</a> - Instructor: {{ c.instructor }}</li>
   {% endfor %}
 </ul>
-
-{% else %}
-<h1>Bad Request!</h1>
 {% endif %}
 
 {% include 'BottomBar.html' %}

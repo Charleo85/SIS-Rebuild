@@ -1,25 +1,22 @@
 <html>
 {% include 'TopBar.html' %}
 
-{% if status_code == 200 %}
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
+  {% if status_code == 200 %}
     <h1>Student: {{ student.first_name }} {{ student.last_name }}</h1>
+  {% else %}
+    <h1>Bad Request!</h1>
+  {% endif %}
   </div>
 </div>
 
+{% if status_code == 200 %}
 <ul class="list-group">
   {% for key, value in student.items %}
-    {% if key != 'taking_courses' %}
-      <li class="list-group-item list-group-item-action"><b>{{ key }}</b>: {{ value }}</li>
-    {% else %}
-      <li class="list-group-item list-group-item-action"><b>{{ key }}</b>: {% for c in value %} {{ c }} {% endfor %}</li>
-    {% endif %}
+    <li class="list-group-item list-group-item-action"><b>{{ key }}</b>: {{ value }}</li>
   {% endfor %}
 </ul>
-
-{% else %}
-  <h1>Bad Request!</h1>
 {% endif %}
 
 {% include 'BottomBar.html' %}

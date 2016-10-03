@@ -149,12 +149,14 @@ def student_detail(request, compid):
     resp = json.loads(resp_json)
 
     if resp['status_code'] == 200:
-        new_course = []
         if resp['student']['taking_courses'] == []:
             resp['student'].pop('taking_courses', None)
         else:
-            for course_id in resp['student']['taking_courses']:
-                new_course.append(getCourse(course_id))
+            new_course = ''
+            for i in range(len(resp['student']['taking_courses'])):
+                new_course += getCourse(resp['student']['taking_courses'])
+                if (i != len(resp['student']['taking_courses']) - 1):
+                    new_course += ', '
             resp['student']['taking_courses'] = new_course
 
     return JsonResponse(resp)
