@@ -28,8 +28,35 @@ misc = [
 ]
 
 course = [
-    url(r'^course/$', views.all_courses),
-    url(r'^course/(?P<sisid>[0-9]{5})/$', views.course_detail),
+    url(r'^course/$', views.list_item, { 'modelname' : 'course' }),
+    url(
+        r'^course/(?P<itemid>[0-9]{5})/$',
+        views.item_detail, { 'modelname' : 'course' },
+    ),
 ]
 
-urlpatterns = statics + misc + course
+ins = [
+    url(r'^instructor/$', views.list_item, { 'modelname' : 'instructor' }),
+    url(
+        r'^instructor/(?P<itemid>[a-zA-Z0-9]+)/$',
+        views.item_detail, { 'modelname' : 'instructor' },
+    ),
+]
+
+ins = [
+    url(r'^student/$', views.list_item, { 'modelname' : 'student' }),
+    url(
+        r'^student/(?P<itemid>[a-zA-Z0-9]+)/$',
+        views.item_detail, { 'modelname' : 'student' },
+    ),
+]
+
+enr = [
+    url(r'^enrollment/$', views.list_item, { 'modelname' : 'enrollment' }),
+    url(
+        r'^enrollment/(?P<itemid>[0-9]+)/$',
+        views.item_detail, { 'modelname' : 'enrollment' },
+    ),
+]
+
+urlpatterns = statics + misc + course + ins + stud + enr

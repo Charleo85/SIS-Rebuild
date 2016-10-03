@@ -4,18 +4,18 @@
 {% if status_code == 200 %}
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
-    <h1>Course: {{ course.mnemonic }} {{ course.number }}</h1>
+    <h1>List of All Instructors</h1>
   </div>
 </div>
 
 <ul class="list-group">
-  {% for key, value in course.items %}
-    <li class="list-group-item list-group-item-action"><b>{{ key }}</b>: {{ value }}</li>
+  {% for i in all_instructors %}
+  <li class="list-group-item list-group-item-action"><a href="{{ i.href }}">{{ i.instructor_name }}</a></li>
   {% endfor %}
 </ul>
 
 {% else %}
-  <h1>Bad Request!</h1>
+<h1>Bad Request!</h1>
 {% endif %}
 
 {% include 'BottomBar.html' %}

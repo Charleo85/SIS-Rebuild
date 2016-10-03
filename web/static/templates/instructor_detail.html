@@ -4,12 +4,12 @@
 {% if status_code == 200 %}
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
-    <h1>Course: {{ course.mnemonic }} {{ course.number }}</h1>
+    <h1>Instructor: {{ instructor.first_name }} {{ instructor.last_name }}</h1>
   </div>
 </div>
 
 <ul class="list-group">
-  {% for key, value in course.items %}
+  {% for key, value in instructor.items %}
     <li class="list-group-item list-group-item-action"><b>{{ key }}</b>: {{ value }}</li>
   {% endfor %}
 </ul>
