@@ -10,7 +10,7 @@
 
 <ul class="list-group">
   {% for key, value in student.items %}
-    {% if key != 'taking_course' %}
+    {% if key != 'taking_courses' %}
       <li class="list-group-item list-group-item-action"><b>{{ key }}</b>: {{ value }}</li>
     {% else %}
       <li class="list-group-item list-group-item-action"><b>{{ key }}</b>: {% for c in value %} {{ c }} {% endfor %}</li>
