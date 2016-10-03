@@ -154,7 +154,7 @@ def student_detail(request, compid):
         else:
             new_course = ''
             for i in range(len(resp['student']['taking_courses'])):
-                new_course += getCourse(resp['student']['taking_courses'])
+                new_course += getCourse(resp['student']['taking_courses'][i])
                 if (i != len(resp['student']['taking_courses']) - 1):
                     new_course += ', '
             resp['student']['taking_courses'] = new_course
