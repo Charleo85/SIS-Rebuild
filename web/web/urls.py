@@ -43,7 +43,7 @@ ins = [
     ),
 ]
 
-ins = [
+stud = [
     url(r'^student/$', views.list_item, { 'modelname' : 'student' }),
     url(
         r'^student/(?P<itemid>[a-zA-Z0-9]+)/$',
