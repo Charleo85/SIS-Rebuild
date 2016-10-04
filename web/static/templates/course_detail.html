@@ -1,15 +1,23 @@
 <html>
-<head>
-<title>Course detail page</title>
-</head>
-<body>
+{% include 'TopBar.html' %}
+
+<div style="background-color:#99a88f;" class="jumbotron">
+  <div class="container text-center">
+  {% if status_code == 200 %}
+    <h1>Course: {{ course.mnemonic }} {{ course.number }}</h1>
+  {% else %}
+    <h1>Bad Request!</h1>
+  {% endif %}
+  </div>
+</div>
+
 {% if status_code == 200 %}
-  <h1>Course: {{ course.mnemonic }} {{ course.number }}</h1><hr>
+<ul class="list-group">
   {% for key, value in course.items %}
-    <p><b>{{ key }}</b>: {{ value }}</p>
+    <li class="list-group-item list-group-item-action"><b>{{ key }}</b>: {{ value }}</li>
   {% endfor %}
-{% else %}
-  <h1>Bad Request!</h1><hr>
+</ul>
 {% endif %}
-</body>
+
+{% include 'BottomBar.html' %}
 </html>
