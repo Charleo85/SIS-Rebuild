@@ -18,7 +18,9 @@ def list_item(request, modelname):
     return render(request, modelname + '.html', resp)
 
 def item_detail(request, itemid, modelname):
-    req = urllib.request.Request('http://exp-api:8000/' + modelname + '/' + itemid + '/')
+    req = urllib.request.Request(
+        'http://exp-api:8000/' + modelname + '/detail/' + itemid + '/'
+    )
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
     return render(request, modelname + '_detail.html', resp)

@@ -24,23 +24,23 @@ misc = [
 
 course = [
     url(r'^course/$', views.course_all),
-    url(r'^course/(?P<sisid>[a-zA-Z0-9]+)/$', views.course_detail),
+    url(r'^course/detail/(?P<sisid>[a-zA-Z0-9]+)/$', views.course_detail),
     url(r'^course/popular/$', views.course_popular),
 ]
 
 ins = [
     url(r'^instructor/$', views.instructor_all),
-    url(r'^instructor/(?P<compid>[a-zA-Z0-9]+)/$', views.instructor_detail),
+    url(r'^instructor/detail/(?P<compid>[a-zA-Z0-9]+)/$', views.instructor_detail),
 ]
 
 stud = [
     url(r'^student/$', views.student_all),
-    url(r'^student/(?P<compid>[a-zA-Z0-9]+)/$', views.student_detail),
+    url(r'^student/detail/(?P<compid>[a-zA-Z0-9]+)/$', views.student_detail),
 ]
 
 enr = [
     url(r'^enrollment/$', views.enrollment_all),
-    url(r'^enrollment/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
+    url(r'^enrollment/detail/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
 ]
 
 urlpatterns = misc + course + ins + stud + enr
