@@ -1,7 +1,6 @@
 [
     {
         "model": "api.Instructor",
-        "pk": 1,
         "fields": {
             "first_name" : "Thomas",
             "last_name": "Pinckney",
@@ -10,7 +9,6 @@
     },
     {
         "model": "api.Student",
-        "pk": 2,
         "fields": {
             "first_name": "Tong",
             "last_name": "Qiu",
@@ -19,7 +17,6 @@
     },
     {
         "model": "api.Course",
-        "pk": 3,
         "fields": {
             "id" : "17894",
             "instructor" : "tp3ks",
@@ -32,7 +29,6 @@
     },
     {
         "model": "api.Enrollment",
-        "pk": 4,
         "fields": {
             "student": "tq7bw",
             "course": "17894",
