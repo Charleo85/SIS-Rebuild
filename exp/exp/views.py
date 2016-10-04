@@ -110,7 +110,7 @@ def course_popular(request):
         if course_dict['section'] != '':
             new_dict['course_name'] += " - " + course_dict['section']
         if course_dict['title'] != '':
-            new_dict['course_name'] += ": " + course_dict['title']
+            new_dict['course_name'] += "<br>" + course_dict['title']
 
         new_dict['instructor'] = getInstructor(course_dict['instructor'])
         course_data.append(new_dict)

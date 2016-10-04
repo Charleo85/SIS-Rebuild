@@ -52,10 +52,10 @@
                     <div class="over-area over-area-sm color-1">
                         <div class="content">
                             <h5 class="text-gray">Five Star Rated</h5>
-                              <h1><a href="{{ c.coursehref }}"> {{ c.course_name }}</a> </h1>
-                              <h1><a href="{{ c.instructorhref }}"> {{ c.instructor }}</a> </h1>
+                              <h3><a href="{{ c.coursehref }}"> {{ c.course_name|safe }} </a> </h3>
+                              <h4><a href="{{ c.instructorhref }}"> {{ c.instructor }}</a> </h4>
                             <p>Description to be add</p>
- 
+
                             <a target="_blank" href="/enrollment" class="btn btn-round">Enroll</a>
                             <a target="_blank" href="{{ c.coursehref }}" class="btn btn-round btn-fill">Detail</a>
                         </div>
