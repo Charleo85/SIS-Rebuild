@@ -56,7 +56,7 @@ def course_all(request):
     course_data = []
     for course_dict in resp['all_courses']:
         new_dict = {}
-        new_dict['href'] = course_dict['id'] + '/'
+        new_dict['href'] = '/course/' + course_dict['id'] + '/'
         new_dict['course_name'] = course_dict['mnemonic'] + ' '
         new_dict['course_name'] += course_dict['number']
         if course_dict['section'] != '':
@@ -90,6 +90,35 @@ def course_detail(request, sisid):
     return JsonResponse(resp)
 
 
+def course_popular(request):
+    req = urllib.request.Request('http://models-api:8000/api/course/popular')
+    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
+    resp = json.loads(resp_json)
+
+    new_data = {}
+    new_data['status_code'] = resp['status_code']
+
+    course_data = []
+    for course_dict in resp['popular_courses']:
+        new_dict = {}
+        new_dict['coursehref'] = '/course/' + course_dict['id'] + '/'
+        new_dict['instructorhref'] = '/instructor/'
+        new_dict['instructorhref'] += course_dict['instructor'] + '/'
+
+        new_dict['course_name'] = course_dict['mnemonic'] + ' '
+        new_dict['course_name'] += course_dict['number']
+        if course_dict['section'] != '':
+            new_dict['course_name'] += " - " + course_dict['section']
+        if course_dict['title'] != '':
+            new_dict['course_name'] += ": " + course_dict['title']
+
+        new_dict['instructor'] = getInstructor(course_dict['instructor'])
+        course_data.append(new_dict)
+
+    new_data['popular_courses'] = course_data
+    return JsonResponse(new_data)
+
+
 def instructor_all(request):
     req = urllib.request.Request('http://models-api:8000/api/instructor/all/')
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
@@ -101,7 +130,7 @@ def instructor_all(request):
     instructor_data = []
     for ins_dict in resp['all_instructors']:
         new_dict = {}
-        new_dict['href'] = ins_dict['id'] + '/'
+        new_dict['href'] = '/instructor/' + ins_dict['id'] + '/'
         new_dict['instructor_name'] = ins_dict['first_name'] + ' '
         new_dict['instructor_name'] += ins_dict['last_name']
         new_dict['instructor_name'] += ' (' + ins_dict['id'] + ')'
@@ -131,7 +160,7 @@ def student_all(request):
     student_data = []
     for stud_dict in resp['all_students']:
         new_dict = {}
-        new_dict['href'] = stud_dict['id'] + '/'
+        new_dict['href'] = '/student/' + stud_dict['id'] + '/'
         new_dict['student_name'] = stud_dict['first_name'] + ' '
         new_dict['student_name'] += stud_dict['last_name']
         new_dict['student_name'] += ' (' + stud_dict['id'] + ')'
@@ -173,7 +202,7 @@ def enrollment_all(request):
     enrollment_data = []
     for enr_dict in resp['all_enrollments']:
         new_dict = {}
-        new_dict['href'] = str(enr_dict['id']) + '/'
+        new_dict['href'] = '/enrollment/' + str(enr_dict['id']) + '/'
         new_dict['enrollment_name'] = enr_dict['student'] + ':'
         new_dict['enrollment_name'] += enr_dict['course']
         enrollment_data.append(new_dict)

@@ -74,6 +74,19 @@ def course_all(request):
     return failure(400)
 
 
+def course_popular(request):
+    if request.method == 'GET':
+        courses = Course.objects.all()
+        course_list = []
+        for course in courses:
+            student_num = len(course.student_set())
+            if student_num > 0 and len(course_list) < 3:
+                course_list.append(data)
+        return success(course_list, 'popular_courses', 200)
+
+    return failure(400)
+
+
 def instructor_detail(request, compid):
     try:
         ins = Instructor.objects.get(id=compid)

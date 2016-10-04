@@ -25,6 +25,7 @@ misc = [
 course = [
     url(r'^course/$', views.course_all),
     url(r'^course/(?P<sisid>[a-zA-Z0-9]+)/$', views.course_detail),
+    url(r'^course/popular/$', views.course_popular),
 ]
 
 ins = [
