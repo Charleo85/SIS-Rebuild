@@ -134,16 +134,8 @@
         "model": "api.Enrollment",
         "fields": {
             "student": "tq7bw",
-            "course": "19417",
+            "course": "19078",
             "enroll_status": "E"
-        }
-    },
-    {
-        "model": "api.Enrollment",
-        "fields": {
-            "student": "tq7bw",
-            "course": "10835",
-            "enroll_status": "W"
         }
     },
     {
@@ -160,6 +152,14 @@
             "student": "jw7jb",
             "course": "19078",
             "enroll_status": "E"
+        }
+    },
+    {
+        "model": "api.Enrollment",
+        "fields": {
+            "student": "jw7jb",
+            "course": "16976",
+            "enroll_status": "W"
         }
     },
     {
