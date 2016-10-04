@@ -79,7 +79,7 @@ def course_popular(request):
         courses = Course.objects.all()
         course_list = []
         for course in courses:
-            student_num = len(course.student_set())
+            student_num = len(course.student_set)
             if student_num > 0 and len(course_list) < 3:
                 course_list.append(data)
         return success(course_list, 'popular_courses', 200)

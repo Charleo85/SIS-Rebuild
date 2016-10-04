@@ -91,7 +91,7 @@ def course_detail(request, sisid):
 
 
 def course_popular(request):
-    req = urllib.request.Request('http://models-api:8000/api/course/popular')
+    req = urllib.request.Request('http://models-api:8000/api/course/popular/')
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
 
