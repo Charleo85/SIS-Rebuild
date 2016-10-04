@@ -1,7 +1,6 @@
 [
     {
         "model": "api.Instructor",
-        "pk": 1,
         "fields": {
             "first_name" : "Thomas",
             "last_name": "Pinckney",
@@ -9,8 +8,31 @@
         }
     },
     {
+        "model": "api.Instructor",
+        "fields": {
+            "first_name" : "Mikhail",
+            "last_name": "Ershov",
+            "id": "mve2x"
+        }
+    },
+    {
+        "model": "api.Instructor",
+        "fields": {
+            "first_name" : "Aaron",
+            "last_name": "Bloomfield",
+            "id": "asb2t"
+        }
+    },
+    {
+        "model": "api.Instructor",
+        "fields": {
+            "first_name" : "David",
+            "last_name": "Evans",
+            "id": "dee2b"
+        }
+    },
+    {
         "model": "api.Student",
-        "pk": 2,
         "fields": {
             "first_name": "Tong",
             "last_name": "Qiu",
@@ -18,23 +40,132 @@
         }
     },
     {
+        "model": "api.Student",
+        "fields": {
+            "first_name": "Charlie",
+            "last_name": "Wu",
+            "id": "jw7jb"
+        }
+    },
+    {
+        "model": "api.Student",
+        "fields": {
+            "first_name": "Zakey",
+            "last_name": "Faieq",
+            "id": "zaf2xk"
+        }
+    },
+    {
         "model": "api.Course",
-        "pk": 3,
         "fields": {
             "id" : "17894",
             "instructor" : "tp3ks",
             "max_students": 50,
             "mnemonic": "CS",
             "number": "4501",
-            "section": "004",
-            "title": "ISA"
+            "section": "005",
+            "title": "Internet Scale App",
+            "website": "https://github.com/thomaspinckney3/cs4501",
+            "meet_time": "TuTh 3:00-4:45pm",
+            "location": "Olsson 120"
+        }
+    },
+    {
+        "model": "api.Course",
+        "fields": {
+            "id" : "19078",
+            "instructor" : "mve2x",
+            "max_students": 35,
+            "mnemonic": "MATH",
+            "number": "5653",
+            "section": "001",
+            "title": "Number Theory",
+            "website": "http://people.virginia.edu/~mve2x/5653_Fall2016/"
+        }
+    },
+    {
+        "model": "api.Course",
+        "fields": {
+            "id" : "10835",
+            "instructor" : "mve2x",
+            "max_students": 40,
+            "mnemonic": "MATH",
+            "number": "3354",
+            "section": "001",
+            "title": "Survey of Algebra",
+            "website": "http://people.virginia.edu/~mve2x/3354_Fall2016/"
+        }
+    },
+    {
+        "model": "api.Course",
+        "fields": {
+            "id" : "16976",
+            "instructor" : "dee2b",
+            "max_students": 200,
+            "mnemonic": "CS",
+            "number": "2102",
+            "section": "001",
+            "title": "Discrete Math",
+            "website": "https://uvacs2102.github.io"
+        }
+    },
+    {
+        "model": "api.Course",
+        "fields": {
+            "id" : "19417",
+            "instructor" : "asb2t",
+            "max_students": 140,
+            "mnemonic": "CS",
+            "number": "2150",
+            "section": "002",
+            "title": "Program and Data Representation",
+            "website": "http://aaronbloomfield.github.io/pdr/README.html"
         }
     },
     {
         "model": "api.Enrollment",
-        "pk": 4,
         "fields": {
             "student": "tq7bw",
+            "course": "17894",
+            "enroll_status": "E"
+        }
+    },
+    {
+        "model": "api.Enrollment",
+        "fields": {
+            "student": "tq7bw",
+            "course": "19417",
+            "enroll_status": "E"
+        }
+    },
+    {
+        "model": "api.Enrollment",
+        "fields": {
+            "student": "tq7bw",
+            "course": "10835",
+            "enroll_status": "W"
+        }
+    },
+    {
+        "model": "api.Enrollment",
+        "fields": {
+            "student": "jw7jb",
+            "course": "17894",
+            "enroll_status": "E"
+        }
+    },
+    {
+        "model": "api.Enrollment",
+        "fields": {
+            "student": "jw7jb",
+            "course": "19078",
+            "enroll_status": "E"
+        }
+    },
+    {
+        "model": "api.Enrollment",
+        "fields": {
+            "student": "zaf2xk",
             "course": "17894",
             "enroll_status": "E"
         }
