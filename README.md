@@ -68,7 +68,7 @@ Project 3
 
 - Models api: please refer to the (updated) documentation for project 2.
 
-- Experience api: sends GET requests to models api, processes the retrieved json data, and returns them back to the web layer.
+- Experience api: sends GET requests to models api, processes the retrieved json data (by using Python dictionaries), and returns data back to the web layer.
 
 - Web layer: sends GET requests to experience api, and sends data to Django templates for rendering.
 
