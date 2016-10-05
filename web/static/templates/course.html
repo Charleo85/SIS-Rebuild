@@ -14,7 +14,9 @@
 {% if status_code == 200 %}
 <ul class="list-group">
   {% for c in all_courses %}
-  <li class="list-group-item list-group-item-action"><a href="{{ c.href }}">{{ c.course_name }}</a> - Instructor: {{ c.instructor }}</li>
+  <li class="list-group-item list-group-item-action">
+    <a href="{{ c.href }}">{{ c.course_name }}</a> by {{ c.instructor }}. Enrolled: {{ c. enrollment_info }}
+  </li>
   {% endfor %}
 </ul>
 {% endif %}

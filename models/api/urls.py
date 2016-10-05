@@ -28,7 +28,6 @@ course = [
     url(r'^course/detail/(?P<sisid>[a-zA-Z0-9]+)/$', views.course_detail),
     url(r'^course/create/$', views.course_create),
     url(r'^course/all/$', views.course_all),
-    url(r'^course/popular/$', views.course_popular),
 ]
 
 instructor = [

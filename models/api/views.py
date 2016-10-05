@@ -29,6 +29,7 @@ def course_detail(request, sisid):
 
     if request.method == 'GET':
         data = model_to_dict(target_course)
+        data['current_enrolled'] = len(target_course.student_set.all())
         return success(data, 'course', 200)
 
     elif request.method == 'POST':
@@ -38,6 +39,7 @@ def course_detail(request, sisid):
                 form.save()
                 data = form.cleaned_data
                 data['instructor'] = data['instructor'].__str__()
+                data['current_enrolled'] = 0
                 return success(data, 'course', 202)
 
     return failure(400)
@@ -57,6 +59,7 @@ def course_create(request):
                 form.save()
                 data = form.cleaned_data
                 data['instructor'] = data['instructor'].__str__()
+                data['current_enrolled'] = 0
                 return success(data, 'course', 201)
 
     return failure(400)
@@ -68,22 +71,9 @@ def course_all(request):
         course_list = []
         for course in courses:
             data = model_to_dict(course)
+            data['current_enrolled'] = len(course.student_set.all())
             course_list.append(data)
         return success(course_list, 'all_courses', 200)
-
-    return failure(400)
-
-
-def course_popular(request):
-    if request.method == 'GET':
-        courses = Course.objects.all()
-        course_list = []
-        for course in courses:
-            data = model_to_dict(course)
-            student_num = len(course.student_set.all())
-            if student_num > 0 and len(course_list) < 3:
-                course_list.append(data)
-        return success(course_list, 'popular_courses', 200)
 
     return failure(400)
 
