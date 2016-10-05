@@ -38,29 +38,29 @@ Project 3
 
 #### Web Pages
 
-- Home page (127.0.0.1:8000):
+- Home page (`127.0.0.1:8000`):
 	- Page design based on Bootstrap CSS Library
 	- The central "start" button takes you to the course listing page
 	- When you scroll down the page, a "popular courses" section would display the 3 most popular courses
 	- The side bar and bottom bar contains links to item listing pages and external pages
 
-- Item listing pages:
+- Item listing pages (`/{{ model_name_lower_case}}/`):
 	- The title section would display the model name of the item being listed
 	- The body section would show all items in this category, in alphabetical order
 	- Each listing contains the link to its item detail page
 
-- Item detail pages:
+- Item detail pages (`/{{ model_name_lower_case }}/{{ object_id }}/`):
 	- The title section would display the course mnemonic and number or instructor name
 	- The body section would show all non-blank information about this course/instructor
 
-- The "about" page:
+- The "about" page (`/about/`):
 	- This is a brief introduction to the purpose of building our website
 	- Contains map / contact info about all contributors to this project
 
 - Thoughts on front-end design:
-	- The "most popular" courses on the homepage is determined by number of students enrolled in each course
-	- The item listing for all students/enrollments are hidden since these info should be kept private
-	- However, you may still view the detail of a student(enrollment) by visiting "/student(enrollment)/{{ object_id }}/"
+	- The "most popular" courses is determined by number of students enrolled in each course
+	- The item listing for students/enrollments are hidden since these info should be kept private
+	- However, you may still view detail of a student(enrollment) at `/student(enrollment)/{{ object_id }}/`
 
 ********
 
