@@ -15,8 +15,8 @@
 <ul class="list-group">
   {% for c in all_courses %}
   <li class="list-group-item list-group-item-action">
-    <a href="{{ c.coursehref }}">{{ c.course_name }}</a>,
-    Instructor: <a href="{{ c.instructorhref }}">{{ c.instructor }}</a>,
+    <a href="{{ c.coursehref }}">{{ c.course_name }}</a> by
+    <a href="{{ c.instructorhref }}">{{ c.instructor }}</a> -- 
     Enrollment: {{ c.enrollment_info }}
   </li>
   {% endfor %}
