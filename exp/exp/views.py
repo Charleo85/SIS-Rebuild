@@ -164,6 +164,7 @@ def instructor_detail(request, compid):
         for key in list(resp['instructor']):
             result = resp['instructor'][key]
             new_dict[key.replace('_', ' ')] = result
+        new_dict['title'] = new_dict['first name'] + ' ' + new_dict['last name']
         resp['instructor'] = new_dict
 
     return JsonResponse(resp)
@@ -212,6 +213,7 @@ def student_detail(request, compid):
         for key in list(resp['student']):
             result = resp['student'][key]
             new_dict[key.replace('_', ' ')] = result
+        new_dict['title'] = new_dict['first name'] + ' ' + new_dict['last name']
         resp['student'] = new_dict
 
     return JsonResponse(resp)
