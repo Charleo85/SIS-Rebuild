@@ -98,7 +98,7 @@ def instructor_detail(request, compid):
         data = model_to_dict(ins)
 
         teaching_courses = []
-        teaching = ins.course_set().all()
+        teaching = ins.course_set.all()
         for course in teaching:
             teaching_courses.append(course.str())
         data['teaching_courses'] = teaching_courses
