@@ -141,14 +141,14 @@ Project 2
 
 	- To send a GET request, use url "/api/{{ model_name_lower_case }}/detail/{{ instance_id }}/"
 	- use url "/api/{{ model_name_lower_case }}/all/" to retrieve all models
-	- Correct requests get back json results with model info
-	- Incorrect ones get back a json with "ok" = false
+	- Correct requests get back json results with model info and `status_code = 200` (ok)
+	- Incorrect ones get back a json with `status_code` = some error code (eg. `404`)
 	- Example: To query about instructor with id "tp3ks":
 
 	```bash
 	$ curl 127.0.0.1:8001/api/instructor/detail/tp3ks/
 	{
-		"ok": true,
+		"status_code": 200,
 		"instructor": {
 			"id": "tp3ks",
 			"last_name": "Pinckney",
@@ -164,16 +164,16 @@ Project 2
 		- Use the same url as GET to reach for a particular instance
 		- The "id" field in the POST data must match the id in the url
 		- All required fields must be filled out
-		- If all requirements are satisfied, a json is returned with updated instance info
-		- If one or more requirements fail, a json is returned with "ok" = false
+		- If all requirements are satisfied, a json is returned with updated info and `status_code = 201`
+		- If one or more requirements fail, a json is returned with `status_code = 400` (bad request)
 
 	- Creating a new instance:
 
 		- Use url "/{{ model_name_lower_case }}/create/"
 		- The "id" must not match an existing instance
 		- All required fields must be filled out
-		- If all requirements are satisfied, a json is returned with the new instance info
-		- If one or more requirements fail, a json is returned with "ok" = false
+		- If all requirements are satisfied, a json is returned with new instance info and `status_code = 202`
+		- If one or more requirements fail, a json is returned with `status_code = 400` (bad request)
 
 	- **All POST requests should use form-encoded data**
 
