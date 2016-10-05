@@ -100,7 +100,7 @@ def instructor_detail(request, compid):
         teaching_courses = []
         teaching = ins.course_set.all()
         for course in teaching:
-            teaching_courses.append(course.str())
+            teaching_courses.append(course.__str__())
         data['teaching_courses'] = teaching_courses
 
         return success(data, 'instructor', 200)
