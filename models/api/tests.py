@@ -46,10 +46,10 @@ class ModelModificationTestCases(TestCase):
         enrollment1.save()
 
     def test_modifyStudent(self):
-        studentToModify = Student.objects.get(id="sg4fc")
+        studentToModify = Student.objects.get(id="zaf2xk")
         studentToModify.first_name = "Scotty"
         studentToModify.save()
-        self.assertEqual(Student.objects.get(id="sg4fc").__str__(), "Scotty Gilb (sg4fc)")
+        self.assertEqual(Student.objects.get(id="zaf2xk").__str__(), "Scotty Faieq (zaf2xk)")
 
     def test_modifyInstructor(self):
         instructorToModify = Instructor.objects.get(id="gr3e")
@@ -86,31 +86,27 @@ class TestCasesToInsureDuplicateIDsAreNotAllowed(TestCase):
     def test_DuplicateStudentCheck(self):
         studentDuplicate = Student.objects.get(id="sg4fc")
         studentDuplicate.id = "zaf2xk"
-        try:
-            studentDuplicate.save()
-        except django.db.IntegrityError:
-            raise AssertionError
+        studentDuplicate.save()
+        studentList = Student.objects.all()
+        for student in studentList:
+            if student != studentDuplicate:
+                self.assertNotEqual(student.id, "zaf2xk")
+
 
     def test_DuplicateInstructorCheck(self):
         instructorDuplicate = Instructor.objects.get(id="gr3e")
         instructorDuplicate.id = "tp3ks"
-        try:
-            instructorDuplicate.save()
-        except django.db.IntegrityError:
-            raise AssertionError
+        instructorDuplicate.save()
+        instructorList = Instructor.objects.all()
+        for instructor in instructorList:
+            if instructor != instructorDuplicate:
+                self.assertNotEqual(instructor.id, "tp3ks")
 
     def test_DuplicateCourseCheck(self):
         courseDuplicate = Course.objects.get(id=16947)
         courseDuplicate.id = 17894
-        try:
-            courseDuplicate.save()
-        except django.db.IntegrityError:
-            raise AssertionError
-
-"""
-class TestCasesToInsureAllForeignKeyFieldDataIsInDatabase(TestCase):
-    fixtures = ['data.json']
-
-class TestCasesGETandPOST(TestCase):
-    #Do I need this?
-"""
+        courseDuplicate.save()
+        courseList = Course.objects.all()
+        for course in courseList:
+            if course != courseDuplicate:
+                self.assertNotEqual(course.id, 17894)
