@@ -146,6 +146,19 @@ def instructor_detail(request, compid):
     )
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
+
+    if resp['status_code'] == 200:
+        teaching = ''
+        teaching_courses = resp['instructor']['teaching_courses']
+        if teaching_courses == []:
+            resp['instructor'].pop('teaching_courses', None)
+        else:
+            for i in range(len(teaching_courses)):
+                teaching += teaching_courses[i]
+                if (i != len(teaching_courses) - 1):
+                    teaching += ', '
+            resp['instructor']['teaching_courses'] = teaching
+
     return JsonResponse(resp)
 
 
