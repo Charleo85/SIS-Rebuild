@@ -79,10 +79,11 @@ def course_detail(request, sisid):
     resp = json.loads(resp_json)
 
     if resp['status_code'] == 200:
-        new_dict = resp['course']
-        for key in list(new_dict):
-            if new_dict[key] == '':
-                new_dict.pop(key, None)
+        new_dict = {}
+        for key in list(resp['course']):
+            if resp['course'][key] != '':
+                result = resp['course'][key]
+                new_dict[key.replace('_', ' ')] = result
 
         new_dict['instructor'] = getInstructor(new_dict['instructor'])
         resp['course'] = new_dict
@@ -159,6 +160,12 @@ def instructor_detail(request, compid):
                     teaching += ', '
             resp['instructor']['teaching_courses'] = teaching
 
+        new_dict = {}
+        for key in list(resp['instructor']):
+            result = resp['instructor'][key]
+            new_dict[key.replace('_', ' ')] = result
+        resp['instructor'] = new_dict
+
     return JsonResponse(resp)
 
 
@@ -201,6 +208,12 @@ def student_detail(request, compid):
                     new_course += ', '
             resp['student']['taking_courses'] = new_course
 
+        new_dict = {}
+        for key in list(resp['student']):
+            result = resp['student'][key]
+            new_dict[key.replace('_', ' ')] = result
+        resp['student'] = new_dict
+
     return JsonResponse(resp)
 
 
@@ -236,5 +249,11 @@ def enrollment_detail(request, enrid):
         data['student'] = getStudent(data['student'])
         data['course'] = getCourse(data['course'])
         resp['enrollment'] = data
+
+        new_dict = {}
+        for key in list(resp['enrollment']):
+            result = resp['enrollment'][key]
+            new_dict[key.replace('_', ' ')] = result
+        resp['enrollment'] = new_dict
 
     return JsonResponse(resp)
