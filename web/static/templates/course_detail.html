@@ -1,6 +1,6 @@
+{% load rm_underscore %}
 <html>
 {% include 'TopBar.html' %}
-{% load replace %}
 
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
@@ -15,9 +15,7 @@
 {% if status_code == 200 %}
 <ul class="list-group">
   {% for key, value in course.items %}
-    <li class="list-group-item list-group-item-action"><b>
-      {% replace search="_" replacement=" " %}{{ key }}{% endreplace %}
-    </b>: {{ value }}</li>
+    <li class="list-group-item list-group-item-action"><b>{{ key|rm_underscore }}</b>: {{ value }}</li>
   {% endfor %}
 </ul>
 {% endif %}
