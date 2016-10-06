@@ -36,6 +36,12 @@ Project 3
 
 ********
 
+#### User stories and Unit testing
+
+Please see [Userstory.md](Userstory.md) for details.
+
+********
+
 #### Web Pages
 
 - Home page (`127.0.0.1:8000`):
@@ -73,12 +79,6 @@ Project 3
 - Web layer: sends GET requests to experience api, and sends data to Django templates for rendering.
 
 - Please see our `views.py` in each layer for a detailed reference.
-
-********
-
-#### User stories and Unit testing
-
-Please see [Userstory.md](Userstory.md) for details.
 
 
 Project 2
