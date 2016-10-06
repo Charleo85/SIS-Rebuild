@@ -116,7 +116,7 @@ Project 2
 
 	- required fields (example):
 
-		- `id` ("17894") -- *primary, unique, format = \d+*
+		- `id` ("17894") -- *primary, unique, format = `\d+`*
 		- `mnemonic` ("CS")
 		- `number` ("4501")
 		- `instructor` ("tp3ks") -- *should be an existing instructor id*
@@ -135,7 +135,7 @@ Project 2
 
 	- required fields (example):
 
-		- `id` ("tq7bw") -- *primary, unique, format = [a-zA-Z0-9]+*
+		- `id` ("tq7bw") -- *primary, unique, format = `[a-zA-Z0-9]+`*
 		- `first_name` ("Tong")
 		- `last_name` ("Qiu")
 
@@ -147,7 +147,7 @@ Project 2
 
 	- required fields (example):
 
-		- `id` ("tp3ks") -- *primary, unique, format = [a-zA-Z0-9]+*
+		- `id` ("tp3ks") -- *primary, unique, format = `[a-zA-Z0-9]+`*
 		- `first_name` ("Thomas")
 		- `last_name` ("Pinckney")
 
