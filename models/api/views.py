@@ -275,7 +275,11 @@ def enrollment_create(request):
             if form.is_valid():
                 form.save()
                 data = form.cleaned_data
-                data['enroll_status'] = form.get_enroll_status_display()
+                enroll = Enrollment.objects.get(
+                    student=request.POST.get('student'),
+                    course=request.POST.get('course'),
+                )
+                data['enroll_status'] = enroll.get_enroll_status_display()
                 return success(data, 'enrollment', 201)
 
     return failure(400)
