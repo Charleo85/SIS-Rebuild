@@ -76,9 +76,9 @@ Project 3
 
 ********
 
-#### User stories and Unit testings
+#### User stories and Unit testing
 
-To be added...
+Please see [Userstory.md](Userstory.md) for details.
 
 
 Project 2
