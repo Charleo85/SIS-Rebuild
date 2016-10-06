@@ -77,7 +77,7 @@ class AdministratorTestCase(TestCase):
         enrollment = Enrollment.objects.filter(student="jw7jb", course="16976")
         enrollment.delete()
         student = Student.objects.get(id="jw7jb")
-        for c in student.taking_courses:
+        for c in student.taking_courses.all():
             self.assertNotEqual(c.id, "16976")
 
 # general user view course info
