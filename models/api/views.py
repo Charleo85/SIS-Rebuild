@@ -65,6 +65,22 @@ def course_create(request):
     return failure(400)
 
 
+def course_delete(request):
+    if request.method == 'POST':
+        exist = True
+        try:
+            target_course = Course.objects.get(id=request.POST.get('id'))
+        except (ObjectDoesNotExist, ValueError):
+            exist = False
+
+        if exist:
+            Enrollment.objects.filter(course=target_course).delete()
+            Course.objects.filter(id=request.POST.get('id')).delete()
+            return JsonResponse({ 'status_code': 202 })
+
+    return failure(400)
+
+
 def course_all(request):
     if request.method == 'GET':
         courses = Course.objects.all()
@@ -122,6 +138,22 @@ def instructor_create(request):
     return failure(400)
 
 
+def instructor_delete(request):
+    if request.method == 'POST':
+        exist = True
+        try:
+            ins = Instructor.objects.get(id=request.POST.get('id'))
+        except (ObjectDoesNotExist, ValueError):
+            exist = False
+
+        if exist:
+            Course.objects.filter(instructor=ins).delete()
+            Instructor.objects.filter(id=request.POST.get('id')).delete()
+            return JsonResponse({ 'status_code': 202 })
+
+    return failure(400)
+
+
 def instructor_all(request):
     if request.method == 'GET':
         instructors = Instructor.objects.all()
@@ -167,6 +199,22 @@ def student_create(request):
             if form.is_valid():
                 form.save()
                 return success(form.cleaned_data, 'student', 201)
+
+    return failure(400)
+
+
+def student_delete(request):
+    if request.method == 'POST':
+        exist = True
+        try:
+            stud = Student.objects.get(id=request.POST.get('id'))
+        except (ObjectDoesNotExist, ValueError):
+            exist = False
+
+        if exist:
+            Enrollment.objects.filter(student=stud).delete()
+            Student.objects.filter(id=request.POST.get('id')).delete()
+            return JsonResponse({ 'status_code': 202 })
 
     return failure(400)
 
@@ -231,6 +279,22 @@ def enrollment_create(request):
                 return success(data, 'enrollment', 201)
 
     return failure(400)
+
+
+def enrollment_delete(request):
+    if request.method == 'POST':
+        exist = True
+        try:
+            enr = Enrollment.objects.get(id=request.POST.get('id'))
+        except (ObjectDoesNotExist, ValueError):
+            exist = False
+
+        if exist:
+            Enrollment.objects.filter(id=request.POST.get('id')).delete()
+            return JsonResponse({ 'status_code': 202 })
+
+    return failure(400)
+
 
 
 def enrollment_all(request):
