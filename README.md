@@ -236,10 +236,10 @@ Update Timeline
 	- web and experience layers initialized
 	- document structure change
 	- docker-compose file support 3 containers
-	- User stories created
+	- User stories written
 
 - September 30th
-	- Models layer api's optimized
+	- Models layer api improved and tested
 	- First draft of experience layer service
 	- Webpage templates and stylesheets created
 
