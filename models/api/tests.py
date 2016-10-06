@@ -35,11 +35,13 @@ class StudentEnrollmentTestCases(TestCase):
     def test_EnrollInCourse(self):
         student = Student.objects.get(id="tq7bw")
         course = Course.objects.get(id="16976")
-        current_courses = student.taking_courses.all()
         enrollment = Enrollment(student=student, course=course, enroll_status="E")
         enrollment.save()
-        current_courses += course
-        self.assertEqual(student.taking_courses, current_courses)
+        testing_student = Student.objects.get(id="tq7bw")
+        self.assertEqual(
+            testing_student.taking_courses.get(id="16976"),
+            Course.objects.get(id="16976")
+        )
 
 # instructor create and update course
 class CreateAndModifyCourseTestCases(TestCase):
@@ -72,12 +74,11 @@ class AdministratorTestCase(TestCase):
     fixtures = ['data.json']
 
     def test_DeleteEnrollment(self):
-        student = Student.objects.get(id="jw7jb")
-        current_courses = student.taking_courses.all()
         enrollment = Enrollment.objects.filter(student="jw7jb", course="16976")
         enrollment.delete()
-        current_courses.remove(Course.objects.get(id="16976"))
-        self.assertEqual(student.taking_courses, current_courses)
+        student = Student.objects.get(id="jw7jb")
+        for c in student.taking_courses:
+            self.assertNotEqual(c.id, "16976")
 
 # general user view course info
 class GeneralUserTestCase(TestCase):
