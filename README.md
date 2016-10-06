@@ -53,7 +53,7 @@ Project 3
 		- His name (profile) is then changed to "scotty gilb" and verified again
 
 	- Story 2:
-		- The enrollment status of student `tq7bw` in course `17894` is changed to "waitlisted" and verified
+		- The enroll status of student `tq7bw` in course `17894` is changed to "waitlisted" and verified
 		- A new enrollment to enroll student `tq7bw` in course `16976` is created and verified
 
 	- Story 3:
