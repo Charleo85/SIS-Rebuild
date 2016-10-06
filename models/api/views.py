@@ -147,7 +147,10 @@ def instructor_delete(request):
             exist = False
 
         if exist:
-            Course.objects.filter(instructor=ins).delete()
+            courses = Course.objects.filter(instructor=ins)
+            for course in courses:
+                Enrollment.objects.filter(course=course).delete()
+            courses.delete()
             Instructor.objects.filter(id=request.POST.get('id')).delete()
             return JsonResponse({ 'status_code': 202 })
 
