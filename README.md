@@ -38,7 +38,7 @@ Project 3
 
 #### User stories and Unit testing
 
-Please see [Userstory.md](Userstory.md) for details.
+- Please see [Userstory.md](Userstory.md) for details.
 
 ********
 
