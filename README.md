@@ -48,22 +48,22 @@ Project 3
 
 - Unit testing (See [`tests.py`](models/api/tests.py) for details):
 
-	- Story 1:
+	- Story i:
 		- A student named "Scott Gilb" with id `sg4fc` is created and verified
 		- His name (profile) is then changed to "scotty gilb" and verified again
 
-	- Story 2:
+	- Story ii:
 		- The enroll status of student `tq7bw` in course `17894` is changed to "waitlisted" and verified
 		- A new enrollment to enroll student `tq7bw` in course `16976` is created and verified
 
-	- Story 3:
+	- Story iii:
 		- A new course `17615` with title `Capstone Practicum` is created and verified
 		- The course title and its max student capacity was modified and verified again
 
-	- Story 4:
+	- Story iv:
 		- The enrollment of student `jw7jb` in course `16976` is deleted and verified
 
-	- Story 5:
+	- Story v:
 		- The lookup of course mnemonic `MATH` and number `5653` returns the result as expected
 
 ********
