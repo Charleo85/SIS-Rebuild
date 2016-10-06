@@ -1,5 +1,5 @@
 Project User Stories
-=====
+-----
 1. As a Student, I want to create or update my own profile.
 
 2. As a Student, I want to modify my course enrollment.
