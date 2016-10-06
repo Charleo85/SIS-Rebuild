@@ -44,7 +44,6 @@ ins = [
 ]
 
 stud = [
-    url(r'^student/$', views.list_item, { 'modelname' : 'student' }),
     url(
         r'^student/(?P<itemid>[a-zA-Z0-9]+)/$',
         views.item_detail, { 'modelname' : 'student' },
@@ -52,7 +51,6 @@ stud = [
 ]
 
 enr = [
-    url(r'^enrollment/$', views.list_item, { 'modelname' : 'enrollment' }),
     url(
         r'^enrollment/(?P<itemid>[0-9]+)/$',
         views.item_detail, { 'modelname' : 'enrollment' },

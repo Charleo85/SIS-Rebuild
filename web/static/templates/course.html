@@ -14,7 +14,15 @@
 {% if status_code == 200 %}
 <ul class="list-group">
   {% for c in all_courses %}
+<<<<<<< HEAD
   <li class="list-group-item list-group-item-action"><a href="{{ c.href }}">{{ c.course_name }}</a> <br>Instructor: {{ c.instructor }}</li>
+=======
+  <li class="list-group-item list-group-item-action">
+    <a href="{{ c.coursehref }}">{{ c.course_name }}</a> --
+    Instructor: <a href="{{ c.instructorhref }}">{{ c.instructor }}</a> --
+    Enrollment: {{ c.enrollment_info }}
+  </li>
+>>>>>>> 6aaeab5210346bd20b2664ecddc9d9b539aa3aeb
   {% endfor %}
 </ul>
 {% endif %}

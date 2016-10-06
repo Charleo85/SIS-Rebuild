@@ -2,6 +2,7 @@ CS4501 SIS Rebuild Project
 =====
 This project attempts to integrate the current functionality of [UVa SIS](https://sisuva.admin.virginia.edu), [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com), in order to provide students and faculties an efficient way to do academic planning.
 
+
 Setup
 -----
 For initial setup, please refer to [Project1](https://github.com/thomaspinckney3/cs4501/blob/master/Project1.md). The next parts assume you have Django/Docker correctly installed, and a mysql container (with credentials given in project 1) up and running.
@@ -10,7 +11,7 @@ For initial setup, please refer to [Project1](https://github.com/thomaspinckney3
 
 - Pull down the current project for Django:
 ```bash
-$ cd cs4501/app/
+$ cd ~/cs4501/app/
 $ git clone https://github.com/Charleo85/SIS-Rebuild
 ```
 
@@ -20,33 +21,102 @@ $ cd SIS-Rebuild/
 $ docker-compose up -d
 ```
 
-- Verify that the website is working (you should see a helloworld page):
+- Verify that the website is working (you should see html codes for the homepage):
 ```bash
 $ curl 127.0.0.1:8000
 ```
 
-- We also have a working webpage on a DigitalOcean droplet.
+- We also have a working webpage on a DigitalOcean droplet. Visit homepage at: [162.243.117.39:8000](http://162.243.117.39:8000).
 
-	- visit project server homepage at: [162.243.117.39:8000](http://162.243.117.39:8000)
-	- visit admin site: [162.243.117.39:8000/admin](http://162.243.117.39:8000/admin/)
-	- login to admin: user = 'root', pw = '135246789'
+
+Project 3
+---------
+
+**If you are grading this project, please read this section for our project 3 features:**
+
+********
+
+#### User stories and Unit testing
+
+- User Stories:
+
+	1. As a Student, I want to create or update my own profile.
+	2. As a Student, I want to modify my course enrollment.
+	3. As an Instructor, I want to create or update course profile.
+	4. As a Administrator, I want to modify student's course enrollment.
+	5. As a General User, I want to access course profile.
+
+- Unit testing (See [`tests.py`](models/api/tests.py) for details):
+
+	- Story i:
+		- A student named "Scott Gilb" with id `sg4fc` is created and verified.
+		- His name (profile) is then changed to "scotty gilb" and verified again.
+
+	- Story ii:
+		- The enroll status of student `tq7bw` in course `17894` is changed to "waitlisted" and verified.
+		- A new enrollment to enroll student `tq7bw` in course `16976` is created and verified.
+
+	- Story iii:
+		- A new course `17615` with title `Capstone Practicum` is created and verified.
+		- The course title and its max student capacity was modified and verified again.
+
+	- Story iv:
+		- The enrollment of student `jw7jb` in course `16976` is deleted and verified.
+
+	- Story v:
+		- The lookup of course mnemonic `MATH` and number `5653` returns the result as expected.
+
+********
+
+#### Web Pages
+
+- Home page (`127.0.0.1:8000`):
+	- Page design based on Bootstrap CSS Library.
+	- The central "start" button takes you to the course listing page.
+	- When you scroll down the page, a "popular courses" section would display the 3 most popular courses.
+	- The side bar and bottom bar contains links to item listing pages and external pages.
+
+- Item listing pages (`/{{ model_name_lower_case}}/`):
+	- The title section would display the model name of the item being listed.
+	- The body section would show all items in this category, in alphabetical order.
+	- Each listing contains the link to its item detail page.
+
+- Item detail pages (`/{{ model_name_lower_case }}/{{ object_id }}/`):
+	- The title section would display the course mnemonic and number or instructor name.
+	- The body section would show all non-blank information about this course/instructor.
+
+- The "about" page (`/about/`):
+	- This is a brief introduction to the purpose of building our website.
+	- Contains map / contact info about all contributors to this project.
+
+- Thoughts on front-end design:
+	- The "most popular" courses is determined by number of students enrolled in each course.
+	- The item listing for students/enrollments are hidden since these info should be kept private.
+	- However, you may still view detail of a student(enrollment) at `/student(enrollment)/{{ object_id }}/`.
+
+********
+
+#### Container Architecture
+
+- Models api: please refer to the (updated) documentation for project 2.
+
+- Experience api: sends GET requests to models api, processes the retrieved json data (by using Python dictionaries), and returns data back to the web layer.
+
+- Web layer: sends GET requests to experience api, and sends data to Django templates for rendering.
+
+- Please see our `views.py` in each layer for a detailed reference.
 
 
 Project 2
 ---------
 
-**If you are grading this project, please read this section for our project 2 models and features:**
-
-*****
-
 #### Django Models
-
 
 - `class Course(models.Model)`
 
 	- required fields (example):
 
-		- `id` (17894) -- *primary, unique, IntegerField*
+		- `id` ("17894") -- *primary, unique, format = `\d+`*
 		- `mnemonic` ("CS")
 		- `number` ("4501")
 		- `instructor` ("tp3ks") -- *should be an existing instructor id*
@@ -65,7 +135,7 @@ Project 2
 
 	- required fields (example):
 
-		- `id` ("tq7bw") -- *primary, unique*
+		- `id` ("tq7bw") -- *primary, unique, format = `[a-zA-Z0-9]+`*
 		- `first_name` ("Tong")
 		- `last_name` ("Qiu")
 
@@ -77,7 +147,7 @@ Project 2
 
 	- required fields (example):
 
-		- `id` ("tp3ks") -- *primary, unique*
+		- `id` ("tp3ks") -- *primary, unique, format = `[a-zA-Z0-9]+`*
 		- `first_name` ("Thomas")
 		- `last_name` ("Pinckney")
 
@@ -93,18 +163,18 @@ Project 2
 
 #### APIs -- GET and POST requests
 
-
 - GET requests:
 
-	- To send a GET request, use url "/{{ model_name_lower_case }}/{{ instance_id }}/"
-	- Correct requests get back json results with model info
-	- Incorrect ones get back a json with "ok" = false
+	- To send a GET request, use url "/api/{{ model_name_lower_case }}/detail/{{ instance_id }}/".
+	- use url "/api/{{ model_name_lower_case }}/all/" to retrieve all models.
+	- Correct requests get back json results with model info and `status_code = 200` (ok).
+	- Incorrect ones get back a json with `status_code` = some error code (eg. `404`).
 	- Example: To query about instructor with id "tp3ks":
 
 	```bash
-	$ curl 127.0.0.1:8001/instructor/tp3ks/
+	$ curl 127.0.0.1:8001/api/instructor/detail/tp3ks/
 	{
-		"ok": true,
+		"status_code": 200,
 		"instructor": {
 			"id": "tp3ks",
 			"last_name": "Pinckney",
@@ -112,34 +182,41 @@ Project 2
 		}
 	}
 	```
+
 - POST requests:
 
 	- Updating an existing instance:
 
-		- Use the same url as GET to reach for that instance
-		- The "id" field in the POST data must match the id in the url
-		- All required fields must be filled out
-		- If all requirements are satisfied, a json is returned with updated instance info
-		- If one or more requirements fail, a json is returned with "ok" = false
+		- Use the same url as GET to reach for a particular instance.
+		- The "id" field in the POST data must match the id in the url.
+		- All required fields must be filled out.
+		- If all requirements are satisfied, a json is returned with updated info and `status_code = 201`.
+		- If one or more requirements fail, a json is returned with `status_code = 400` (bad request).
 
 	- Creating a new instance:
 
-		- Use url "/{{ model_name_lower_case }}/create/"
-		- The "id" must not match an existing instance
-		- All required fields must be filled out
-		- If all requirements are satisfied, a json is returned with the new instance info
-		- If one or more requirements fail, a json is returned with "ok" = false
+		- Use url "/{{ model_name_lower_case }}/create/".
+		- The "id" must not match an existing instance.
+		- All required fields must be filled out.
+		- If all requirements are satisfied, a json is returned with new instance info and `status_code = 202`.
+		- If one or more requirements fail, a json is returned with `status_code = 400` (bad request).
+	
+	- Deleting an existing instance:
+		
+		- Use url "/{{ model_name_lower_case }}/delete/".
+		- Only one required field: instance "id", must match some existing instance.
+		- **Warning**: when processing a delete request, all related instances would be deleted as well. For example, if you delete an instructor, all courses of this instructor would also be deleted.
+		- If the delete is successful, a json is returned with `status_code = 202`.
+		- If the delete has failed, a json is returned with `status_code = 400` (bad request).
 
 	- **All POST requests should use form-encoded data**
 
-    - Currently, `id` for instructors and students only support uva computing id format, i.e. ab(c)3d(e)
-
 - Fixtures:
 
-    - Course: id = 17894, instructor = "tp3ks", mnemonic = "CS", number = "4501", section = "004", title = "ISA", max students = 50.
-    - Instructor: first name = "Thomas", last name = "Pinckney", id = "tp3ks".
-    - Student: first name = "Tong", last name = "Qiu", id = "tq7bw".
-    - Enrollment: student = "tq7bw", course = 17894, enroll status = "E" (enrolled).
+    - Course: 5 models, list of `id`: `10835`, `16976`, `17894`, `19078`, `19417`.
+    - Instructor: 4 models, list of `id`: `asb2t`, `dee2b`, `mve2x`, `tp3ks`.
+    - Student: 3 models, list of `id`: `jw7jb`, `tq7bw`, `zaf2xk`.
+    - Enrollment: 6 models: students `jw7jb`, `tq7bw`, `zaf2xk` in course `17894`; students `jw7jb`, `tq7bw` in course `19078`; student `jw7jb` in course `16974` (`enroll_status = W`).
 
 
 Update Timeline
@@ -162,6 +239,22 @@ Update Timeline
 	- rearrange code layouts
 	- docker-compose file created and tested
 	- Django models/API finalized for project 2
+
+- September 28th
+	- web and experience layers initialized
+	- document structure change
+	- docker-compose file support 3 containers
+	- User stories written
+
+- September 30th
+	- Models layer api improved and tested
+	- First draft of experience layer service
+	- Webpage templates and stylesheets created
+
+- October 5th
+	- Unit tests created and tested
+	- Exp and web layers finalized for project 3
+
 
 Contact Us
 ----------
