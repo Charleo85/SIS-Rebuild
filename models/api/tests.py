@@ -47,7 +47,7 @@ class StudentEnrollmentTestCases(TestCase):
 class CreateAndModifyCourseTestCases(TestCase):
     fixtures = ['data.json']
 
-    def setup(self):
+    def setUp(self):
         course = Course(
             id="17615", mnemonic="CS", number="4970", max_students=150,
             instructor=Instructor.objects.get(id="asb2t"),
