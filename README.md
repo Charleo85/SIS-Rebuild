@@ -205,8 +205,7 @@ Project 2
 		
 		- Use url "/{{ model_name_lower_case }}/delete/".
 		- Only one required field: instance "id", must match some existing instance.
-		- **Warning**: when processing a delete request, all related instances would be deleted as well.
-			- For example, if you delete an instructor, all courses of this instructor would also be deleted.
+		- **Warning**: when processing a delete request, all related instances would be deleted as well. For example, if you delete an instructor, all courses of this instructor would also be deleted.
 		- If the delete is successful, a json is returned with `status_code = 202`.
 		- If the delete has failed, a json is returned with `status_code = 400` (bad request).
 
