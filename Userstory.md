@@ -1,4 +1,4 @@
-Project User Story
+Project User Stories
 =====
 1. As a Student, I want to create or update my own profile.
 
