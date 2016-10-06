@@ -34,10 +34,11 @@ class StudentEnrollmentTestCases(TestCase):
 
     def test_EnrollInCourse(self):
         student = Student.objects.get(id="tq7bw")
-        current_courses = student.taking_courses
-        enrollment = Enrollment(student="tq7bw", course="16976", enroll_status="E")
+        course = Course.objects.get(id="16976")
+        current_courses = student.taking_courses.all()
+        enrollment = Enrollment(student=student, course=course, enroll_status="E")
         enrollment.save()
-        current_courses += Course.objects.get(id="16976")
+        current_courses += course
         self.assertEqual(student.taking_courses, current_courses)
 
 # instructor create and update course
@@ -47,7 +48,8 @@ class CreateAndModifyCourseTestCases(TestCase):
     def setup(self):
         course = Course(
             id="17615", mnemonic="CS", number="4970", max_students=150,
-            instructor="asb2t", section="001", title="Capstone Practicum",
+            instructor=Instructor.objects.get(id="asb2t"),
+            section="001", title="Capstone Practicum",
         )
         course.save()
 
@@ -71,7 +73,7 @@ class AdministratorTestCase(TestCase):
 
     def test_DeleteEnrollment(self):
         student = Student.objects.get(id="jw7jb")
-        current_courses = student.taking_courses
+        current_courses = student.taking_courses.all()
         enrollment = Enrollment.objects.filter(student="jw7jb", course="16976")
         enrollment.delete()
         current_courses.remove(Course.objects.get(id="16976"))
