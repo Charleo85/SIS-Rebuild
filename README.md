@@ -165,10 +165,10 @@ Project 2
 
 - GET requests:
 
-	- To send a GET request, use url "/api/{{ model_name_lower_case }}/detail/{{ instance_id }}/"
-	- use url "/api/{{ model_name_lower_case }}/all/" to retrieve all models
-	- Correct requests get back json results with model info and `status_code = 200` (ok)
-	- Incorrect ones get back a json with `status_code` = some error code (eg. `404`)
+	- To send a GET request, use url "/api/{{ model_name_lower_case }}/detail/{{ instance_id }}/".
+	- use url "/api/{{ model_name_lower_case }}/all/" to retrieve all models.
+	- Correct requests get back json results with model info and `status_code = 200` (ok).
+	- Incorrect ones get back a json with `status_code` = some error code (eg. `404`).
 	- Example: To query about instructor with id "tp3ks":
 
 	```bash
@@ -187,19 +187,28 @@ Project 2
 
 	- Updating an existing instance:
 
-		- Use the same url as GET to reach for a particular instance
-		- The "id" field in the POST data must match the id in the url
-		- All required fields must be filled out
-		- If all requirements are satisfied, a json is returned with updated info and `status_code = 201`
-		- If one or more requirements fail, a json is returned with `status_code = 400` (bad request)
+		- Use the same url as GET to reach for a particular instance.
+		- The "id" field in the POST data must match the id in the url.
+		- All required fields must be filled out.
+		- If all requirements are satisfied, a json is returned with updated info and `status_code = 201`.
+		- If one or more requirements fail, a json is returned with `status_code = 400` (bad request).
 
 	- Creating a new instance:
 
-		- Use url "/{{ model_name_lower_case }}/create/"
-		- The "id" must not match an existing instance
-		- All required fields must be filled out
-		- If all requirements are satisfied, a json is returned with new instance info and `status_code = 202`
-		- If one or more requirements fail, a json is returned with `status_code = 400` (bad request)
+		- Use url "/{{ model_name_lower_case }}/create/".
+		- The "id" must not match an existing instance.
+		- All required fields must be filled out.
+		- If all requirements are satisfied, a json is returned with new instance info and `status_code = 202`.
+		- If one or more requirements fail, a json is returned with `status_code = 400` (bad request).
+	
+	- Deleting an existing instance:
+		
+		- Use url "/{{ model_name_lower_case }}/delete/".
+		- Only one required field: instance "id", must match some existing instance.
+		- **Warning**: when processing a delete request, all related instances would be deleted as well.
+			- For example, if you delete an instructor, all courses of this instructor would also be deleted.
+		- If the delete is successful, a json is returned with `status_code = 202`.
+		- If the delete has failed, a json is returned with `status_code = 400` (bad request).
 
 	- **All POST requests should use form-encoded data**
 
