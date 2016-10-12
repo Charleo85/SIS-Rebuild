@@ -12,12 +12,12 @@ from .forms import *
 import models.settings
 
 
-def success(data_dict, model_name, code):
+def _success(data_dict, model_name, code):
     correct = { 'status_code' : code, model_name : data_dict }
     return JsonResponse(correct)
-    
 
-def failure(code, error_msg=''):
+
+def _failure(code, error_msg=''):
     if error_msg == '':
         error = { 'status_code' : code }
     else:
@@ -27,14 +27,14 @@ def failure(code, error_msg=''):
 
 def login(request):
     if request.method != 'POST':
-        return failure(400, 'incorrect request type')
+        return _failure(400, 'incorrect request type')
 
     if 'username' not in request.POST:
-        return failure(400, 'missing username')
+        return _failure(400, 'missing username')
     if 'password' not in request.POST:
-        return failure(400, 'missing password')
+        return _failure(400, 'missing password')
     if 'user_type' not in request.POST:
-        return failure(400, 'missing user type')
+        return _failure(400, 'missing user type')
 
     username = request.POST['username']
     password = request.POST['password']
@@ -44,17 +44,17 @@ def login(request):
         try:
             user = Instructor.objects.get(username=username)
         except ObjectDoesNotExist:
-            return failure(404, 'cannot find instructor')
+            return _failure(404, 'cannot find instructor')
     elif user_type == 1:
         try:
             user = Student.objects.get(username=username)
         except ObjectDoesNotExist:
-            return failure(404, 'cannot find student')
+            return _failure(404, 'cannot find student')
     else:
-        return failure(400, 'incorrect user type')
+        return _failure(400, 'incorrect user type')
 
     if not hashers.check_password(password, user.password):
-        return failure(403, 'incorrect password')
+        return _failure(403, 'incorrect password')
 
     token = hmac.new(
         key = models.settings.SECRET_KEY.encode('utf-8'),
@@ -66,20 +66,20 @@ def login(request):
     auth.save()
 
     data = model_to_dict(auth)
-    return success(data, 'authenticator', 200)
+    return _success(data, 'authenticator', 200)
 
 
 def validate(request):
     if request.method != 'POST':
-        return failure(400, 'incorrect request type')
+        return _failure(400, 'incorrect request type')
 
     if 'auth' not in request.POST:
-        return failure(400, 'missing authenticator')
+        return _failure(400, 'missing authenticator')
     token = request.POST['auth']
     try:
         auth = Authenticator.objects.get(auth=token)
     except ObjectDoesNotExist:
-        return failure(403, 'unknown authenticator')
+        return _failure(403, 'unknown authenticator')
 
     data = {}
     data['user_type'] = auth.user_type
@@ -93,20 +93,20 @@ def validate(request):
 
     data['info'].pop('username', None)
     data['info'].pop('password', None)
-    return success(data, 'user', 200)
+    return _success(data, 'user', 200)
 
 
 def logout(request):
     if request.method != 'POST':
-        return failure(400, 'incorrect request type')
+        return _failure(400, 'incorrect request type')
 
     if 'auth' not in request.POST:
-        return failure(400, 'missing authenticator')
+        return _failure(400, 'missing authenticator')
     token = request.POST['auth']
     try:
         auth = Authenticator.objects.get(auth=token)
     except ObjectDoesNotExist:
-        return failure(403, 'unknown authenticator')
-    
+        return _failure(403, 'unknown authenticator')
+
     Authenticator.objects.filter(auth=token).delete()
     return JsonResponse({ 'status_code': 200 })

@@ -8,10 +8,24 @@ import json
 from .forms import *
 
 
-def home_page(request):
-    req = urllib.request.Request('http://exp-api:8000/course/popular/')
+def _make_get_request(url):
+    req = urllib.request.Request(url)
     resp_json = urllib.request.urlopen(req).read().decode('utf-8')
     resp = json.loads(resp_json)
+    return resp
+
+
+def _make_post_request(url, post_data):
+    post_encoded = urllib.parse.urlencode(post_data).encode('utf-8')
+    req = urllib.request.Request(url, data=post_encoded, method='POST')
+    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
+    resp = json.loads(resp_json)
+    return resp
+
+
+def home_page(request):
+    url = 'http://exp-api:8000/course/popular/'
+    resp = _make_get_request(url)
     return render(request, 'homepage.html', resp)
 
 
@@ -20,18 +34,14 @@ def about(request):
 
 
 def list_item(request, modelname):
-    req = urllib.request.Request('http://exp-api:8000/' + modelname + '/')
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://exp-api:8000/' + modelname + '/'
+    resp = _make_get_request(url)
     return render(request, modelname + '.html', resp)
 
 
 def item_detail(request, itemid, modelname):
-    req = urllib.request.Request(
-        'http://exp-api:8000/' + modelname + '/detail/' + itemid + '/'
-    )
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://exp-api:8000/' + modelname + '/detail/' + itemid + '/'
+    resp = _make_get_request(url)
     return render(request, modelname + '_detail.html', resp)
 
 
@@ -48,13 +58,8 @@ def login(request, modelname):
             return render(request, 'test_login.html', data)
 
         post_data = form.cleaned_data
-        post_encoded = urllib.parse.urlencode(post_data).encode('utf-8')
-        req = urllib.request.Request(
-            'http://exp-api:8000/' + modelname + '/auth/login/',
-            data=post_encoded, method='POST',
-        )
-        resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-        resp = json.loads(resp_json)
+        url = 'http://exp-api:8000/' + modelname + '/auth/login/'
+        resp = _make_post_request(url, post_data)
 
         if resp['status_code'] != 200:
             data = {
@@ -83,14 +88,8 @@ def get_user_info(request, user_type):
 
     auth = request.COOKIES.get('auth')
     post_data = {'auth': auth}
-    post_encoded = urllib.parse.urlencode(post_data).encode('utf-8')
-
-    req = urllib.request.Request(
-        'http://exp-api:8000/' + modelname + '/auth/validate/',
-        data=post_encoded, method='POST'
-    )
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://exp-api:8000/' + modelname + '/auth/validate/'
+    resp = _make_post_request(url, post_data)
     return resp
 
 
