@@ -57,6 +57,11 @@ ins = [
         r'^instructor/validate/$',
         views.instructor_validate, name='instructor_validate',
     ),
+    url(
+        r'^instructor/logout/$',
+        views.logout, { 'modelname' : 'instructor' },
+        name='instructor_logout',
+    ),
 ]
 
 stud = [
@@ -73,6 +78,11 @@ stud = [
     url(
         r'^student/validate/$',
         views.student_validate, name='student_validate',
+    ),
+    url(
+        r'^student/logout/$',
+        views.logout, { 'modelname' : 'student' },
+        name='student_logout',
     ),
 ]
 

@@ -23,6 +23,22 @@ def _make_post_request(url, post_data):
     return resp
 
 
+def _get_user_info(request, user_type):
+    if user_type == 0:
+        modelname = 'instructor'
+    else:
+        modelname = 'student'
+
+    if 'auth' not in request.COOKIES:
+        return { 'status_code': 400 }
+
+    auth = request.COOKIES.get('auth')
+    post_data = {'auth': auth}
+    url = 'http://exp-api:8000/' + modelname + '/auth/validate/'
+    resp = _make_post_request(url, post_data)
+    return resp
+
+
 def home_page(request):
     url = 'http://exp-api:8000/course/popular/'
     resp = _make_get_request(url)
@@ -77,53 +93,49 @@ def login(request, modelname):
     return HttpResponse('incorrect request type')
 
 
-def get_user_info(request, user_type):
-    if user_type == 0:
-        modelname = 'instructor'
-    else:
-        modelname = 'student'
-
-    if 'auth' not in request.COOKIES:
-        return { 'status_code': 400 }
-
-    auth = request.COOKIES.get('auth')
-    post_data = {'auth': auth}
-    url = 'http://exp-api:8000/' + modelname + '/auth/validate/'
-    resp = _make_post_request(url, post_data)
-    return resp
-
-
 def instructor_login_required(f):
     def wrap(request, *args, **kwargs):
-        resp = get_user_info(request, 0)
+        resp = _get_user_info(request, 0)
         if resp['status_code'] != 200:
             return HttpResponseRedirect(reverse('instructor_login'))
         else:
             return f(request, *args, **kwargs)
-
     return wrap
 
 
 def student_login_required(f):
     def wrap(request, *args, **kwargs):
-        resp = get_user_info(request, 1)
+        resp = _get_user_info(request, 1)
         if resp['status_code'] != 200:
             return HttpResponseRedirect(reverse('student_login'))
         else:
             return f(request, *args, **kwargs)
-
     return wrap
 
 
 @instructor_login_required
 def instructor_validate(request):
-    resp = get_user_info(request, 0)
+    resp = _get_user_info(request, 0)
     last_name = resp['user']['last_name']
     return HttpResponse('You have logged in! Instructor ' + last_name)
 
 
 @student_login_required
 def student_validate(request):
-    resp = get_user_info(request, 1)
+    resp = _get_user_info(request, 1)
     last_name = resp['user']['last_name']
     return HttpResponse('You have logged in! Student ' + last_name)
+
+
+def logout(request, modelname):
+    if auth not in request.COOKIES:
+        return HttpResponseRedirect(reverse(modelname + '_login'))
+
+    url = 'http://exp-api:8000/' + modelname + '/auth/logout'
+    post_data = {'auth': request.COOKIES.get('auth')}
+    resp = _make_post_request(url, post_data)
+
+    if resp['status_code'] == 200:
+        return HttpResponse('You have successfully logged out.')
+    else:
+        return HttpResponseRedirect(reverse(modelname + '_login'))

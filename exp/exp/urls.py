@@ -34,7 +34,7 @@ ins = [
     url(r'^instructor/detail/(?P<compid>[a-zA-Z0-9]+)/$', views_model.instructor_detail),
     url(r'^instructor/auth/login/$', views_auth.login, {'user_type' : 0}),
     url(r'^instructor/auth/validate/$', views_auth.validate, {'user_type' : 0}),
-    url(r'^instructor/auth/logout/$', views_auth.logout, {'user_type' : 0}),
+    url(r'^instructor/auth/logout/$', views_auth.logout),
 ]
 
 stud = [
@@ -42,7 +42,7 @@ stud = [
     url(r'^student/detail/(?P<compid>[a-zA-Z0-9]+)/$', views_model.student_detail),
     url(r'^student/auth/login/$', views_auth.login, {'user_type' : 1}),
     url(r'^student/auth/validate/$', views_auth.validate, {'user_type' : 1}),
-    url(r'^student/auth/logout/$', views_auth.logout, {'user_type' : 1}),
+    url(r'^student/auth/logout/$', views_auth.logout),
 ]
 
 enr = [

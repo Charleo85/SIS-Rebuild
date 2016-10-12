@@ -57,7 +57,7 @@ def validate(request, user_type):
         return JsonResponse(resp)
 
 
-def logout(request, user_type):
+def logout(request):
     if request.method != POST:
         return _failure(400, 'incorrect request type')
 
