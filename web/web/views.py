@@ -117,25 +117,31 @@ def student_login_required(f):
 def instructor_validate(request):
     resp = _get_user_info(request, 0)
     last_name = resp['user']['last_name']
-    return HttpResponse('You have logged in! Instructor ' + last_name)
+    message = 'You have logged in! Instructor ' + last_name + '. '
+    message += '<a href=\"/instructor/logout/\">Logout</a>'
+    return HttpResponse(message)
 
 
 @student_login_required
 def student_validate(request):
     resp = _get_user_info(request, 1)
     last_name = resp['user']['last_name']
-    return HttpResponse('You have logged in! Student ' + last_name)
+    message = 'You have logged in! Student ' + last_name + '. '
+    message += '<a href=\"/student/logout/\">Logout</a>'
+    return HttpResponse(message)
 
 
 def logout(request, modelname):
-    if auth not in request.COOKIES:
+    if 'auth' not in request.COOKIES:
         return HttpResponseRedirect(reverse(modelname + '_login'))
 
-    url = 'http://exp-api:8000/' + modelname + '/auth/logout'
+    url = 'http://exp-api:8000/' + modelname + '/auth/logout/'
     post_data = {'auth': request.COOKIES.get('auth')}
     resp = _make_post_request(url, post_data)
 
     if resp['status_code'] == 200:
-        return HttpResponse('You have successfully logged out.')
+        response = HttpResponse('You have successfully logged out.')
+        response.delete_cookie('auth')
+        return response
     else:
         return HttpResponseRedirect(reverse(modelname + '_login'))

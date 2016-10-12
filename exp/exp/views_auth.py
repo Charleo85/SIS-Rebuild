@@ -58,10 +58,10 @@ def validate(request, user_type):
 
 
 def logout(request):
-    if request.method != POST:
+    if request.method != 'POST':
         return _failure(400, 'incorrect request type')
 
     post_data = request.POST.dict()
-    url = 'http://models-api:8000/api/auth/delete/',
+    url = 'http://models-api:8000/api/auth/logout/'
     resp = _make_post_request(url, post_data)
     return JsonResponse(resp)
