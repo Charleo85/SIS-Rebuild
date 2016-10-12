@@ -117,8 +117,8 @@ def course_popular(request):
     course_data = []
     for course_dict in selected_courses:
         new_dict = {}
-        new_dict['coursehref'] = '/course/' + course_dict['id'] + '/'
-        new_dict['instructorhref'] = '/instructor/'
+        new_dict['coursehref'] = '/course/detail/' + course_dict['id'] + '/'
+        new_dict['instructorhref'] = '/instructor/detail/'
         new_dict['instructorhref'] += course_dict['instructor'] + '/'
 
         new_dict['course_name'] = course_dict['mnemonic'] + ' '
