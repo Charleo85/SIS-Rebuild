@@ -33,7 +33,7 @@ course = [
         { 'modelname' : 'course' }, name='course_list',
     ),
     url(
-        r'^course/(?P<itemid>[0-9]{5})/$',
+        r'^course/detail/(?P<itemid>[0-9]{5})/$',
         views.item_detail, { 'modelname' : 'course' }, name='course_detail',
     ),
 ]
@@ -44,7 +44,7 @@ ins = [
         { 'modelname' : 'instructor' }, name='instructor_list'
     ),
     url(
-        r'^instructor/(?P<itemid>[a-zA-Z0-9]+)/$',
+        r'^instructor/detail/(?P<itemid>[a-zA-Z0-9]+)/$',
         views.item_detail, { 'modelname' : 'instructor' },
         name='instructor_detail',
     ),
@@ -61,7 +61,7 @@ ins = [
 
 stud = [
     url(
-        r'^student/(?P<itemid>[a-zA-Z0-9]+)/$',
+        r'^student/detail/(?P<itemid>[a-zA-Z0-9]+)/$',
         views.item_detail, { 'modelname' : 'student' },
         name='student_detail',
     ),
@@ -78,7 +78,7 @@ stud = [
 
 enr = [
     url(
-        r'^enrollment/(?P<itemid>[0-9]+)/$',
+        r'^enrollment/detail/(?P<itemid>[0-9]+)/$',
         views.item_detail, { 'modelname' : 'enrollment' },
         name='enrollment_detail',
     ),

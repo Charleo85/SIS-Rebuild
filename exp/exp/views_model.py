@@ -55,8 +55,8 @@ def course_all(request):
     course_data = []
     for course_dict in resp['all_courses']:
         new_dict = {}
-        new_dict['coursehref'] = '/course/' + course_dict['id'] + '/'
-        new_dict['instructorhref'] = '/instructor/'
+        new_dict['coursehref'] = '/course/detail/' + course_dict['id'] + '/'
+        new_dict['instructorhref'] = '/instructor/detail'
         new_dict['instructorhref'] += course_dict['instructor'] + '/'
 
         new_dict['course_name'] = course_dict['mnemonic'] + ' '
@@ -146,7 +146,7 @@ def instructor_all(request):
     instructor_data = []
     for ins_dict in resp['all_instructors']:
         new_dict = {}
-        new_dict['href'] = '/instructor/' + ins_dict['id'] + '/'
+        new_dict['href'] = '/instructor/detail/' + ins_dict['id'] + '/'
         new_dict['instructor_name'] = ins_dict['first_name'] + ' '
         new_dict['instructor_name'] += ins_dict['last_name']
         new_dict['instructor_name'] += ' (' + ins_dict['id'] + ')'
@@ -189,7 +189,7 @@ def student_all(request):
     student_data = []
     for stud_dict in resp['all_students']:
         new_dict = {}
-        new_dict['href'] = '/student/' + stud_dict['id'] + '/'
+        new_dict['href'] = '/student/detail' + stud_dict['id'] + '/'
         new_dict['student_name'] = stud_dict['first_name'] + ' '
         new_dict['student_name'] += stud_dict['last_name']
         new_dict['student_name'] += ' (' + stud_dict['id'] + ')'
@@ -231,7 +231,7 @@ def enrollment_all(request):
     enrollment_data = []
     for enr_dict in resp['all_enrollments']:
         new_dict = {}
-        new_dict['href'] = '/enrollment/' + str(enr_dict['id']) + '/'
+        new_dict['href'] = '/enrollment/detail' + str(enr_dict['id']) + '/'
         new_dict['enrollment_name'] = enr_dict['student'] + ':'
         new_dict['enrollment_name'] += enr_dict['course']
         enrollment_data.append(new_dict)
