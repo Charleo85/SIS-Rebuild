@@ -62,6 +62,15 @@ def item_detail(request, itemid, modelname):
 
 
 def login(request, modelname):
+    if 'auth' in request.COOKIES:
+        if modelname == 'instructor':
+            user_type = 0
+        else:
+            user_type = 1
+        resp = _get_user_info(request, user_type)
+        if resp['status_code'] == 200:
+            return HttpResponseRedirect(reverse(modelname + '_validate'))
+
     if request.method == 'GET':
         form = LoginForm()
         data = { 'form': form, 'modelname': modelname }
