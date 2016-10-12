@@ -38,7 +38,7 @@ def login(request, user_type):
 
 
 def validate(request, user_type):
-    if request.method != POST:
+    if request.method != 'POST':
         return failure(400, 'incorrect request type')
 
     post_data = request.POST.dict()
@@ -56,7 +56,7 @@ def validate(request, user_type):
             resp['user'] = resp['user']['info']
             return JsonResponse(resp)
         else:
-            return failure(401, 'incorrect user type')
+            return failure(400, 'incorrect user type')
     else:
         return JsonResponse(resp)
 

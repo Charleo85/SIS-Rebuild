@@ -1,8 +1,11 @@
 from django import forms
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='Username: ', max_length=24)
-    password = forms.CharField(label='Password: ', max_length=100)
+    username = forms.CharField(label='Username', max_length=24)
+    password = forms.CharField(
+        label='Password', max_length=100,
+        widget=forms.PasswordInput,
+    )
 
     def is_valid(self):
         valid = super(LoginForm, self).is_valid()

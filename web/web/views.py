@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 import urllib.request
 import json
@@ -49,7 +50,7 @@ def login(request, modelname):
         post_data = form.cleaned_data
         post_encoded = urllib.parse.urlencode(post_data).encode('utf-8')
         req = urllib.request.Request(
-            'http://exp-api:8000/' + modelname + '/login/',
+            'http://exp-api:8000/' + modelname + '/auth/login/',
             data=post_encoded, method='POST',
         )
         resp_json = urllib.request.urlopen(req).read().decode('utf-8')
@@ -117,13 +118,13 @@ def student_login_required(f):
 
 @instructor_login_required
 def instructor_validate(request):
-    resp = get_user_info(request)
+    resp = get_user_info(request, 0)
     last_name = resp['user']['last_name']
     return HttpResponse('You have logged in! Instructor ' + last_name)
 
 
 @student_login_required
 def student_validate(request):
-    resp = get_user_info(request)
+    resp = get_user_info(request, 1)
     last_name = resp['user']['last_name']
     return HttpResponse('You have logged in! Student ' + last_name)
