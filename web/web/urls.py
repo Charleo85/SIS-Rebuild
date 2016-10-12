@@ -28,32 +28,69 @@ misc = [
 ]
 
 course = [
-    url(r'^course/$', views.list_item, { 'modelname' : 'course' }),
     url(
-        r'^course/(?P<itemid>[0-9]{5})/$',
-        views.item_detail, { 'modelname' : 'course' },
+        r'^course/$', views.list_item,
+        { 'modelname' : 'course' }, name='course_list',
+    ),
+    url(
+        r'^course/detail/(?P<itemid>[0-9]{5})/$',
+        views.item_detail, { 'modelname' : 'course' }, name='course_detail',
     ),
 ]
 
 ins = [
-    url(r'^instructor/$', views.list_item, { 'modelname' : 'instructor' }),
     url(
-        r'^instructor/(?P<itemid>[a-zA-Z0-9]+)/$',
+        r'^instructor/$', views.list_item,
+        { 'modelname' : 'instructor' }, name='instructor_list'
+    ),
+    url(
+        r'^instructor/detail/(?P<itemid>[a-zA-Z0-9]+)/$',
         views.item_detail, { 'modelname' : 'instructor' },
+        name='instructor_detail',
+    ),
+    url(
+        r'^instructor/login/$',
+        views.login, { 'modelname' : 'instructor' },
+        name='instructor_login',
+    ),
+    url(
+        r'^instructor/validate/$',
+        views.instructor_validate, name='instructor_validate',
+    ),
+    url(
+        r'^instructor/logout/$',
+        views.logout, { 'modelname' : 'instructor' },
+        name='instructor_logout',
     ),
 ]
 
 stud = [
     url(
-        r'^student/(?P<itemid>[a-zA-Z0-9]+)/$',
+        r'^student/detail/(?P<itemid>[a-zA-Z0-9]+)/$',
         views.item_detail, { 'modelname' : 'student' },
+        name='student_detail',
+    ),
+    url(
+        r'^student/login/$',
+        views.login, { 'modelname' : 'student' },
+        name='student_login',
+    ),
+    url(
+        r'^student/validate/$',
+        views.student_validate, name='student_validate',
+    ),
+    url(
+        r'^student/logout/$',
+        views.logout, { 'modelname' : 'student' },
+        name='student_logout',
     ),
 ]
 
 enr = [
     url(
-        r'^enrollment/(?P<itemid>[0-9]+)/$',
+        r'^enrollment/detail/(?P<itemid>[0-9]+)/$',
         views.item_detail, { 'modelname' : 'enrollment' },
+        name='enrollment_detail',
     ),
 ]
 

@@ -1,21 +1,20 @@
-from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 
 import urllib.request
 import urllib.parse
 import json
 
-# Create your views here.
-def index(request):
-    return HttpResponse('Success!')
+# Create your views here
+def _make_get_request(url):
+    req = urllib.request.Request(url)
+    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
+    resp = json.loads(resp_json)
+    return resp
 
 
-def getInstructor(ins_id):
-    req_ins = urllib.request.Request(
-        'http://models-api:8000/api/instructor/detail/' + ins_id + '/'
-    )
-    resp_json_ins = urllib.request.urlopen(req_ins).read().decode('utf-8')
-    resp_ins = json.loads(resp_json_ins)
+def _get_instructor(ins_id):
+    url = 'http://models-api:8000/api/instructor/detail/' + ins_id + '/'
+    resp_ins = _make_get_request(url)
     data = resp_ins['instructor']
 
     result = data['first_name'] + ' ' + data['last_name']
@@ -23,12 +22,9 @@ def getInstructor(ins_id):
     return result
 
 
-def getStudent(stud_id):
-    req_stud = urllib.request.Request(
-        'http://models-api:8000/api/student/detail/' + stud_id + '/'
-    )
-    resp_json_stud = urllib.request.urlopen(req_stud).read().decode('utf-8')
-    resp_stud = json.loads(resp_json_stud)
+def _get_student(stud_id):
+    url = 'http://models-api:8000/api/student/detail/' + stud_id + '/'
+    resp_stud = _make_get_request(url)
     data = resp_stud['student']
 
     result = data['first_name'] + ' ' + data['last_name']
@@ -36,19 +32,19 @@ def getStudent(stud_id):
     return result
 
 
-def getCourse(course_id):
-    req_c = urllib.request.Request(
-        'http://models-api:8000/api/course/detail/' + course_id + '/'
-    )
-    resp_json_c = urllib.request.urlopen(req_c).read().decode('utf-8')
-    resp_c = json.loads(resp_json_c)
+def _get_course(course_id):
+    url = 'http://models-api:8000/api/course/detail/' + course_id + '/'
+    resp_c = _make_get_request(url)
     return resp_c['course']['mnemonic'] + ' ' + resp_c['course']['number']
 
 
+def index(request):
+    return HttpResponse('Success!')
+
+
 def course_all(request):
-    req = urllib.request.Request('http://models-api:8000/api/course/all/')
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://models-api:8000/api/course/all/'
+    resp = _make_get_request(url)
 
     new_data = {}
     new_data['status_code'] = resp['status_code']
@@ -56,8 +52,8 @@ def course_all(request):
     course_data = []
     for course_dict in resp['all_courses']:
         new_dict = {}
-        new_dict['coursehref'] = '/course/' + course_dict['id'] + '/'
-        new_dict['instructorhref'] = '/instructor/'
+        new_dict['coursehref'] = '/course/detail/' + course_dict['id'] + '/'
+        new_dict['instructorhref'] = '/instructor/detail/'
         new_dict['instructorhref'] += course_dict['instructor'] + '/'
 
         new_dict['course_name'] = course_dict['mnemonic'] + ' '
@@ -67,7 +63,7 @@ def course_all(request):
         if course_dict['title'] != '':
             new_dict['course_name'] += ": " + course_dict['title']
 
-        new_dict['instructor'] = getInstructor(course_dict['instructor'])
+        new_dict['instructor'] = _get_instructor(course_dict['instructor'])
         new_dict['enrollment_info'] = str(course_dict['current_enrolled'])
         new_dict['enrollment_info'] += '/' + str(course_dict['max_students'])
         course_data.append(new_dict)
@@ -77,11 +73,8 @@ def course_all(request):
 
 
 def course_detail(request, sisid):
-    req = urllib.request.Request(
-        'http://models-api:8000/api/course/detail/' + sisid + '/'
-    )
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://models-api:8000/api/course/detail/' + sisid + '/'
+    resp = _make_get_request(url)
 
     if resp['status_code'] == 200:
         new_dict = resp['course']
@@ -89,16 +82,15 @@ def course_detail(request, sisid):
             if new_dict[key] == '':
                 new_dict.pop(key, None)
 
-        new_dict['instructor'] = getInstructor(new_dict['instructor'])
+        new_dict['instructor'] = _get_instructor(new_dict['instructor'])
         resp['course'] = new_dict
 
     return JsonResponse(resp)
 
 
 def course_popular(request):
-    req = urllib.request.Request('http://models-api:8000/api/course/all/')
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://models-api:8000/api/course/all/'
+    resp = _make_get_request(url)
 
     new_data = {}
     new_data['status_code'] = resp['status_code']
@@ -118,8 +110,8 @@ def course_popular(request):
     course_data = []
     for course_dict in selected_courses:
         new_dict = {}
-        new_dict['coursehref'] = '/course/' + course_dict['id'] + '/'
-        new_dict['instructorhref'] = '/instructor/'
+        new_dict['coursehref'] = '/course/detail/' + course_dict['id'] + '/'
+        new_dict['instructorhref'] = '/instructor/detail/'
         new_dict['instructorhref'] += course_dict['instructor'] + '/'
 
         new_dict['course_name'] = course_dict['mnemonic'] + ' '
@@ -129,7 +121,7 @@ def course_popular(request):
         if course_dict['title'] != '':
             new_dict['course_name'] += "<br>" + course_dict['title']
 
-        new_dict['instructor'] = getInstructor(course_dict['instructor'])
+        new_dict['instructor'] = _get_instructor(course_dict['instructor'])
         course_data.append(new_dict)
 
     new_data['popular_courses'] = course_data
@@ -137,9 +129,8 @@ def course_popular(request):
 
 
 def instructor_all(request):
-    req = urllib.request.Request('http://models-api:8000/api/instructor/all/')
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://models-api:8000/api/instructor/all/'
+    resp = _make_get_request(url)
 
     new_data = {}
     new_data['status_code'] = resp['status_code']
@@ -147,7 +138,7 @@ def instructor_all(request):
     instructor_data = []
     for ins_dict in resp['all_instructors']:
         new_dict = {}
-        new_dict['href'] = '/instructor/' + ins_dict['id'] + '/'
+        new_dict['href'] = '/instructor/detail/' + ins_dict['id'] + '/'
         new_dict['instructor_name'] = ins_dict['first_name'] + ' '
         new_dict['instructor_name'] += ins_dict['last_name']
         new_dict['instructor_name'] += ' (' + ins_dict['id'] + ')'
@@ -158,11 +149,8 @@ def instructor_all(request):
 
 
 def instructor_detail(request, compid):
-    req = urllib.request.Request(
-        'http://models-api:8000/api/instructor/detail/' + compid + '/'
-    )
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://models-api:8000/api/instructor/detail/' + compid + '/'
+    resp = _make_get_request(url)
 
     if resp['status_code'] == 200:
         teaching = ''
@@ -180,9 +168,8 @@ def instructor_detail(request, compid):
 
 
 def student_all(request):
-    req = urllib.request.Request('http://models-api:8000/api/student/all/')
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://models-api:8000/api/student/all/'
+    resp = _make_get_request(url)
 
     new_data = {}
     new_data['status_code'] = resp['status_code']
@@ -190,7 +177,7 @@ def student_all(request):
     student_data = []
     for stud_dict in resp['all_students']:
         new_dict = {}
-        new_dict['href'] = '/student/' + stud_dict['id'] + '/'
+        new_dict['href'] = '/student/detail' + stud_dict['id'] + '/'
         new_dict['student_name'] = stud_dict['first_name'] + ' '
         new_dict['student_name'] += stud_dict['last_name']
         new_dict['student_name'] += ' (' + stud_dict['id'] + ')'
@@ -201,11 +188,8 @@ def student_all(request):
 
 
 def student_detail(request, compid):
-    req = urllib.request.Request(
-        'http://models-api:8000/api/student/detail/' + compid + '/'
-    )
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://models-api:8000/api/student/detail/' + compid + '/'
+    resp = _make_get_request(url)
 
     if resp['status_code'] == 200:
         if resp['student']['taking_courses'] == []:
@@ -213,7 +197,7 @@ def student_detail(request, compid):
         else:
             new_course = ''
             for i in range(len(resp['student']['taking_courses'])):
-                new_course += getCourse(resp['student']['taking_courses'][i])
+                new_course += _get_course(resp['student']['taking_courses'][i])
                 if (i != len(resp['student']['taking_courses']) - 1):
                     new_course += ', '
             resp['student']['taking_courses'] = new_course
@@ -222,9 +206,8 @@ def student_detail(request, compid):
 
 
 def enrollment_all(request):
-    req = urllib.request.Request('http://models-api:8000/api/enrollment/all/')
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://models-api:8000/api/enrollment/all/'
+    resp = _make_get_request(url)
 
     new_data = {}
     new_data['status_code'] = resp['status_code']
@@ -232,7 +215,7 @@ def enrollment_all(request):
     enrollment_data = []
     for enr_dict in resp['all_enrollments']:
         new_dict = {}
-        new_dict['href'] = '/enrollment/' + str(enr_dict['id']) + '/'
+        new_dict['href'] = '/enrollment/detail' + str(enr_dict['id']) + '/'
         new_dict['enrollment_name'] = enr_dict['student'] + ':'
         new_dict['enrollment_name'] += enr_dict['course']
         enrollment_data.append(new_dict)
@@ -242,16 +225,13 @@ def enrollment_all(request):
 
 
 def enrollment_detail(request, enrid):
-    req = urllib.request.Request(
-        'http://models-api:8000/api/enrollment/detail/' + enrid + '/'
-    )
-    resp_json = urllib.request.urlopen(req).read().decode('utf-8')
-    resp = json.loads(resp_json)
+    url = 'http://models-api:8000/api/enrollment/detail/' + enrid + '/'
+    resp = _make_get_request(url)
 
     if resp['status_code'] == 200:
         data = resp['enrollment']
-        data['student'] = getStudent(data['student'])
-        data['course'] = getCourse(data['course'])
+        data['student'] = _get_student(data['student'])
+        data['course'] = _get_course(data['course'])
         resp['enrollment'] = data
 
     return JsonResponse(resp)

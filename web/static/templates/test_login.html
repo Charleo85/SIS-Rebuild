@@ -1,0 +1,11 @@
+<html>
+<body>
+<h1>Login page: {{ modelname }}</h1><hr>
+<form action="/{{ modelname }}/login/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><input type="submit" value="submit" /></p>
+</form>
+<p style="color: #900;">{{ error }}</p>
+</body>
+</html>

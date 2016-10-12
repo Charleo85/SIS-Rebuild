@@ -4,6 +4,8 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     id = models.CharField(max_length=6, unique=True, primary_key=True)
+    username = models.CharField(max_length=24, unique=True)
+    password = models.CharField(max_length=100)
 
     class Meta:
         abstract = True
@@ -59,3 +61,10 @@ class Enrollment(models.Model):
         ('P', 'Planned'),
     )
     enroll_status = models.CharField(max_length=1, choices=STATUS)
+
+
+class Authenticator(models.Model):
+    userid = models.CharField(max_length=24)
+    auth = models.CharField(max_length=96, primary_key=True, unique=True)
+    user_type = models.SmallIntegerField(default=0)
+    date_created = models.DateField(auto_now_add=True)
