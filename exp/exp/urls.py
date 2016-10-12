@@ -15,32 +15,39 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from . import views
+from . import views_model
+from . import views_auth
 
 misc = [
-    url(r'^$', views.index),
+    url(r'^$', views_model.index),
     url(r'^admin/', include(admin.site.urls)),
 ]
 
 course = [
-    url(r'^course/$', views.course_all),
-    url(r'^course/detail/(?P<sisid>[a-zA-Z0-9]+)/$', views.course_detail),
-    url(r'^course/popular/$', views.course_popular),
+    url(r'^course/$', views_model.course_all),
+    url(r'^course/detail/(?P<sisid>[a-zA-Z0-9]+)/$', views_model.course_detail),
+    url(r'^course/popular/$', views_model.course_popular),
 ]
 
 ins = [
-    url(r'^instructor/$', views.instructor_all),
-    url(r'^instructor/detail/(?P<compid>[a-zA-Z0-9]+)/$', views.instructor_detail),
+    url(r'^instructor/$', views_model.instructor_all),
+    url(r'^instructor/detail/(?P<compid>[a-zA-Z0-9]+)/$', views_model.instructor_detail),
+    url(r'^instructor/auth/login/$', views_auth.login, {'user_type' : 0}),
+    url(r'^instructor/auth/validate/$', views_auth.validate, {'user_type' : 0}),
+    url(r'^instructor/auth/logout/$', views_auth.logout, {'user_type' : 0}),
 ]
 
 stud = [
-    url(r'^student/$', views.student_all),
-    url(r'^student/detail/(?P<compid>[a-zA-Z0-9]+)/$', views.student_detail),
+    url(r'^student/$', views_model.student_all),
+    url(r'^student/detail/(?P<compid>[a-zA-Z0-9]+)/$', views_model.student_detail),
+    url(r'^student/auth/login/$', views_auth.login, {'user_type' : 1}),
+    url(r'^student/auth/validate/$', views_auth.validate, {'user_type' : 1}),
+    url(r'^student/auth/logout/$', views_auth.logout, {'user_type' : 1}),
 ]
 
 enr = [
-    url(r'^enrollment/$', views.enrollment_all),
-    url(r'^enrollment/detail/(?P<enrid>[0-9]+)/$', views.enrollment_detail),
+    url(r'^enrollment/$', views_model.enrollment_all),
+    url(r'^enrollment/detail/(?P<enrid>[0-9]+)/$', views_model.enrollment_detail),
 ]
 
 urlpatterns = misc + course + ins + stud + enr

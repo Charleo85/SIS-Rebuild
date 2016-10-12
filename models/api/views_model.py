@@ -1,4 +1,5 @@
 from django.http import JsonResponse, HttpResponse
+from django.contrib.auth import hashers
 from django.forms.models import model_to_dict
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
@@ -12,8 +13,11 @@ def success(data_dict, model_name, code):
     return JsonResponse(correct)
 
 
-def failure(code):
-    error = { 'status_code' : code }
+def failure(code, error_msg=''):
+    if error_msg == '':
+        error = { 'status_code' : code }
+    else:
+        error = { 'status_code' : code, 'error_message' : error_msg }
     return JsonResponse(error)
 
 
@@ -109,14 +113,21 @@ def instructor_detail(request, compid):
             teaching_courses.append(course.__str__())
         data['teaching_courses'] = teaching_courses
 
+        data.pop('username', None)
+        data.pop('password', None)
+
         return success(data, 'instructor', 200)
 
     elif request.method == 'POST':
         if request.POST.get('id') == compid:
             form = InstructorForm(request.POST, instance=ins)
+
             if form.is_valid():
                 form.save()
-                return success(form.cleaned_data, 'instructor', 202)
+                data = form.cleaned_data
+                data.pop('username', None)
+                data.pop('password', None)
+                return success(data, 'instructor', 202)
 
     return failure(400)
 
@@ -131,9 +142,13 @@ def instructor_create(request):
 
         if not exist:
             form = InstructorForm(request.POST)
+
             if form.is_valid():
                 form.save()
-                return success(form.cleaned_data, 'instructor', 201)
+                data = form.cleaned_data
+                data.pop('username', None)
+                data.pop('password', None)
+                return success(data, 'instructor', 201)
 
     return failure(400)
 
@@ -161,9 +176,13 @@ def instructor_all(request):
     if request.method == 'GET':
         instructors = Instructor.objects.all()
         instructor_list = []
+
         for ins in instructors:
             data = model_to_dict(ins)
+            data.pop('username', None)
+            data.pop('password', None)
             instructor_list.append(data)
+
         return success(instructor_list, 'all_instructors', 200)
 
     return failure(400)
@@ -177,14 +196,20 @@ def student_detail(request, compid):
 
     if request.method == 'GET':
         data = model_to_dict(stud)
+        data.pop('username', None)
+        data.pop('password', None)
         return success(data, 'student', 200)
 
     elif request.method == 'POST':
         if request.POST.get('id') == compid:
             form = StudentForm(request.POST, instance=stud)
+
             if form.is_valid():
                 form.save()
-                return success(form.cleaned_data, 'student', 202)
+                data = form.cleaned_data
+                data.pop('username', None)
+                data.pop('password', None)
+                return success(data, 'student', 201)
 
     return failure(400)
 
@@ -201,7 +226,10 @@ def student_create(request):
             form = StudentForm(request.POST)
             if form.is_valid():
                 form.save()
-                return success(form.cleaned_data, 'student', 201)
+                data = form.cleaned_data
+                data.pop('username', None)
+                data.pop('password', None)
+                return success(data, 'student', 201)
 
     return failure(400)
 
@@ -229,6 +257,8 @@ def student_all(request):
 
         for stud in students:
             data = model_to_dict(stud)
+            data.pop('username', None)
+            data.pop('password', None)
             student_list.append(data)
 
         return success(student_list, 'all_students', 200)
@@ -301,7 +331,6 @@ def enrollment_delete(request):
             return JsonResponse({ 'status_code': 202 })
 
     return failure(400)
-
 
 
 def enrollment_all(request):

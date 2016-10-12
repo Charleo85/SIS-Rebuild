@@ -1,5 +1,7 @@
 from django.test import TestCase
+from django.contrib.auth import hashers
 import django.db
+
 from .models import *
 
 # student creating and updating profile
@@ -7,7 +9,10 @@ class StudentProfileTestCases(TestCase):
     fixtures = ['data.json']
 
     def setUp(self):
-        student = Student(first_name="Scott", last_name="Gilb", id="sg4fc")
+        student = Student(
+            first_name="Scott", last_name="Gilb", id="sg4fc",
+            username="sg4fc", password=hashers.make_password("scottgilb")
+        )
         student.save()
 
     def test_StudentCreated(self):

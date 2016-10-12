@@ -4,7 +4,9 @@
         "fields": {
             "first_name" : "Thomas",
             "last_name": "Pinckney",
-            "id": "tp3ks"
+            "id": "tp3ks",
+            "username": "tp3ks",
+            "password": "pbkdf2_sha256$20000$ehCbRahmiM2J$5uA/WdDTVaB6zLOmPnxaGdQC/+nDTN95oPrCGpVEZoE="
         }
     },
     {
@@ -12,7 +14,9 @@
         "fields": {
             "first_name" : "Mikhail",
             "last_name": "Ershov",
-            "id": "mve2x"
+            "id": "mve2x",
+            "username": "mve2x",
+            "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA="
         }
     },
     {
@@ -20,7 +24,9 @@
         "fields": {
             "first_name" : "Aaron",
             "last_name": "Bloomfield",
-            "id": "asb2t"
+            "id": "asb2t",
+            "username": "asb2t",
+            "password": "pbkdf2_sha256$20000$wgoLhj5qCbU4$YvPrw9hK3BNEGIckqTCPr0lOqzF+pvP+ic8jsi4HfY4="
         }
     },
     {
@@ -28,7 +34,9 @@
         "fields": {
             "first_name" : "David",
             "last_name": "Evans",
-            "id": "dee2b"
+            "id": "dee2b",
+            "username": "dee2b",
+            "password": "pbkdf2_sha256$20000$bBoVotulzZEi$aKe9qLL4Xt6uGEf302wxBIj6O4r/MOf6S4x19mzFM6E="
         }
     },
     {
@@ -36,7 +44,9 @@
         "fields": {
             "first_name": "Tong",
             "last_name": "Qiu",
-            "id": "tq7bw"
+            "id": "tq7bw",
+            "username": "tq7bw",
+            "password": "pbkdf2_sha256$20000$cCdimH9seXpB$QcLV4JgRlDKCmdzdoV8YkbiRK6LxKw7X7zHy2G2rHO8="
         }
     },
     {
@@ -44,7 +54,9 @@
         "fields": {
             "first_name": "Charlie",
             "last_name": "Wu",
-            "id": "jw7jb"
+            "id": "jw7jb",
+            "username": "jw7jb",
+            "password": "pbkdf2_sha256$20000$GAu6OTV4wVUj$B/bDAuqrvapc+ETS0uFsRrkNEdFSzSRfOywStaRGNAI="
         }
     },
     {
@@ -52,7 +64,9 @@
         "fields": {
             "first_name": "Zakey",
             "last_name": "Faieq",
-            "id": "zaf2xk"
+            "id": "zaf2xk",
+            "username": "zaf2xk",
+            "password": "pbkdf2_sha256$20000$RhKIviaTS2pf$90gt5L82cE/xehhzNbTtjSHfo7j3namryE+Lt72psfk="
         }
     },
     {
