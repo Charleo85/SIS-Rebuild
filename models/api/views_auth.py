@@ -9,13 +9,13 @@ import hmac
 
 from .models import *
 from .forms import *
-import settings
+import models.settings
 
 
 def success(data_dict, model_name, code):
     correct = { 'status_code' : code, model_name : data_dict }
     return JsonResponse(correct)
-
+    
 
 def failure(code, error_msg=''):
     if error_msg == '':
@@ -57,7 +57,7 @@ def login(request):
         return failure(403, 'incorrect password')
 
     token = hmac.new(
-        key = settings.SECRET_KEY.encode('utf-8'),
+        key = models.settings.SECRET_KEY.encode('utf-8'),
         msg = os.urandom(32),
         digestmod = 'sha256'
     ).hexdigest()
