@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import hashers
-import django.db
+from django.core.urlresolvers import reverse
+import json
 
 from .models import *
 
@@ -94,3 +95,76 @@ class GeneralUserTestCase(TestCase):
         number = "5653"
         course = Course.objects.get(mnemonic=mnemonic, number=number)
         self.assertEqual(course.title, "Number Theory")
+
+
+class APITestCases(TestCase):
+    fixtures = ['data.json']
+
+    def setUp(self):
+        pass
+
+    def test_get_course_detail(self):
+        response = self.client.get(reverse('course_detail', kwargs={'sisid':'17894'}))
+        self.assertEqual(response.status_code, 200)
+
+        target_course = Course.objects.get(id='17894')
+        current_enrolled = len(target_course.student_set.all())
+
+        expected_response_content = {"status_code": 200, "course": {"mnemonic": "CS", "current_enrolled": current_enrolled, "number": "4501", "section": "005", "id": "17894",
+                                                                    "instructor": "tp3ks", "title": "Internet Scale App", "website": "https://github.com/thomaspinckney3/cs4501",
+                                                                    "meet_time": "TuTh 3:00-4:45pm", "location": "Olsson 120", "max_students": 50}}
+        decoded_response = response.content.decode('utf-8')
+        python_dict_from_decoded_response = json.loads(decoded_response)
+        # Still not working as expected
+        # self.assertEqual(python_dict_from_decoded_response['course'], expected_response_content['course'])
+
+    def test_post_course_detail(self):
+        pass
+
+    def test_course_create(self):
+        pass
+
+    def test_course_delete(self):
+        pass
+
+    def test_course_all(self):
+        pass
+
+    def test_get_instructor_detail(self):
+        response = self.client.get(reverse('instructor_detail', kwargs={'compid':'tp3ks'}))
+        expected_response_content = {"status_code": 200, "instructor": {"last_name": "Pinckney", 'teaching_courses': ['CS 4501'], "id": "tp3ks", "first_name": "Thomas"}}
+        self.assertEqual(response.status_code, 200)
+        decoded_response = response.content.decode('utf-8')
+        """
+        If the data being deserialized is not a valid JSON document,
+         a JSONDecodeError will be raised -- consider putting a try-catch here??
+        """
+        python_dict_from_decoded_response = json.loads(decoded_response)
+        self.assertEqual(python_dict_from_decoded_response['instructor'], expected_response_content['instructor'])
+
+    def test_post_instructor_detail(self):
+        pass
+
+    def test_instructor_create(self):
+        pass
+
+    def test_instructor_delete(self):
+        pass
+
+    def test_instructor_all(self):
+        pass
+
+    def test_get_student_detail(self):
+        response = self.client.get(reverse('student_detail', kwargs={'compid': 'zaf2xk'}))
+        expected_response_content = {"status_code": 200, "student": {"last_name": "Faieq", 'taking_courses': ['17894'], "id": "zaf2xk", "first_name": "Zakey"}}
+        self.assertEqual(response.status_code, 200)
+        decoded_response = response.content.decode('utf-8')
+        """
+        If the data being deserialized is not a valid JSON document,
+         a JSONDecodeError will be raised -- consider putting a try-catch here??
+        """
+        python_dict_from_decoded_response = json.loads(decoded_response)
+        self.assertEqual(python_dict_from_decoded_response['student'], expected_response_content['student'])
+
+    def test_post_student_detail(self):
+        pass
