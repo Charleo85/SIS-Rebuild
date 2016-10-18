@@ -40,7 +40,7 @@ def _get_user_info(request, user_type):
 
 
 def home_page(request):
-    url = 'http://exp-api:8000/course/popular/'
+    url = 'http://exp-api:8000/homepage/'
     resp = _make_get_request(url)
     return render(request, 'homepage.html', resp)
 
