@@ -82,7 +82,163 @@ $(document).ready(function(){
         content_opacity = 1;
     }
 
+    // $('.nav li').on('click', function(){
+    //     $('.nav li').removeClass('active');
+    //     $(this).addClass('active');
+    // });
+    //
+    // $('.nav-pills > li > a').click(function (event) {
+    //     event.preventDefault(); //stop browser to take action for clicked anchor
+    //
+    //     //get displaying tab content jQuery selector
+    //     var active_tab_selector = $('.nav-pills > li.active > a').attr('href');
+    //
+    //     //find actived navigation and remove 'active' css
+    //     var actived_nav = $('.nav-pills > li.active');
+    //     actived_nav.removeClass('active');
+    //
+    //     //add 'active' css into clicked navigation
+    //     $(this).parents('li').addClass('active');
+    //
+    //     //hide displaying tab content
+    //     $(active_tab_selector).removeClass('active');
+    //     $(active_tab_selector).addClass('hide');
+    //
+    //     //show target tab content
+    //     var target_tab_selector = $(this).attr('href');
+    //     $(target_tab_selector).removeClass('hide');
+    //     $(target_tab_selector).addClass('active');
+    // });
+    //
+    // $('.tab-content input').click(function (event) {
+    //     $(".nav.nav-pills li.active").next("li").find("a").trigger("click");
+    // });
+
 });
+
+(function(window, $) {
+
+  function OnClickNavTabLink(e) { // this = e.target
+    e.preventDefault();
+    var $target_tabs = $(this); // 'a'
+    var $target_nav = $target_tabs.parents('li');
+    var $target_tabs_content = $($target_tabs.attr('href'));          //i.e. $('#tab1') or $('#tab2') or $('#tab3');
+
+    // note: 'attr' will return the attr of the first item in the selectors
+
+    ClearAllControlStates();
+    SetControlState();
+
+    function SetControlState()
+    {
+      $target_nav
+        .addClass('active');
+
+      $target_tabs
+        .addClass('active');
+
+      $target_tabs_content
+        .removeClass('hide')
+        .addClass('active');
+    }
+  }
+
+  function OnClickNextButton(e)
+  {
+    e.preventDefault();
+
+    // this = button in $target_tabs_content
+
+    var $target_tabs_content = $(this).parents().next();
+    // in this sample/demo, when clicking button in 'section#tab3', next will return 'script';
+
+    if ($target_tabs_content.attr('id'))  // simple check,
+    {
+      var $target_tabs = $('.nav-pills > li > a[href*="' + $target_tabs_content.attr('id') + '"]'); // 'a'
+      var $target_nav = $target_tabs.parents('li');
+
+      ClearAllControlStates();
+      SetControlState();
+    }
+
+    function SetControlState()
+    {
+      $target_nav
+        .addClass('active');
+
+      $target_tabs
+        .addClass('active');
+
+      $target_tabs_content
+        .removeClass('hide')
+        .addClass('active');
+
+    }
+  }
+
+  function ClearAllControlStates()
+  {
+    var $navs = $('.nav-pills > li');
+    var $tabs = $navs.children('a');
+
+    var tabs_content = [];
+    $tabs.each(GetHrefAttr);
+    var $tabs_content = $(tabs_content);
+
+    //console.log("$navs:= %o - $tabs:= %o - $tabs_content:= %o", $navs, $tabs, $(tabs_content));
+
+    $navs.removeClass('active');
+    $tabs.removeClass('active');
+    $tabs_content.each(HideEach);
+
+    function GetHrefAttr(i, item)
+    {
+      tabs_content.push($(item).attr('href'));
+    }
+
+    function HideEach(i, item)
+    {
+      $(item).removeClass('active').addClass('hide');
+    }
+  }
+
+  function ClearActiveControlStates()
+  {
+    var $activated_nav = $('.nav-pills > li.active');                  //listitem
+    var $activated_tabs = $activated_nav.children('a');               //hyperlinks
+
+    var activated_tabs_content = [];
+    $activated_tabs.each(GetHrefAttr);
+    var $activated_tabs_content = $(activated_tabs_content);          //section_ids
+
+
+    $activated_nav.removeClass('active');
+    $activated_tabs.removeClass('active');
+    $activated_tabs_content.each(HideEach);
+
+    function GetHrefAttr(i, item)
+    {
+      activated_tabs_content.push($(item).attr('href'));
+    }
+
+    function HideEach(i, item)
+    {
+      $(item).removeClass('active').addClass('hide');
+    }
+  }
+
+  function OnReadyDocument() {
+    $('.nav-pills > li > a')
+      .click(OnClickNavTabLink);
+
+    $('.tab-content button[name="next"]')
+      .click(OnClickNextButton);
+  }
+
+  $(window.document).ready(OnReadyDocument);
+
+})(window, $ || jQuery.noConflict());
+
 
 $(window).on('scroll',function(){
    if(window_width > 980){
@@ -125,7 +281,6 @@ $('a[data-scroll="true"]').click(function(e){
     }
 
 });
-
 
 rubik = {
     misc:{
@@ -473,4 +628,5 @@ var BrowserDetect = {
 
 };
 
-var better_browser = '<div class="container"><div class="better-browser row"><div class="col-md-2"></div><div class="col-md-8"><h3>We are sorry but it looks like your Browser doesn\'t support our website Features. In order to get the full experience please download a new version of your favourite browser.</h3></div><div class="col-md-2"></div><br><div class="col-md-4"><a href="https://www.mozilla.org/ro/firefox/new/" class="btn btn-warning">Mozilla</a><br></div><div class="col-md-4"><a href="https://www.google.com/chrome/browser/desktop/index.html" class="btn ">Chrome</a><br></div><div class="col-md-4"><a href="http://windows.microsoft.com/en-us/internet-explorer/ie-11-worldwide-languages" class="btn">Internet Explorer</a><br></div><br><br><h4>Thank you!</h4></div></div>';
+var better_browser =
+'<div class="container"><div class="better-browser row"><div class="col-md-2"></div><div class="col-md-8"><h3>We are sorry but it looks like your Browser doesn\'t support our website Features. In order to get the full experience please download a new version of your favourite browser.  </h3></div><div class="col-md-2"></div><br><div class="col-md-4"><a href="https://www.mozilla.org/ro/firefox/new/" class="btn btn-warning">Mozilla</a><br></div><div class="col-md-4"><a href="https://www.google.com/chrome/browser/desktop/index.html" class="btn ">Chrome</a><br></div><div class="col-md-4"><a href="http://windows.microsoft.com/en-us/internet-explorer/ie-11-worldwide-languages" class="btn">Internet Explorer</a><br></div><br><br><h4>Thank you!</h4></div></div>';
