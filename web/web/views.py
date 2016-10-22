@@ -82,7 +82,8 @@ def login(request, modelname):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if not form.is_valid():
-            data = { 'form': form, 'modelname': modelname }
+            error_msg = 'invalid input(s)'
+            data = { 'modelname': modelname, 'error': error_msg }
             return render(request, 'login.html', data)
 
         post_data = form.cleaned_data
@@ -91,7 +92,7 @@ def login(request, modelname):
 
         if resp['status_code'] != 200:
             data = {
-                'form': form, 'modelname': modelname,
+                'modelname': modelname,
                 'error' : resp['error_message']
             }
             return render(request, 'login.html', data)
