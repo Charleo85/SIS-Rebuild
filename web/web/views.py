@@ -83,7 +83,7 @@ def login(request, modelname):
         form = LoginForm(request.POST)
         if not form.is_valid():
             data = { 'form': form, 'modelname': modelname }
-            return render(request, 'test_login.html', data)
+            return render(request, 'login.html', data)
 
         post_data = form.cleaned_data
         url = 'http://exp-api:8000/' + modelname + '/auth/login/'
@@ -94,7 +94,7 @@ def login(request, modelname):
                 'form': form, 'modelname': modelname,
                 'error' : resp['error_message']
             }
-            return render(request, 'test_login.html', data)
+            return render(request, 'login.html', data)
 
         authenticator = resp['auth']
         next = request.POST.get('next') or reverse(modelname + '_validate')
