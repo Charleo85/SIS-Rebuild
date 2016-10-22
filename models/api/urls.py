@@ -31,14 +31,14 @@ course = [
 ]
 
 instructor = [
-    url(r'^instructor/all/$', views_model.instructor_all),
+    url(r'^instructor/all/$', views_model.instructor_all, name = 'instructor_all'),
     url(r'^instructor/detail/(?P<compid>[a-zA-Z0-9]+)/$', views_model.instructor_detail, name='instructor_detail'),
     url(r'^instructor/create/$', views_model.instructor_create, name='instructor_create'),
     url(r'^instructor/delete/$', views_model.instructor_delete, name='instructor_delete'),
 ]
 
 student = [
-    url(r'^student/all/$', views_model.student_all),
+    url(r'^student/all/$', views_model.student_all, name='student_all'),
     url(r'^student/detail/(?P<compid>[a-zA-Z0-9]+)/$', views_model.student_detail, name='student_detail'),
     url(r'^student/create/$', views_model.student_create, name='student_create'),
     url(r'^student/delete/$', views_model.student_delete, name='student_delete'),
