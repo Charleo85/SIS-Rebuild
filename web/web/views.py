@@ -54,7 +54,7 @@ def about(request):
 
 
 def signup(request):
-    if request.METHOD == 'GET':
+    if request.method == 'GET':
         return render(request, 'signup.html')
 
 
