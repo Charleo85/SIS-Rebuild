@@ -29,8 +29,9 @@
           </div>
         </div>
 
-      {% csrf_token %}
+
       <form class="form-signin" action="/signup/" method="post">
+        {% csrf_token %}
 
         <section id="email" class="tab-content active">
           <div class="row" >
