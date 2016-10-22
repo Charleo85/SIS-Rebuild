@@ -25,8 +25,6 @@ misc = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.home_page, name='home'),
     url(r'^about/$', views.about, name='about'),
-    url(r'^login/$', views.login, name='login'),
-    url(r'^signup/$', views.signup, name='signup'),
 ]
 
 course = [
@@ -64,6 +62,11 @@ ins = [
         views.logout, { 'modelname' : 'instructor' },
         name='instructor_logout',
     ),
+    url(
+        r'^instructor/signup/$',
+        views.signup, { 'modelname' : 'instructor' },
+        name='instructor_signup',
+    ),
 ]
 
 stud = [
@@ -85,6 +88,11 @@ stud = [
         r'^student/logout/$',
         views.logout, { 'modelname' : 'student' },
         name='student_logout',
+    ),
+    url(
+        r'^student/signup/$',
+        views.signup, { 'modelname' : 'student' },
+        name='student_signup',
     ),
 ]
 

@@ -49,10 +49,6 @@ def about(request):
     return render(request, 'about.html')
 
 
-# def login(request):
-#     return render(request, 'login.html')
-
-
 def signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html')
@@ -81,9 +77,7 @@ def login(request, modelname):
             return HttpResponseRedirect(reverse(modelname + '_validate'))
 
     if request.method == 'GET':
-        form = LoginForm()
-        data = { 'form': form, 'modelname': modelname }
-        return render(request, 'test_login.html', data)
+        return render(request, 'login.html', {'modelname': modelname})
 
     if request.method == 'POST':
         form = LoginForm(request.POST)
