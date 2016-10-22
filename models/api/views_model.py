@@ -34,6 +34,8 @@ def course_detail(request, sisid):
     if request.method == 'GET':
         data = model_to_dict(target_course)
         data['current_enrolled'] = len(target_course.student_set.all())
+        # This str function doesn't always work consistently!!
+        data['instructor'] = data['instructor'].__str__()
         return _success(data, 'course', 200)
 
     elif request.method == 'POST':
@@ -42,9 +44,11 @@ def course_detail(request, sisid):
             if form.is_valid():
                 form.save()
                 data = form.cleaned_data
+                data['current_enrolled'] = len(target_course.student_set.all())
                 data['instructor'] = data['instructor'].__str__()
-                data['current_enrolled'] = 0
-                return _success(data, 'course', 202)
+                # Why is this here?
+                # data['current_enrolled'] = 0
+                return _success(data, 'course', 201)
 
     return _failure(400)
 
@@ -62,6 +66,7 @@ def course_create(request):
             if form.is_valid():
                 form.save()
                 data = form.cleaned_data
+                #This str function doesn't always work consistently!!
                 data['instructor'] = data['instructor'].__str__()
                 data['current_enrolled'] = 0
                 return _success(data, 'course', 201)
