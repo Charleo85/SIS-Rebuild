@@ -49,9 +49,9 @@ def about(request):
     return render(request, 'about.html')
 
 
-def signup(request):
+def signup(request, modelname):
     if request.method == 'GET':
-        return render(request, 'signup.html')
+        return render(request, 'signup.html', {'modelname': modelname})
 
 
 def list_item(request, modelname):
