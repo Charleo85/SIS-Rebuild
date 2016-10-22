@@ -46,7 +46,6 @@ def course_detail(request, sisid):
                 data = form.cleaned_data
                 data['current_enrolled'] = len(target_course.student_set.all())
                 data['instructor'] = data['instructor'].__str__()
-                data['current_enrolled'] = 0
                 return _success(data, 'course', 201)
 
     return _failure(400)
