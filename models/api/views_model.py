@@ -289,7 +289,11 @@ def enrollment_detail(request, enrid):
             form = EnrollmentForm(request.POST, instance=enroll)
             if form.is_valid():
                 form.save()
-                data = form.cleaned_data
+                enroll = Enrollment.objects.get(
+                    student=request.POST.get('student'),
+                    course=request.POST.get('course'),
+                )
+                data = model_to_dict(enroll)
                 data['enroll_status'] = enroll.get_enroll_status_display()
                 return _success(data, 'enrollment', 202)
 
@@ -311,11 +315,11 @@ def enrollment_create(request):
             form = EnrollmentForm(request.POST)
             if form.is_valid():
                 form.save()
-                data = form.cleaned_data
                 enroll = Enrollment.objects.get(
                     student=request.POST.get('student'),
                     course=request.POST.get('course'),
                 )
+                data = model_to_dict(enroll)
                 data['enroll_status'] = enroll.get_enroll_status_display()
                 return _success(data, 'enrollment', 201)
 
