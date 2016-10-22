@@ -42,6 +42,46 @@ def index(request):
     return HttpResponse('Success!')
 
 
+def home_page(request):
+    url = 'http://models-api:8000/api/course/all/'
+    resp = _make_get_request(url)
+
+    new_data = {}
+    new_data['status_code'] = resp['status_code']
+
+    selected_courses = [{}, {}, {}]
+    num_enrolled = [0, 0, 0]
+    for course_dict in resp['all_courses']:
+        for i in range(3):
+            num = course_dict['current_enrolled']
+            if num > num_enrolled[i]:
+                num_enrolled.insert(i, num)
+                selected_courses.insert(i, course_dict)
+                num_enrolled = num_enrolled[0:3]
+                selected_courses = selected_courses[0:3]
+                break
+
+    course_data = []
+    for course_dict in selected_courses:
+        new_dict = {}
+        new_dict['coursehref'] = '/course/detail/' + course_dict['id'] + '/'
+        new_dict['instructorhref'] = '/instructor/detail/'
+        new_dict['instructorhref'] += course_dict['instructor'] + '/'
+
+        new_dict['course_name'] = course_dict['mnemonic'] + ' '
+        new_dict['course_name'] += course_dict['number']
+        if course_dict['section'] != '':
+            new_dict['course_name'] += " - " + course_dict['section']
+        if course_dict['title'] != '':
+            new_dict['course_name'] += "<br>" + course_dict['title']
+
+        new_dict['instructor'] = _get_instructor(course_dict['instructor'])
+        course_data.append(new_dict)
+
+    new_data['popular_courses'] = course_data
+    return JsonResponse(new_data)
+
+
 def course_all(request):
     url = 'http://models-api:8000/api/course/all/'
     resp = _make_get_request(url)
@@ -86,46 +126,6 @@ def course_detail(request, sisid):
         resp['course'] = new_dict
 
     return JsonResponse(resp)
-
-
-def course_popular(request):
-    url = 'http://models-api:8000/api/course/all/'
-    resp = _make_get_request(url)
-
-    new_data = {}
-    new_data['status_code'] = resp['status_code']
-
-    selected_courses = [{}, {}, {}]
-    num_enrolled = [0, 0, 0]
-    for course_dict in resp['all_courses']:
-        for i in range(3):
-            num = course_dict['current_enrolled']
-            if num > num_enrolled[i]:
-                num_enrolled.insert(i, num)
-                selected_courses.insert(i, course_dict)
-                num_enrolled = num_enrolled[0:3]
-                selected_courses = selected_courses[0:3]
-                break
-
-    course_data = []
-    for course_dict in selected_courses:
-        new_dict = {}
-        new_dict['coursehref'] = '/course/detail/' + course_dict['id'] + '/'
-        new_dict['instructorhref'] = '/instructor/detail/'
-        new_dict['instructorhref'] += course_dict['instructor'] + '/'
-
-        new_dict['course_name'] = course_dict['mnemonic'] + ' '
-        new_dict['course_name'] += course_dict['number']
-        if course_dict['section'] != '':
-            new_dict['course_name'] += " - " + course_dict['section']
-        if course_dict['title'] != '':
-            new_dict['course_name'] += "<br>" + course_dict['title']
-
-        new_dict['instructor'] = _get_instructor(course_dict['instructor'])
-        course_data.append(new_dict)
-
-    new_data['popular_courses'] = course_data
-    return JsonResponse(new_data)
 
 
 def instructor_all(request):

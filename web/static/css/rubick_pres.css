@@ -736,6 +736,10 @@ body > .navbar-collapse a {
 }
 
 .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
   background-color: #FFFFFF;
   line-height: 20px;
   border-top: 1px solid #DDDDDD;
@@ -1090,7 +1094,8 @@ body > .navbar-collapse a {
 }
 
 body {
-  position: relative;
+  /* position: relative; */
+  margin-bottom: 70px;
 }
 
 body > .navbar-collapse {
@@ -1732,6 +1737,8 @@ body > .navbar-collapse.has-image::after {
   }
 }
 html {
+  position: relative;
+  min-height: 100%;
   font-size: 14px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -2524,6 +2531,28 @@ a,
   margin-top: 5px;
   margin-bottom: 0px;
 }
+.card {
+    border-radius: 6px;
+    box-shadow: 0 35px 30px -25px rgba(33, 33, 33, 0.6);
+    margin-bottom: 5px;
+    margin-top: 20px
+}
+
+.card .card-body {
+    background: #343434;
+    position: relative;
+    border-radius: 8px 8px 0 0;
+    z-index: 1;
+    padding: 20px;
+    margin: 0 10px
+}
+
+.card .card-body hr {
+    opacity: .6;
+    max-width: 100px
+}
+
+
 
 a.scroll-arrow {
   font-size: 35px;
@@ -3873,6 +3902,9 @@ body.noscroll {
   }
 }
 @media (max-width: 768px) {
+  body {
+    margin-bottom: 360px;
+  }
   h1 {
     font-size: 2em;
     line-height: 1.25;

@@ -40,13 +40,19 @@ def _get_user_info(request, user_type):
 
 
 def home_page(request):
-    url = 'http://exp-api:8000/course/popular/'
+    url = 'http://exp-api:8000/homepage/'
     resp = _make_get_request(url)
     return render(request, 'homepage.html', resp)
 
 
 def about(request):
     return render(request, 'about.html')
+
+def login(request):
+    return render(request, 'login.html')
+
+def signup(request):
+    return render(request, 'signup.html')
 
 
 def list_item(request, modelname):

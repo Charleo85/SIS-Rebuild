@@ -21,12 +21,12 @@ from . import views_auth
 misc = [
     url(r'^$', views_model.index),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^homepage/$', views_model.home_page)
 ]
 
 course = [
     url(r'^course/$', views_model.course_all),
     url(r'^course/detail/(?P<sisid>[a-zA-Z0-9]+)/$', views_model.course_detail),
-    url(r'^course/popular/$', views_model.course_popular),
 ]
 
 ins = [
