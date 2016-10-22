@@ -48,11 +48,14 @@ def home_page(request):
 def about(request):
     return render(request, 'about.html')
 
-def login(request):
-    return render(request, 'login.html')
+
+# def login(request):
+#     return render(request, 'login.html')
+
 
 def signup(request):
-    return render(request, 'signup.html')
+    if request.METHOD == 'GET':
+        return render(request, 'signup.html')
 
 
 def list_item(request, modelname):
