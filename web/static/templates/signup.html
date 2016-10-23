@@ -30,7 +30,7 @@
         </div>
 
 
-      <form class="form-signin" action="/signup/" method="post">
+        <form class="form-signin" action="/{{modelname}}/signup/" method="post">
         {% csrf_token %}
 
         <section id="email" class="tab-content active">
@@ -111,6 +111,7 @@
        </section>
 
       </form>
+      <center><p style="color: #900;">{{ error }}</p></center>
 </div>
 
 {% include 'BottomBar.html' %}

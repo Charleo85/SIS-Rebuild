@@ -51,7 +51,12 @@ def signup(request, modelname):
         return render(request, 'signup.html', {'modelname': modelname})
 
     if request.method == 'POST':
-        form = SignupForm(request.POST):
+        form = SignupForm(request.POST)
+        if not form.is_valid():
+            error_msg = 'invalid input(s)'
+            data = { 'modelname': modelname, 'error': error_msg }
+            return render(request, 'signup.html', data)
+
         if not form.is_good_password():
             error_msg = 'please enter a stronger password'
             data = { 'modelname': modelname, 'error': error_msg }
@@ -59,11 +64,6 @@ def signup(request, modelname):
 
         if not form.password_match():
             error_msg = 'passwords do not match'
-            data = { 'modelname': modelname, 'error': error_msg }
-            return render(request, 'signup.html', data)
-
-        if not form.is_valid():
-            error_msg = 'invalid input(s)'
             data = { 'modelname': modelname, 'error': error_msg }
             return render(request, 'signup.html', data)
 

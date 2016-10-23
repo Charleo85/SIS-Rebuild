@@ -22,8 +22,11 @@ class SignupForm(forms.Form):
     last_name = forms.CharField(label='Last name', max_length=20)
 
     def is_good_password(self):
+        if not self.is_valid():
+            return False
+
         pw = self.cleaned_data['password']
-        result1 = len(pw) < 6
+        result1 = len(pw) >= 6
         result2 = False
         try:
             int_pw = int(pw)
@@ -32,6 +35,9 @@ class SignupForm(forms.Form):
         return result1 and result2
 
     def password_match(self):
+        if not self.is_valid():
+            return False
+
         pw1 = self.cleaned_data['password']
         pw2 = self.cleaned_data['password_again']
         return pw1 == pw2
