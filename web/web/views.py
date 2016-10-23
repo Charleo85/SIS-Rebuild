@@ -86,7 +86,7 @@ def login(request, modelname):
             user_type = 1
         resp = _get_user_info(request, user_type)
         if resp['status_code'] == 200:
-            return HttpResponseRedirect(reverse(modelname + '_validate'))
+            return HttpResponseRedirect(reverse(modelname + '_profile'))
         else:
             response = HttpResponseRedirect(reverse(modelname + '_login'))
             response.delete_cookie('auth')
