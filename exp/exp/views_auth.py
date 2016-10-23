@@ -58,6 +58,8 @@ def validate(request, user_type):
                     if i != len(resp['user']['teaching_courses']) - 1:
                         msg += ', '
                 resp['user']['teaching_courses'] = msg
+                if msg == "":
+                    resp['user'].pop('teaching_courses', None)
             else:
                 msg = ""
                 for i in range(len(resp['user']['taking_courses'])):
@@ -65,6 +67,8 @@ def validate(request, user_type):
                     if i != len(resp['user']['taking_courses']) - 1:
                         msg += ', '
                 resp['user']['taking_courses'] = msg
+                if msg == "":
+                    resp['user'].pop('taking_courses', None)
 
             return JsonResponse(resp)
 
