@@ -5,7 +5,16 @@
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
     <h1>Join SIS-Rebuild</h1>
-    <h5>All Starts Here</h5>
+    <div class="col-md-4 col-md-offset-4">
+      <h5> All Starts Here</h5>
+    </div>
+    <div class="col-md-4">
+      {% if modelname == 'instructor'%}
+      <h5><a href="/student/signup/"> Not an {{modelname}}?</a></h5>
+        {% else %}
+      <h5><a href="/instructor/signup/"> Not a {{modelname}}?</a></h5>
+      {% endif %}
+    </div>
   </div>
 </div>
 
@@ -68,13 +77,19 @@
               <input type="password" class="form-control" placeholder="Password" name="password" aria-describedby="basic-addon1">
             </div>
             <br>
-          </div>
 
-          <div class="col-md-4 col-md-offset-4">
             <div class="input-group">
               <!-- <h5 class="form-signin-heading">Username</h5> -->
               <span class="input-group-addon" id="basic-addon1">< </span>
               <input type="password" class="form-control" placeholder="Enter Again" name="password_again" aria-describedby="basic-addon1">
+            </div>
+            <br>
+          </div>
+
+          <div class="col-md-4">
+            <div class="input-group">
+              <h5 class="form-signin-heading">1. length at least 6</h5>
+              <h5 class="form-signin-heading">2. contains a-z</h5>
             </div>
             <br>
           </div>
@@ -111,7 +126,17 @@
        </section>
 
       </form>
-      <center><p style="color: #900;">{{ error }}</p></center>
+
+      {% if error %}
+      <!-- <div class="col-md-4 col-md-offset-4">
+        <div class="row" > -->
+        <center>
+          <h5 style="color: #900;">Error: {{ error }}</h5>
+        </center>
+        <!-- </div>
+      </div> -->
+      {% endif %}
+
 </div>
 
 {% include 'BottomBar.html' %}
