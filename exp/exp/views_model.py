@@ -38,6 +38,23 @@ def _get_course(course_id):
     return resp_c['course']['mnemonic'] + ' ' + resp_c['course']['number']
 
 
+def _process_course(course_dict):
+    new_dict = {}
+    new_dict['coursehref'] = '/course/detail/' + course_dict['id'] + '/'
+    new_dict['instructorhref'] = '/instructor/detail/'
+    new_dict['instructorhref'] += course_dict['instructor'] + '/'
+
+    new_dict['course_name'] = course_dict['mnemonic'] + ' '
+    new_dict['course_name'] += course_dict['number']
+    if course_dict['section'] != '':
+        new_dict['course_name'] += " - " + course_dict['section']
+    if course_dict['title'] != '':
+        new_dict['course_name'] += "<br>" + course_dict['title']
+
+    new_dict['instructor'] = _get_instructor(course_dict['instructor'])
+    return new_dict
+
+
 def index(request):
     return HttpResponse('Success!')
 
@@ -61,24 +78,31 @@ def home_page(request):
                 selected_courses = selected_courses[0:3]
                 break
 
-    course_data = []
+    other_courses = []
+    for course_dict in resp['all_courses']:
+        selected = False
+        for popular in selected_courses:
+            if course_dict['id'] == popular['id']:
+                selected = True
+                break
+        if not selected:
+            other_courses.append(course_dict)
+
+    for i in range(len(other_courses), 3, 1):
+        other_courses.append(selected_courses[2-i])
+
+    popular_courses = []
     for course_dict in selected_courses:
-        new_dict = {}
-        new_dict['coursehref'] = '/course/detail/' + course_dict['id'] + '/'
-        new_dict['instructorhref'] = '/instructor/detail/'
-        new_dict['instructorhref'] += course_dict['instructor'] + '/'
+        new_dict = _process_course(course_dict)
+        popular_courses.append(new_dict)
 
-        new_dict['course_name'] = course_dict['mnemonic'] + ' '
-        new_dict['course_name'] += course_dict['number']
-        if course_dict['section'] != '':
-            new_dict['course_name'] += " - " + course_dict['section']
-        if course_dict['title'] != '':
-            new_dict['course_name'] += "<br>" + course_dict['title']
+    explore_courses = []
+    for course_dict in other_courses:
+        new_dict = _process_course(course_dict)
+        explore_courses.append(new_dict)
 
-        new_dict['instructor'] = _get_instructor(course_dict['instructor'])
-        course_data.append(new_dict)
-
-    new_data['popular_courses'] = course_data
+    new_data['popular_courses'] = popular_courses
+    new_data['explore_courses'] = explore_courses
     return JsonResponse(new_data)
 
 

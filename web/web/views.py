@@ -148,10 +148,11 @@ def signup(request, modelname):
             data = {'modelname': modelname, 'error': resp['error_message']}
             return render(request, 'signup.html', data)
 
-        msg = 'You have successfully signed up! Please click '
-        msg += '<a href=\"/' + modelname + '/login/\">here</a> to login.'
-        return HttpResponse(msg)
-
+        data = {'title': 'Congratulations!'}
+        data['message'] = 'You have successfully signed up. Please '
+        data['message'] += '<a href=\"/' + modelname + '/login/\">login</a>'
+        return render(request, 'info.html', data)
+        
     return HttpResponse('incorrect request type')
 
 
@@ -182,7 +183,9 @@ def logout(request, modelname):
     resp = _make_post_request(url, post_data)
 
     if resp['status_code'] == 200:
-        response = HttpResponse('You have successfully logged out.')
+        data = { 'title': 'Thank you!' }
+        data['message'] = 'You have successfully logged out.'
+        response = render(request, 'info.html', data)
         response.delete_cookie('auth')
         return response
     else:
