@@ -50,9 +50,27 @@ def validate(request, user_type):
     if resp['status_code'] == 200:
         if user_type == resp['user']['user_type']:
             resp['user'] = resp['user']['info']
+
+            if user_type == 0:
+                msg = ""
+                for i in range(len(resp['user']['teaching_courses'])):
+                    msg += resp['user']['teaching_courses'][i]
+                    if i != len(resp['user']['teaching_courses']) - 1:
+                        msg += ', '
+                resp['user']['teaching_courses'] = msg
+            else:
+                msg = ""
+                for i in range(len(resp['user']['taking_courses'])):
+                    msg += resp['user']['taking_courses'][i]
+                    if i != len(resp['user']['taking_courses']) - 1:
+                        msg += ', '
+                resp['user']['taking_courses'] = msg
+
             return JsonResponse(resp)
+
         else:
             return _failure(400, 'incorrect user type')
+
     else:
         return _failure(resp['status_code'], resp['error_message'])
 
