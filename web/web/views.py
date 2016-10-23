@@ -111,7 +111,7 @@ def login(request, modelname):
             return render(request, 'login.html', data)
 
         authenticator = resp['auth']
-        next = request.POST.get('next') or reverse(modelname + '_profile')
+        next = request.GET.get('next') or reverse(modelname + '_profile')
         response = HttpResponseRedirect(next)
         response.set_cookie('auth', authenticator)
         return response
@@ -152,7 +152,7 @@ def signup(request, modelname):
         data['message'] = 'You have successfully signed up. Please '
         data['message'] += '<a href=\"/' + modelname + '/login/\">login</a>'
         return render(request, 'info.html', data)
-        
+
     return HttpResponse('incorrect request type')
 
 
