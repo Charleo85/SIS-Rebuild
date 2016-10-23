@@ -88,15 +88,14 @@ def validate(request):
         ins = Instructor.objects.get(username=auth.userid)
         data['info'] = model_to_dict(ins)
         teaching_courses = []
-        teaching = ins.course_set.all()
-        for course in teaching:
+        for course in ins.course_set.all():
             teaching_courses.append(course.__str__())
         data['info']['teaching_courses'] = teaching_courses
     else:
         stud = Student.objects.get(username=auth.userid)
         data['info'] = model_to_dict(stud)
         taking_courses = []
-        for course in stud.taking_courses:
+        for course in stud.taking_courses.all():
             taking_courses.append(course.__str__())
         data['info']['taking_courses'] = taking_courses
 
