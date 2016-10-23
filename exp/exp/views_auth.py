@@ -54,7 +54,7 @@ def validate(request, user_type):
         else:
             return _failure(400, 'incorrect user type')
     else:
-        return JsonResponse(resp)
+        return _failure(resp['status_code'], resp['error_message'])
 
 
 def logout(request):

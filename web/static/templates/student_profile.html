@@ -5,7 +5,7 @@
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
   {% if status_code == 200 %}
-    <h1>Profile</h1>
+    <h1>Student Profile</h1>
   {% else %}
     <h1>Bad Request!</h1>
   {% endif %}
@@ -21,9 +21,9 @@
               <img class="img-circle" src="/static/img/uva.jpg" height="100" width="100"/>
               <div class="description">
                   <h3 class="big-text">{{ student.first_name }} {{ student.last_name }} </h3>
-                  <p class="small-text">@username</p>
+                  <p class="small-text">@{{ student.username }}</p>
                   <br>
-                  <p class="small-text">Hello, World</p>
+                  <p class="small-text"><a href="/student/logout/">Click to logout</a></p>
               </div>
               <div class="social-buttons hidden-xs">
                  <a target="_blank" href="https://twitter.com" class="btn btn-social btn-twitter btn-simple"><i class="fa fa-twitter"></i></a>

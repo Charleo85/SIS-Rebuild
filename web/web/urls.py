@@ -54,8 +54,8 @@ ins = [
         name='instructor_login',
     ),
     url(
-        r'^instructor/validate/$',
-        views.instructor_validate, name='instructor_validate',
+        r'^instructor/profile/$',
+        views.instructor_profile, name='instructor_profile',
     ),
     url(
         r'^instructor/logout/$',
@@ -71,18 +71,13 @@ ins = [
 
 stud = [
     url(
-        r'^student/detail/(?P<itemid>[a-zA-Z0-9]+)/$',
-        views.item_detail, { 'modelname' : 'student' },
-        name='student_detail',
-    ),
-    url(
         r'^student/login/$',
         views.login, { 'modelname' : 'student' },
         name='student_login',
     ),
     url(
-        r'^student/validate/$',
-        views.student_validate, name='student_validate',
+        r'^student/profile/$',
+        views.student_profile, name='student_profile',
     ),
     url(
         r'^student/logout/$',
@@ -96,12 +91,4 @@ stud = [
     ),
 ]
 
-enr = [
-    url(
-        r'^enrollment/detail/(?P<itemid>[0-9]+)/$',
-        views.item_detail, { 'modelname' : 'enrollment' },
-        name='enrollment_detail',
-    ),
-]
-
-urlpatterns = statics + misc + course + ins + stud + enr
+urlpatterns = statics + misc + course + ins + stud

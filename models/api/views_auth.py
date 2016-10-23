@@ -91,7 +91,6 @@ def validate(request):
         stud = Student.objects.get(username=auth.userid)
         data['info'] = model_to_dict(stud)
 
-    data['info'].pop('username', None)
     data['info'].pop('password', None)
     return _success(data, 'user', 200)
 
