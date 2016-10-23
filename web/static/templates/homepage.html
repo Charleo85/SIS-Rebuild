@@ -63,10 +63,50 @@
                 </div>
             </div>
             {% endfor %}
-
           </div>
         </div>
 </div>
+
+<div class="section section-we-made-3" id="explore">
+    <div class="container">
+        <div class="row">
+            <div class="title add-animation">
+                <h2>Courses To Explore</h2>
+                <div class="separator-container">
+                    <div class="separator line-separator">∎</div>
+                </div>
+                <p>Check out the highest rated courses from our platform.<br><br></p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+          {% for c in popular_courses %}
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="project add-animation animation-1">
+                    <!-- <a target="_blank" class="img-class" href="/course/17894/">
+                        <img src="img/opt_gbt_thumbnail.jpg">
+                    </a> -->
+
+                    <div class="over-area over-area-sm color-1">
+                        <div class="content">
+                            <!-- <h5 class="text-gray">Five Star Rated</h5> -->
+                              <h3><a href="{{ c.coursehref }}"> {{ c.course_name|safe }} </a> </h3>
+                              <h4><a href="{{ c.instructorhref }}"> {{ c.instructor }}</a> </h4>
+                            <!-- <p>Description to be add</p> -->
+
+                            <a target="_blank" href="/course/" class="btn btn-round">Enroll</a>
+                            <a target="_blank" href="{{ c.coursehref }}" class="btn btn-round btn-fill">Detail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+</div>
+
+
 {% endif %}
 
 

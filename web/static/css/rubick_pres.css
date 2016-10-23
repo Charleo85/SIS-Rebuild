@@ -114,7 +114,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
     color: #FFFFFF;
 }
 
-.section-team-2 .team .member p {
+.profile .team .member p {
   font-size: .9em;
   padding: 0 10px;
 }
@@ -3451,57 +3451,36 @@ body.noscroll {
 .list-logos img:first-child:hover {
   opacity: 0;
 }
-
-.section-team-1 {
+.profile {
   padding-top: 0;
 }
-.section-team-1 .container {
-  position: absolute;
-  width: 100%;
-  top: 0;
-}
-.section-team-1 .text-area {
-  background-color: transparent;
-  max-width: 760px;
-  margin: 0 auto;
-}
-.section-team-1 p {
-  color: #555;
-}
-.section-team-1 .static-image img {
-  width: 100%;
-}
-
-.section-team-2 {
-  padding-top: 0;
-}
-.section-team-2 .team-text {
+.profile .team-text {
   position: relative;
   padding: 0 0 75px;
 }
-.section-team-2 .team {
+.profile .avatar {
   display: block;
   position: relative;
 }
-.section-team-2 .team .member {
+.profile .avatar .member {
   border-radius: 50%;
   display: block;
   text-align: center;
 }
-.section-team-2 .team .member p {
+.profile .avatar .member p {
   font-size: 1em;
 }
-.section-team-2 .team .member .social-buttons {
+.profile .avatar .member .social-buttons {
   display: inline-block;
   padding: 15px 35px;
 }
-.section-team-2 .team .member img {
+.profile .avatar .member img {
   background: none repeat scroll 0 0 transparent;
   height: auto;
   width: 120px;
   margin: 0 auto;
 }
-.section-team-2 .team .description {
+.profile .avatar .description {
   padding: 10px 0;
   text-align: center;
 }
@@ -4133,7 +4112,7 @@ body.noscroll {
       color: #FFFFFF;
   }
 
-  .section-team-2 .team .member p {
+  .profile .team .member p {
     font-size: .9em;
     padding: 0 10px;
   }
