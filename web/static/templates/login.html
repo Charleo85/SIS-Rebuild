@@ -22,8 +22,9 @@
   </div>
 
   <div class="col-md-4">
+      <p></p>
         <form class="form-signin" action="" method="post">
-          <div class="row row-centered" >
+            <!-- <div class="row row-centered" > -->
             {% csrf_token %}
 
               <div class="row" >
@@ -61,7 +62,7 @@
                   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in  <i class="fa fa-paper-plane"></i> </button>
                 </div>
               <!-- </div> -->
-            </div>
+          <!-- </div> -->
       </form>
     </div>
     {% if error %}
