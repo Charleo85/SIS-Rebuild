@@ -65,3 +65,23 @@ def logout(request):
     url = 'http://models-api:8000/api/auth/logout/'
     resp = _make_post_request(url, post_data)
     return JsonResponse(resp)
+
+
+def signup(request, user_type):
+    if request.method != 'POST':
+        return _failure(400, 'incorrect request type')
+
+    post_data = request.POST.dict()
+    post_data.pop('password_again', None)
+
+    if user_type == 0:
+        modelname = 'instructor'
+    else:
+        modelname = 'student'
+    url = 'http://models-api:8000/api/' + modelname + '/create/'
+    resp = _make_post_request(url, post_data)
+
+    if resp['status_code'] != 201:
+        return _failure(resp['status_code'], resp['error_message'])
+    else:
+        return JsonResponse({ 'status_code' : 201 })

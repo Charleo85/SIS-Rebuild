@@ -29,9 +29,6 @@ def _get_user_info(request, user_type):
     else:
         modelname = 'student'
 
-    if 'auth' not in request.COOKIES:
-        return { 'status_code': 400 }
-
     auth = request.COOKIES.get('auth')
     post_data = {'auth': auth}
     url = 'http://exp-api:8000/' + modelname + '/auth/validate/'
@@ -52,6 +49,40 @@ def about(request):
 def signup(request, modelname):
     if request.method == 'GET':
         return render(request, 'signup.html', {'modelname': modelname})
+
+    if request.method == 'POST':
+        form = SignupForm(request.POST):
+        if not form.is_good_password():
+            error_msg = 'please enter a stronger password'
+            data = { 'modelname': modelname, 'error': error_msg }
+            return render(request, 'signup.html', data)
+
+        if not form.password_match():
+            error_msg = 'passwords do not match'
+            data = { 'modelname': modelname, 'error': error_msg }
+            return render(request, 'signup.html', data)
+
+        if not form.is_valid():
+            error_msg = 'invalid input(s)'
+            data = { 'modelname': modelname, 'error': error_msg }
+            return render(request, 'signup.html', data)
+
+        post_data = form.cleaned_data
+        url = 'http://exp-api:8000/' + modelname + '/signup/'
+        resp = _make_post_request(url, post_data)
+
+        if resp['status_code'] != 201:
+            data = {
+                'modelname': modelname,
+                'error' : resp['error_message']
+            }
+            return render(request, 'signup.html', data)
+
+        msg = 'You have successfully signed up! Please click '
+        msg += '<a href=\"/' + modelname + '/login/\">here</a> to login.'
+        return HttpResponse(msg)
+    
+    return HttpResponse('incorrect request type')
 
 
 def list_item(request, modelname):
@@ -75,6 +106,10 @@ def login(request, modelname):
         resp = _get_user_info(request, user_type)
         if resp['status_code'] == 200:
             return HttpResponseRedirect(reverse(modelname + '_validate'))
+        else:
+            response = HttpResponseRedirect(reverse(modelname + '_login'))
+            response.delete_cookie('auth')
+            return response
 
     if request.method == 'GET':
         return render(request, 'login.html', {'modelname': modelname})

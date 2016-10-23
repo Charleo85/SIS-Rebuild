@@ -143,7 +143,9 @@ def instructor_create(request):
         except ObjectDoesNotExist:
             exist = False
 
-        if not exist:
+        if exist:
+            return _failure(400, 'instructor already exists')
+        else:
             form = InstructorForm(request.POST)
 
             if form.is_valid():
@@ -152,8 +154,10 @@ def instructor_create(request):
                 data.pop('username', None)
                 data.pop('password', None)
                 return _success(data, 'instructor', 201)
+            else:
+                return _failure(400, 'invalid input(s)')
 
-    return _failure(400)
+    return _failure(400, 'incorrect request type')
 
 
 def instructor_delete(request):
@@ -225,7 +229,9 @@ def student_create(request):
         except ObjectDoesNotExist:
             exist = False
 
-        if not exist:
+        if exist:
+            return _failure(400, 'student already exists')
+        else:
             form = StudentForm(request.POST)
             if form.is_valid():
                 form.save()
@@ -233,8 +239,10 @@ def student_create(request):
                 data.pop('username', None)
                 data.pop('password', None)
                 return _success(data, 'student', 201)
+            else:
+                return _failure(400, 'invalid input(s)')
 
-    return _failure(400)
+    return _failure(400, 'incorrect request type')
 
 
 def student_delete(request):

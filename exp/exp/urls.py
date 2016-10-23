@@ -35,6 +35,7 @@ ins = [
     url(r'^instructor/auth/login/$', views_auth.login, {'user_type' : 0}),
     url(r'^instructor/auth/validate/$', views_auth.validate, {'user_type' : 0}),
     url(r'^instructor/auth/logout/$', views_auth.logout),
+    url(r'^instructor/signup/$', views_auth.signup, {'user_type' : 0}),
 ]
 
 stud = [
@@ -43,6 +44,7 @@ stud = [
     url(r'^student/auth/login/$', views_auth.login, {'user_type' : 1}),
     url(r'^student/auth/validate/$', views_auth.validate, {'user_type' : 1}),
     url(r'^student/auth/logout/$', views_auth.logout),
+    url(r'^student/signup/$', views_auth.signup, {'user_type' : 1}),
 ]
 
 enr = [
