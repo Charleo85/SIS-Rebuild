@@ -15,11 +15,11 @@
   <div class="col-md-4">
     <h2 class="form-signin-heading">Please sign in</h2>
       {% if modelname == 'instructor'%}
-      <h5><a href="/student/login/"><span class="glyphicons glyphicons-refresh"></span> Not an {{modelname}}?</a></h5>
-      <h5><a href="/instructor/signup/"><span class="glyphicons glyphicon-user-add"></span> Instructor sign up</a></h5>
+      <h5><a href="/student/login/"><span class="glyphicon glyphicon-refresh"></span> Not an {{modelname}}?</a></h5>
+      <h5><a href="/instructor/signup/"><span class="glyphicon glyphicon-user-add"></span> Instructor sign up</a></h5>
         {% else %}
-    <h5><a href="/instructor/login/"><span class="glyphicons glyphicons-refresh"></span> Not a {{modelname}}?</a></h5>
-      <h5><a href="/student/signup/"><span class="glyphicons glyphicon-user-add"></span> Student sign up</a></h5>
+    <h5><a href="/instructor/login/"><span class="glyphicon glyphicon-refresh"></span> Not a {{modelname}}?</a></h5>
+      <h5><a href="/student/signup/"><span class="glyphicon glyphicon-user-add"></span> Student sign up</a></h5>
       {% endif %}
   </div>
 
