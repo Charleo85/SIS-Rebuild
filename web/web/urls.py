@@ -36,6 +36,10 @@ course = [
         r'^course/detail/(?P<itemid>[0-9]{5})/$',
         views.item_detail, { 'modelname' : 'course' }, name='course_detail',
     ),
+    url(
+        r'^course/create/$', views.create_course_listing,
+        { 'modelname' : 'course' }, name='course_create',
+    ),
 ]
 
 ins = [

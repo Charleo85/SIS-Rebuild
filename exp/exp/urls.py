@@ -27,6 +27,7 @@ misc = [
 course = [
     url(r'^course/$', views_model.course_all),
     url(r'^course/detail/(?P<sisid>[a-zA-Z0-9]+)/$', views_model.course_detail),
+    url(r'^course/create/$', views_model.course_create),
 ]
 
 ins = [
