@@ -90,15 +90,12 @@ def create_course_listing(request, modelname):
         post_data = form.cleaned_data
         response = _make_post_request(url, post_data)
         if response['status_code'] == 400:
-            print('failure!')
-            req = urllib.request.Request(url)
-            return render(req, "course_create.html", {'form': form.as_p(), 'error_message': response['error_message']})
+            return render(request, "course_create.html", {'form': form.as_p(), 'error_message': response['error_message']})
             # redo_url = reverse('course_create')
             # req = urllib.request.Request(url)
             # return render(req)
         elif response['status_code'] == 201:
-            print('success!')
-            return HttpResponseRedirect(reverse('course_detail', kwargs={'itemid': response['id']}))
+            return HttpResponseRedirect(reverse('course_detail', kwargs={'itemid': response['course']['id']}))
         else:
             req = urllib.request.Request(url)
             f = NewCourseForm()
@@ -107,7 +104,6 @@ def create_course_listing(request, modelname):
         req = urllib.request.Request(url)
         f = NewCourseForm()
         return render(request, "course_create.html", {'form': f.as_p(), 'error_message': form.errors})
-
 
 
 def login(request, modelname):
