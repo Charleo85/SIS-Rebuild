@@ -1,8 +1,11 @@
 {% load rm_underscore %}
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 {% include 'TopBar.html' %}
 <style>
 #form1 { text-align: center; }
+#error {color: red; text-align: center;}
+h1 {text-align:center; color:red}
+ul {list-style-type: none; color: red; text-align: center;}
 </style>
 
 <div style="background-color:#99a88f;" class="jumbotron">
@@ -11,9 +14,14 @@
   </div>
 </div>
 
-<div id="form1" >
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<div id="error" >
+    {% if error_message %}
+    <h1> Error: </h1>
+    <strong>{{ error_message }}</strong>{% endif %}
+</div>
+<br>
 
+<div id="form1" >
     <form action="/course/create/" method="post" > {% csrf_token %}
         {{ form }}
         <input type="submit" value="Create"> <br/>
