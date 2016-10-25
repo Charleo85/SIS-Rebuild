@@ -82,39 +82,8 @@ $(document).ready(function(){
         content_opacity = 1;
     }
 
-    // $('.nav li').on('click', function(){
-    //     $('.nav li').removeClass('active');
-    //     $(this).addClass('active');
-    // });
-    //
-    // $('.nav-pills > li > a').click(function (event) {
-    //     event.preventDefault(); //stop browser to take action for clicked anchor
-    //
-    //     //get displaying tab content jQuery selector
-    //     var active_tab_selector = $('.nav-pills > li.active > a').attr('href');
-    //
-    //     //find actived navigation and remove 'active' css
-    //     var actived_nav = $('.nav-pills > li.active');
-    //     actived_nav.removeClass('active');
-    //
-    //     //add 'active' css into clicked navigation
-    //     $(this).parents('li').addClass('active');
-    //
-    //     //hide displaying tab content
-    //     $(active_tab_selector).removeClass('active');
-    //     $(active_tab_selector).addClass('hide');
-    //
-    //     //show target tab content
-    //     var target_tab_selector = $(this).attr('href');
-    //     $(target_tab_selector).removeClass('hide');
-    //     $(target_tab_selector).addClass('active');
-    // });
-    //
-    // $('.tab-content input').click(function (event) {
-    //     $(".nav.nav-pills li.active").next("li").find("a").trigger("click");
-    // });
-
 });
+
 
 (function(window, $) {
 
@@ -307,6 +276,16 @@ rubik = {
 
     },
     initRightMenu: function(){
+      var match = document.cookie.match(new RegExp('auth' + '=([^;]+)'));
+
+
+      if (match){
+        console.log('match');
+        document.getElementById("login").innerHTML = '<span class="glyphicon glyphicon-user"></span> Profile';
+      }else{
+        document.getElementById("login").innerHTML = '<span class="glyphicon glyphicon-log-in"></span> Login';
+      }
+
          if(!navbar_initialized){
             $nav = $('nav');
             $nav.addClass('navbar-burger');
@@ -358,6 +337,7 @@ rubik = {
 
 
             $toggle.click(function (){
+
 
                 if(rubik.misc.navbar_menu_visible == 1) {
                     $('html').removeClass('nav-open');

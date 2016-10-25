@@ -46,8 +46,6 @@ def course_detail(request, sisid):
                 data = form.cleaned_data
                 data['current_enrolled'] = len(target_course.student_set.all())
                 data['instructor'] = data['instructor'].__str__()
-                # Why is this here?
-                # data['current_enrolled'] = 0
                 return _success(data, 'course', 201)
 
     return _failure(400)
@@ -145,7 +143,9 @@ def instructor_create(request):
         except ObjectDoesNotExist:
             exist = False
 
-        if not exist:
+        if exist:
+            return _failure(400, 'instructor already exists')
+        else:
             form = InstructorForm(request.POST)
 
             if form.is_valid():
@@ -154,8 +154,10 @@ def instructor_create(request):
                 data.pop('username', None)
                 data.pop('password', None)
                 return _success(data, 'instructor', 201)
+            else:
+                return _failure(400, 'invalid input(s)')
 
-    return _failure(400)
+    return _failure(400, 'incorrect request type')
 
 
 def instructor_delete(request):
@@ -227,7 +229,9 @@ def student_create(request):
         except ObjectDoesNotExist:
             exist = False
 
-        if not exist:
+        if exist:
+            return _failure(400, 'student already exists')
+        else:
             form = StudentForm(request.POST)
             if form.is_valid():
                 form.save()
@@ -235,8 +239,10 @@ def student_create(request):
                 data.pop('username', None)
                 data.pop('password', None)
                 return _success(data, 'student', 201)
+            else:
+                return _failure(400, 'invalid input(s)')
 
-    return _failure(400)
+    return _failure(400, 'incorrect request type')
 
 
 def student_delete(request):
@@ -290,7 +296,11 @@ def enrollment_detail(request, enrid):
             form = EnrollmentForm(request.POST, instance=enroll)
             if form.is_valid():
                 form.save()
-                data = form.cleaned_data
+                enroll = Enrollment.objects.get(
+                    student=request.POST.get('student'),
+                    course=request.POST.get('course'),
+                )
+                data = model_to_dict(enroll)
                 data['enroll_status'] = enroll.get_enroll_status_display()
                 return _success(data, 'enrollment', 202)
 
@@ -312,11 +322,11 @@ def enrollment_create(request):
             form = EnrollmentForm(request.POST)
             if form.is_valid():
                 form.save()
-                data = form.cleaned_data
                 enroll = Enrollment.objects.get(
                     student=request.POST.get('student'),
                     course=request.POST.get('course'),
                 )
+                data = model_to_dict(enroll)
                 data['enroll_status'] = enroll.get_enroll_status_display()
                 return _success(data, 'enrollment', 201)
 

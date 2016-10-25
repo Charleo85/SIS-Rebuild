@@ -87,11 +87,18 @@ def validate(request):
     if auth.user_type == 0:
         ins = Instructor.objects.get(username=auth.userid)
         data['info'] = model_to_dict(ins)
+        teaching_courses = []
+        for course in ins.course_set.all():
+            teaching_courses.append(course.__str__())
+        data['info']['teaching_courses'] = teaching_courses
     else:
         stud = Student.objects.get(username=auth.userid)
         data['info'] = model_to_dict(stud)
+        taking_courses = []
+        for course in stud.taking_courses.all():
+            taking_courses.append(course.__str__())
+        data['info']['taking_courses'] = taking_courses
 
-    data['info'].pop('username', None)
     data['info'].pop('password', None)
     return _success(data, 'user', 200)
 

@@ -50,11 +50,33 @@ def validate(request, user_type):
     if resp['status_code'] == 200:
         if user_type == resp['user']['user_type']:
             resp['user'] = resp['user']['info']
+
+            if user_type == 0:
+                msg = ""
+                for i in range(len(resp['user']['teaching_courses'])):
+                    msg += resp['user']['teaching_courses'][i]
+                    if i != len(resp['user']['teaching_courses']) - 1:
+                        msg += ', '
+                resp['user']['teaching_courses'] = msg
+                if msg == "":
+                    resp['user'].pop('teaching_courses', None)
+            else:
+                msg = ""
+                for i in range(len(resp['user']['taking_courses'])):
+                    msg += resp['user']['taking_courses'][i]
+                    if i != len(resp['user']['taking_courses']) - 1:
+                        msg += ', '
+                resp['user']['taking_courses'] = msg
+                if msg == "":
+                    resp['user'].pop('taking_courses', None)
+
             return JsonResponse(resp)
+
         else:
             return _failure(400, 'incorrect user type')
+
     else:
-        return JsonResponse(resp)
+        return _failure(resp['status_code'], resp['error_message'])
 
 
 def logout(request):
@@ -65,3 +87,23 @@ def logout(request):
     url = 'http://models-api:8000/api/auth/logout/'
     resp = _make_post_request(url, post_data)
     return JsonResponse(resp)
+
+
+def signup(request, user_type):
+    if request.method != 'POST':
+        return _failure(400, 'incorrect request type')
+
+    post_data = request.POST.dict()
+    post_data.pop('password_again', None)
+
+    if user_type == 0:
+        modelname = 'instructor'
+    else:
+        modelname = 'student'
+    url = 'http://models-api:8000/api/' + modelname + '/create/'
+    resp = _make_post_request(url, post_data)
+
+    if resp['status_code'] != 201:
+        return _failure(resp['status_code'], resp['error_message'])
+    else:
+        return JsonResponse({ 'status_code' : 201 })

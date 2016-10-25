@@ -25,8 +25,6 @@ misc = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.home_page, name='home'),
     url(r'^about/$', views.about, name='about'),
-    url(r'^login/$', views.login, name='login'),
-    url(r'^signup/$', views.signup, name='signup'),
 ]
 
 course = [
@@ -60,44 +58,41 @@ ins = [
         name='instructor_login',
     ),
     url(
-        r'^instructor/validate/$',
-        views.instructor_validate, name='instructor_validate',
+        r'^instructor/profile/$',
+        views.instructor_profile, name='instructor_profile',
     ),
     url(
         r'^instructor/logout/$',
         views.logout, { 'modelname' : 'instructor' },
         name='instructor_logout',
     ),
+    url(
+        r'^instructor/signup/$',
+        views.signup, { 'modelname' : 'instructor' },
+        name='instructor_signup',
+    ),
 ]
 
 stud = [
-    url(
-        r'^student/detail/(?P<itemid>[a-zA-Z0-9]+)/$',
-        views.item_detail, { 'modelname' : 'student' },
-        name='student_detail',
-    ),
     url(
         r'^student/login/$',
         views.login, { 'modelname' : 'student' },
         name='student_login',
     ),
     url(
-        r'^student/validate/$',
-        views.student_validate, name='student_validate',
+        r'^student/profile/$',
+        views.student_profile, name='student_profile',
     ),
     url(
         r'^student/logout/$',
         views.logout, { 'modelname' : 'student' },
         name='student_logout',
     ),
-]
-
-enr = [
     url(
-        r'^enrollment/detail/(?P<itemid>[0-9]+)/$',
-        views.item_detail, { 'modelname' : 'enrollment' },
-        name='enrollment_detail',
+        r'^student/signup/$',
+        views.signup, { 'modelname' : 'student' },
+        name='student_signup',
     ),
 ]
 
-urlpatterns = statics + misc + course + ins + stud + enr
+urlpatterns = statics + misc + course + ins + stud

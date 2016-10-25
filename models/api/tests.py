@@ -342,7 +342,6 @@ class APITestCases(TestCase):
         self.assertEqual(python_dict_from_decoded_response['enrollment'], expected_response_content['enrollment'])
 
     # Yields a "cannot parse JSON" error!!!
-    """
     def test_post_enrollment_detail(self):
         url_for_post = reverse('enrollment_detail', kwargs={'enrid': 1})
         data_for_post = {"student": "tq7bw", "course": "17894", "enroll_status": "W"}
@@ -357,30 +356,29 @@ class APITestCases(TestCase):
         python_dict_from_decoded_response = json.loads(decoded_response)
         self.assertEqual(python_dict_from_decoded_response['status_code'], expected_response_content['status_code'])
         self.assertEqual(python_dict_from_decoded_response['enrollment'], expected_response_content['enrollment'])
-    """
+
     # I'm having trouble making a successful POST, it seems like the "form.is_valid()" check is not passing
-    """
-    def test_enrollment_create(self):
-        url_for_post = reverse('enrollment_create')
-        data_for_post = {"student": "sg4fc", "course": "17894", "enroll_status": "W"}
-        response = self.client.post(url_for_post, data_for_post)
+    # def test_enrollment_create(self):
+    #     url_for_post = reverse('enrollment_create')
+    #     data_for_post = {"student": "zaf2xk", "course": "17894", "enroll_status": "W"}
+    #     response = self.client.post(url_for_post, data_for_post)
+    #
+    #     expected_response_content = {"status_code": 201, "enrollment": "sg4fc", "course": "17894", "enroll_status": "W"}
+    #     decoded_response = response.content.decode('utf-8')
+    #
+    #     python_dict_from_decoded_response = json.loads(decoded_response)
+    #     self.assertEqual(python_dict_from_decoded_response['status_code'], expected_response_content['status_code'])
+    #     self.assertEqual(python_dict_from_decoded_response['enrollment'], expected_response_content['enrollment'])
+    #
+    #     # Test to see if the newly created student is in the database
+    #     response = self.client.get(reverse('enrollment_detail', kwargs={'enrid': 'sg4fc'}))
+    #
+    #     decoded_response = response.content.decode('utf-8')
+    #
+    #     python_dict_from_decoded_response = json.loads(decoded_response)
+    #     self.assertEqual(python_dict_from_decoded_response['status_code'], expected_response_content['status_code'])
+    #     self.assertEqual(python_dict_from_decoded_response['enrollment'], expected_response_content['enrollment'])
 
-        expected_response_content = {"status_code": 201, "enrollment": "sg4fc", "course": "17894", "enroll_status": "W"}
-        decoded_response = response.content.decode('utf-8')
-
-        python_dict_from_decoded_response = json.loads(decoded_response)
-        self.assertEqual(python_dict_from_decoded_response['status_code'], expected_response_content['status_code'])
-        self.assertEqual(python_dict_from_decoded_response['enrollment'], expected_response_content['enrollment'])
-
-        # Test to see if the newly created student is in the database
-        response = self.client.get(reverse('enrollment_detail', kwargs={'enrid': 'sg4fc'}))
-
-        decoded_response = response.content.decode('utf-8')
-
-        python_dict_from_decoded_response = json.loads(decoded_response)
-        self.assertEqual(python_dict_from_decoded_response['status_code'], expected_response_content['status_code'])
-        self.assertEqual(python_dict_from_decoded_response['enrollment'], expected_response_content['enrollment'])
-    """
     def test_enrollment_delete(self):
         url_for_post = reverse('enrollment_delete')
         data_for_post = {"id": 1}

@@ -1,0 +1,53 @@
+{% load rm_underscore %}
+<html>
+{% include 'TopBar.html' %}
+
+<div style="background-color:#99a88f;" class="jumbotron">
+  <div class="container text-center">
+  {% if status_code == 200 %}
+    <h1>Welcome, {{ instructor.first_name }}</h1>
+  {% else %}
+    <h1>Bad Request!</h1>
+  {% endif %}
+  </div>
+</div>
+
+{% if status_code == 200 %}
+<div class="profile" id="profile">
+  <div class="avatar">
+      <div class="col-md-4">
+        <div class="row">
+          <div class="member add-animation animation-1">
+              <img class="img-circle" src="/static/img/uva.jpg" height="100" width="100"/>
+              <div class="description">
+                  <h3 class="big-text">{{ instructor.first_name }} {{ instructor.last_name }} </h3>
+                  <p class="small-text">@{{ instructor.username }}</p>
+                  <br>
+                  <p class="small-text"><a href="/instructor/logout/">Click here to logout</a></p>
+              </div>
+              <div class="social-buttons hidden-xs">
+                 <a target="_blank" href="https://twitter.com" class="btn btn-social btn-twitter btn-simple"><i class="fa fa-twitter"></i></a>
+                 <a target="_blank" href="https://www.linkedin.com" class="btn btn-social btn-linkedin btn-simple"><i class="fa fa-linkedin-square"></i></a>
+                 <a target="_blank" href="https://www.facebook.com" class="btn btn-social btn-facebook btn-simple"><i class="fa fa-facebook-square"></i></a>
+               </div>
+               <!-- <div class="description">
+                 <h7><i class="fa fa-clock-o" aria-hidden="true"></i> Joined on Sep 15, 2015 </h7>
+               </div> -->
+          </div>
+        </div>
+      </div>
+
+        <div class="col-md-6">
+            <ul class="list-group">
+              {% for key, value in instructor.items %}
+                <li class="list-group-item list-group-item-action"><b>{{ key|rm_underscore }}</b>: {{ value }}</li>
+              {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% include 'BottomBar.html' %}
+</html>
