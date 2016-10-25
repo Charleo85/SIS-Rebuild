@@ -8,16 +8,17 @@ class LoginForm(forms.Form):
     )
 
 class NewCourseForm(forms.Form):
+    # Required Fields
     mnemonic = forms.CharField(label='Mnemonic:', help_text='(e.g. CS or MATH)', max_length=4)
     number = forms.CharField(label='Course Number:', help_text='(e.g. 4501)', max_length=4)
-    instructor_name = forms.CharField(label='Instructor Name:', max_length=20)
-    instructor_id = forms.CharField(label='Instructor Computing ID:', max_length=20)
     id = forms.CharField(label='Course ID:', help_text='Same as 5-digit SIS ID', max_length=5)
+    instructor = forms.CharField(label='Instructor Computing ID:', max_length=20)
 
+    # Optional Fields
+    instructor_name = forms.CharField(label='Instructor Name:', max_length=20)
     section = forms.CharField(label='Section:' ,max_length=3, required=False)
-    title = forms.CharField(label='Class Title:', max_length=100)
+    title = forms.CharField(label='Class Title:', max_length=100, required=False)
     description = forms.CharField(label='Description:', max_length=1000, required=False)
-
     website = forms.URLField(label='Website URL:', required=False)
     meet_time = forms.CharField(label='Meeting Time:', max_length=100, required=False)
     max_students = forms.IntegerField(label='Class Student Capacity', required=False)
