@@ -79,10 +79,9 @@ def item_detail(request, itemid, modelname):
 
 @instructor_login_required
 def create_course_listing(request, modelname):
-
     if request.method == 'GET':
         form = NewCourseForm()
-        return render(request, "course_create.html", {'form': form.as_p()})
+        return render(request, "course_create.html", {'form': form})
 
     url = 'http://exp-api:8000/' + modelname + '/create/'
     form = NewCourseForm(request.POST)
@@ -101,17 +100,16 @@ def create_course_listing(request, modelname):
 
 def login(request, modelname):
     if 'auth' in request.COOKIES:
-        if modelname == 'instructor':
-            user_type = 0
-        else:
-            user_type = 1
-        resp = _get_user_info(request, user_type)
+        resp = _get_user_info(request, 0)
         if resp['status_code'] == 200:
-            return HttpResponseRedirect(reverse(modelname + '_profile'))
-        else:
-            response = HttpResponseRedirect(reverse(modelname + '_login'))
-            response.delete_cookie('auth')
-            return response
+            return HttpResponseRedirect(reverse('instructor_profile'))
+        resp = _get_user_info(request, 1)
+        if resp['status_code'] == 200:
+            return HttpResponseRedirect(reverse('student_profile'))
+
+        response = HttpResponseRedirect(reverse(modelname + '_login'))
+        response.delete_cookie('auth')
+        return response
 
     if request.method == 'GET':
         return render(request, 'login.html', {'modelname': modelname})
