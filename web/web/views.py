@@ -40,7 +40,8 @@ def instructor_login_required(f):
     def wrap(request, *args, **kwargs):
         resp = _get_user_info(request, 0)
         if resp['status_code'] != 200:
-            return HttpResponseRedirect(reverse('instructor_login'))
+            url = reverse('instructor_login') + '?next=' + request.path
+            return HttpResponseRedirect(url)
         else:
             return f(request, *args, **kwargs)
     return wrap
@@ -50,7 +51,8 @@ def student_login_required(f):
     def wrap(request, *args, **kwargs):
         resp = _get_user_info(request, 1)
         if resp['status_code'] != 200:
-            return HttpResponseRedirect(reverse('student_login'))
+            url = reverse('student_login') + '?next=' + request.path
+            return HttpResponseRedirect(url)
         else:
             return f(request, *args, **kwargs)
     return wrap

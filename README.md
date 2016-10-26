@@ -29,12 +29,49 @@ $ curl 127.0.0.1:8000
 - We also have a working webpage on a DigitalOcean droplet. Visit homepage at: [162.243.117.39:8000](http://162.243.117.39:8000).
 
 
-Project 3
+Project 4
 ---------
 
-**If you are grading this project, please read this section for our project 3 features:**
+**If you are grading this project, please read this section for our project 4 features.**
 
-********
+*********
+
+#### Login and User Authentication
+
+- Login page:
+	- Please use our side bar on the right of the webpage to visit our login page.
+	- Two types of users: students and instructors. Default login page is for students (`/student/login/`); use the "Not a student" link to navigate to instructor login page (`/instructor/login/`).
+	- If the login succeeds, you would be redirected to the page you specified with `?next=/your/link`. If you did not specify a `next`, you would be redirected to your own profile page.
+	- If the login fails, corresponding error message would be displayed on the page.
+
+- Profile page:
+	- Displays all relevant info about the current user (including username, which is not visible if not logged in).
+	- Includes a link to logout current user. If you are an instructor, the page also includes a link for creating courses.
+	- If you are logged in, the "login" link on the side bar would be automatically changed to a "profile" link that directs you to your profile page.
+
+- Several pre-determined user credentials (in fixture):
+	- instructors: `id = tp3ks, username = tp3ks, password = thomas`; `id = asb2t, username = asb2t, password = creepy`; `id = dee2b, username = dee2b, password = daveevans`; `id = mve2x, username = mve2x, password = ershov`.
+	- Students: `id = tq7bw, username = tq7bw, password = tonyqiu`; `id = jw7jb, username = jw7jb, password = charlie`; `id = zaf2xk, username = zaf2xk, password = zakeyfaieq`.
+
+#### Sign Up and Create User
+
+- Sign up page:
+	- Please first visit our login page, and then click the "sign up" link to visit our sign up page.
+	- Sign up supports two types of users as well. To sign up as a specific type of user, use the url `/{{ modelname}}/signup/`.
+	- Complete all three steps on the sign up page to sign up a new user. **Note:** you need to use a good password that is: 1) at least 6 digits, 2) not involving only numbers.
+	- If the sign up succeeds, you would be directed to a "congratulations" info page. If it fails, correct error message would be displayed.
+
+#### Create Listing (Course):
+
+- The create listing page (`/course/create/`):
+	- Only users of the type "instructor" has permission to create a new course. As noted before, you can visit the create course page via the link on your profile page, if you are an instructor.
+	- The required fields on the create course page are: `mnemonic`, `number`, `course id`, `instructor id`, and `student capacity`.
+	- If the creation is successful, you would be redirected to the detail page of the course you've just signed up. If not, correct error messages would be displayed.
+
+
+
+Project 3
+---------
 
 #### User stories and Unit testing
 
@@ -138,6 +175,8 @@ Project 2
 		- `id` ("tq7bw") -- *primary, unique, format = `[a-zA-Z0-9]+`*
 		- `first_name` ("Tong")
 		- `last_name` ("Qiu")
+		- `username` ("tq7bw")
+		- `password` ("tonyqiu")
 
 	- optional fields:
 
@@ -150,6 +189,8 @@ Project 2
 		- `id` ("tp3ks") -- *primary, unique, format = `[a-zA-Z0-9]+`*
 		- `first_name` ("Thomas")
 		- `last_name` ("Pinckney")
+		- `username` ("tp3ks")
+		- `password` ("thomas")
 
 - `class Enrollment(models.Model)`
 
@@ -200,9 +241,9 @@ Project 2
 		- All required fields must be filled out.
 		- If all requirements are satisfied, a json is returned with new instance info and `status_code = 202`.
 		- If one or more requirements fail, a json is returned with `status_code = 400` (bad request).
-	
+
 	- Deleting an existing instance:
-		
+
 		- Use url "/{{ model_name_lower_case }}/delete/".
 		- Only one required field: instance "id", must match some existing instance.
 		- **Warning**: when processing a delete request, all related instances would be deleted as well. For example, if you delete an instructor, all courses of this instructor would also be deleted.
