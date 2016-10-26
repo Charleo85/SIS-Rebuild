@@ -1,5 +1,5 @@
 {% load rm_underscore %}
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 {% include 'TopBar.html' %}
 
 <div style="background-color:#99a88f;" class="jumbotron">
@@ -43,9 +43,16 @@
                 <li class="list-group-item list-group-item-action"><b>{{ key|rm_underscore }}</b>: {{ value }}</li>
               {% endfor %}
             </ul>
+            </br>
+            <div>
+                 <a href="/course/create/" target="_self"><font size="+2">Create a new course here!</font></a>
+            </div>
         </div>
     </div>
 </div>
+
+
+
 
 {% endif %}
 

@@ -159,14 +159,12 @@ def course_detail(request, sisid):
 
 def course_create(request):
     new_course_data = request.POST.dict()
-    instructor_id = new_course_data['instructor_id']
+    instructor_id = new_course_data['instructor']
 
     # Test if Instructor Exists in Database:
     url_for_instructor_validation = 'http://models-api:8000/api/instructor/detail/' + instructor_id + '/'
     resp = _make_get_request(url_for_instructor_validation)
     if resp['status_code'] == 200:
-        new_course_data.pop('instructor_id', None)
-        new_course_data['instructor'] = instructor_id
 
         # Determine if course already exists
         sisid = new_course_data['id']
