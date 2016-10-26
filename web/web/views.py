@@ -90,13 +90,13 @@ def create_course_listing(request, modelname):
         post_data = form.cleaned_data
         response = _make_post_request(url, post_data)
         if response['status_code'] == 400:
-            return render(request, "course_create.html", {'form': form.as_p(), 'error_message': response['error_message']})
+            return render(request, "course_create.html", {'form': form, 'error_message': response['error_message']})
         elif response['status_code'] == 201: #Success!
             return HttpResponseRedirect(reverse('course_detail', kwargs={'itemid': response['course']['id']}))
         else:
             return render(request, "course_create.html", {'form': form, 'error_message': form.errors})
     else:
-        return render(request, "course_create.html", {'form': form.as_p(), 'error_message': form.errors})
+        return render(request, "course_create.html", {'form': form, 'error_message': form.errors})
 
 
 def login(request, modelname):
