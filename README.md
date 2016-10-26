@@ -50,8 +50,18 @@ Project 4
 	- If you are logged in, the "login" link on the side bar would be automatically changed to a "profile" link that directs you to your profile page.
 
 - Several pre-determined user credentials (in fixture):
-	- instructors: `id = tp3ks, username = tp3ks, password = thomas`; `id = asb2t, username = asb2t, password = creepy`; `id = dee2b, username = dee2b, password = daveevans`; `id = mve2x, username = mve2x, password = ershov`.
-	- Students: `id = tq7bw, username = tq7bw, password = tonyqiu`; `id = jw7jb, username = jw7jb, password = charlie`; `id = zaf2xk, username = zaf2xk, password = zakeyfaieq`.
+	- instructors: 
+		- `id = tp3ks, username = tp3ks, password = thomas`
+		- `id = asb2t, username = asb2t, password = creepy`
+		- `id = dee2b, username = dee2b, password = daveevans`
+		- `id = mve2x, username = mve2x, password = ershov`
+	
+	- Students: 
+		- `id = tq7bw, username = tq7bw, password = tonyqiu`
+		- `id = jw7jb, username = jw7jb, password = charlie`
+		- `id = zaf2xk, username = zaf2xk, password = zakeyfaieq`
+
+********
 
 #### Sign Up and Create User
 
@@ -60,6 +70,8 @@ Project 4
 	- Sign up supports two types of users as well. To sign up as a specific type of user, use the url `/{{ modelname}}/signup/`.
 	- Complete all three steps on the sign up page to sign up a new user. **Note:** you need to use a good password that is: 1) at least 6 digits, 2) not involving only numbers.
 	- If the sign up succeeds, you would be directed to a "congratulations" info page. If it fails, correct error message would be displayed.
+
+********
 
 #### Create Listing (Course):
 
