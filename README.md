@@ -53,13 +53,13 @@ Project 4
 
 - Several pre-determined user credentials (in fixture):
 
-	- Instructors: 
+	- Instructors:
 		- `id = tp3ks, username = tp3ks, password = thomas`
 		- `id = asb2t, username = asb2t, password = creepy`
 		- `id = dee2b, username = dee2b, password = daveevans`
 		- `id = mve2x, username = mve2x, password = ershov`
-	
-	- Students: 
+
+	- Students:
 		- `id = tq7bw, username = tq7bw, password = tonyqiu`
 		- `id = jw7jb, username = jw7jb, password = charlie`
 		- `id = zaf2xk, username = zaf2xk, password = zakeyfaieq`
@@ -77,7 +77,7 @@ Project 4
 
 ********
 
-#### Create Listing (Course):
+#### Create Listing (Course)
 
 - The create listing page (`/course/create/`):
 
@@ -85,6 +85,11 @@ Project 4
 	- The required fields on the create course page are: `mnemonic`, `number`, `course id`, `instructor id`, and `student capacity`.
 	- If the creation is successful, you would be redirected to the detail page of the course you've just signed up. If not, correct error messages would be displayed.
 
+********
+
+#### More on Unit Testing
+
+- Add more unit tests of the models layer to make sure every api works.
 
 
 Project 3

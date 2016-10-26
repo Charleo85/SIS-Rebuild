@@ -95,9 +95,9 @@ def create_course_listing(request, modelname):
         elif response['status_code'] == 201: #Success!
             return HttpResponseRedirect(reverse('course_detail', kwargs={'itemid': response['course']['id']}))
         else:
-            return render(request, "course_create.html", {'form': form, 'error_message': form.errors})
+            return render(request, "course_create.html", {'form': form, 'error_message': 'invalid input(s)'})
     else:
-        return render(request, "course_create.html", {'form': form, 'error_message': form.errors})
+        return render(request, "course_create.html", {'form': form, 'error_message': 'invalid input(s)'})
 
 
 def login(request, modelname):
