@@ -15,7 +15,6 @@
 <div class="container">
   <div class="col-md-8 col-md-offset-4">
     <div id="form1" >
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
         <form action="" method="post" >
           {% csrf_token %}
@@ -23,7 +22,7 @@
             {% for field in form %}
             <tr>
               <td><h5>{{field.label}} &nbsp &nbsp </h5></td>
-              <td width="20%">{{field}}</td>
+              <td>{{field}}</td>
             </tr>
             {% endfor %}
           </table>
@@ -32,8 +31,7 @@
             <button class="btn btn-lg btn-block" type="submit">Create <i class="fa fa-pencil" aria-hidden="true"></i></button>
           </div>
           <br><br>
-
-            <!-- <input type="submit" value="Create"> <br/> -->
+          {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
         </form>
         <br>
     </div>
