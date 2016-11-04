@@ -157,34 +157,28 @@ def course_detail(request, sisid):
 
     return JsonResponse(resp)
 
+
 def course_create(request):
     new_course_data = request.POST.dict()
     instructor_id = new_course_data['instructor']
 
-    # Test if Instructor Exists in Database:
-    url_for_instructor_validation = 'http://models-api:8000/api/instructor/detail/' + instructor_id + '/'
-    resp = _make_get_request(url_for_instructor_validation)
-    if resp['status_code'] == 200:
-
-        # Determine if course already exists
-        sisid = new_course_data['id']
-        url_for_course_duplicate_check =  'http://models-api:8000/api/course/detail/' + sisid + '/'
-        resp = _make_get_request(url_for_course_duplicate_check)
-        if resp['status_code'] == 404:
-            url_for_course_creation = 'http://models-api:8000/api/course/create/'
-            post_response = _make_post_request(url_for_course_creation, new_course_data)
-            if post_response.get("status_code") == 201:
-                return JsonResponse(post_response) #Success!!!
-            else:
-                error = {'status_code': 400, 'error_message': 'Error during creation of course. (Occurred in Models Layer)'}
-                return JsonResponse(error)
+    # Determine if course already exists
+    sisid = new_course_data['id']
+    url_for_course_duplicate_check =  'http://models-api:8000/api/course/detail/' + sisid + '/'
+    resp = _make_get_request(url_for_course_duplicate_check)
+    if resp['status_code'] == 404:
+        url_for_course_creation = 'http://models-api:8000/api/course/create/'
+        post_response = _make_post_request(url_for_course_creation, new_course_data)
+        if post_response["status_code"] == 201:
+            return JsonResponse(post_response) #Success!!!
         else:
-            # Course already exists, return error message
-            error = {'status_code': 400, 'error_message': 'The inputted course ID already corresponds to an existing course in the database.'}
+            error = {'status_code': 400, 'error_message': 'cannot create course; check your inputs'}
             return JsonResponse(error)
     else:
-        error = {'status_code': 400, 'error_message': 'No instructor with computing id \"' + instructor_id + '\" exists in the database'}
+        # Course already exists, return error message
+        error = {'status_code': 400, 'error_message': 'course already exists'}
         return JsonResponse(error)
+
 
 def instructor_all(request):
     url = 'http://models-api:8000/api/instructor/all/'
