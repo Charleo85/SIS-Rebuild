@@ -1,4 +1,6 @@
 from django.http import JsonResponse, HttpResponse
+from kafka import KafkaProducer
+from elasticsearch import Elasticsearch
 
 import urllib.request
 import urllib.parse
@@ -170,6 +172,9 @@ def course_create(request):
         url_for_course_creation = 'http://models-api:8000/api/course/create/'
         post_response = _make_post_request(url_for_course_creation, new_course_data)
         if post_response["status_code"] == 201:
+            # Index the new course into elastic search
+            producer = KafkaProducer(bootstrap_servers='kafka:9092')
+            producer.send('new-listings-topic', json.dumps(new_course_data).encode('utf-8'))
             return JsonResponse(post_response) #Success!!!
         else:
             error = {'status_code': 400, 'error_message': 'cannot create course; check your inputs'}
@@ -178,6 +183,16 @@ def course_create(request):
         # Course already exists, return error message
         error = {'status_code': 400, 'error_message': 'course already exists'}
         return JsonResponse(error)
+
+def search(request):
+    search_request = request.POST.dict()
+    search_string = search_request['search_query']
+    search_index_specifier = search_request['query_specifier']
+    elasticsearch_index = search_index_specifier + '_index'
+
+    es = Elasticsearch(['es'])
+    search_result = es.search(index=elasticsearch_index, body={"query": {'query_string': {'query': search_string}}, 'size': 10})
+    return JsonResponse(search_result)
 
 
 def instructor_all(request):
