@@ -1,4 +1,5 @@
 from django.http import JsonResponse, HttpResponse
+from kafka import KafkaProducer
 
 import urllib.request
 import urllib.parse
@@ -106,4 +107,8 @@ def signup(request, user_type):
     if resp['status_code'] != 201:
         return _failure(resp['status_code'], resp['error_message'])
     else:
+        # Push the new instructor/student listing into Kafka
+        producer = KafkaProducer(bootstrap_servers='kafka:9092')
+        producer.send('new-listings-topic', json.dumps(post_data).encode('utf-8'))
+
         return JsonResponse({ 'status_code' : 201 })
