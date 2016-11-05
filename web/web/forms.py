@@ -8,7 +8,7 @@ class LoginForm(forms.Form):
     )
 
 class SearchForm(forms.Form):
-    search_query = forms.CharField(max_length=100)
+    search_query = forms.CharField(max_length=100, required=False)
     query_specifier = forms.ChoiceField(choices=[('general', 'All'), ('instructor', 'Instructors Only'), ('course', 'Courses Only'), ('student', 'Students Only')])
     """
     all_option = forms.BooleanField(initial=True, label="Include All in Search")
