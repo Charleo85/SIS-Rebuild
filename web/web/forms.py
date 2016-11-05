@@ -7,6 +7,16 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput,
     )
 
+class SearchForm(forms.Form):
+    search_query = forms.CharField(max_length=100)
+    query_specifier = forms.ChoiceField(choices=[('general', 'All'), ('instructor', 'Instructors Only'), ('course', 'Courses Only'), ('student', 'Students Only')])
+    """
+    all_option = forms.BooleanField(initial=True, label="Include All in Search")
+    instructor_option = forms.BooleanField(required=False, label="Include Instructors in Search:")
+    course_option = forms.BooleanField(required=False, label="Include Courses in search")
+    student_option = forms.BooleanField(required=False, label="Include Students in search")
+    """
+
 class NewCourseForm(forms.Form):
     error_css_class = 'error'
     required_css_class = 'required'
