@@ -99,6 +99,18 @@ def create_course_listing(request, modelname):
     else:
         return render(request, "course_create.html", {'form': form, 'error_message': 'invalid input(s)'})
 
+def search_page(request):
+    if request.method == 'GET':
+        form = SearchForm()
+        return render(request, "search_page.html", {'form': form})
+
+    url = 'http://exp-api:8000/search/'
+    form = SearchForm(request.POST)
+    if form.is_valid():
+        post_data = form.cleaned_data
+        response = _make_post_request(url, post_data)
+        return render(request, "search_page.html", {'form': form, 'results': response})
+
 
 def login(request, modelname):
     if 'auth' in request.COOKIES:

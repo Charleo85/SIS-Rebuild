@@ -21,7 +21,8 @@ from . import views_auth
 misc = [
     url(r'^$', views_model.index),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^homepage/$', views_model.home_page)
+    url(r'^homepage/$', views_model.home_page),
+    url(r'^search/$', views_model.search)
 ]
 
 course = [

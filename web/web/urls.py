@@ -25,6 +25,7 @@ misc = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.home_page, name='home'),
     url(r'^about/$', views.about, name='about'),
+    url(r'^search/$', views.search_page, name='search_page'),
 ]
 
 course = [
