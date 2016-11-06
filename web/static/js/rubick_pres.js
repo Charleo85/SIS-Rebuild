@@ -82,6 +82,24 @@ $(document).ready(function(){
         content_opacity = 1;
     }
 
+    var b = false;
+
+  	$('#btn-search').on('click', function(e) {
+
+      if ($('#search').val != null) {
+        e.preventDefault();
+        // if ($('#search').is(':focus')){
+        if (b){
+          $('#search').animate({width: 0}).blur();
+          b = false;
+        }else {
+          $('#search').animate({width: 130}).focus();
+          b = true;
+        }
+      }
+
+  	});
+
 });
 
 
