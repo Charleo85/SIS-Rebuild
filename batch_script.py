@@ -11,6 +11,7 @@ try:
     # Start listening to Kafka Queue
     consumer = KafkaConsumer('new-listings-topic', group_id='listing-indexer', bootstrap_servers=['kafka:9092'])
 finally:
+    es = Elasticsearch(['es'])
 
     # Load fixture into elastic search
     with open('./models/data.json') as data_file:
@@ -29,7 +30,7 @@ finally:
             es.index(index='course_index', doc_type='listing', id=element['fields']['id'], body=element)
 
     # Start listening to Kafka Queue
-    # consumer = KafkaConsumer('new-listings-topic', group_id='listing-indexer', bootstrap_servers=['kafka:9092'])
+    consumer = KafkaConsumer('new-listings-topic', group_id='listing-indexer', bootstrap_servers=['kafka:9092'])
     while True:
         for message in consumer:
             new_listing = (json.loads(message.value.decode('utf-8')))
