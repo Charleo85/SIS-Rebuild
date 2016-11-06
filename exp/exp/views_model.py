@@ -174,7 +174,10 @@ def course_create(request):
         if post_response["status_code"] == 201:
             # Index the new course into elastic search
             producer = KafkaProducer(bootstrap_servers='kafka:9092')
-            producer.send('new-listings-topic', json.dumps(new_course_data).encode('utf-8'))
+            new_dict = {}
+            new_dict['model'] = 'api.Course'
+            new_dict['fields'] = new_dict
+            producer.send('new-listings-topic', json.dumps(new_dict).encode('utf-8'))
             return JsonResponse(post_response) #Success!!!
         else:
             error = {'status_code': 400, 'error_message': 'cannot create course; check your inputs'}
@@ -183,6 +186,7 @@ def course_create(request):
         # Course already exists, return error message
         error = {'status_code': 400, 'error_message': 'course already exists'}
         return JsonResponse(error)
+
 
 def search(request):
     search_request = request.POST.dict()

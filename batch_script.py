@@ -23,8 +23,10 @@ finally:
 
         # Model Specific Indices (Not sure if necessary)
         if element['model'] == 'api.Instructor':
+            element['fields'].pop('password', None)
             es.index(index='instructor_index', doc_type='listing', id=element['fields']['id'], body=element)
         elif element['model'] == 'api.Student':
+            element['fields'].pop('password', None)
             es.index(index='student_index', doc_type='listing', id=element['fields']['id'], body=element)
         elif element['model'] == 'api.Course':
             es.index(index='course_index', doc_type='listing', id=element['fields']['id'], body=element)
@@ -40,8 +42,10 @@ finally:
 
             # Model Specific Indices (Not sure if necessary)
             if new_listing['model'] == 'api.Instructor':
+                # element['fields'].pop('password', None)
                 es.index(index='instructor_index', doc_type='listing', id=new_listing['fields']['id'], body=new_listing)
             elif new_listing['model'] == 'api.Student':
+                # element['fields'].pop('password', None)
                 es.index(index='student_index', doc_type='listing', id=new_listing['fields']['id'], body=new_listing)
             elif new_listing['model'] == 'api.Course':
                 es.index(index='course_index', doc_type='listing', id=new_listing['fields']['id'], body=new_listing)

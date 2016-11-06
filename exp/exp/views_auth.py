@@ -109,6 +109,14 @@ def signup(request, user_type):
     else:
         # Push the new instructor/student listing into Kafka
         producer = KafkaProducer(bootstrap_servers='kafka:9092')
-        producer.send('new-listings-topic', json.dumps(post_data).encode('utf-8'))
+        new_dict = {}
+        if user_type == 0:
+            model_field = 'api.Instructor'
+        else:
+            model_field = 'api.Student'
+        new_dict['model'] = model_field
+        new_dict['fields'] = post_data
+        new_dict['fields'].pop('password', None)
+        producer.send('new-listings-topic', json.dumps(new_dict).encode('utf-8'))
 
         return JsonResponse({ 'status_code' : 201 })
