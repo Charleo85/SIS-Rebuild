@@ -19,14 +19,16 @@ finally:
     for element in data:
         # General Index
         if 'id' in element['fields']:
+            if 'password' in element['fields']:
+                element['fields'].pop('password', None)
             es.index(index='general_index', doc_type='listing', id=element['fields']['id'], body=element)
 
         # Model Specific Indices (Not sure if necessary)
         if element['model'] == 'api.Instructor':
-            element['fields'].pop('password', None)
+            # element['fields'].pop('password', None)
             es.index(index='instructor_index', doc_type='listing', id=element['fields']['id'], body=element)
         elif element['model'] == 'api.Student':
-            element['fields'].pop('password', None)
+            # element['fields'].pop('password', None)
             es.index(index='student_index', doc_type='listing', id=element['fields']['id'], body=element)
         elif element['model'] == 'api.Course':
             es.index(index='course_index', doc_type='listing', id=element['fields']['id'], body=element)
@@ -37,8 +39,8 @@ finally:
         for message in consumer:
             new_listing = (json.loads(message.value.decode('utf-8')))
             # General Index
-            if 'id' in element['fields']:
-                es.index(index='general_index', doc_type='listing', id=new_listing['fields']['id'], body=new_listing)
+            # if 'id' in new_listing['fields']:
+            es.index(index='general_index', doc_type='listing', id=new_listing['fields']['id'], body=new_listing)
 
             # Model Specific Indices (Not sure if necessary)
             if new_listing['model'] == 'api.Instructor':
@@ -50,7 +52,7 @@ finally:
             elif new_listing['model'] == 'api.Course':
                 es.index(index='course_index', doc_type='listing', id=new_listing['fields']['id'], body=new_listing)
 
-            es.index(index='general_index', doc_type='listing', id=new_listing['id'], body=new_listing)
+            # es.index(index='general_index', doc_type='listing', id=new_listing['id'], body=new_listing)
         es.indices.refresh(index="listing_index")
 
 # except:

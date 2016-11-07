@@ -176,7 +176,7 @@ def course_create(request):
             producer = KafkaProducer(bootstrap_servers='kafka:9092')
             new_dict = {}
             new_dict['model'] = 'api.Course'
-            new_dict['fields'] = new_dict
+            new_dict['fields'] = new_course_data
             producer.send('new-listings-topic', json.dumps(new_dict).encode('utf-8'))
             return JsonResponse(post_response) #Success!!!
         else:
