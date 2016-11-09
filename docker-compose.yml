@@ -8,6 +8,7 @@ models:
     external_links:
         - mysql:db
     command: bash -c "python /app/manage.py makemigrations api; python /app/manage.py migrate; python /app/manage.py loaddata /app/data.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
+
 exp:
     container_name: exp
     image: tp33/django
@@ -20,6 +21,7 @@ exp:
         - kafka:kafka
         - es:es
     command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
+
 web:
     container_name: web
     image: tp33/django

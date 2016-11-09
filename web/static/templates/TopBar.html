@@ -82,10 +82,10 @@
 
               <div class="pull-right">
 
-                <form class="navbar-form" id="search-expand" role="search">
+                <form class="navbar-form" id="search-expand" role="search" action="/search/">
                 <!-- <form class="navbar-form" id="search-expand" role="search" action="/search/" method="post"> -->
                   <!-- <div class="input-group"> -->
-                  {% csrf_token %}
+                      {% csrf_token %}
                       <input type="search" id="search" placeholder="Search">
                       <!-- <input type="search" class="form-control" placeholder="Search" name="srch-term" id="srch-term"> -->
                       <!-- <div class="input-group-btn"> -->

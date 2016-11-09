@@ -189,14 +189,60 @@ def course_create(request):
 
 
 def search(request):
+    if request.method != 'POST':
+        return JsonResponse({'status_code': 400})
+
     search_request = request.POST.dict()
     search_string = search_request['search_query']
     search_index_specifier = search_request['query_specifier']
     elasticsearch_index = search_index_specifier + '_index'
 
     es = Elasticsearch(['es'])
-    search_result = es.search(index=elasticsearch_index, body={"query": {'query_string': {'query': search_string}}, 'size': 10})
-    return JsonResponse(search_result)
+    search_result = es.search(index=elasticsearch_index, body={
+        "query": {'query_string': {'query': search_string}},
+        'size': 10,
+    })
+
+    result = {'status_code': 200}
+    result['time_taken'] = search_result['took'] / 1000
+    result['size'] = search_result['hits']['total']
+
+    result['size_model'] = {'course': 0, 'instructor': 0, 'student': 0}
+    result['hits'] = []
+    for item in search_result['hits']['hits']:
+        detail = {'model': item['_source']['model']}
+
+        if item['_source']['model'] == 'api.Course':
+            detail['label'] = item['_source']['fields']['mnemonic']
+            detail['label'] += ' ' + item['_source']['fields']['number']
+            if 'title' in item['source']['fields']:
+                detail['label'] += ': ' + item['_source']['fields']['title']
+
+            url = 'http://models-api:8000/api/instructor/detail/'
+            url += item['_source']['fields']['instructor'] + '/'
+            resp = _make_get_request(url)
+
+            detail['label'] += ' (' + resp['instructor']['first_name']
+            detail['label'] += ' ' + resp['instructor']['last_name'] + ')'
+        else:
+            detail['label'] = item['_source']['fields']['first_name']
+            detail['label'] += ' ' + item['_source']['fields']['last_name']
+            detail['label'] += ' (' + item['_source']['fields']['id'] + ')'
+
+        if detail['model'] == 'api.Course':
+            result['size_model']['course'] += 1
+            detail['href'] = '/course/detail/' + item['id']
+        elif detail['model'] == 'api.Instructor':
+            result['size_model']['instructor'] += 1
+            detail['href'] = '/instructor/detail/' + item['id']
+        else:
+            result['size_model']['student'] += 1
+            detail['href'] = '/student/detail/' + item['id']
+
+        result['hits'].append(detail)
+
+    # returns the final constructed data set
+    return JsonResponse(result)
 
 
 def instructor_all(request):

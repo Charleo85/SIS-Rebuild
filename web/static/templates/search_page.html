@@ -4,7 +4,7 @@
 
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
-    <h1>Search for Courses, Instructors, or Students:</h1>
+    <h1>Search Page</h1>
   </div>
 </div>
 
@@ -35,14 +35,6 @@
     </div>
   </div>
 </div>
-
-
-<ul class="list-group">
-  {% for key, value in results.items %}
-    <li class="list-group-item list-group-item-action"><b>{{ key|rm_underscore }}</b>: {{ value }}</li>
-  {% endfor %}
-</ul>
-
 
 {% include 'BottomBar.html' %}
 </html>

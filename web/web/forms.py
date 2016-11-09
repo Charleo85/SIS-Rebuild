@@ -7,15 +7,20 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput,
     )
 
+
 class SearchForm(forms.Form):
     search_query = forms.CharField(max_length=100, required=False)
-    query_specifier = forms.ChoiceField(choices=[('general', 'All'), ('instructor', 'Instructors Only'), ('course', 'Courses Only'), ('student', 'Students Only')])
-    """
-    all_option = forms.BooleanField(initial=True, label="Include All in Search")
-    instructor_option = forms.BooleanField(required=False, label="Include Instructors in Search:")
-    course_option = forms.BooleanField(required=False, label="Include Courses in search")
-    student_option = forms.BooleanField(required=False, label="Include Students in search")
-    """
+    query_specifier = forms.ChoiceField(choices=[
+        ('general', 'All'),
+        ('instructor', 'Instructors Only'),
+        ('course', 'Courses Only'),
+        ('student', 'Students Only'),
+    ])
+    # all_option = forms.BooleanField(initial=True, label="Include All in Search")
+    # instructor_option = forms.BooleanField(required=False, label="Include Instructors in Search:")
+    # course_option = forms.BooleanField(required=False, label="Include Courses in search")
+    # student_option = forms.BooleanField(required=False, label="Include Students in search")
+
 
 class NewCourseForm(forms.Form):
     error_css_class = 'error'
@@ -62,7 +67,7 @@ class SignupForm(forms.Form):
             int_pw = int(pw)
         except ValueError:
             result2 = True
-        return result1 and result2
+        return (result1 and result2)
 
     def password_match(self):
         if not self.is_valid():
@@ -70,4 +75,4 @@ class SignupForm(forms.Form):
 
         pw1 = self.cleaned_data['password']
         pw2 = self.cleaned_data['password_again']
-        return pw1 == pw2
+        return (pw1 == pw2)

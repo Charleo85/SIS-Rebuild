@@ -79,38 +79,6 @@ def item_detail(request, itemid, modelname):
     resp = _make_get_request(url)
     return render(request, modelname + '_detail.html', resp)
 
-@instructor_login_required
-def create_course_listing(request, modelname):
-    if request.method == 'GET':
-        form = NewCourseForm()
-        return render(request, "course_create.html", {'form': form})
-
-    url = 'http://exp-api:8000/' + modelname + '/create/'
-    form = NewCourseForm(request.POST)
-    if form.is_valid():
-        post_data = form.cleaned_data
-        response = _make_post_request(url, post_data)
-        if response['status_code'] == 400:
-            return render(request, "course_create.html", {'form': form, 'error_message': response['error_message']})
-        elif response['status_code'] == 201: #Success!
-            return HttpResponseRedirect(reverse('course_detail', kwargs={'itemid': response['course']['id']}))
-        else:
-            return render(request, "course_create.html", {'form': form, 'error_message': 'invalid input(s)'})
-    else:
-        return render(request, "course_create.html", {'form': form, 'error_message': 'invalid input(s)'})
-
-def search_page(request):
-    if request.method == 'GET':
-        form = SearchForm()
-        return render(request, "search_page.html", {'form': form})
-
-    url = 'http://exp-api:8000/search/'
-    form = SearchForm(request.POST)
-    if form.is_valid():
-        post_data = form.cleaned_data
-        response = _make_post_request(url, post_data)
-        return render(request, "search_page.html", {'form': form, 'results': response})
-
 
 def login(request, modelname):
     if 'auth' in request.COOKIES:
@@ -223,3 +191,55 @@ def logout(request, modelname):
         return response
     else:
         return HttpResponseRedirect(reverse(modelname + '_login'))
+
+
+@instructor_login_required
+def create_course_listing(request, modelname):
+    if request.method == 'GET':
+        form = NewCourseForm()
+        return render(request, "course_create.html", {'form': form})
+
+    url = 'http://exp-api:8000/' + modelname + '/create/'
+    form = NewCourseForm(request.POST)
+    if form.is_valid():
+        post_data = form.cleaned_data
+        response = _make_post_request(url, post_data)
+        if response['status_code'] == 400:
+            render_data = {
+                'form': form,
+                'error_message': response['error_message'],
+            }
+            return render(request, "course_create.html", render_data)
+        elif response['status_code'] == 201: #Success!
+            redirect_url = reverse(
+                'course_detail',
+                kwargs={'itemid': response['course']['id']},
+            )
+            return HttpResponseRedirect(redirect_url)
+
+    # failure due to invalid form input(s)
+    render_data = {'form': form, 'error_message': 'invalid input(s)'}
+    return render(request, "course_create.html", render_data)
+
+
+def search_page(request):
+    if request.method == 'GET':
+        form = SearchForm()
+        return render(request, "search_page.html", {'form': form})
+
+    data = request.POST.dict()
+    if 'query_specifier' not in data.keys():
+        data['query_specifier'] = 'general'
+
+    form = SearchForm(data)
+    if form.is_valid():
+        url = 'http://exp-api:8000/search/'
+        post_data = form.cleaned_data
+        resp = _make_post_request(url, post_data)
+
+        if resp['size'] == 0:
+            render_data = {'form': form, 'error_message': 'no results found'}
+            return render(request, "search_page.html", render_data)
+        else:
+            render_data = {'form': form, 'results': resp}
+            return render(request, "search_result.html", render_data)
