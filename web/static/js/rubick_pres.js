@@ -82,21 +82,22 @@ $(document).ready(function(){
         content_opacity = 1;
     }
 
-    var b = false;
+    var expanded = false;
 
   	$('#btn-search').on('click', function(e) {
 
-      if ($('#search').val != null) {
-        if (b){
-          $(this).unbind("submit").submit();
+        if (expanded){
+          if ($('#search').val == null || $('#search').val() == "") {
+            $(this).unbind("submit").submit();
+            e.preventDefault();
+          }
           $('#search').animate({width: 0}).blur();
-          b = false;
+          expanded = false;
         }else {
           e.preventDefault();
           $('#search').animate({width: 130}).focus();
-          b = true;
+          expanded = true;
         }
-      }
 
   	});
 

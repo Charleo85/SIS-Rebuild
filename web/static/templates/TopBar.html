@@ -81,13 +81,12 @@
               </div>
 
               <div class="pull-right">
-
-                <form class="navbar-form" id="search-expand" method="post" action="/search/">
-                      {% csrf_token %}
-                      <input type="search" id="search" name="search_query" placeholder="Search">
-                      <button type="submit" id="btn-search" class="btn-sm btn-simple btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                  </form>
-              </div>
+                  <form class="navbar-form" id="search-expand" method="post" action="/search/">
+                        {% csrf_token %}
+                        <input type="search" id="search" name="search_query" placeholder="Search">
+                        <button type="submit" id="btn-search" class="btn-sm btn-simple btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </form>
+                </div>
           </div>
 
           <div class="collapse navbar-collapse">

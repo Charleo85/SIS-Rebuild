@@ -365,7 +365,7 @@ body > .navbar-collapse a {
 
 .btn-sm {
   font-size: 6px;
-  border-radius: 0px;
+  /*border-radius: 0px;*/
   padding: 1px 2px;
   height: 2px;
   font-weight: 200;
@@ -392,7 +392,6 @@ body > .navbar-collapse a {
   height: auto;
 }
 
-/* Demo 2 */
 #search-expand input[type=search] {
 	width: 0px;
   border: 0;
@@ -1330,6 +1329,7 @@ body > .navbar-collapse.has-image::after {
   -moz-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
+
 @keyframes topbar-x {
   0% {
     top: 0px;
@@ -1522,12 +1522,16 @@ body > .navbar-collapse.has-image::after {
     -moz-transform: rotate(0);
   }
 }
+
 @media (min-width: 768px) {
   .navbar-form {
-    margin-top: 21px;
+    background-color: transparent;
+    margin-top: 22px;
     margin-bottom: 21px;
     padding-left: 5px;
     padding-right: 5px;
+    background: transparent;
+    color: transparent;
   }
 
   .navbar-search-form {
@@ -1644,9 +1648,24 @@ body > .navbar-collapse.has-image::after {
 }
 /*          Changes for small display      */
 @media (max-width: 767px) {
+  .navbar-form {
+    background-color: transparent;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 15px;
+    background: transparent;
+    color: transparent;
+    border-top : 0px;
+    border-bottom : 0px;
+  }
+
   .navbar-transparent {
     padding-top: 15px;
     background-color: rgba(0, 0, 0, 0.45);
+    background: transparent;
+    color: transparent;
+    /*background-color: transparent;*/
   }
 
   #bodyClick {
