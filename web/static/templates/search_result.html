@@ -4,19 +4,19 @@
 
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
-  {% if status_code == 200 %}
+  {% if results.status_code == 200 %}
     <h1>Search Results</h1>
-    <center><h5>Found {{ results.size }} results in {{ results.time_taken }} seconds</h5></center>
+    <center><h5>Found {{ results.size }} result(s) in {{ results.time_taken }} seconds</h5></center>
   {% else %}
     <h1>Bad Request!</h1>
   {% endif %}
   </div>
 </div>
 
-{% if status_code == 200 %}
+{% if results.status_code == 200 %}
 
 {% if results.size_model.course > 0 %}
-<p><b>Found these course(s):</b></p>
+<p><b>&nbsp&nbsp Found these course(s):</b></p>
 <ul class="list-group">
   {% for data in results.hits %}
     {% if data.model == 'api.Course' %}
@@ -27,7 +27,7 @@
 {% endif %}
 
 {% if results.size_model.instructor > 0 %}
-<p><b>Found these instructor(s):</b></p>
+<p><b>&nbsp&nbsp Found these instructor(s):</b></p>
 <ul class="list-group">
   {% for data in results.hits %}
     {% if data.model == 'api.Instructor' %}
@@ -38,7 +38,7 @@
 {% endif %}
 
 {% if results.size_model.student > 0 %}
-<p><b>Found these student(s):</b></p>
+<p><b>&nbsp&nbsp Found these student(s):</b></p>
 <ul class="list-group">
   {% for data in results.hits %}
     {% if data.model == 'api.Student' %}

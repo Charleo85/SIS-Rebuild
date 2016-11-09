@@ -82,17 +82,11 @@
 
               <div class="pull-right">
 
-                <form class="navbar-form" id="search-expand" role="search" action="/search/">
-                <!-- <form class="navbar-form" id="search-expand" role="search" action="/search/" method="post"> -->
-                  <!-- <div class="input-group"> -->
+                <form class="navbar-form" id="search-expand" method="post" action="/search/">
                       {% csrf_token %}
-                      <input type="search" id="search" placeholder="Search">
-                      <!-- <input type="search" class="form-control" placeholder="Search" name="srch-term" id="srch-term"> -->
-                      <!-- <div class="input-group-btn"> -->
+                      <input type="search" id="search" name="search_query" placeholder="Search">
                       <button type="submit" id="btn-search" class="btn-sm btn-simple btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                      <!-- </div> -->
-                  <!-- </div> -->
-                </form>
+                  </form>
               </div>
           </div>
 
@@ -100,7 +94,7 @@
               <ul class="nav navbar-nav navbar-right navbar-uppercase">
 
                 <li class="social-links">
-                  <a target="_blank" href="/search">
+                  <a href="/search/">
                     <i class="fa fa-search"></i>
                   </a>
                   <a target="_blank" href="https://github.com/Charleo85/SIS-Rebuild">

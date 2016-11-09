@@ -215,7 +215,7 @@ def search(request):
         if item['_source']['model'] == 'api.Course':
             detail['label'] = item['_source']['fields']['mnemonic']
             detail['label'] += ' ' + item['_source']['fields']['number']
-            if 'title' in item['source']['fields']:
+            if 'title' in item['_source']['fields']:
                 detail['label'] += ': ' + item['_source']['fields']['title']
 
             url = 'http://models-api:8000/api/instructor/detail/'
@@ -231,13 +231,13 @@ def search(request):
 
         if detail['model'] == 'api.Course':
             result['size_model']['course'] += 1
-            detail['href'] = '/course/detail/' + item['id']
+            detail['href'] = '/course/detail/' + item['_id'] + '/'
         elif detail['model'] == 'api.Instructor':
             result['size_model']['instructor'] += 1
-            detail['href'] = '/instructor/detail/' + item['id']
+            detail['href'] = '/instructor/detail/' + item['_id'] + '/'
         else:
             result['size_model']['student'] += 1
-            detail['href'] = '/student/detail/' + item['id']
+            detail['href'] = '/student/detail/' + item['_id'] + '/'
 
         result['hits'].append(detail)
 

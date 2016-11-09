@@ -87,12 +87,12 @@ $(document).ready(function(){
   	$('#btn-search').on('click', function(e) {
 
       if ($('#search').val != null) {
-        e.preventDefault();
-        // if ($('#search').is(':focus')){
         if (b){
+          $(this).unbind("submit").submit();
           $('#search').animate({width: 0}).blur();
           b = false;
         }else {
+          e.preventDefault();
           $('#search').animate({width: 130}).focus();
           b = true;
         }
