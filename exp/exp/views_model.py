@@ -190,7 +190,8 @@ def course_create(request):
 
 def search(request):
     if request.method != 'POST':
-        return JsonResponse({'status_code': 400})
+        data = {'status_code': 400, 'error_msg': 'incorrect request type'}
+        return JsonResponse(data)
 
     search_request = request.POST.dict()
     search_string = search_request['search_query']
@@ -198,10 +199,14 @@ def search(request):
     elasticsearch_index = search_index_specifier + '_index'
 
     es = Elasticsearch(['es'])
-    search_result = es.search(index=elasticsearch_index, body={
-        "query": {'query_string': {'query': search_string}},
-        'size': 10,
-    })
+    try:
+        search_result = es.search(index=elasticsearch_index, body={
+            "query": {'query_string': {'query': search_string}},
+            'size': 10,
+        })
+    except:
+        data = {'status_code': 400, 'error_msg': 'improper search query'}
+        return JsonResponse(data)
 
     result = {'status_code': 200}
     result['time_taken'] = search_result['took'] / 1000

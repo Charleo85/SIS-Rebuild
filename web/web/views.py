@@ -236,7 +236,10 @@ def search_page(request):
         url = 'http://exp-api:8000/search/'
         post_data = form.cleaned_data
         resp = _make_post_request(url, post_data)
-
+        
+        if resp['status_code'] != 200:
+            render_data = {'form': form, 'error_message': resp['error_msg']}
+            return render(request, 'search_page.html', render_data)
         if resp['size'] == 0:
             render_data = {'form': form, 'error_message': 'no results found'}
             return render(request, "search_page.html", render_data)
