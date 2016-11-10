@@ -11,7 +11,7 @@ services:
 
 notifications:
   slack: cs4501-isa:8PZbPGWlRGRcJOHou2DzuQ02
-  
+
 install: # prepare mySQL database
   - docker pull mysql:5.7.14
   - mkdir db
@@ -25,14 +25,27 @@ install: # prepare mySQL database
     "CREATE DATABASE cs4501 CHARACTER SET utf8;
     CREATE USER 'www'@'%' IDENTIFIED BY '\$3cureUS';
     GRANT ALL PRIVILEGES ON *.* TO 'www'@'%';"
+  - sudo pip install coveralls
 before_script:
   - docker-compose up -d
 
 script:
+  - >
+  docker exec -it models bash -c
+  "export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH &&
+  export PYTHONPATH=. &&
+  pip install -r requirements.txt &&
+  pip install coveralls &&
+  python manage.py test --noinput && cat .coverage && coverage report
   # run Django unit tests on models
   # can put other tests (e.g. integrations) here too with exp, web containers
 
-after_success: 
+after_success:
+  - cat models/.coverage
+  - sed -i "s/\/app/models/g" models/.coverage
+  - mv models/.coverage .
+  - cat .coverage
+  - coveralls -v
 
 
 after_script:
