@@ -4,78 +4,78 @@ import json
 from . import views_model, views_auth
 
 
-# """
-# User story #1: A client can search any keyword, using different query
-# specifiers (i.e. general, or specific model name). The general index
-# should include results from all models.
-# """
-# class SearchTestCase(TestCase):
-#     def setUp(self):
-#         self.factory = RequestFactory()
-#
-#     def test_general_search(self):
-#         post_data = {
-#             'search_query': 'tp3ks',
-#             'query_specifier': 'general',
-#         }
-#         request = self.factory.post('/search/', data=post_data)
-#         response = views_model.search(request)
-#         resp_data = json.loads(response.content.decode('utf-8'))
-#
-#         self.assertEqual(resp_data['status_code'], 200)
-#         self.assertEqual(resp_data['size'], 2)
-#
-#     def test_course_search(self):
-#         post_data = {
-#             'search_query': 'internet scale app',
-#             'query_specifier': 'course',
-#         }
-#         request = self.factory.post('/search/', data=post_data)
-#         response = views_model.search(request)
-#         resp_data = json.loads(response.content.decode('utf-8'))
-#
-#         self.assertEqual(resp_data['status_code'], 200)
-#         self.assertEqual(resp_data['size'], 1)
-#         self.assertEqual(resp_data['hits'][0]['model'], 'api.Course')
-#         c_label = 'CS 4501: Internet Scale App (Thomas Pinckney)'
-#         self.assertEqual(resp_data['hits'][0]['label'], c_label)
-#
-#     def test_instructor_search(self):
-#         post_data = {
-#             'search_query': 'thomas',
-#             'query_specifier': 'instructor',
-#         }
-#         request = self.factory.post('/search/', data=post_data)
-#         response = views_model.search(request)
-#         resp_data = json.loads(response.content.decode('utf-8'))
-#
-#         self.assertEqual(resp_data['status_code'], 200)
-#         self.assertEqual(resp_data['size'], 1)
-#         self.assertEqual(resp_data['hits'][0]['model'], 'api.Instructor')
-#         ins_label = 'Thomas Pinckney (tp3ks)'
-#         self.assertEqual(resp_data['hits'][0]['label'], ins_label)
-#
-#     def test_student_search(self):
-#         post_data = {
-#             'search_query': 'tq7bw',
-#             'query_specifier': 'student',
-#         }
-#         request = self.factory.post('/search/', data=post_data)
-#         response = views_model.search(request)
-#         resp_data = json.loads(response.content.decode('utf-8'))
-#
-#         self.assertEqual(resp_data['status_code'], 200)
-#         self.assertEqual(resp_data['size'], 1)
-#         self.assertEqual(resp_data['hits'][0]['model'], 'api.Student')
-#         stud_label = 'Tong Qiu (tq7bw)'
-#         self.assertEqual(resp_data['hits'][0]['label'], stud_label)
+"""
+User story #1: A client can search any keyword, using different query
+specifiers (i.e. general, or specific model name). The general index
+should include results from all models.
+"""
+class SearchTestCase(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_general_search(self):
+        post_data = {
+            'search_query': 'tp3ks',
+            'query_specifier': 'general',
+        }
+        request = self.factory.post('/search/', data=post_data)
+        response = views_model.search(request)
+        resp_data = json.loads(response.content.decode('utf-8'))
+
+        self.assertEqual(resp_data['status_code'], 200)
+        self.assertEqual(resp_data['size'], 2)
+
+    def test_course_search(self):
+        post_data = {
+            'search_query': 'internet scale app',
+            'query_specifier': 'course',
+        }
+        request = self.factory.post('/search/', data=post_data)
+        response = views_model.search(request)
+        resp_data = json.loads(response.content.decode('utf-8'))
+
+        self.assertEqual(resp_data['status_code'], 200)
+        self.assertEqual(resp_data['size'], 1)
+        self.assertEqual(resp_data['hits'][0]['model'], 'api.Course')
+        c_label = 'CS 4501: Internet Scale App (Thomas Pinckney)'
+        self.assertEqual(resp_data['hits'][0]['label'], c_label)
+
+    def test_instructor_search(self):
+        post_data = {
+            'search_query': 'thomas',
+            'query_specifier': 'instructor',
+        }
+        request = self.factory.post('/search/', data=post_data)
+        response = views_model.search(request)
+        resp_data = json.loads(response.content.decode('utf-8'))
+
+        self.assertEqual(resp_data['status_code'], 200)
+        self.assertEqual(resp_data['size'], 1)
+        self.assertEqual(resp_data['hits'][0]['model'], 'api.Instructor')
+        ins_label = 'Thomas Pinckney (tp3ks)'
+        self.assertEqual(resp_data['hits'][0]['label'], ins_label)
+
+    def test_student_search(self):
+        post_data = {
+            'search_query': 'tq7bw',
+            'query_specifier': 'student',
+        }
+        request = self.factory.post('/search/', data=post_data)
+        response = views_model.search(request)
+        resp_data = json.loads(response.content.decode('utf-8'))
+
+        self.assertEqual(resp_data['status_code'], 200)
+        self.assertEqual(resp_data['size'], 1)
+        self.assertEqual(resp_data['hits'][0]['model'], 'api.Student')
+        stud_label = 'Tong Qiu (tq7bw)'
+        self.assertEqual(resp_data['hits'][0]['label'], stud_label)
 
 
 """
 User story #2: A user, when creating an account or listing properly,
 should see his new account/listing being added to the search index.
 """
-def CreateAndSearchTestCase(TestCase):
+class CreateAndSearchTestCase(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
 
