@@ -1,4 +1,5 @@
 from django.test import TestCase, RequestFactory
+from elasticsearch import Elasticsearch
 import json, time
 
 from . import views_model, views_auth
@@ -116,6 +117,13 @@ class CreateAndSearchTestCase(TestCase):
         url = 'http://models-api:8000/api/student/delete/'
         post_data = {'id': 'yz9fy'}
         views_model._make_post_request(url, post_data)
+
+        # delete instances from elasticsearch
+        es = Elasticsearch(['es'])
+        es.delete(index='general_index', doc_type='listing', id='20529')
+        es.delete(index='course_index', doc_type='listing', id='20529')
+        es.delete(index='general_index', doc_type='listing', id='yz9fy')
+        es.delete(index='student_index', doc_type='listing', id='yz9fy')
 
     def test_course_create(self):
         post_data = {
