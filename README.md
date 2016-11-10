@@ -9,10 +9,10 @@ For initial setup, please refer to [Project1](https://github.com/thomaspinckney3
 
 **If you are grading this project, please follow the instructions below:**
 
-- Pull down the current project for Django:
+- Clone or pull the current project from Github:
 ```bash
 $ cd ~/cs4501/app/
-$ git clone https://github.com/Charleo85/SIS-Rebuild
+$ git clone https://github.com/Charleo85/SIS-Rebuild **or** git pull
 ```
 
 - Locate and run the docker-compose file:
@@ -29,12 +29,51 @@ $ curl 127.0.0.1:8000
 - We also have a working webpage on a DigitalOcean droplet. Visit homepage at: [162.243.117.39:8000](http://162.243.117.39:8000).
 
 
-Project 4
+Project 5
 ---------
 
-**If you are grading this project, please read this section for our project 4 features.**
+**If you are grading this project, please read this section for our project 5 features.**
 
 *********
+
+#### Search Functionality
+
+- Container architecture:
+
+	- Three more containers created: "batch", "kafka", and elasticsearch (abbr. "es").
+	- Initial data from the fixture "data.json" is loaded directly into elasticearch when container "batch" starts.
+	- Each time a new user/listing is created, it is sent to the kafka producer, and then added to es index.
+
+- Search page (url: `/search/`)
+
+	- You may type in a query, and specify the type of listings (default: general) to perform a search request.
+	- This search is **case-insensitive**, and **ignores any incomplete matches**.
+	- The search result is presented by categories (courses, instructors, and students).
+
+		- Each listing of a course or an instructor also contains a direct link to the detail page for this instance.
+		- If there's no result, an error message would be displayed below the search form.
+		- The result page also includes statistics about time to perform the search and the total number of instances found.
+
+ 	- Hover to the search button on top-right corner of each webpage to perform a quick general search.
+
+********
+
+#### User Stories and Unit Testing
+
+- Testing for search functionality
+
+	- To perform a test (in the experience layer), enter the following commands sequentially:
+	```bash
+	$ docker exec -it exp bash
+	$ python manage.py test
+	```
+
+	- The user stories for each test case is included as comments in the `tests.py` file (path = `exp/exp/tests.py`).
+	- **Note**: this unit testing involves creating new instances for the search index; these instances are destroyed properly in the corresponding `tearDown(self)` method.
+
+
+Project 4
+---------
 
 #### Login and User Authentication
 
@@ -317,6 +356,12 @@ Update Timeline
 - October 5th
 	- Unit tests created and tested
 	- Exp and web layers finalized for project 3
+
+- October 25th
+	- Finished project 4 (user authentication)
+
+- November 10th
+	- Finished project 5 (search functionality)
 
 
 Contact Us

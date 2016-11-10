@@ -105,7 +105,8 @@ class CreateAndSearchTestCase(TestCase):
         request = self.factory.post('/student/signup/', student_data)
         views_auth.signup(request, 1)
 
-        # sleeps for 1s to wait for instance creation to complete
+        # sleeps for 5s to wait for instance creation to complete
+        # this looks reaaaaaaaally stupid, but have to keep it...
         time.sleep(5)
 
     def tearDown(self):
@@ -118,7 +119,7 @@ class CreateAndSearchTestCase(TestCase):
         post_data = {'id': 'yz9fy'}
         views_model._make_post_request(url, post_data)
 
-        # delete instances from elasticsearch
+        # delete instances in elasticsearch
         es = Elasticsearch(['es'])
         es.delete(index='general_index', doc_type='listing', id='20529')
         es.delete(index='course_index', doc_type='listing', id='20529')
