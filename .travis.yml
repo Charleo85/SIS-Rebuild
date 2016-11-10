@@ -31,7 +31,7 @@ before_script:
 script:
   - >
     docker exec -it exp bash -c
-    "python manage.py test"
+    "./manage.py test"
     # run Django unit tests on models
     # can put other tests (e.g. integrations) here too with exp, web containers
 
