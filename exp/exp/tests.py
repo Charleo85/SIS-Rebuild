@@ -102,11 +102,11 @@ class CreateAndSearchTestCase(TestCase):
             'password': 'cs4501',
             'password_again': 'cs4501',
         }
-        request = self.factory.post('/student/signup/')
+        request = self.factory.post('/student/signup/', student_data)
         views_auth.signup(request, 1)
 
         # sleeps for 1s to wait for instance creation to complete
-        time.sleep(1)
+        time.sleep(5)
 
     def tearDown(self):
         # delete both instances for testing
