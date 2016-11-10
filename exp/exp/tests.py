@@ -104,15 +104,15 @@ class CreateAndSearchTestCase(TestCase):
         request = self.factory.post('/student/signup/')
         views_auth.signup(request, 1)
 
-    def tearDown(self):
-        # delete both instances for testing
-        url = 'http://models-api:8000/api/course/delete/'
-        post_data = {'id': '20529'}
-        views_model._make_post_request(url, post_data)
-
-        url = 'http://models-api:8000/api/student/delete/'
-        post_data = {'id': 'yz9fy'}
-        views_model._make_post_request(url, post_data)
+    # def tearDown(self):
+    #     # delete both instances for testing
+    #     url = 'http://models-api:8000/api/course/delete/'
+    #     post_data = {'id': '20529'}
+    #     views_model._make_post_request(url, post_data)
+    #
+    #     url = 'http://models-api:8000/api/student/delete/'
+    #     post_data = {'id': 'yz9fy'}
+    #     views_model._make_post_request(url, post_data)
 
     def test_course_create(self):
         post_data = {
