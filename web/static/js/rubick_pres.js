@@ -83,8 +83,15 @@ $(document).ready(function(){
     }
 
     var expanded = false;
-
+    var hovered = false;
   	$('#btn-search').on('click', function(e) {
+      // if (hovered){
+      //   $('#search').focus();
+      //   if ($('#search').val == null || $('#search').val() == "") {
+      //     $(this).unbind("submit").submit();
+      //     e.preventDefault();
+      //   }
+      // }else{
 
         if (expanded){
           if ($('#search').val == null || $('#search').val() == "") {
@@ -98,8 +105,50 @@ $(document).ready(function(){
           $('#search').animate({width: 130}).focus();
           expanded = true;
         }
-
+      // }
   	});
+
+    $('#search-expand').hover(
+      function() {
+          $('#search').animate({width: 130}).focus();
+          expanded = true;
+          hovered = true;
+      }, function() {
+          $('#search').animate({width: 0}).blur();
+          expanded = false;
+          hovered = false;
+      }
+    );
+
+    // $('#search').hover(
+    //   function() {
+    //     $('#search').animate({width: 130}).focus();
+    //       $('#search').focus();
+    //   }, function() {
+    //     $('#search').animate({width: 0}).blur();
+    //       $('#search').blur();
+    //   }
+    // );
+
+    // $('#btn-search')
+    //   .mouseover(function() {
+    //     $('#search').animate({width: 130}).focus();
+    //     expanded = true;
+    //   })
+    //   .mouseout(function() {
+    //     $('#search').animate({width: 0}).blur();
+    //     expanded = false;
+    //   });
+
+    // $('#btn-search')
+    //   .mouseenter(function() {
+    //     $('#search').animate({width: 130}).focus();
+    //     expanded = true;
+    //   })
+    //   .mouseleave(function() {
+    //     $('#search').animate({width: 0}).blur();
+    //     expanded = false;
+    //   });
 
 });
 
