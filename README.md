@@ -34,25 +34,23 @@ Project 5
 
 **If you are grading this project, please read this section for our project 5 features.**
 
-*********
 
 #### Search Functionality
 
 - Container architecture:
 
-	- Three more containers created: "batch", "kafka", and elasticsearch (abbr. "es").
-	- Initial data from the fixture "data.json" is loaded directly into elasticearch when container "batch" starts.
-	- Each time a new user/listing is created, it is sent to the kafka producer, and then added to es index.
+	- Three more containers created: `batch`, `kafka`, and elasticsearch (abbr. `es`).
+	- Initial data from the fixture `data.json` is loaded directly into elasticearch when container `batch` starts.
+	- Each time a new user/listing is created, it is sent to the kafka producer, and then added to search index.
 
 - Search page (url: `/search/`)
 
 	- You may type in a query, and specify the type of listings (default: general) to perform a search request.
 	- This search is **case-insensitive**, and **ignores any incomplete matches**.
 	- The search result is presented by categories (courses, instructors, and students).
-
 		- Each listing of a course or an instructor also contains a direct link to the detail page for this instance.
 		- If there's no result, an error message would be displayed below the search form.
-		- The result page also includes statistics about time to perform the search and the total number of instances found.
+		- The result page also includes statistics about the time taken to perform the search and the total number of instances found.
 
  	- Hover to the search button on top-right corner of each webpage to perform a quick general search.
 
@@ -63,12 +61,13 @@ Project 5
 - Testing for search functionality
 
 	- To perform a test (in the experience layer), enter the following commands sequentially:
+	
 	```bash
 	$ docker exec -it exp bash
 	$ python manage.py test
 	```
 
-	- The user stories for each test case is included as comments in the `tests.py` file (path = `exp/exp/tests.py`).
+	- The user stories for each test case is included as comments in the `tests.py` file (path= `exp/exp/tests.py`).
 	- **Note**: this unit testing involves creating new instances for the search index; these instances are destroyed properly in the corresponding `tearDown(self)` method.
 
 
