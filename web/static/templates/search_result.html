@@ -42,7 +42,7 @@
 <ul class="list-group">
   {% for data in results.hits %}
     {% if data.model == 'api.Student' %}
-    <li class="list-group-item list-group-item-action"><a href="{{ data.href }}">{{ data.label }}</a></li>
+    <li class="list-group-item list-group-item-action"><a>{{ data.label }}</a></li>
     {% endif %}
   {% endfor %}
 </ul>
