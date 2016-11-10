@@ -3955,6 +3955,12 @@ body.noscroll {
   .project-content .icon-close i {
     font-size: 30px;
   }
+  .section-contact-3 .contact-container .map {
+    visibility: hidden;
+  }
+  .section-contact-3 .contact-container .map .big-map {
+    visibility: hidden;
+  }
 }
 @media (min-width: 769px) and (max-width: 1240px) {
   h1.responsive-small {
