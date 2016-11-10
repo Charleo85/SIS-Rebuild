@@ -366,8 +366,6 @@ Update Timeline
 Contact Us
 ----------
 
-- Current Collaborators
-
-	- Charlie Wu ([jw7jb@virginia.edu](mailto:jw7jb@virginia.edu))
-	- Tong Qiu ([tq7bw@virginia.edu](mailto:tq7bw@virginia.edu))
-	- Zakey Faieq ([zaf2xk@virginia.edu](mailto:zaf2xk@virginia.edu))
+- Charlie Wu ([jw7jb@virginia.edu](mailto:jw7jb@virginia.edu))
+- Tong Qiu ([tq7bw@virginia.edu](mailto:tq7bw@virginia.edu))
+- Zakey Faieq ([zaf2xk@virginia.edu](mailto:zaf2xk@virginia.edu))
