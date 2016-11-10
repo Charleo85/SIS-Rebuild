@@ -15,6 +15,6 @@ class SearchTestCase(TestCase):
         }
         request = self.factory.post('/search/', data=post_data)
         response = views_model.search(request)
-        resp_data = json.loads(response.context, safe=False)
+        resp_data = json.loads(response.content.decode('utf-8'))
 
         self.assertEqual(resp_data['status_code'], 200)
