@@ -31,6 +31,8 @@ $ curl 127.0.0.1:8000
 Project 6
 ---------
 
+**If you are grading this project, please read this section for our project 6 features.**
+
 #### Load Balancing
 - HAProxy
 	- The popular open-source load balancer [HAProxy](https://en.wikipedia.org/wiki/HAProxy) was used to round-robin load balance
@@ -62,13 +64,8 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 
 #### Caching
 
-*********
-
 Project 5
 ---------
-
-**If you are grading this project, please read this section for our project 5 features.**
-
 
 #### Search Functionality
 
