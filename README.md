@@ -36,14 +36,18 @@ Project 6
 	- The popular open-source load balancer [HAProxy](https://en.wikipedia.org/wiki/HAProxy) was used to round-robin load balance
 	between 3 front end containers. This was accomplished by having a separate container based on the [official Dockerhub
 	HAProxy image](https://hub.docker.com/_/haproxy/)
-	
+
 	- When building the HAProxy image, a custom configuration file was present in the build context (i.e. in the same
 	directory as the Dockerfile). This configuration file specifies on which port the load balancer is "listening" as well
 	as the address/port of the servers the load balancer must forward requests to. This configuration file, as well as
-	the Dockerfile used to build the image, can be found at [here](https://github.com/Zakinator123/HA-Proxy-Config-Dockerfile)
+	the Dockerfile used to build the image, can be found [HERE](https://github.com/Zakinator123/HA-Proxy-Config-Dockerfile)
 	
-	- The configuration file also directs all of the server logs of the load balancer to a papertrail account.
-	A sample of the logs, which show the "round robin" distribution of clients to servers, can be seen below:
+	- The image itself can be found [here](https://hub.docker.com/r/zakinator123/haproxyloadbalancer/)
+	
+	- The configuration file also specifies the sending of all load-balancer server logs to a [papertrail](https://papertrailapp.com/) account.
+	A sample of the logs from papertrail, which show the "round robin" distribution of different clients 
+	(simulated by different browser tabs) to servers, can be seen below. In the example, the different clients are 
+	all requesting the search page.
 	
 	```
 Nov 19 00:36:44 00350dbb6dee haproxy:  192.168.99.1:55755 [19/Nov/2016:05:36:44.134] localnodes web_containers/web01 0/0/0/343/343 200 21414 - - ---- 13/13/0/1/0 0/0 "GET / HTTP/1.1" 
@@ -53,6 +57,11 @@ Nov 19 00:38:01 00350dbb6dee haproxy:  192.168.99.1:55792 [19/Nov/2016:05:38:01.
 Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.223] localnodes web_containers/web03 3/0/0/2/5 301 254 - - ---- 8/8/0/1/0 0/0 "GET /search HTTP/1.1" 
 Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.228] localnodes web_containers/web02 3/0/0/15/18 200 7647 - - ---- 8/8/0/1/0 0/0 "GET /search/ HTTP/1.1" 
 	```
+	
+*********
+
+#### Caching
+
 *********
 
 Project 5
