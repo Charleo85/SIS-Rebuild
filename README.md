@@ -26,7 +26,7 @@ $ docker-compose up -d
 $ curl 127.0.0.1:80
 ```
 
-**Tong - please update this to reflect the correct port/IP address change**
+**TONG - please update the droplet's settings to reflect the correct port/IP address change, if any updates need to be made. Then, change the below IP address to 162.243.117.39:80, or 162.243.117.39**
 - We also have a working webpage on a DigitalOcean droplet. Visit homepage at: [162.243.117.39:8000](http://162.243.117.39:8000).
 
 Project 6
@@ -76,7 +76,8 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 		Therefore caching can be tested by, for example, viewing the course listings page (thereby caching it), and in another
 		tab/window, creating a course as an instructor. If the course listing page is refreshed, it will not immediately
 		show the new created course. If the decorator is commented out, or if one waits for 5 minutes, the new course will
-		appear on the course listings page, which verifies that the cache was working as expected.
+		appear on the course listings page, which verifies that the cache was working as expected.  
+		
 *********
 
 Project 5
