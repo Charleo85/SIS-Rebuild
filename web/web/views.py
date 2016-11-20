@@ -58,23 +58,23 @@ def student_login_required(f):
             return f(request, *args, **kwargs)
     return wrap
 
-@cache_page(60 * 15)
+@cache_page(60 * 5)
 def home_page(request):
     url = 'http://exp-api:8000/homepage/'
     resp = _make_get_request(url)
     return render(request, 'homepage.html', resp)
 
-@cache_page(60 * 15)
+@cache_page(60 * 5)
 def about(request):
     return render(request, 'about.html')
 
-@cache_page(60 * 15)
+@cache_page(60 * 5)
 def list_item(request, modelname):
     url = 'http://exp-api:8000/' + modelname + '/'
     resp = _make_get_request(url)
     return render(request, modelname + '.html', resp)
 
-@cache_page(60 * 15)
+@cache_page(60 * 5)
 def item_detail(request, itemid, modelname):
     url = 'http://exp-api:8000/' + modelname + '/detail/' + itemid + '/'
     resp = _make_get_request(url)
@@ -159,7 +159,7 @@ def signup(request, modelname):
 
 
 @instructor_login_required
-#@cache_page(60 * 15)
+#@cache_page(60 * 5)
 def instructor_profile(request):
     resp = _get_user_info(request, 0)
     data = {}
@@ -169,7 +169,7 @@ def instructor_profile(request):
 
 
 @student_login_required
-@cache_page(60 * 15)
+@cache_page(60 * 5)
 def student_profile(request):
     resp = _get_user_info(request, 1)
     data = {}
@@ -197,7 +197,7 @@ def logout(request, modelname):
 
 
 @instructor_login_required
-@cache_page(60 * 15)
+@cache_page(60 * 5)
 def create_course_listing(request, modelname):
     if request.method == 'GET':
         form = NewCourseForm()
@@ -225,7 +225,7 @@ def create_course_listing(request, modelname):
     render_data = {'form': form, 'error_message': 'invalid input(s)'}
     return render(request, "course_create.html", render_data)
 
-@cache_page(60 * 15)
+@cache_page(60 * 5)
 def search_page(request):
     if request.method == 'GET':
         form = SearchForm()
