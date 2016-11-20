@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+docker start mysql-cmdline &> /dev/null || {
+    echo "Error entering mysql-cmdline!"
+    exit 2
+}
+
+docker exec -it mysql-cmdline bash -c \
+    "echo \"mysql -uroot -p'\\\$3cureUS' -h db -Bse \\\"drop database cs4501;
+    create database cs4501 character set utf8;
+    grant all on *.* to 'www'@'%'; \\\" \" > clear.sh;
+    chmod 755 clear.sh;
+    ./clear.sh;
+    rm -f clear.sh; " &> /dev/null || {
+    echo "Error clearing the database!"
+    exit 3
+}
+
+docker stop mysql-cmdline &> /dev/null || {
+    echo "Error stopping mysql-cmdline!"
+    exit 4
+}
+echo "Successfully cleared the database!"
+
