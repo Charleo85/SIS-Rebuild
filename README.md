@@ -23,9 +23,10 @@ $ docker-compose up -d
 
 - Verify that the website is working (you should see html codes for the homepage):
 ```bash
-$ curl 127.0.0.1:8000
+$ curl 127.0.0.1:80
 ```
 
+**TONG - please update the droplet's settings to reflect the correct port/IP address change, if any updates need to be made. Then, change the below IP address to 162.243.117.39:80, or 162.243.117.39**
 - We also have a working webpage on a DigitalOcean droplet. Visit homepage at: [162.243.117.39:8000](http://162.243.117.39:8000).
 
 Project 6
@@ -63,6 +64,21 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 *********
 
 #### Caching
+- Redis
+	- Caching of the web layer was implemented using redis. Using Docker's official [redis image,](https://hub.docker.com/_/redis/)
+	we made a container that is set up to work with 
+	[Django's Cache Framework](https://docs.djangoproject.com/en/1.10/topics/cache/#using-a-custom-cache-backend)
+	so that the front end can cache on a [per-view basis](https://docs.djangoproject.com/en/1.10/topics/cache/#the-per-view-cache).
+	- Verifying that the cache mechanism is working:
+		- As can be seen in the view decorators, cached views are set to expire after 5 minutes. 
+		Since every view that presents database information is cached, any/all database changes won't
+		manifest in any cached view until the cache has refreshed itself (unless the page has not been accessed/cached yet).
+		Therefore caching can be tested by, for example, viewing the course listings page (thereby caching it), and in another
+		tab/window, creating a course as an instructor. If the course listing page is refreshed, it will not immediately
+		show the new created course. If the decorator is commented out, or if one waits for 5 minutes, the new course will
+		appear on the course listings page, which verifies that the cache was working as expected.  
+		
+*********
 
 Project 5
 ---------
@@ -199,7 +215,7 @@ Project 3
 
 #### Web Pages
 
-- Home page (`127.0.0.1:8000`):
+- Home page (`127.0.0.1:80`):
 	- Page design based on Bootstrap CSS Library.
 	- The central "start" button takes you to the course listing page.
 	- When you scroll down the page, a "popular courses" section would display the 3 most popular courses.

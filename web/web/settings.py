@@ -71,6 +71,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'web.wsgi.application'
 
+#CURRENTLY DOES NOT WORK
+CACHES = {
+    "default": {
+        "BACKEND": 'django_redis.cache.RedisCache',
+        "LOCATION": "redis://redis:6379",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
