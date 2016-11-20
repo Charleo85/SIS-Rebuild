@@ -40,7 +40,7 @@ Project 6
 
 #### Hosting on DigitalOcean
 
-- As described in the "Setup" section. We've been imporving our website on the cloud server throughout the semester!
+- As described in the "Setup" section. We've been imporving our website on our droplet throughout the semester!
 
 ********
 
