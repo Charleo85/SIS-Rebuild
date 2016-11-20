@@ -38,6 +38,12 @@ Project 6
 
 **If you are grading this project, please read this section for our project 6 features.**
 
+#### Hosting on DigitalOcean
+
+- As described in the "Setup" section. We've been imporving our website on the cloud server throughout the semester!
+
+********
+
 #### Load Balancing: HAProxy
 - The popular open-source load balancer [HAProxy](https://en.wikipedia.org/wiki/HAProxy) was used to round-robin load balance between 3 front end containers. This was accomplished by having a separate container based on the [official Dockerhub HAProxy image](https://hub.docker.com/_/haproxy/)
 
