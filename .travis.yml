@@ -27,6 +27,7 @@ install: # prepare mySQL database
     GRANT ALL PRIVILEGES ON *.* TO 'www'@'%';"
 before_script:
   - docker-compose up -d
+  - sleep 60 # need to give time for containers to start
 
 script:
   - >
