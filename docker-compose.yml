@@ -20,7 +20,8 @@ exp:
         - models:models-api
         - kafka:kafka
         - es:es
-    command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
+    #command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
+    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
 
 web1:
     container_name: web1
@@ -32,7 +33,9 @@ web1:
     links:
         - exp:exp-api
         - redis
-    command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+    #command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+
 
 web2:
     container_name: web2
@@ -44,7 +47,8 @@ web2:
     links:
         - exp:exp-api
         - redis
-    command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+    #command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
 
 web3:
     container_name: web3
@@ -56,7 +60,8 @@ web3:
     links:
         - exp:exp-api
         - redis
-    command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+    #command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
 
 redis:
     container_name: redis
