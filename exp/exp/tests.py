@@ -121,6 +121,7 @@ class CreateAndSearchTestCase(TestCase):
 
         # delete instances in elasticsearch
         es = Elasticsearch(['es'])
+        time.sleep(15) #Sleep to let Elastic Search initialize
         es.delete(index='general_index', doc_type='listing', id='20529')
         es.delete(index='course_index', doc_type='listing', id='20529')
         es.delete(index='general_index', doc_type='listing', id='yz9fy')
