@@ -31,7 +31,7 @@ before_script:
 script:
   - >
     docker exec -it exp bash -c
-    "pip install -r requirements.txt && ./manage.py test"
+    "pip install -r requirement.txt && ./manage.py test"
     # run Django unit tests on models
     # can put other tests (e.g. integrations) here too with exp, web containers
 
