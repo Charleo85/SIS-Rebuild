@@ -4,7 +4,7 @@ from elasticsearch import Elasticsearch
 
 import urllib.request
 import urllib.parse
-import json
+import json, random
 
 # Create your views here
 def _make_get_request(url):
@@ -96,17 +96,15 @@ def home_page(request):
         if not selected:
             other_courses.append(course_dict)
 
-    for i in range(len(other_courses), 3, 1):
-        other_courses.append(selected_courses[2-i])
-
     popular_courses = []
     for course_dict in selected_courses:
         new_dict = _process_course(course_dict)
         popular_courses.append(new_dict)
 
     explore_courses = []
-    for course_dict in other_courses:
-        new_dict = _process_course(course_dict)
+    index = random.randint(0, len(other_courses)-4)
+    for i in range(index, index+3):
+        new_dict = _process_course(other_courses[i])
         explore_courses.append(new_dict)
 
     new_data['popular_courses'] = popular_courses
@@ -202,7 +200,7 @@ def search(request):
     try:
         search_result = es.search(index=elasticsearch_index, body={
             "query": {'query_string': {'query': search_string}},
-            'size': 10,
+            'size': 100,
         })
     except:
         data = {'status_code': 400, 'error_msg': 'improper search query'}

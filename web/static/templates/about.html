@@ -1,8 +1,10 @@
+{% load cache %}
 <!DOCTYPE html>
 <html lang="en">
 
 {% include 'TopBar.html' %}
 
+{% cache 300 about %}
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
     <h1>CS 4501 SIS-Rebuild Project</h1>
@@ -62,6 +64,8 @@
         </div>
     </div>
 </div>
+
+{% endcache %}
 
 
 {% include 'BottomBar.html' %}

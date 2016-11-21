@@ -24,7 +24,7 @@ class SearchTestCase(TestCase):
         resp_data = json.loads(response.content.decode('utf-8'))
 
         self.assertEqual(resp_data['status_code'], 200)
-        self.assertEqual(resp_data['size'], 2)
+        self.assertEqual(resp_data['size'], 3)
 
     def test_course_search(self):
         post_data = {
@@ -43,7 +43,7 @@ class SearchTestCase(TestCase):
 
     def test_instructor_search(self):
         post_data = {
-            'search_query': 'thomas',
+            'search_query': 'tp3ks',
             'query_specifier': 'instructor',
         }
         request = self.factory.post('/search/', data=post_data)

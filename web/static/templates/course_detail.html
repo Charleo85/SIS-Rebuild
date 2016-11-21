@@ -1,7 +1,9 @@
+{% load cache %}
 {% load rm_underscore %}
 <html>
 {% include 'TopBar.html' %}
 
+{% cache 300 course course.id %}
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
   {% if status_code == 200 %}
@@ -19,6 +21,8 @@
   {% endfor %}
 </ul>
 {% endif %}
+
+{% endcache %}
 
 {% include 'BottomBar.html' %}
 </html>

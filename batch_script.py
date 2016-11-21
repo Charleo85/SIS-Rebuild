@@ -18,7 +18,7 @@ finally:
     data = {}
     with open('./models/data.json') as data_file:
         data = json.load(data_file)
-    with open('./models/data.json') as data_file:
+    with open('./models/output.json') as data_file:
         data += json.load(data_file)
     
     for element in data:

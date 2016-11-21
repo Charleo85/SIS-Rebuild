@@ -82,16 +82,6 @@
   {
     "model": "api.Instructor",
     "fields": {
-      "id": "asb2t",
-      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
-      "last_name": "Bloomfield",
-      "first_name": "Aaron",
-      "username": "asb2t"
-    }
-  },
-  {
-    "model": "api.Instructor",
-    "fields": {
       "id": "gr3e",
       "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
       "last_name": "Robins",
@@ -177,16 +167,6 @@
       "last_name": "Barnes",
       "first_name": "Connelly",
       "username": "csb7z"
-    }
-  },
-  {
-    "model": "api.Instructor",
-    "fields": {
-      "id": "tp3ks",
-      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
-      "last_name": "Pinckney",
-      "first_name": "Thomas",
-      "username": "tp3ks"
     }
   },
   {
