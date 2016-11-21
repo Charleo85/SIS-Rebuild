@@ -77,7 +77,7 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 
 - Verifying that the cache mechanism is working:
 
-	- Every cached segment is set to expire after 5 minutes. Since views that present database information (listing and detail page) are cached, any/all database changes won't manifest in any cached view until the cache has refreshed itself (unless the page has not been accessed/cached yet). Therefore caching can be tested by, for example, viewing the course listings page (thereby caching it), and in another tab/window, creating a course as an instructor. If the course listing page is refreshed, it will not immediately show the new created course. Instead, if one waits for 5 minutes, the new course will appear on the course listings page, which verifies that the cache was working as expected.  
+	- Every cached segment is set to expire after 5 minutes. Since views that present database information (listing and detail page) are cached, any/all database changes won't manifest in any cached view until the cache has refreshed itself. Therefore caching can be tested by, for example, viewing the course listings page (thereby caching it), and in another tab/window, creating a course as an instructor. If the course listing page is refreshed, it will not immediately show the new created course. Instead, if one waits for 5 minutes, the new course will appear on the course listings page, which verifies that the cache was working as expected.  
 
 *********
 
