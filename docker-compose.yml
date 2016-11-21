@@ -20,43 +20,38 @@ exp:
         - models:models-api
         - kafka:kafka
         - es:es
-    command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
+    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
 
 web1:
     container_name: web1
     image: zakinator123/cs4501:1.0
     volumes:
         - ./web/:/app
-    #ports:
-    #    - "8000:8000"
     links:
         - exp:exp-api
         - redis
-    command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+
 
 web2:
     container_name: web2
     image: zakinator123/cs4501:1.0
     volumes:
         - ./web/:/app
-    #ports:
-    #    - "8000:8000"
     links:
         - exp:exp-api
         - redis
-    command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
 
 web3:
     container_name: web3
     image: zakinator123/cs4501:1.0
     volumes:
         - ./web/:/app
-    #ports:
-    #    - "8000:8000"
     links:
         - exp:exp-api
         - redis
-    command: bash -c "python /app/manage.py migrate; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
 
 redis:
     container_name: redis
