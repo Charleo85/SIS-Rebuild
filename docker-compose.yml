@@ -7,7 +7,7 @@ models:
         - "8001:8000"
     external_links:
         - mysql:db
-    command: bash -c "python /app/manage.py makemigrations api; python /app/manage.py migrate; python /app/manage.py loaddata /app/data.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
+    command: bash -c "python /app/manage.py makemigrations api; python /app/manage.py migrate; python /app/manage.py loaddata /app/data.json /app/output.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
 
 exp:
     container_name: exp

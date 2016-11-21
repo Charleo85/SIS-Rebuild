@@ -1,0 +1,1012 @@
+[
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "cd9au",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Dill",
+      "first_name": "Craig",
+      "username": "cd9au"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "lat7h",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Tychonievich",
+      "first_name": "Luther",
+      "username": "lat7h"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "up3f",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Praphamontripong",
+      "first_name": "Upsorn",
+      "username": "up3f"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "jpc",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Cohoon",
+      "first_name": "James",
+      "username": "jpc"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "ai4z",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Ibrahim",
+      "first_name": "Ahmed",
+      "username": "ai4z"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "dae7c",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Edwards",
+      "first_name": "David",
+      "username": "dae7c"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "nb3f",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Basit",
+      "first_name": "Nada",
+      "username": "nb3f"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "mrf8t",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Floryan",
+      "first_name": "Mark",
+      "username": "mrf8t"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "asb2t",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Bloomfield",
+      "first_name": "Aaron",
+      "username": "asb2t"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "gr3e",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Robins",
+      "first_name": "Gabriel",
+      "username": "gr3e"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "mls4aa",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Smith",
+      "first_name": "Mary",
+      "username": "mls4aa"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "cr4bd",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Reiss",
+      "first_name": "Charles",
+      "username": "cr4bd"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "smk9u",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Khan",
+      "first_name": "Samira",
+      "username": "smk9u"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "kw3ek",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Wong",
+      "first_name": "Kong-Cheng",
+      "username": "kw3ek"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "ha4d",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Alemzadeh",
+      "first_name": "Homa",
+      "username": "ha4d"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "ag8t",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Grimshaw",
+      "first_name": "Andrew",
+      "username": "ag8t"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "cdw7y",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Whitehouse",
+      "first_name": "Cameron",
+      "username": "cdw7y"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "csb7z",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Barnes",
+      "first_name": "Connelly",
+      "username": "csb7z"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "tp3ks",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Pinckney",
+      "first_name": "Thomas",
+      "username": "tp3ks"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "wrw6y",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Weimer",
+      "first_name": "Westley",
+      "username": "wrw6y"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "mss2x",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Sherriff",
+      "first_name": "Mark",
+      "username": "mss2x"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "mah2h",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Humphrey",
+      "first_name": "Marty",
+      "username": "mah2h"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "acw",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Weaver",
+      "first_name": "Alfred",
+      "username": "acw"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "kah3f",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Holcomb",
+      "first_name": "Katherine",
+      "username": "kah3f"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "teh1m",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Hall",
+      "first_name": "Thomas",
+      "username": "teh1m"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "mm7ux",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Mahmoody",
+      "first_name": "Mohammad",
+      "username": "mm7ux"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "kc2wc",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Chang",
+      "first_name": "Kai-Wei",
+      "username": "kc2wc"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "jwd",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Davidson",
+      "first_name": "Jack",
+      "username": "jwd"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "vo2m",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Ordonez-Roman",
+      "first_name": "Vicente",
+      "username": "vo2m"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "kjs5d",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Sullivan",
+      "first_name": "Kevin",
+      "username": "kjs5d"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "dd7rq",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Diochnos",
+      "first_name": "Dimitrios",
+      "username": "dd7rq"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "dee2b",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Evans",
+      "first_name": "David",
+      "username": "dee2b"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "jas9f",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Stankovic",
+      "first_name": "John",
+      "username": "jas9f"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "hs6ms",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Shen",
+      "first_name": "Haiying",
+      "username": "hs6ms"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "br8jr",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Ray",
+      "first_name": "Baishakhi",
+      "username": "br8jr"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "id": "ah7by",
+      "password": "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA=",
+      "last_name": "Hendawi",
+      "first_name": "Abdeltawab",
+      "username": "ah7by"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1010",
+      "location": "Olsson Hall 120",
+      "id": 17527,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "cd9au",
+      "title": "Introduction to Information Technology"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1110",
+      "location": "Chemistry Bldg 402",
+      "id": 17513,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 2:00PM - 2:50PM",
+      "instructor": "lat7h",
+      "title": "Introduction to Programming"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1110",
+      "location": "Wilson Hall 301",
+      "id": 17523,
+      "section": "002",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 11:00AM - 11:50AM",
+      "instructor": "up3f",
+      "title": "Introduction to Programming"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1111",
+      "location": "Olsson Hall 009",
+      "id": 17525,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "cd9au",
+      "title": "Introduction to Programming"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1112",
+      "location": "Rice Hall 130",
+      "id": 17526,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 2:00PM - 3:15PM",
+      "instructor": "jpc",
+      "title": "Introduction to Programming"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1113",
+      "location": "Thornton Hall E316",
+      "id": 18578,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 11:00AM - 11:50AM",
+      "instructor": "ai4z",
+      "title": "Introduction to Programming"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2102",
+      "location": "Mechanical Engr Bldg 205",
+      "id": 17531,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "dae7c",
+      "title": "Discrete Mathematics"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2102",
+      "location": "Mechanical Engr Bldg 205",
+      "id": 18214,
+      "section": "002",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "dae7c",
+      "title": "Discrete Mathematics"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2110",
+      "location": "Thornton Hall E303",
+      "id": 17528,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 10:00AM - 10:50AM",
+      "instructor": "dae7c",
+      "title": "Software Development Methods"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2110",
+      "location": "Rice Hall 130",
+      "id": 18061,
+      "section": "002",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 12:00PM - 12:50PM",
+      "instructor": "nb3f",
+      "title": "Software Development Methods"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2110",
+      "location": "Mechanical Engr Bldg 205",
+      "id": 20518,
+      "section": "003",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 1:00PM - 1:50PM",
+      "instructor": "nb3f",
+      "title": "Software Development Methods"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2150",
+      "location": "Wilson Hall 301",
+      "id": 17532,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 2:00PM - 2:50PM",
+      "instructor": "mrf8t",
+      "title": "Program and Data Representation"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2150",
+      "location": "Rice Hall 130",
+      "id": 18581,
+      "section": "002",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 1:00PM - 1:50PM",
+      "instructor": "asb2t",
+      "title": "Program and Data Representation"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3102",
+      "location": "Rice Hall 130",
+      "id": 17537,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "gr3e",
+      "title": "Theory of Computation"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3205",
+      "location": "Olsson Hall 009",
+      "id": 20520,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "mls4aa",
+      "title": "HCI in Software Development"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3240",
+      "location": "Rice Hall 130",
+      "id": 18269,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "mls4aa",
+      "title": "Advanced Software Development Techniques"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3330",
+      "location": "Olsson Hall 120",
+      "id": 18338,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "cr4bd",
+      "title": "Computer Architecture"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3330",
+      "location": "Olsson Hall 009",
+      "id": 20522,
+      "section": "002",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "smk9u",
+      "title": "Computer Architecture"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4102",
+      "location": "Clark Hall 108",
+      "id": 17662,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "kw3ek",
+      "title": "Algorithms"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4414",
+      "location": "Thornton Hall E316",
+      "id": 17540,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "kw3ek",
+      "title": "Operating Systems"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4434",
+      "location": "Thornton Hall E304",
+      "id": 21444,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 9:00AM - 9:50AM",
+      "instructor": "ha4d",
+      "title": "Dependable Computing Systems"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4444",
+      "location": "Thornton Hall E303",
+      "id": 18582,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "ag8t",
+      "title": "Introduction to Parallel Computing"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4457",
+      "location": "Olsson Hall 009",
+      "id": 18459,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "cdw7y",
+      "title": "Computer Networks"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4501",
+      "location": "Olsson Hall 120",
+      "id": 18420,
+      "section": "002",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 5:00PM - 6:15PM",
+      "instructor": "ai4z",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4501",
+      "location": "Rice Hall 130",
+      "id": 18487,
+      "section": "003",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "csb7z",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4501",
+      "location": "Rice Hall 340",
+      "id": 18490,
+      "section": "004",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "tp3ks",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4501",
+      "location": "Olsson Hall 009",
+      "id": 18784,
+      "section": "005",
+      "mnemonic": "CS",
+      "meet_time": "Fr 2:00PM - 3:00PM",
+      "instructor": "wrw6y",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4610",
+      "location": "Mechanical Engr Bldg 213",
+      "id": 20524,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "wrw6y",
+      "title": "Programming Languages"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4630",
+      "location": "Rice Hall 130",
+      "id": 18584,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "cr4bd",
+      "title": "Defense Against the Dark Arts"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4640",
+      "location": "Olsson Hall 005",
+      "id": 20525,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "up3f",
+      "title": "Programming Languages for Web Applications"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4720",
+      "location": "Olsson Hall 120",
+      "id": 18585,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWeFr 11:00AM - 11:50AM",
+      "instructor": "mss2x",
+      "title": "Mobile Application Development"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4730",
+      "location": "Mechanical Engr Bldg 341",
+      "id": 18271,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 11:00AM - 11:50AM",
+      "instructor": "mrf8t",
+      "title": "Computer Game Design"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4740",
+      "location": "Mechanical Engr Bldg 341",
+      "id": 18463,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "mah2h",
+      "title": "Cloud Computing"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4750",
+      "location": "Mechanical Engr Bldg 205",
+      "id": 18460,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "nb3f",
+      "title": "Database Systems"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4753",
+      "location": "Thornton Hall E316",
+      "id": 18661,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "acw",
+      "title": "Electronic Commerce Technologies"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5014",
+      "location": "Thornton Hall E303",
+      "id": 18148,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "kah3f",
+      "title": "Computation as a Research Tool"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5014",
+      "location": "Chemical Engineering Bldg 005",
+      "id": 18294,
+      "section": "003",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "teh1m",
+      "title": "Computation as a Research Tool"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6160",
+      "location": "Chemical Engineering Bldg 005",
+      "id": 20526,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 5:00PM - 6:15PM",
+      "instructor": "mm7ux",
+      "title": "Theory of Computation"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6444",
+      "location": "Thornton Hall E303",
+      "id": 18583,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "ag8t",
+      "title": "Introduction to Parallel Computing"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "location": "Olsson Hall 009",
+      "id": 18664,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 5:00PM - 6:15PM",
+      "instructor": "kc2wc",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "location": "Thornton Hall E316",
+      "id": 18665,
+      "section": "002",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "jwd",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "location": "Rice Hall 340",
+      "id": 18213,
+      "section": "004",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "vo2m",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "location": "Rice Hall 340",
+      "id": 18461,
+      "section": "005",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "kjs5d",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "location": "Rice Hall 340",
+      "id": 20528,
+      "section": "007",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "dd7rq",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "location": "Thornton Hall D115",
+      "id": 20529,
+      "section": "008",
+      "mnemonic": "CS",
+      "meet_time": "Fr 9:30AM - 12:00PM",
+      "instructor": "dee2b",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "location": "Rice Hall 340",
+      "id": 20530,
+      "section": "009",
+      "mnemonic": "CS",
+      "meet_time": "MoWe 9:30AM - 10:45AM",
+      "instructor": "jas9f",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "location": "Olsson Hall 005",
+      "id": 20531,
+      "section": "010",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "hs6ms",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "location": "Rice Hall 340",
+      "id": 21335,
+      "section": "011",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "br8jr",
+      "title": "Special Topics in Computer Science"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6750",
+      "location": "Olsson Hall 009",
+      "id": 18643,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TuTh 5:00PM - 6:15PM",
+      "instructor": "ah7by",
+      "title": "Database Systems"
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "8524",
+      "location": "TBA",
+      "id": 18016,
+      "section": "001",
+      "mnemonic": "CS",
+      "meet_time": "TBA",
+      "instructor": "kjs5d",
+      "title": "Topics in Software Engineering"
+    }
+  }
+]
