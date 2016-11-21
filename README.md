@@ -28,6 +28,7 @@ $ curl 127.0.0.1
 
 - Depending on situations, you might want to reset the MySQL database to its initial state: 
 ```bash
+$ docker start mysql
 $ chmod 755 cleardb.sh && ./cleardb.sh
 ```
 
