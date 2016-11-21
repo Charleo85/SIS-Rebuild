@@ -105,9 +105,9 @@ class CreateAndSearchTestCase(TestCase):
         request = self.factory.post('/student/signup/', student_data)
         views_auth.signup(request, 1)
 
-        # sleeps for 5s to wait for instance creation to complete
+        # sleeps for 15s to wait for instance creation to complete
         # this looks reaaaaaaaally stupid, but have to keep it...
-        time.sleep(5)
+        time.sleep(15)
 
     def tearDown(self):
         # delete both instances for testing
@@ -121,7 +121,7 @@ class CreateAndSearchTestCase(TestCase):
 
         # delete instances in elasticsearch
         es = Elasticsearch(['es'])
-        time.sleep(15) #Sleep to let Elastic Search initialize
+        time.sleep(5) #Sleep to let Elastic Search initialize
         es.delete(index='general_index', doc_type='listing', id='20529')
         es.delete(index='course_index', doc_type='listing', id='20529')
         es.delete(index='general_index', doc_type='listing', id='yz9fy')
