@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 docker start mysql mysql-cmdline &> /dev/null || {
