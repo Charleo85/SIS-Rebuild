@@ -16,11 +16,13 @@ finally:
 
     # Load fixture into elastic search
     data = {}
-    with open('./models/data.json') as data_file:
+    with open('./models/instructor.json') as data_file:
         data = json.load(data_file)
-    with open('./models/output.json') as data_file:
+    with open('./models/students.json') as data_file:
         data += json.load(data_file)
-    
+    with open('./models/courses.json') as data_file:
+        data += json.load(data_file)
+
     for element in data:
         # General Index
         if 'id' in element['fields']:

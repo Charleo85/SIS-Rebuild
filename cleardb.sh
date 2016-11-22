@@ -2,6 +2,11 @@
 
 set -e
 
+docker start mysql &> /dev/null || {
+    echo "Error starting mysql"
+    exit 1
+}
+
 docker start mysql-cmdline &> /dev/null || {
     echo "Error entering mysql-cmdline!"
     exit 1
@@ -24,4 +29,3 @@ docker stop mysql-cmdline &> /dev/null || {
     exit 3
 }
 echo "Successfully cleared the database!"
-
