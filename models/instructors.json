@@ -1,0 +1,722 @@
+[
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Dill",
+      "username": "cd9au",
+      "id": "cd9au",
+      "first_name": "Craig"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Tychonievich",
+      "username": "lat7h",
+      "id": "lat7h",
+      "first_name": "Luther"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Praphamontripong",
+      "username": "up3f",
+      "id": "up3f",
+      "first_name": "Upsorn"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Cohoon",
+      "username": "jpc",
+      "id": "jpc",
+      "first_name": "James"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Ibrahim",
+      "username": "ai4z",
+      "id": "ai4z",
+      "first_name": "Ahmed"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Edwards",
+      "username": "dae7c",
+      "id": "dae7c",
+      "first_name": "David"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Basit",
+      "username": "nb3f",
+      "id": "nb3f",
+      "first_name": "Nada"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Floryan",
+      "username": "mrf8t",
+      "id": "mrf8t",
+      "first_name": "Mark"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Bloomfield",
+      "username": "asb2t",
+      "id": "asb2t",
+      "first_name": "Aaron"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Robins",
+      "username": "gr3e",
+      "id": "gr3e",
+      "first_name": "Gabriel"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Smith",
+      "username": "mls4aa",
+      "id": "mls4aa",
+      "first_name": "Mary"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Reiss",
+      "username": "cr4bd",
+      "id": "cr4bd",
+      "first_name": "Charles"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Khan",
+      "username": "smk9u",
+      "id": "smk9u",
+      "first_name": "Samira"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Wong",
+      "username": "kw3ek",
+      "id": "kw3ek",
+      "first_name": "Kong-Cheng"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Alemzadeh",
+      "username": "ha4d",
+      "id": "ha4d",
+      "first_name": "Homa"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Grimshaw",
+      "username": "ag8t",
+      "id": "ag8t",
+      "first_name": "Andrew"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Whitehouse",
+      "username": "cdw7y",
+      "id": "cdw7y",
+      "first_name": "Cameron"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Barnes",
+      "username": "csb7z",
+      "id": "csb7z",
+      "first_name": "Connelly"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Pinckney",
+      "username": "tp3ks",
+      "id": "tp3ks",
+      "first_name": "Thomas"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Weimer",
+      "username": "wrw6y",
+      "id": "wrw6y",
+      "first_name": "Westley"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Sherriff",
+      "username": "mss2x",
+      "id": "mss2x",
+      "first_name": "Mark"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Humphrey",
+      "username": "mah2h",
+      "id": "mah2h",
+      "first_name": "Marty"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Weaver",
+      "username": "acw",
+      "id": "acw",
+      "first_name": "Alfred"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Holcomb",
+      "username": "kah3f",
+      "id": "kah3f",
+      "first_name": "Katherine"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Hall",
+      "username": "teh1m",
+      "id": "teh1m",
+      "first_name": "Thomas"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Mahmoody",
+      "username": "mm7ux",
+      "id": "mm7ux",
+      "first_name": "Mohammad"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Chang",
+      "username": "kc2wc",
+      "id": "kc2wc",
+      "first_name": "Kai-Wei"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Davidson",
+      "username": "jwd",
+      "id": "jwd",
+      "first_name": "Jack"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Ordonez-Roman",
+      "username": "vo2m",
+      "id": "vo2m",
+      "first_name": "Vicente"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Sullivan",
+      "username": "kjs5d",
+      "id": "kjs5d",
+      "first_name": "Kevin"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Diochnos",
+      "username": "dd7rq",
+      "id": "dd7rq",
+      "first_name": "Dimitrios"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Evans",
+      "username": "dee2b",
+      "id": "dee2b",
+      "first_name": "David"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Stankovic",
+      "username": "jas9f",
+      "id": "jas9f",
+      "first_name": "John"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Shen",
+      "username": "hs6ms",
+      "id": "hs6ms",
+      "first_name": "Haiying"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Ray",
+      "username": "br8jr",
+      "id": "br8jr",
+      "first_name": "Baishakhi"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Hendawi",
+      "username": "ah7by",
+      "id": "ah7by",
+      "first_name": "Abdeltawab"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Berman",
+      "username": "jdb8pc",
+      "id": "jdb8pc",
+      "first_name": "John"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Abdelbaki",
+      "username": "aha3e",
+      "id": "aha3e",
+      "first_name": "Ala"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Timchenko",
+      "username": "it2h",
+      "id": "it2h",
+      "first_name": "Irina"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Kochalski",
+      "username": "kdk7rn",
+      "id": "kdk7rn",
+      "first_name": "Katelynn"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Bonventre",
+      "username": "pjb9ub",
+      "id": "pjb9ub",
+      "first_name": "Peter"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Pereira",
+      "username": "lp2h",
+      "id": "lp2h",
+      "first_name": "Luis"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Bourdon",
+      "username": "psb7p",
+      "id": "psb7p",
+      "first_name": "Paul"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Santharoubane",
+      "username": "rhs8e",
+      "id": "rhs8e",
+      "first_name": "Ramanujan"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "West",
+      "username": "lww8k",
+      "id": "lww8k",
+      "first_name": "Lloyd"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Wan",
+      "username": "xw5he",
+      "id": "xw5he",
+      "first_name": "Xiang"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Petrov",
+      "username": "lap5r",
+      "id": "lap5r",
+      "first_name": "Leonid"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Melcher",
+      "username": "tam7b",
+      "id": "tam7b",
+      "first_name": "Tai"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Foldes",
+      "username": "jf8dc",
+      "id": "jf8dc",
+      "first_name": "Juraj"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Herbst",
+      "username": "iwh",
+      "id": "iwh",
+      "first_name": "Ira"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Imbrie",
+      "username": "ji2k",
+      "id": "ji2k",
+      "first_name": "John"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Ramirez",
+      "username": "der",
+      "id": "der",
+      "first_name": "Donald"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Do",
+      "username": "yqd3p",
+      "id": "yqd3p",
+      "first_name": "Yen"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Rapinchuk",
+      "username": "asr3x",
+      "id": "asr3x",
+      "first_name": "Andrei"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Holt",
+      "username": "jh5am",
+      "id": "jh5am",
+      "first_name": "Jeffrey"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Zhang",
+      "username": "zz2d",
+      "id": "zz2d",
+      "first_name": "Zezhou"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Huneke",
+      "username": "clh4xd",
+      "id": "clh4xd",
+      "first_name": "Craig"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Maloni",
+      "username": "sm4cw",
+      "id": "sm4cw",
+      "first_name": "Sara"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Morse",
+      "username": "jlm6cj",
+      "id": "jlm6cj",
+      "first_name": "Jennifer"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Saenz",
+      "username": "ais6a",
+      "id": "ais6a",
+      "first_name": "Axel"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Gromoll",
+      "username": "hcg3m",
+      "id": "hcg3m",
+      "first_name": "Hans"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Farhat",
+      "username": "af7py",
+      "id": "af7py",
+      "first_name": "Aseel"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Parshall",
+      "username": "bjp8w",
+      "id": "bjp8w",
+      "first_name": "Brian"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Krushkal",
+      "username": "vk6e",
+      "id": "vk6e",
+      "first_name": "Vyacheslav"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Koberda",
+      "username": "tmk5a",
+      "id": "tmk5a",
+      "first_name": "Thomas"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Parshall",
+      "username": "khp3k",
+      "id": "khp3k",
+      "first_name": "Karen"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Mark",
+      "username": "th8ma",
+      "id": "th8ma",
+      "first_name": "Thomas"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Abramenko",
+      "username": "pa8e",
+      "id": "pa8e",
+      "first_name": "Peter"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Abdesselam",
+      "username": "aa4cr",
+      "id": "aa4cr",
+      "first_name": "Abdelmalek"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Webster",
+      "username": "btw4e",
+      "id": "btw4e",
+      "first_name": "Benjamin"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Bergner",
+      "username": "jeb2md",
+      "id": "jeb2md",
+      "first_name": "Julia"
+    }
+  },
+  {
+    "model": "api.Instructor",
+    "fields": {
+      "password": "",
+      "last_name": "Wang",
+      "username": "ww9c",
+      "id": "ww9c",
+      "first_name": "Weiqiang"
+    }
+  }
+]

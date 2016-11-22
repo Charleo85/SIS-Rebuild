@@ -7,7 +7,6 @@ import json
 
 tabs = []
 def parse_course(href):
-    output = open("output.json", "w")
     course_page = requests.get('http://rabi.phys.virginia.edu/mySIS/CS2/'+href)
 
     tree = html.fromstring(course_page.content)
@@ -34,6 +33,8 @@ def parse_course(href):
                 fields["number"] = CourseNum
                 fields["title"] = CourseName
                 fields["id"] = int(table.xpath('./td')[0].xpath('./a[last()]/text()')[0])
+                if (table.xpath('./td/a/strong')):
+                    fields["website"] = table.xpath('./td/a/@href')[0]
                 fields["section"] = table.xpath('./td')[1].text
                 fields["meet_time"] = table.xpath('./td')[6].text
                 fields["location"] = table.xpath('./td')[7].text
@@ -46,10 +47,6 @@ def parse_course(href):
                 tab["fields"] = fields
                 # print(tab)
                 tabs.append(tab)
-
-    json_data = json.dumps(ins+tabs)
-    output.write(json_data)
-    output.close()
 
 instructors = set()
 ins = []
@@ -69,7 +66,7 @@ def parse_instructor(name):
             fields["last_name"] = info[1]
             fields["id"] = match[0]
             fields["username"] = match[0]
-            fields["password"] = "pbkdf2_sha256$20000$guFPvWv5N43G$VID/F7KQwoK5oUAj1JwmIGbnWHLPMLvalW8kmAQAoXA="
+            fields["password"] = ""
             tab["fields"] = fields
             # print(tab)
             ins.append(tab)
@@ -77,7 +74,6 @@ def parse_instructor(name):
         return id
     else:
         return "Staff"
-
 
 # # Uncomment to load course in all departments
 # catalog_page = requests.get('http://rabi.phys.virginia.edu/mySIS/CS2/')
@@ -91,3 +87,14 @@ def parse_instructor(name):
 
 # load course in CS departments only
 parse_course('page.php?Semester=1172&Type=Group&Group=CompSci')
+parse_course('page.php?Semester=1172&Type=Group&Group=Mathematics')
+
+# save data into json
+output = open("courses.json", "w")
+course_data = json.dumps(tabs)
+output.write(course_data)
+output.close()
+output = open("instructors.json", "w")
+instructor_data = json.dumps(ins)
+output.write(instructor_data)
+output.close()
