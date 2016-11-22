@@ -27,9 +27,12 @@ install: # prepare mySQL database
     GRANT ALL PRIVILEGES ON *.* TO 'www'@'%';"
 before_script:
   - docker-compose up -d
-  - sleep 90 # need to give time for containers to start
+  - sleep 150 # need to give time for containers to start
 
 script:
+  - >
+    docker exec -it models bash -c
+    "pip install -r requirement.txt && ./manage.py test"
   - >
     docker exec -it exp bash -c
     "pip install -r requirement.txt && ./manage.py test"
