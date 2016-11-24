@@ -16,7 +16,7 @@ finally:
 
     # Load fixture into elastic search
     data = {}
-    with open('./models/instructor.json') as data_file:
+    with open('./models/instructors.json') as data_file:
         data = json.load(data_file)
     with open('./models/students.json') as data_file:
         data += json.load(data_file)
