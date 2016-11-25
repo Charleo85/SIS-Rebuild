@@ -83,6 +83,20 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 
 #### Front-End Testing with Selenium
 
+- Setting Up the Testing:
+
+	- Required library: Selenium. Install via python pip or pip3 (depending on your Python installation):
+	```bash
+	$ pip install selenium
+	```
+	- Required web browser: Google Chrome.
+	- How to run the test: enter the following command (you should see a Chrome window popping up):
+	```bash
+	$ python front_end_test.py
+	```
+
+- Brief Description of Test Cases:
+
 Project 5
 ---------
 
