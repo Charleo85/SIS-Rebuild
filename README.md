@@ -9,10 +9,10 @@ For initial setup, please refer to [Project1](https://github.com/thomaspinckney3
 
 **If you are grading this project, please follow the instructions below:**
 
-- Clone or pull the current project from Github:
+- First `clone` or `pull` the current project from Github:
 ```bash
 $ cd ~/cs4501/app/
-$ git clone https://github.com/Charleo85/SIS-Rebuild **or** git pull
+$ git clone https://github.com/Charleo85/SIS-Rebuild
 ```
 
 - Locate and run the docker-compose file:
