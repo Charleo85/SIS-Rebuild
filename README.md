@@ -98,8 +98,11 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 - Brief Description of Test Cases:
 
 	- All the tests use the Python library `unittest`. There are 9 of them in total.
+	
 	- The tests briefly go through everything we need to implement from Project 3 (when the web interface was created) to 5. Details can be found in the testing script.
+	
 	- **Important Post Condition**: when the tests are finished, one (1) new instructor (`id = jc7y`) and one (1) new course (`id = 10000`) are created.
+	
 		- Since deleting instances is not the responsibility for the web front end, the deleting of these testing instances is not implemented.
 		- You can delete it afterwards by calling the models layer API: `http://127.0.0.1:8001/api/{{ modelname }}/delete/`. POST data should include the id for each instance.
 
