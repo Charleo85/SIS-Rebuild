@@ -85,17 +85,24 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 
 - Setting Up the Testing:
 
-	- Required library: Selenium. Install via python pip or pip3 (depending on your Python installation):
+	- Required external library: Selenium. Install it via python `pip` (or `pip3`):
 	```bash
-	$ pip install selenium
+	$ pip install selenium **or** pip3 install selenium
 	```
 	- Required web browser: Google Chrome.
 	- How to run the test: enter the following command (you should see a Chrome window popping up):
 	```bash
-	$ python front_end_test.py
+	$ python test_front_end.py **or** python3 test_frond_end.py
 	```
 
 - Brief Description of Test Cases:
+
+	- All the tests use the Python library `unittest`. There are 9 of then in total.
+	- The tests briefly go through everything we need to implement from Project 3 (when the web interface was created) to 5. Details can be found in the testing script.
+	- **Important Post Condition**: when the tests are finished, one (1) new instructor (`id = jc7y`) and one (1) new course (`id = 10000`) are created.
+
+		- Since deleting instances is not the responsibility for the web front end, the deleting of these testing instances is not implemented.
+		- You can delete it afterwards by calling the models layer API: `127.0.0.1:8001/api/{{ modelname }}/delete/`. POST data should include the id for each instance.
 
 Project 5
 ---------
@@ -160,7 +167,6 @@ Project 4
 		- `id = tp3ks, username = tp3ks, password = thomas`
 		- `id = asb2t, username = asb2t, password = creepy`
 		- `id = dee2b, username = dee2b, password = daveevans`
-		- `id = mve2x, username = mve2x, password = ershov`
 
 	- Students:
 		- `id = tq7bw, username = tq7bw, password = tonyqiu`

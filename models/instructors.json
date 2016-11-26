@@ -82,7 +82,7 @@
   {
     "model": "api.Instructor",
     "fields": {
-      "password": "",
+      "password": "pbkdf2_sha256$20000$wgoLhj5qCbU4$YvPrw9hK3BNEGIckqTCPr0lOqzF+pvP+ic8jsi4HfY4=",
       "last_name": "Bloomfield",
       "username": "asb2t",
       "id": "asb2t",
@@ -182,7 +182,7 @@
   {
     "model": "api.Instructor",
     "fields": {
-      "password": "",
+      "password": "pbkdf2_sha256$20000$ehCbRahmiM2J$5uA/WdDTVaB6zLOmPnxaGdQC/+nDTN95oPrCGpVEZoE=",
       "last_name": "Pinckney",
       "username": "tp3ks",
       "id": "tp3ks",
@@ -312,7 +312,7 @@
   {
     "model": "api.Instructor",
     "fields": {
-      "password": "",
+      "password": "pbkdf2_sha256$20000$bBoVotulzZEi$aKe9qLL4Xt6uGEf302wxBIj6O4r/MOf6S4x19mzFM6E=",
       "last_name": "Evans",
       "username": "dee2b",
       "id": "dee2b",
