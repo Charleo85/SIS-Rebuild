@@ -5,7 +5,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 
 import unittest
-import urllib.request, urllib.parse
 
 global driver
 driver = webdriver.Chrome('./chromedriver')
