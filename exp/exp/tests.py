@@ -112,7 +112,7 @@ class CreateAndSearchTestCase(TestCase):
     def tearDown(self):
         # delete both instances for testing
         url = 'http://models-api:8000/api/course/delete/'
-        post_data = {'id': '20529'}
+        post_data = {'id': '30000'}
         views_model._make_post_request(url, post_data)
 
         url = 'http://models-api:8000/api/student/delete/'
@@ -122,11 +122,14 @@ class CreateAndSearchTestCase(TestCase):
         # delete instances in elasticsearch
         es = Elasticsearch(['es'])
         time.sleep(5) #Sleep to let Elastic Search initialize
-        es.delete(index='general_index', doc_type='listing', id='30000')
-        es.delete(index='course_index', doc_type='listing', id='30000')
-        es.delete(index='general_index', doc_type='listing', id='yz9fy')
-        es.delete(index='student_index', doc_type='listing', id='yz9fy')
-
+        try:
+            es.delete(index='general_index', doc_type='listing', id='30000')      
+            es.delete(index='course_index', doc_type='listing', id='30000')
+            es.delete(index='general_index', doc_type='listing', id='yz9fy')
+            es.delete(index='student_index', doc_type='listing', id='yz9fy')
+        except:
+            print("Never Mind, we are done!")
+            
     def test_course_create(self):
         time.sleep(30)
         post_data = {
