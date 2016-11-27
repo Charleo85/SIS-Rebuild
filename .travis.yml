@@ -27,17 +27,17 @@ install: # prepare mySQL database
     GRANT ALL PRIVILEGES ON *.* TO 'www'@'%';"
 before_script:
   - docker-compose up -d
-  - sleep 150 # need to give time for containers to start
+  - sleep 60 # need to give time for containers to start
 
 script:
   - >
     docker exec -it models bash -c
     "pip install -r requirement.txt && ./manage.py test"
+    # run Django unit tests on models
   - >
     docker exec -it exp bash -c
     "pip install -r requirement.txt && ./manage.py test"
-    # run Django unit tests on models
-    # can put other tests (e.g. integrations) here too with exp, web containers
+    # run Django unit tests on exp
 
 after_success:
 
