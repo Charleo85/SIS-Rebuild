@@ -34,7 +34,7 @@ before_script:
   - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - # install chrome for selenium
   - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
   - sudo apt-get update
-  - sudo apt-get install google-chrome-stable
+  - sudo apt-get install chromium-browser
   - sleep 60 # need to give time for containers and xvfb to start
 
 script:
