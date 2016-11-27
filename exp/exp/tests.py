@@ -87,7 +87,7 @@ class CreateAndSearchTestCase(TestCase):
             'section': '008',
             'instructor': 'dee2b',
             'title': 'Understanding and Securing TLS',
-            'id': '20529',
+            'id': '30000',
             'max_students': 30,
         }
         request = self.factory.post('/course/create/', course_data)
@@ -122,12 +122,13 @@ class CreateAndSearchTestCase(TestCase):
         # delete instances in elasticsearch
         es = Elasticsearch(['es'])
         time.sleep(5) #Sleep to let Elastic Search initialize
-        es.delete(index='general_index', doc_type='listing', id='20529')
-        es.delete(index='course_index', doc_type='listing', id='20529')
+        es.delete(index='general_index', doc_type='listing', id='30000')
+        es.delete(index='course_index', doc_type='listing', id='30000')
         es.delete(index='general_index', doc_type='listing', id='yz9fy')
         es.delete(index='student_index', doc_type='listing', id='yz9fy')
 
     def test_course_create(self):
+        time.sleep(30)
         post_data = {
             'search_query': 'TLS',
             'query_specifier': 'course',
