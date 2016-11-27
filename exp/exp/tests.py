@@ -121,15 +121,15 @@ class CreateAndSearchTestCase(TestCase):
 
         # delete instances in elasticsearch
         es = Elasticsearch(['es'])
-        time.sleep(5) #Sleep to let Elastic Search initialize
+        #time.sleep(5) #Sleep to let Elastic Search initialize
         try:
-            es.delete(index='general_index', doc_type='listing', id='30000')      
+            es.delete(index='general_index', doc_type='listing', id='30000')
             es.delete(index='course_index', doc_type='listing', id='30000')
             es.delete(index='general_index', doc_type='listing', id='yz9fy')
             es.delete(index='student_index', doc_type='listing', id='yz9fy')
         except:
-            print("Never Mind, we are done!")
-            
+            print("Delete failed... Never mind, we are done!")
+
     def test_course_create(self):
         post_data = {
             'search_query': 'TLS',
