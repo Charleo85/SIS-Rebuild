@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import Select
 import unittest
 
 global driver
-driver = webdriver.Chrome('./chromedriver')
+driver = webdriver.Chrome('./selenium/chromedriver')
 
 # Project 3 related: homepage, item listings, and item details
 class BasicTestCase(unittest.TestCase):
