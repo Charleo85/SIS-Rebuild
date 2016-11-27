@@ -131,7 +131,6 @@ class CreateAndSearchTestCase(TestCase):
             print("Never Mind, we are done!")
             
     def test_course_create(self):
-        time.sleep(30)
         post_data = {
             'search_query': 'TLS',
             'query_specifier': 'course',
@@ -147,7 +146,6 @@ class CreateAndSearchTestCase(TestCase):
         self.assertEqual(resp_data['hits'][0]['label'], c_label)
 
     def test_student_create(self):
-        time.sleep(30)
         post_data = {
             'search_query': 'ian',
             'query_specifier': 'student',
