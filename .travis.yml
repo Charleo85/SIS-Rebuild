@@ -47,7 +47,7 @@ script:
     "pip install -r requirement.txt && ./manage.py test"
     # run Django unit tests on exp
   - >
-    pip3 install -r requirement.txt && python3 test_front_end.py
+    pip3 install -r requirement.txt && python3 .selenium/test_front_end_travis.py
     # run selenium front end tests with xvfb
 after_success:
 

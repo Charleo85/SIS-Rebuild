@@ -92,17 +92,17 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 	- Required web browser: Google Chrome.
 	- How to run the test: enter the following command (you should see a Chrome window popping up):
 	```bash
-	$ python test_front_end.py **or** python3 test_frond_end.py
+	$ python ./selenium/test_front_end.py **or** python3 ./selenium/test_frond_end.py
 	```
 
 - Brief Description of Test Cases:
 
 	- All the tests use the Python library `unittest`. There are 9 of them in total.
-	
+
 	- The tests briefly go through everything we need to implement from Project 3 (when the web interface was created) to 5. Details can be found in the testing script.
-	
+
 	- **Important Post Condition**: when the tests are finished, one (1) new instructor (`id = jc7y`) and one (1) new course (`id = 10000`) are created.
-	
+
 		- Since deleting instances is not the responsibility for the web front end, the deleting of these testing instances is not implemented.
 		- You can delete it afterwards by calling the models layer API: `http://127.0.0.1:8001/api/{{ modelname }}/delete/`. POST data should include the id for each instance.
 *********
@@ -110,9 +110,9 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 #### Automatic testing on Travis CI
 
 - Test ~~and deploy~~ after each commit:
-  
+
   - Integrated with Github Repo
-  - Run testing on Models and Exp layer
+  - Run testing on Models and Exp layer as well as the Front-end with Selenium
   - Update the testing result via Slack group notification
   - ~~Deploy for public release only if testing succeeds~~
 
@@ -125,7 +125,7 @@ $ pip3 install -r requirement.txt **or** pip install -r requirement.txt
 $ python3 /models/parse_data.py **or** python /models/parse_data.py
 $ ./cleardb.sh & docker-compose up -d
 ```
-  - Generate Django fixture in instructors.json & courses.json 
+  - Generate Django fixture in instructors.json & courses.json
   - Script to force clean up containers and database
 
 Project 5
