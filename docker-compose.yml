@@ -1,92 +1,147 @@
-models:
-    container_name: models
-    image: zakinator123/cs4501:1.0
-    volumes:
-        - ./models/:/app
-    ports:
-        - "8001:8000"
-    external_links:
-        - mysql:db
-    command: bash -c "python /app/manage.py makemigrations api; python /app/manage.py migrate; python /app/manage.py loaddata /app/instructors.json /app/courses.json /app/students.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
+version: '2'
+services:
+  models:
+      container_name: models
+      image: zakinator123/cs4501:${TAG}
+      volumes:
+          - ./models/:/app
+      ports:
+          - "8001:8000"
+      external_links:
+          - mysql:db
+      environment:
+        - DB_HOST=db
+        - DB_PORT=3306
+#      extra_hosts:
+#        - db:db
+      command: bash -c "python /app/manage.py makemigrations api; python /app/manage.py migrate; python /app/manage.py loaddata /app/instructors.json /app/courses.json /app/students.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
+      networks:
+         - testing
 
-exp:
-    container_name: exp
-    image: zakinator123/cs4501:1.0
-    volumes:
-        - ./exp/:/app
-    ports:
-        - "8002:8000"
-    links:
-        - models:models-api
-        - kafka:kafka
-        - es:es
-    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
+  exp:
+      container_name: exp
+      image: zakinator123/cs4501:${TAG}
+      volumes:
+          - ./exp/:/app
+      ports:
+          - "8002:8000"
+      links:
+          - models:models-api
+          - kafka:kafka
+          - es:es
+      extra_hosts:
+          - models:models-api
+          - kafka:kafka
+          - es:es
+      command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
+      networks:
+         - testing
 
-web1:
-    container_name: web1
-    image: zakinator123/cs4501:1.0
-    volumes:
-        - ./web/:/app
-    links:
-        - exp:exp-api
-        - redis
-    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+  web1:
+      container_name: web1
+      image: zakinator123/cs4501:${TAG}
+      volumes:
+          - ./web/:/app
+      ports:
+          - "8000:8000"
+      links:
+          - exp:exp-api
+          - redis:redis
+      extra_hosts:
+          - exp:exp-api
+          - redis:redis
+      command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+      networks:
+         - testing
 
+# web2:
+#      container_name: web2
+#      image: zakinator123/cs4501:${TAG}
+#      volumes:
+#          - ./web/:/app
+#      #ports:
+#      #    - "8000:8000"
+#      links:
+#          - exp:exp-api
+#          - redis:redis
+#      extra_hosts:
+#          - exp:exp-api
+#          - redis:redis
+#      command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+#      networks:
+#         - testing
 
-web2:
-    container_name: web2
-    image: zakinator123/cs4501:1.0
-    volumes:
-        - ./web/:/app
-    links:
-        - exp:exp-api
-        - redis
-    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+#  web3:
+#      container_name: web3
+#     image: zakinator123/cs4501:${TAG}
+#     volumes:
+#          - ./web/:/app
+##      ports:
+##          - "8000:8000"
+#      links:
+#          - exp:exp-api
+#          - redis:redis
+#     extra_hosts:
+#          - exp:exp-api
+#         - redis:redis
+#     command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+#      networks:
+#         - testing
 
-web3:
-    container_name: web3
-    image: zakinator123/cs4501:1.0
-    volumes:
-        - ./web/:/app
-    links:
-        - exp:exp-api
-        - redis
-    command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+  redis:
+      container_name: redis
+      image: redis
+      networks:
+         - testing
 
-redis:
-    container_name: redis
-    image: redis
+  kafka:
+      image: spotify/kafka
+      container_name: kafka
+      environment:
+        ADVERTISED_HOST: kafka
+        ADVERTISED_PORT: 9092
+      hostname: kafka
+      networks:
+         - testing
 
-kafka:
-    image: spotify/kafka
-    container_name: kafka
-    environment:
-      ADVERTISED_HOST: kafka
-      ADVERTISED_PORT: 9092
-    hostname: kafka
+  es:
+      image: elasticsearch:2.0
+      container_name: es
+      ports:
+        - "9200:9200"
+      networks:
+         - testing
 
-es:
-    image: elasticsearch:2.0
-    container_name: es
-    ports:
-      - "9200:9200"
+  batch:
+      image: zakinator123/cs4501:${TAG}
+      container_name: batch
+      volumes:
+         - ./:/app
+      links:
+          - kafka:kafka
+          - es:es
+      extra_hosts:
+          - kafka:kafka
+          - es:es
+      command: bash -c "python /app/batch_script.py"
+      networks:
+         - testing
 
-batch:
-    image: zakinator123/cs4501:1.0
-    container_name: batch
-    volumes:
-       - ./:/app
-    links:
-       - kafka:kafka
-       - es:es
-    command: bash -c "python /app/batch_script.py"
+  loadbalancer:
+      image: zakinator123/haproxyloadbalancer
+      container_name: lb
+      ports:
+         - "80:80"
+      links:
+         - web1:web1
+         - web2:web2
+         - web3:web3
+#      extra_hosts:
+#         - web1:web1
+#         - web2:web2
+#        - web3:web3
+      networks:
+         - testing
 
-loadbalancer:
-    image: zakinator123/haproxyloadbalancer
-    container_name: lb
-    ports:
-        - "80:80"
-    links:
-       - web1
-       - web2
-       - web3
+networks:
+  testing:
