@@ -1,5 +1,24 @@
 version: '2'
 services:
+  mysql:
+      container_name: mysql
+      image: mysql:5.7.14
+      volumes:
+          - ~/cs4501/db:/var/lib/mysql
+      environment:
+          - MYSQL\_ROOT\_PASSWORD="$$3cureUS"
+      networks:
+          - network1
+
+  #mysql-cmdline:
+  #    container_name: mysql-cmdline
+  #    image: mysql:5.7.14
+  #    links:
+  #        - mysql:db
+  #    volumes:
+  #        - ~/cs4501:/app
+  #    command: bash -c "/app/app/SIS-Rebuild/create_database.sh"
+
   models:
       container_name: models
       image: zakinator123/cs4501:${TAG}
@@ -7,16 +26,11 @@ services:
           - ./models/:/app
       ports:
           - "8001:8000"
-      external_links:
+      links:
           - mysql:db
-      environment:
-        - DB_HOST=db
-        - DB_PORT=3306
-#      extra_hosts:
-#        - db:db
       command: bash -c "python /app/manage.py makemigrations api; python /app/manage.py migrate; python /app/manage.py loaddata /app/instructors.json /app/courses.json /app/students.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
       networks:
-         - testing
+         - network1
 
   exp:
       container_name: exp
@@ -29,21 +43,15 @@ services:
           - models:models-api
           - kafka:kafka
           - es:es
-      extra_hosts:
-          - models:models-api
-          - kafka:kafka
-          - es:es
       command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
       networks:
-         - testing
+         - network1
 
   web1:
       container_name: web1
       image: zakinator123/cs4501:${TAG}
       volumes:
           - ./web/:/app
-      ports:
-          - "8000:8000"
       links:
           - exp:exp-api
           - redis:redis
@@ -52,96 +60,83 @@ services:
           - redis:redis
       command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
       networks:
-         - testing
+         - network1
 
-# web2:
-#      container_name: web2
-#      image: zakinator123/cs4501:${TAG}
-#      volumes:
-#          - ./web/:/app
-#      #ports:
-#      #    - "8000:8000"
-#      links:
-#          - exp:exp-api
-#          - redis:redis
-#      extra_hosts:
-#          - exp:exp-api
-#          - redis:redis
-#      command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
-#      networks:
-#         - testing
+  web2:
+      container_name: web2
+      image: zakinator123/cs4501:${TAG}
+      volumes:
+          - ./web/:/app
+      #ports:
+      #    - "8000:8000"
+      links:
+          - exp:exp-api
+          - redis:redis
+      command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+      networks:
+         - network1
 
-#  web3:
-#      container_name: web3
-#     image: zakinator123/cs4501:${TAG}
-#     volumes:
-#          - ./web/:/app
-##      ports:
-##          - "8000:8000"
-#      links:
-#          - exp:exp-api
-#          - redis:redis
-#     extra_hosts:
-#          - exp:exp-api
-#         - redis:redis
-#     command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
-#      networks:
-#         - testing
+  web3:
+       container_name: web3
+       image: zakinator123/cs4501:${TAG}
+       volumes:
+            - ./web/:/app
+  #      ports:
+  #          - "8000:8000"
+       links:
+            - exp:exp-api
+            - redis:redis
+       command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+       networks:
+           - network1
 
   redis:
-      container_name: redis
-      image: redis
-      networks:
-         - testing
+       container_name: redis
+       image: redis
+       networks:
+          - network1
 
   kafka:
-      image: spotify/kafka
-      container_name: kafka
-      environment:
-        ADVERTISED_HOST: kafka
-        ADVERTISED_PORT: 9092
-      hostname: kafka
-      networks:
-         - testing
+       image: spotify/kafka
+       container_name: kafka
+       environment:
+         ADVERTISED_HOST: kafka
+         ADVERTISED_PORT: 9092
+       hostname: kafka
+       networks:
+          - network1
 
   es:
-      image: elasticsearch:2.0
-      container_name: es
-      ports:
-        - "9200:9200"
-      networks:
-         - testing
+       image: elasticsearch:2.0
+       container_name: es
+       ports:
+         - "9200:9200"
+       networks:
+          - network1
 
   batch:
-      image: zakinator123/cs4501:${TAG}
-      container_name: batch
-      volumes:
-         - ./:/app
-      links:
-          - kafka:kafka
-          - es:es
-      extra_hosts:
-          - kafka:kafka
-          - es:es
-      command: bash -c "python /app/batch_script.py"
-      networks:
-         - testing
+       image: zakinator123/cs4501:${TAG}
+       container_name: batch
+       volumes:
+          - ./:/app
+       links:
+           - kafka:kafka
+           - es:es
+       command: bash -c "python /app/batch_script.py"
+       networks:
+          - network1
 
   loadbalancer:
-      image: zakinator123/haproxyloadbalancer
-      container_name: lb
-      ports:
-         - "80:80"
-      links:
-         - web1:web1
-         - web2:web2
-         - web3:web3
-#      extra_hosts:
-#         - web1:web1
-#         - web2:web2
-#        - web3:web3
-      networks:
-         - testing
+       image: zakinator123/haproxyloadbalancer
+       container_name: lb
+       ports:
+          - "80:80"
+       links:
+          - web1:web1
+          - web2:web2
+          - web3:web3
+       networks:
+          - network1
 
 networks:
-  testing:
+    network1:
