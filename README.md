@@ -1,3 +1,9 @@
+[![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)]()
+[![PyPI](https://img.shields.io/pypi/l/Django.svg)]()
+[![PyPI](https://img.shields.io/pypi/status/Django.svg)]()
+<a href="https://travis-ci.com"><img src="https://travis-ci.com/Charleo85/SIS-Rebuild.svg?token=p3baya2L6nJfueKHztqt&branch=master"></a>
+[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://162.243.117.39)
+
 CS4501 SIS Rebuild Project
 =====
 This project attempts to integrate the current functionality of [UVa SIS](https://sisuva.admin.virginia.edu), [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com), in order to provide students and faculties an efficient way to do academic planning.
@@ -111,6 +117,8 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 
 - Test ~~and deploy~~ after each commit:
 
+	- Build Logs:   [Link](https://travis-ci.com/Charleo85/SIS-Rebuild/builds)
+	
   - Integrated with Github Repo
   - Run testing on Models and Exp layer as well as the Front-end with Selenium
   - Update the testing result via Slack group notification

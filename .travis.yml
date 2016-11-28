@@ -5,7 +5,11 @@ language: python
 python:
   - "3.5"
 cache:
+  - pip
   - pip3
+  directories:
+    - $HOME/.cache/pip
+
 
 # if specific versions of docker or docker-compose are needed, see travis-CI docs
 services:
@@ -35,7 +39,7 @@ before_script:
   - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
   - sudo apt-get update
   - sudo apt-get install google-chrome-stable
-  - sleep 60 # need to give time for containers and xvfb to start
+  - sleep 30 # need to give time for containers and xvfb to start
 
 script:
   - >
