@@ -7,9 +7,6 @@ python:
 cache:
   - pip
   - pip3
-  directories:
-    - $HOME/.cache/pip
-
 
 # if specific versions of docker or docker-compose are needed, see travis-CI docs
 services:
