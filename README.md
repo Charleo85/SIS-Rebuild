@@ -1,3 +1,9 @@
+[![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)]()
+[![PyPI](https://img.shields.io/pypi/l/Django.svg)]()
+[![PyPI](https://img.shields.io/pypi/status/Django.svg)]()
+<a href="https://travis-ci.com"><img src="https://travis-ci.com/Charleo85/SIS-Rebuild.svg?token=p3baya2L6nJfueKHztqt&branch=master"></a>
+[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://162.243.117.39)
+
 CS4501 SIS Rebuild Project
 =====
 This project attempts to integrate the current functionality of [UVa SIS](https://sisuva.admin.virginia.edu), [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com), in order to provide students and faculties an efficient way to do academic planning.
@@ -9,10 +15,10 @@ For initial setup, please refer to [Project1](https://github.com/thomaspinckney3
 
 **If you are grading this project, please follow the instructions below:**
 
-- Clone or pull the current project from Github:
+- First `clone` or `pull` the current project from Github:
 ```bash
 $ cd ~/cs4501/app/
-$ git clone https://github.com/Charleo85/SIS-Rebuild **or** git pull
+$ git clone https://github.com/Charleo85/SIS-Rebuild
 ```
 
 - Locate and run the docker-compose file:
@@ -83,6 +89,54 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 
 #### Front-End Testing with Selenium
 
+- Setting Up the Testing:
+
+	- Required external library: Selenium. Install it via python `pip` (or `pip3`):
+	```bash
+	$ pip install selenium **or** pip3 install selenium
+	```
+	- Required web browser: Google Chrome.
+	- How to run the test: enter the following command (you should see a Chrome window popping up):
+	```bash
+	$ python ./selenium/test_front_end.py **or** python3 ./selenium/test_frond_end.py
+	```
+
+- Brief Description of Test Cases:
+
+	- All the tests use the Python library `unittest`. There are 9 of them in total.
+
+	- The tests briefly go through everything we need to implement from Project 3 (when the web interface was created) to 5. Details can be found in the testing script.
+
+	- **Important Post Condition**: when the tests are finished, one (1) new instructor (`id = jc7y`) and one (1) new course (`id = 10000`) are created.
+
+		- Since deleting instances is not the responsibility for the web front end, the deleting of these testing instances is not implemented.
+		- You can delete it afterwards by calling the models layer API: `http://127.0.0.1:8001/api/{{ modelname }}/delete/`. POST data should include the id for each instance.
+
+*********
+
+#### Automatic testing on Travis CI
+
+- Test ~~and deploy~~ after each commit:
+
+	- Build Logs:   [Link](https://travis-ci.com/Charleo85/SIS-Rebuild/builds)
+	
+  - Integrated with Github Repo
+  - Run testing on Models and Exp layer as well as the Front-end with Selenium
+  - Update the testing result via Slack group notification
+  - ~~Deploy for public release only if testing succeeds~~
+
+*********
+
+#### Fixure Parsing from Lou's List
+
+```bash
+$ pip3 install -r requirement.txt **or** pip install -r requirement.txt
+$ python3 /models/parse_data.py **or** python /models/parse_data.py
+$ ./cleardb.sh & docker-compose up -d
+```
+  - Generate Django fixture in instructors.json & courses.json
+  - Script to force clean up containers and database
+
 Project 5
 ---------
 
@@ -146,7 +200,6 @@ Project 4
 		- `id = tp3ks, username = tp3ks, password = thomas`
 		- `id = asb2t, username = asb2t, password = creepy`
 		- `id = dee2b, username = dee2b, password = daveevans`
-		- `id = mve2x, username = mve2x, password = ershov`
 
 	- Students:
 		- `id = tq7bw, username = tq7bw, password = tonyqiu`

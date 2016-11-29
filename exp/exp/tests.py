@@ -24,11 +24,11 @@ class SearchTestCase(TestCase):
         resp_data = json.loads(response.content.decode('utf-8'))
 
         self.assertEqual(resp_data['status_code'], 200)
-        self.assertEqual(resp_data['size'], 3)
+        self.assertEqual(resp_data['size'], 2)
 
     def test_course_search(self):
         post_data = {
-            'search_query': 'internet scale app',
+            'search_query': 'tp3ks',
             'query_specifier': 'course',
         }
         request = self.factory.post('/search/', data=post_data)
@@ -38,8 +38,8 @@ class SearchTestCase(TestCase):
         self.assertEqual(resp_data['status_code'], 200)
         self.assertEqual(resp_data['size'], 1)
         self.assertEqual(resp_data['hits'][0]['model'], 'api.Course')
-        c_label = 'CS 4501: Internet Scale App (Thomas Pinckney)'
-        self.assertEqual(resp_data['hits'][0]['label'], c_label)
+        label = 'CS 4501: Special Topics in Computer Science (Thomas Pinckney)'
+        self.assertEqual(resp_data['hits'][0]['label'], label)
 
     def test_instructor_search(self):
         post_data = {
@@ -87,7 +87,7 @@ class CreateAndSearchTestCase(TestCase):
             'section': '008',
             'instructor': 'dee2b',
             'title': 'Understanding and Securing TLS',
-            'id': '20529',
+            'id': '30000',
             'max_students': 30,
         }
         request = self.factory.post('/course/create/', course_data)
@@ -105,14 +105,14 @@ class CreateAndSearchTestCase(TestCase):
         request = self.factory.post('/student/signup/', student_data)
         views_auth.signup(request, 1)
 
-        # sleeps for 15s to wait for instance creation to complete
+        # sleeps for 30s to wait for instance creation to complete
         # this looks reaaaaaaaally stupid, but have to keep it...
-        time.sleep(15)
+        time.sleep(30)
 
     def tearDown(self):
         # delete both instances for testing
         url = 'http://models-api:8000/api/course/delete/'
-        post_data = {'id': '20529'}
+        post_data = {'id': '30000'}
         views_model._make_post_request(url, post_data)
 
         url = 'http://models-api:8000/api/student/delete/'
@@ -121,11 +121,14 @@ class CreateAndSearchTestCase(TestCase):
 
         # delete instances in elasticsearch
         es = Elasticsearch(['es'])
-        time.sleep(5) #Sleep to let Elastic Search initialize
-        es.delete(index='general_index', doc_type='listing', id='20529')
-        es.delete(index='course_index', doc_type='listing', id='20529')
-        es.delete(index='general_index', doc_type='listing', id='yz9fy')
-        es.delete(index='student_index', doc_type='listing', id='yz9fy')
+        #time.sleep(5) #Sleep to let Elastic Search initialize
+        try:
+            es.delete(index='general_index', doc_type='listing', id='30000')
+            es.delete(index='course_index', doc_type='listing', id='30000')
+            es.delete(index='general_index', doc_type='listing', id='yz9fy')
+            es.delete(index='student_index', doc_type='listing', id='yz9fy')
+        except:
+            print("Delete failed... Never mind, we are done!")
 
     def test_course_create(self):
         post_data = {
