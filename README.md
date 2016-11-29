@@ -118,11 +118,10 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 
 - Test ~~and deploy~~ after each commit:
 
-	- Build Logs:   [Link](https://travis-ci.com/Charleo85/SIS-Rebuild/builds)
-	
+  - Build Logs:   [Link](https://travis-ci.com/Charleo85/SIS-Rebuild/builds)
   - Integrated with Github Repo
   - Run testing on Models and Exp layer as well as the Front-end with Selenium
-  - Update the testing result via Slack group notification
+  - Update the testing result via Slack group notification  
   - ~~Deploy for public release only if testing succeeds~~
 
 *********
