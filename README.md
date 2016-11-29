@@ -1,6 +1,6 @@
-[![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)]()
-[![PyPI](https://img.shields.io/pypi/l/Django.svg)]()
-[![PyPI](https://img.shields.io/pypi/status/Django.svg)]()
+![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)
+![PyPI](https://img.shields.io/pypi/l/Django.svg)
+![PyPI](https://img.shields.io/pypi/status/Django.svg)
 <a href="https://travis-ci.com"><img src="https://travis-ci.com/Charleo85/SIS-Rebuild.svg?token=p3baya2L6nJfueKHztqt&branch=master"></a>
 [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://162.243.117.39)
 
