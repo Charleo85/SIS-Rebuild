@@ -10,14 +10,14 @@ services:
       networks:
           - network1
 
-  #mysql-cmdline:
-  #    container_name: mysql-cmdline
-  #    image: mysql:5.7.14
-  #    links:
-  #        - mysql:db
-  #    volumes:
-  #        - ~/cs4501:/app
-  #    command: bash -c "/app/app/SIS-Rebuild/create_database.sh"
+#  mysql-cmdline:
+#      container_name: mysql-cmdline
+#      image: mysql:5.7.14
+#      links:
+#           - mysql:db
+#      volumes:
+#          - ~/cs4501:/app
+#      command: bash -c "/app/app/SIS-Rebuild/MySQLSetup.sh"
 
   models:
       container_name: models
