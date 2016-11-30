@@ -18,6 +18,12 @@ notifications:
 install:
 
 before_script:
+  - mkdir ~/cs4501/
+  - mkdir ~/cs4501/db/
+  - mkdir ~/cs4501/app/
+  - mkdir ~/cs4501/app/SIS-Rebuild/
+  - mv * ~/cs4501/app/SIS-Rebuild/
+  - cd ~/cs4501/app/SIS-Rebuild/
   - docker-compose up -d
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start" # X Virtual Framebuffer to imitate a display
