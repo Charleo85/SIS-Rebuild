@@ -15,19 +15,8 @@ services:
 notifications:
   slack: cs4501-isa:8PZbPGWlRGRcJOHou2DzuQ02
 
-install: # prepare mySQL database
-  - docker pull mysql:5.7.14
-  - mkdir db
-  - >
-    docker run --name mysql -d -e MYSQL_ROOT_PASSWORD='$3cureUS'
-    -v `pwd`/db:/var/lib/mysql mysql:5.7.14
-  - sleep 15 # need to give time for mysql to start
-  - >
-    docker run -it --name mysql-cmd --rm --link mysql:db mysql:5.7.14
-    mysql -uroot -p'$3cureUS' -h db -v -e
-    "CREATE DATABASE cs4501 CHARACTER SET utf8;
-    CREATE USER 'www'@'%' IDENTIFIED BY '\$3cureUS';
-    GRANT ALL PRIVILEGES ON *.* TO 'www'@'%';"
+install: 
+
 before_script:
   - docker-compose up -d
   - "export DISPLAY=:99.0"
