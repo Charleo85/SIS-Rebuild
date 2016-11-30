@@ -22,7 +22,7 @@ before_script:
   - mkdir ~/cs4501/db/
   - mkdir ~/cs4501/app/
   - mkdir ~/cs4501/app/SIS-Rebuild/
-  - mv -v ./* ~/cs4501/app/SIS-Rebuild/
+  - mv -v ./{.[!.],}* ~/cs4501/app/SIS-Rebuild/
   - cd ~/cs4501/app/SIS-Rebuild/
   - ls -a
   - docker-compose up -d
