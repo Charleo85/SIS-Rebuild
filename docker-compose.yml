@@ -6,7 +6,7 @@ services:
       volumes:
           - ../../db:/var/lib/mysql
       environment:
-          - MYSQL\_ROOT\_PASSWORD="$$3cureUS"
+          MYSQL_ROOT_PASSWORD: '$$3cureUS'
       networks:
           - network1
 
@@ -17,7 +17,7 @@ services:
           - mysql:db
      volumes:
          - ../../:/app
-     command: bash -c "/app/app/SIS-Rebuild/MySQLSetup.sh"
+     command: bash -c "chmod 755 /app/app/SIS-Rebuild/MySQLSetup.sh && /app/app/SIS-Rebuild/MySQLSetup.sh"
 
   models:
       container_name: models

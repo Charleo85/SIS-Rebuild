@@ -28,6 +28,7 @@ before_script:
   - sleep 60 # need to give time for containers and xvfb to start
   - docker logs models
   - docker logs mysql
+  - docker logs mysql-cmdline
 
 script:
   - >
