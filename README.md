@@ -53,7 +53,8 @@ $ docker rm mysql
 Project 6
 ---------
 
-**If you are grading this project, please read this section for our project 6 features.**
+**If you are grading this project, please read this section for our project 6 features. WARNING: THE SETUP PROCEDURE HAS CHANGED.
+Now, after database initialization but before "docker-compose up", the MySQL container must be removed. See above for further details.**
 
 #### Load/Performance Testing with JMeter
 - Using [Apache JMeter's](http://jmeter.apache.org/) GUI Application, a test was set up where 50 homepage requests were sent to the load balancer within a span of 10 seconds. This was done with the localhost as well as with the Digital Ocean droplet. Digital Ocean was significantly slower with respect to Latency as well as Connect Time. Results of the test in images as well as CSV files are below:
@@ -157,7 +158,7 @@ $ ./cleardb.sh & docker-compose up -d
   
 #### DockerComposeV2
 
-
+- DockerComposeV1 was replaced to discard of the dangerous --link/=links from legacy (v1) as well as to pave the way for future development and scaling, with multi-host netorking and features like docker-compose scale.
 
 Project 5
 ---------
