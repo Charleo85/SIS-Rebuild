@@ -53,8 +53,15 @@ $ docker rm mysql
 Project 6
 ---------
 
-**If you are grading this project, please read this section for our project 6 features. WARNING: THE SETUP PROCEDURE HAS CHANGED.
-Now, after database initialization but before "docker-compose up", the MySQL container must be removed. See above for further details.**
+**If you are grading this project, please read this section for our project 6 features.**
+
+**WARNING: THE SETUP PROCEDURE HAS CHANGED.**
+
+1. **Now, we do not need a clean MySQL database container before running `docker-compose up`. If there exists a container named `mysql`, please make sure to remove it.**
+
+2. **If you see a 503 error message when visiting 127.0.0.1, please wait one or two minutes for the database setup to complete. Theoretically, the setup takes 60 seconds; actual time may be longer.**
+
+********
 
 #### Load/Performance Testing with JMeter
 - Using [Apache JMeter's](http://jmeter.apache.org/) GUI Application, a test was set up where 50 homepage requests were sent to the load balancer within a span of 10 seconds. This was done with the localhost as well as with the Digital Ocean droplet. Digital Ocean was significantly slower with respect to Latency as well as Connect Time. Results of the test in images as well as CSV files are below:
@@ -63,6 +70,8 @@ Now, after database initialization but before "docker-compose up", the MySQL con
 	- [Local Host results CSV File](https://github.com/Charleo85/SIS-Rebuild/blob/master/Performance%20testing/JmeterHostResults.txt)
 	- [Digital Ocean results PNG](https://github.com/Charleo85/SIS-Rebuild/blob/master/Performance%20testing/Digital%20Ocean%20Load%20Testing%20Results.png)
 	- [Local Host results PNG](https://github.com/Charleo85/SIS-Rebuild/blob/master/Performance%20testing/Host%20Load%20Testing%20Results.png)
+
+********
 
 #### Hosting on DigitalOcean
 
