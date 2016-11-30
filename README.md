@@ -38,6 +38,16 @@ $ docker start mysql
 $ chmod 755 cleardb.sh && ./cleardb.sh
 ```
 
+- If ~/cs4501/db/ has an (empty) MySQL database in it with the right settings as specified in project 1, proceed to remove the mysql container with:
+
+```bash
+$ docker stop mysql
+$ docker rm mysql
+```
+
+- This must be done since a MySQL instance is created with docker-compose up.
+
+
 - We also have a working webpage on a DigitalOcean droplet. Visit homepage at: [162.243.117.39](http://162.243.117.39). **Notice the port changed from 8000 to 80 (default HTTP port)!**
 
 Project 6
@@ -45,10 +55,18 @@ Project 6
 
 **If you are grading this project, please read this section for our project 6 features.**
 
+#### Load/Performance Testing with JMeter
+- Using [Apache JMeter's](http://jmeter.apache.org/) GUI Application, a test was set up where 50 homepage requests were sent to the load balancer within a span of 10 seconds. This was done with the localhost as well as with the Digital Ocean droplet. Digital Ocean was significantly slower with respect to Latency as well as Connect Time. Results of the test in images as well as CSV files are below:
+
+	- [Digital Ocean results CSV File](https://github.com/Charleo85/SIS-Rebuild/blob/Zakey/JmeterDOResults.txt)
+	- [Local Host results CSV File](https://github.com/Charleo85/SIS-Rebuild/blob/Zakey/JmeterHostResults.txt)
+	- [Digital Ocean results PNG](https://github.com/Charleo85/SIS-Rebuild/blob/Zakey/Digital%20Ocean%20Load%20Testing%20Results.png)
+	- [Local Host results PNG](https://github.com/Charleo85/SIS-Rebuild/blob/Zakey/Host%20Load%20Testing%20Results.png)
+
 #### Hosting on DigitalOcean
 
-- As described in the "Setup" section. We've been improving our website on the droplet throughout the semester!
-
+- As described in the "Setup" section, we've been improving our website on the droplet throughout the semester!
+	
 ********
 
 #### Load Balancing: HAProxy
@@ -136,6 +154,10 @@ $ ./cleardb.sh & docker-compose up -d
 ```
   - Generate Django fixture in instructors.json & courses.json
   - Script to force clean up containers and database
+  
+#### DockerComposeV2
+
+
 
 Project 5
 ---------
