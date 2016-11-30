@@ -32,7 +32,7 @@ before_script:
   - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
   - sudo apt-get update
   - sudo apt-get install google-chrome-stable
-  - sleep 60 # need to give time for containers and xvfb to start
+  - sleep 120 # need to give time for containers and xvfb to start
   - docker logs models
   - docker logs mysql
   - docker logs mysql-cmdline
