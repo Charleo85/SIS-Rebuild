@@ -500,6 +500,9 @@ Update Timeline
 - November 10th
 	- Finished project 5 (search functionality)
 
+- November 29th
+	- Finished project 6 (various enhancements)
+
 
 Contact Us
 ----------
