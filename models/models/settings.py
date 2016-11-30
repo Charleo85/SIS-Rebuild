@@ -82,6 +82,7 @@ DATABASES = {
         'USER': 'www',
         'PASSWORD': '$3cureUS',
         'HOST': 'db',
+        'PORT': 3306,
     }
 }
 
