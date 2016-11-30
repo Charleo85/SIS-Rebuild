@@ -18,6 +18,8 @@ services:
      volumes:
          - ../../:/app
      command: bash -c "chmod 755 /app/app/SIS-Rebuild/MySQLSetup.sh && /app/app/SIS-Rebuild/MySQLSetup.sh"
+     networks:
+         - network1
 
   models:
       container_name: models
