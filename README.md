@@ -135,10 +135,10 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
 
 	- The tests briefly go through everything we need to implement from Project 3 (when the web interface was created) to 5. Details can be found in the testing script.
 
-	- **Important Post Condition**: when the tests are finished, one (1) new instructor (`id = jc7y`) and one (1) new course (`id = 10000`) are created.
+- **Important Post Condition**: when the tests are finished, one (1) new instructor (`id = jc7y`) and one (1) new course (`id = 10000`) are created.
 
-		- Since deleting instances is not the responsibility for the web front end, the deleting of these testing instances is not implemented.
-		- You can delete it afterwards by calling the models layer API: `http://127.0.0.1:8001/api/{{ modelname }}/delete/`. POST data should include the id for each instance.
+	- Since deleting instances is not the responsibility for the web front end, the deleting of these testing instances is not implemented.
+	- You can delete it afterwards by calling the models layer API: `http://127.0.0.1:8001/api/{{ modelname }}/delete/`. POST data should include the id for each instance.
 
 *********
 
@@ -152,7 +152,7 @@ Nov 19 00:38:13 00350dbb6dee haproxy:  192.168.99.1:55796 [19/Nov/2016:05:38:13.
   - Update the testing result via Slack group notification  
   - ~~Deploy for public release only if testing succeeds~~
 
-*********
+********
 
 #### Fixure Parsing from Lou's List
 
@@ -163,10 +163,13 @@ $ ./cleardb.sh & docker-compose up -d
 ```
   - Generate Django fixture in instructors.json & courses.json
   - Script to force clean up containers and database
+ 
+********
   
 #### DockerComposeV2
 
 - DockerComposeV1 was replaced to discard of the dangerous --link/=links from legacy (v1) as well as to pave the way for future development and scaling, with multi-host netorking and features like docker-compose scale.
+
 
 Project 5
 ---------
