@@ -4,20 +4,20 @@ services:
       container_name: mysql
       image: mysql:5.7.14
       volumes:
-          - ~/cs4501/db:/var/lib/mysql
+          - ../../db:/var/lib/mysql
       environment:
           - MYSQL\_ROOT\_PASSWORD="$$3cureUS"
       networks:
           - network1
 
-#  mysql-cmdline:
-#      container_name: mysql-cmdline
-#      image: mysql:5.7.14
-#      links:
-#           - mysql:db
-#      volumes:
-#          - ~/cs4501:/app
-#      command: bash -c "/app/app/SIS-Rebuild/MySQLSetup.sh"
+  mysql-cmdline:
+     container_name: mysql-cmdline
+     image: mysql:5.7.14
+     links:
+          - mysql:db
+     volumes:
+         - ../../:/app
+     command: bash -c "/app/app/SIS-Rebuild/MySQLSetup.sh"
 
   models:
       container_name: models
