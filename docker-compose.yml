@@ -1,144 +1,194 @@
 version: '2'
 services:
-  mysql:
-      container_name: mysql
-      image: mysql:5.7.14
-      volumes:
-          - ../../db:/var/lib/mysql
-      environment:
-          MYSQL_ROOT_PASSWORD: $$3cureUS
-      networks:
-          - network1
+    mysql:
+        container_name: mysql
+        image: mysql:5.7.14
+        volumes:
+            - ../../db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: $$3cureUS
+        networks:
+            - network1
 
-  mysql-cmdline:
-     container_name: mysql-cmdline
-     image: mysql:5.7.14
-     links:
-          - mysql:db
-     volumes:
-         - ../../:/app
-     command: bash -c "chmod 755 /app/app/SIS-Rebuild/MySQLSetup.sh && /app/app/SIS-Rebuild/MySQLSetup.sh"
-     networks:
-         - network1
+    mysql-cmdline:
+        container_name: mysql-cmdline
+        image: mysql:5.7.14
+        links:
+            - mysql:db
+        volumes:
+            - ../../:/app
+        command: bash -c "chmod 755 /app/app/SIS-Rebuild/MySQLSetup.sh && /app/app/SIS-Rebuild/MySQLSetup.sh"
+        networks:
+            - network1
 
-  models:
-      container_name: models
-      image: zakinator123/cs4501:${TAG}
-      volumes:
-          - ./models/:/app
-      ports:
-          - "8001:8000"
-      links:
-          - mysql:db
-      command: bash -c "sleep 60; python /app/manage.py makemigrations api; python /app/manage.py migrate; python /app/manage.py loaddata /app/instructors.json /app/courses.json /app/students.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
-      networks:
-         - network1
+    models:
+        container_name: models
+        image: zakinator123/cs4501:${TAG}
+        volumes:
+            - ./models/:/app
+        ports:
+            - "8001:8000"
+        links:
+            - mysql:db
+        command: bash -c "sleep 60; python /app/manage.py makemigrations api; python /app/manage.py migrate; python /app/manage.py loaddata /app/instructors.json /app/courses.json /app/students.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
+        networks:
+            - network1
 
-  exp:
-      container_name: exp
-      image: zakinator123/cs4501:${TAG}
-      volumes:
-          - ./exp/:/app
-      ports:
-          - "8002:8000"
-      links:
-          - models:models-api
-          - kafka:kafka
-          - es:es
-      command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
-      networks:
-         - network1
+    exp:
+        container_name: exp
+        image: zakinator123/cs4501:${TAG}
+        volumes:
+            - ./exp/:/app
+        ports:
+            - "8002:8000"
+        links:
+            - models:models-api
+            - kafka:kafka
+            - es:es
+        command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
+        networks:
+            - network1
 
-  web1:
-      container_name: web1
-      image: zakinator123/cs4501:${TAG}
-      volumes:
-          - ./web/:/app
-      links:
-          - exp:exp-api
-          - redis:redis
-      extra_hosts:
-          - exp:exp-api
-          - redis:redis
-      command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
-      networks:
-         - network1
-
-  web2:
-      container_name: web2
-      image: zakinator123/cs4501:${TAG}
-      volumes:
-          - ./web/:/app
-      #ports:
-      #    - "8000:8000"
-      links:
-          - exp:exp-api
-          - redis:redis
-      command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
-      networks:
-         - network1
-
-  web3:
-       container_name: web3
-       image: zakinator123/cs4501:${TAG}
-       volumes:
+    web1:
+        container_name: web1
+        image: zakinator123/cs4501:${TAG}
+        volumes:
             - ./web/:/app
-  #      ports:
-  #          - "8000:8000"
-       links:
+        links:
             - exp:exp-api
             - redis:redis
-       command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
-       networks:
-           - network1
+        extra_hosts:
+            - exp:exp-api
+            - redis:redis
+        command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+        networks:
+            - network1
 
-  redis:
-       container_name: redis
-       image: redis
-       networks:
-          - network1
+    web2:
+        container_name: web2
+        image: zakinator123/cs4501:${TAG}
+        volumes:
+            - ./web/:/app
+        links:
+            - exp:exp-api
+            - redis:redis
+        command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+        networks:
+            - network1
 
-  kafka:
-       image: spotify/kafka
-       container_name: kafka
-       environment:
-         ADVERTISED_HOST: kafka
-         ADVERTISED_PORT: 9092
-       hostname: kafka
-       networks:
-          - network1
+    web3:
+        container_name: web3
+        image: zakinator123/cs4501:${TAG}
+        volumes:
+            - ./web/:/app
+        links:
+            - exp:exp-api
+            - redis:redis
+        command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+        networks:
+            - network1
 
-  es:
-       image: elasticsearch:2.0
-       container_name: es
-       ports:
-         - "9200:9200"
-       networks:
-          - network1
+    redis:
+        container_name: redis
+        image: redis
+        networks:
+            - network1
 
-  batch:
-       image: zakinator123/cs4501:${TAG}
-       container_name: batch
-       volumes:
-          - ./:/app
-       links:
-           - kafka:kafka
-           - es:es
-       command: bash -c "python /app/batch_script.py"
-       networks:
-          - network1
+    kafka:
+        image: spotify/kafka
+        container_name: kafka
+        environment:
+            ADVERTISED_HOST: kafka
+            ADVERTISED_PORT: 9092
+        hostname: kafka
+        networks:
+            - network1
 
-  loadbalancer:
-       image: zakinator123/haproxyloadbalancer
-       container_name: lb
-       ports:
-          - "80:80"
-       links:
-          - web1:web1
-          - web2:web2
-          - web3:web3
-       networks:
-          - network1
+    es:
+        image: elasticsearch:2.0
+        container_name: es
+        ports:
+            - "9200:9200"
+        networks:
+            - network1
+
+    batch:
+        image: zakinator123/cs4501:${TAG}
+        container_name: batch
+        volumes:
+            - ./:/app
+        links:
+            - kafka:kafka
+            - es:es
+        command: bash -c "python /app/batch_script.py"
+        networks:
+            - network1
+
+    loadbalancer:
+        image: zakinator123/haproxyloadbalancer
+        container_name: lb
+        ports:
+            - "80:80"
+        links:
+            - web1:web1
+            - web2:web2
+            - web3:web3
+        networks:
+            - network1
+
+    spark-master:
+        image: gettyimages/spark
+        command: bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
+        container_name: spark-master
+        hostname: spark-master
+        environment:
+            MASTER: spark://spark-master:7077
+            SPARK_CONF_DIR: /conf
+        expose:
+            - 7001
+            - 7002
+            - 7003
+            - 7004
+            - 7005
+            - 7006
+            - 7077
+            - 6066
+        ports:
+            - 4040:4040
+            - 6066:6066
+            - 7077:7077
+            - 8080:8080
+        volumes:
+            - ./data:/tmp/data
+        networks:
+            - network1
+
+    spark-worker:
+        image: gettyimages/spark
+        command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+        container_name: spark-worker
+        hostname: spark-worker
+        environment:
+            SPARK_CONF_DIR: /conf
+            SPARK_WORKER_CORES: 2
+            SPARK_WORKER_MEMORY: 512m
+            SPARK_WORKER_PORT: 8881
+            SPARK_WORKER_WEBUI_PORT: 8081
+        links:
+            - spark-master
+        expose:
+            - 7012
+            - 7013
+            - 7014
+            - 7015
+            - 7016
+            - 8881
+        ports:
+            - 8081:8081
+        volumes:
+            - ./data:/tmp/data
+        networks:
+            - network1
 
 networks:
     network1:
