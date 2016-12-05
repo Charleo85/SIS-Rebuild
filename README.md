@@ -50,10 +50,18 @@ $ docker rm mysql
 
 - We also have a working webpage on a DigitalOcean droplet. Visit homepage at: [162.243.117.39](http://162.243.117.39). **Notice the port changed from 8000 to 80 (default HTTP port)!**
 
-Project 6
+Project 7
 ---------
 
-**If you are grading this project, please read this section for our project 6 features.**
+**If you are grading this project, please read this section for our project 7 features.**
+
+- Useful one-line command to show output of a sample Apache Spark job:
+```bash
+$ docker exec -it spark-master bin/spark-submit --master spark://spark-master:7077 --total-executor-cores 2 --executor-memory 512m /tmp/data/hello.py | grep -B 3 "Popular items done"
+```
+
+Project 6
+---------
 
 **WARNING: THE SETUP PROCEDURE HAS CHANGED.**
 
@@ -76,7 +84,7 @@ Project 6
 #### Hosting on DigitalOcean
 
 - As described in the "Setup" section, we've been improving our website on the droplet throughout the semester!
-	
+
 ********
 
 #### Load Balancing: HAProxy
@@ -163,9 +171,9 @@ $ ./cleardb.sh & docker-compose up -d
 ```
   - Generate Django fixture in instructors.json & courses.json
   - Script to force clean up containers and database
- 
+
 ********
-  
+
 #### DockerComposeV2
 
 - DockerComposeV1 was replaced to discard of the dangerous --link/=links from legacy (v1) as well as to pave the way for future development and scaling, with multi-host netorking and features like docker-compose scale.
