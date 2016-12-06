@@ -55,10 +55,27 @@ Project 7
 
 **If you are grading this project, please read this section for our project 7 features.**
 
+#### Map/Reduce with Apache Spark
+
 - Useful one-line command to show output of a sample Apache Spark job:
 ```bash
-$ docker exec -it spark-master bin/spark-submit --master spark://spark-master:7077 --total-executor-cores 2 --executor-memory 512m /tmp/data/hello.py | grep -B 3 "Popular items done"
+$ docker exec -it spark-master bin/spark-submit --master spark://spark-master:7077 --total-executor-cores 2 --executor-memory 512m /tmp/data/hello.py | grep -B 3 "Popular"
 ```
+
+- For each spark script, the input(s) are placed with relevant names in the `data/inputs/` directory, and output(s) in the `data/outputs/` directory.
+
+- Basic sample (taken from project 7 instructions): `hello.py`
+
+	- Input: `sample.in`
+	- Output: `sample.out`
+	- `grep` command: `grep -B 3 "Popular items done"`
+
+- Course co-view mapper/reducer: `popular_course.py`
+
+ 	- Inputs: `course1.in`
+	- Outputs: `course1.out`
+	- `grep` command: `grep -B 9 "Popular courses done"`
+
 
 Project 6
 ---------
