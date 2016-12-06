@@ -1,9 +1,9 @@
 from pyspark import SparkContext
 
-sc = SparkContext("spark://spark-master:7077", "PopularCourse")
+sc = SparkContext("spark://spark-master:7077", "PopularCoview")
 
 # each worker loads a piece of the data file
-data = sc.textFile("/tmp/data/inputs/course1.in", 2)
+data = sc.textFile("/tmp/data/inputs/<filename>", 2)
 
 # step 1: read in the data file and generate a map
 # key = user_id, value = course_id that they are viewing
@@ -42,6 +42,6 @@ filter_count = count.filter(lambda pair: pair[1] >= 3)
 output = filter_count.collect()
 for p, count in output:
     print("co-view (%s, %s); count %d" % (p[0], p[1] ,count))
-print("Popular courses done")
+print("Popular co-views done")
 
 sc.stop()

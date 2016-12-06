@@ -71,11 +71,12 @@ $ docker exec -it spark-master bin/spark-submit --master spark://spark-master:70
 	- Output: `sample.out`
 	- `grep` command: `grep -B 3 "Popular items done"`
 
-- Course co-view mapper/reducer: `popular_course.py`
+- Course/Instructor co-view mapper/reducer: `co_view.py`
 
- 	- Inputs: `course1.in`
-	- Outputs: `course1.out`
-	- `grep` command: `grep -B 9 "Popular courses done"`
+ 	- Inputs: `course1.in`, `instructor1.in`
+	- Outputs: `course1.out`, `instructor1.out`
+	- `grep` command: `grep -B 10 "Popular co-views done"`
+	- Please make sure to change the `<filename>` inside the `co_view.py` file before each run!
 
 
 Project 6
