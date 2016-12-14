@@ -47,7 +47,6 @@ $ docker rm mysql
 
 - This must be done since a MySQL instance is created with docker-compose up.
 
-
 - We also have a working webpage on a DigitalOcean droplet. Visit homepage at: [162.243.117.39](http://162.243.117.39). **Notice the port changed from 8000 to 80 (default HTTP port)!**
 
 
