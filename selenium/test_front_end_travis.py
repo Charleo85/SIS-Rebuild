@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 
-import unittest
+import unittest, time
 
 global driver
 driver = webdriver.Chrome('./selenium/chromedriver_linux64')
@@ -125,8 +125,11 @@ class CreateInstanceTestCase(unittest.TestCase):
         driver.find_element_by_name('max_students').send_keys('100')
         driver.find_element_by_name('title').send_keys('Test')
         driver.find_element_by_name('section').send_keys('001')
+        time.sleep(1)
 
         driver.find_element_by_class_name('btn-block').click()
+        time.sleep(1)
+
         title = driver.find_element_by_tag_name('h1')
         self.assertEqual(title.text, 'CS 1000')
         detail_list = driver.find_elements_by_class_name('list-group-item')
