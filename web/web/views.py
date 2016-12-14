@@ -77,6 +77,17 @@ def list_item(request, modelname):
 def item_detail(request, itemid, modelname):
     url = 'http://exp-api:8000/' + modelname + '/detail/' + itemid + '/'
     resp = _make_get_request(url)
+
+    # If item detail is successfully retrieved and if
+    # authenticator cookie exists (a user is logged in) send item info and authenticator
+    # to exp -> models layer so that it can be logged for later usage by Spark
+    if resp['status_code'] == 200:
+        if 'auth' in request.COOKIES.keys():
+            auth = request.COOKIES.get('auth')
+            post_data = {'auth': auth, 'itemid': itemid, 'modelname': modelname}
+            url = 'http://exp-api:8000/auth/record_co-view/'
+            trash = _make_post_request(url, post_data)
+
     return render(request, modelname + '_detail.html', resp)
 
 

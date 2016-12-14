@@ -55,6 +55,7 @@ auth = [
     url(r'^auth/login/$', views_auth.login),
     url(r'^auth/validate/$', views_auth.validate),
     url(r'^auth/logout/$', views_auth.logout),
+    url(r'^auth/record_co-view/$', views_auth.record_coview),
 ]
 
 urlpatterns = indexpage + course + instructor + student + enrollment + auth

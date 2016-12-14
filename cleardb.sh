@@ -2,7 +2,12 @@
 set -e
 
 docker rm -f exp models es kafka batch redis lb web1 web2 web3 &> /dev/null || {
-    echo "Some container cannot be removed"
+    echo "Some container(s) cannot be removed"
+    echo "Try docker ps -a"
+}
+
+docker rm -f mysql mysql-cmdline &> /dev/null {
+    echo "Error removing database container(s)"
     echo "Try docker ps -a"
 }
 
