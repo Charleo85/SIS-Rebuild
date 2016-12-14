@@ -77,13 +77,13 @@ $ docker exec -it spark-master bin/spark-submit --master spark://spark-master:70
 	- `grep` command: `grep -B 10 "Popular co-views done"`
 	- Please make sure to change the `<filename>` inside the `co_view.py` file before each run!
 
-- Real-time logging mechanism for co-views:
+#### Real-time logging mechanism for co-views:
 
-	- When a logged in user is browsing some course/instructor item, this behavior would be automatically recorded (appended) into log files.
+- When a logged in user is browsing some course/instructor item, this behavior would be automatically recorded (appended) into log files.
 
-	- These log files have the same format as our sample inputs for Apache Spark, so that someone may run `co_view.py` directly on these log files to get data about popular co-views.
+- These log files have the same format as our sample inputs for Apache Spark, so that someone may run `co_view.py` directly on these log files to get data about popular co-views.
 
-	- For convenience purposes, the log files are placed in the same directory as our sample inputs, i.e. in the `data/inputs/` directory. They are named `courselog.in` and `instructorlog.in`, respectively for the two models.
+- For convenience purposes, the log files are placed in the same directory as our sample inputs, i.e. in the `data/inputs/` directory. They are named `courselog.in` and `instructorlog.in`, respectively.
 
 
 Project 6
