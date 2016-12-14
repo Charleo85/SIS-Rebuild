@@ -75,9 +75,7 @@ def record_coview(request):
 
     if 'auth' not in request.POST:
         return _failure(400, 'missing authenticator')
-
     token = request.POST['auth']
-
     try:
         auth = Authenticator.objects.get(auth=token)
     except ObjectDoesNotExist:
