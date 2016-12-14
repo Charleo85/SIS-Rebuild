@@ -78,8 +78,9 @@ def item_detail(request, itemid, modelname):
     url = 'http://exp-api:8000/' + modelname + '/detail/' + itemid + '/'
     resp = _make_get_request(url)
 
-#    If Item exists, do this:
-#    If a Profile is logged in, get username, and create input text file
+    # If item detail is successfully retrieved and if
+    # authenticator cookie exists (a user is logged in) send item info and authenticator
+    # to exp -> models layer so that it can be logged for later usage by Spark
     if resp['status_code'] == 200:
         if 'auth' in request.COOKIES.keys():
             auth = request.COOKIES.get('auth')
