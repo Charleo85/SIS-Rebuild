@@ -105,44 +105,6 @@ class UserAuthTestCase(unittest.TestCase):
         self.assertEqual(title.text, 'Welcome, James')
         driver.find_element_by_partial_link_text('logout').click()
 
-# Project 4 & 5 related: create listing (course)
-class CreateInstanceTestCase(unittest.TestCase):
-    def setUp(self):
-        driver.get('http://127.0.0.1/instructor/login/')
-        driver.find_element_by_name('username').send_keys('tp3ks')
-        driver.find_element_by_name('password').send_keys('thomas')
-        driver.find_element_by_class_name('btn-block').click()
-
-    def test_course_create(self):
-        driver.get('http://127.0.0.1/course/create/')
-        title = driver.find_element_by_tag_name('h1')
-        self.assertEqual(title.text, 'Create a New Course')
-
-        driver.find_element_by_name('mnemonic').send_keys('CS')
-        driver.find_element_by_name('number').send_keys('1000')
-        driver.find_element_by_name('id').send_keys('10000')
-        driver.find_element_by_name('instructor').send_keys('tp3ks')
-        driver.find_element_by_name('max_students').send_keys('100')
-        driver.find_element_by_name('title').send_keys('Test')
-        driver.find_element_by_name('section').send_keys('001')
-        time.sleep(1)
-
-        driver.find_element_by_class_name('btn-block').click()
-        time.sleep(1)
-
-        title = driver.find_element_by_tag_name('h1')
-        self.assertEqual(title.text, 'CS 1000')
-        detail_list = driver.find_elements_by_class_name('list-group-item')
-        for item in detail_list:
-            if 'id' in item.text:
-                self.assertIn('10000', item.text)
-            if 'title' in item.text:
-                self.assertIn('Test', item.text)
-
-    def tearDown(self):
-        driver.get('http://127.0.0.1/instructor/profile/')
-        driver.find_element_by_partial_link_text('logout').click()
-
 # Project 5 related: search functionality
 class SearchTestCase(unittest.TestCase):
     def test_general_search(self):
