@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 30
+sleep 40
 
 if [[ -e /app/db/cs4501 ]] ; then
     mysql -uroot -p'$3cureUS' -h db -Bse \
