@@ -68,6 +68,7 @@ def login(request):
     data = model_to_dict(auth)
     return _success(data, 'authenticator', 200)
 
+
 def record_coview(request):
     if request.method != 'POST':
         return _failure(400, 'incorrect request type')
@@ -98,13 +99,13 @@ def record_coview(request):
     # Output to courseviews file
     if(item_model=='course'):
         string_for_courseviews_file = userid + ',' + item_id + '\n'
-        f = open('./api/courseviews.txt', 'a')
+        f = open('/tmp/data/inputs/courselog.in', 'a')
         f.write(string_for_courseviews_file)
         f.close()
     # Output to courseviews file
     elif(item_model=='instructor'):
         string_for_instructorviews_file = userid + ',' + item_id + '\n'
-        f = open('./api/instructorviews.txt', 'a')
+        f = open('/tmp/data/inputs/instructorlog.in', 'a')
         f.write(string_for_instructorviews_file)
         f.close()
 
