@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 
-import unittest, time
+import unittest
 
 global driver
 driver = webdriver.Chrome('./selenium/chromedriver_linux64')
