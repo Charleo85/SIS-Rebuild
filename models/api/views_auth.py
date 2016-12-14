@@ -97,14 +97,14 @@ def record_coview(request):
 
     # Output to courseviews file
     if(item_model=='course'):
-        string_for_courseviews_file = userid + ',' + item_id
-        f = open('./api/courseviews.txt', 'w')
+        string_for_courseviews_file = userid + ',' + item_id + '\n'
+        f = open('./api/courseviews.txt', 'a')
         f.write(string_for_courseviews_file)
         f.close()
     # Output to courseviews file
     elif(item_model=='instructor'):
-        string_for_instructorviews_file = userid + ',' + item_id
-        f = open('./api/instructorviews.txt', 'w')
+        string_for_instructorviews_file = userid + ',' + item_id + '\n'
+        f = open('./api/instructorviews.txt', 'a')
         f.write(string_for_instructorviews_file)
         f.close()
 
