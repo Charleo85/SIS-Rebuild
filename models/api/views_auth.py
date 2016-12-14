@@ -68,6 +68,50 @@ def login(request):
     data = model_to_dict(auth)
     return _success(data, 'authenticator', 200)
 
+def record_coview(request):
+    if request.method != 'POST':
+        return _failure(400, 'incorrect request type')
+
+    if 'auth' not in request.POST:
+        return _failure(400, 'missing authenticator')
+
+    token = request.POST['auth']
+
+    try:
+        auth = Authenticator.objects.get(auth=token)
+    except ObjectDoesNotExist:
+        return _failure(403, 'unknown authenticator')
+
+    data = {}
+    data['user_type'] = auth.user_type
+
+    if auth.user_type == 0:
+        ins = Instructor.objects.get(username=auth.userid)
+        userid = ins.id
+    else:
+        stud = Student.objects.get(username=auth.userid)
+        userid = stud.id
+
+    item_model = request.POST['modelname']
+    item_id = request.POST['itemid']
+
+    # Output to courseviews file
+    if(item_model=='course'):
+        string_for_courseviews_file = userid + ',' + item_id
+        f = open('./api/courseviews.txt', 'w')
+        f.write(string_for_courseviews_file)
+        f.close()
+    # Output to courseviews file
+    elif(item_model=='instructor'):
+        string_for_instructorviews_file = userid + ',' + item_id
+        f = open('./api/instructorviews.txt', 'w')
+        f.write(string_for_instructorviews_file)
+        f.close()
+
+    correct = {'status_code': 200}
+    return JsonResponse(correct)
+
+
 
 def validate(request):
     if request.method != 'POST':

@@ -39,6 +39,16 @@ def login(request, user_type):
     else:
         return _failure(resp['status_code'], resp['error_message'])
 
+def record_coview(request):
+    if request.method != 'POST':
+        return _failure(400, 'incorrect request type')
+
+    post_data = request.POST.dict()
+    url = 'http://models-api:8000/api/auth/record_co-view/'
+    resp = _make_post_request(url, post_data)
+    # resp = {'status_code': 200}
+    return JsonResponse(resp)
+
 
 def validate(request, user_type):
     if request.method != 'POST':
