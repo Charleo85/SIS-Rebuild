@@ -8,6 +8,8 @@ CS4501 SIS Rebuild Project
 =====
 This project attempts to integrate the current functionality of [UVa SIS](https://sisuva.admin.virginia.edu), [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com), in order to provide students and faculties an efficient way to do academic planning.
 
+You may contribute your thoughts on this project to our [Trello](https://trello.com/b/XTuoK510/isa-project) page.
+
 
 Setup
 -----
