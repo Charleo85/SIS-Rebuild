@@ -3,7 +3,7 @@ from django.contrib.auth import hashers
 from django.core.urlresolvers import reverse
 import json
 
-from .models import *
+from api.models import *
 
 # student creating and updating profile
 class StudentProfileTestCases(TestCase):
@@ -102,6 +102,7 @@ class APITestCases(TestCase):
 
     def test_get_course_detail(self):
         response = self.client.get(reverse('course_detail', kwargs={'sisid':'17894'}))
+        # print(reverse('course_detail', kwargs={'sisid':'17894'}))
         target_course = Course.objects.get(id='17894')
         current_enrolled = len(target_course.student_set.all())
 
@@ -110,10 +111,6 @@ class APITestCases(TestCase):
                                                                     "website": "https://github.com/thomaspinckney3/cs4501", "meet_time": "TuTh 3:00-4:45pm",
                                                                     "location": "Olsson 120","current_enrolled": current_enrolled}}
         decoded_response = response.content.decode('utf-8')
-        """
-           If the data being deserialized is not a valid JSON document,
-            a JSONDecodeError will be raised -- consider putting a try-catch here??
-        """
         python_dict_from_decoded_response = json.loads(decoded_response)
         self.assertEqual(python_dict_from_decoded_response['status_code'], expected_response_content['status_code'])
         self.assertEqual(python_dict_from_decoded_response['course'], expected_response_content['course'])
