@@ -48,7 +48,7 @@ Update Timeline
 --------
 
 - December 13th, 2016
-	- Finished all CS 4501 course projects. See [cs4501.md](misc/cs4501.md).
+	- Finished all CS 4501 course projects. See [cs4501.md](https://github.com/Charleo85/SIS-Rebuild/wiki/CS-4501-ISA-Project-Updates).
 
 - January 3rd, 2017
 	- Open-source procedures completed; Trello page created.
