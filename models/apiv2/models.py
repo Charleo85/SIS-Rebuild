@@ -49,6 +49,7 @@ class Section(models.Model):
         ('d', 'discussion'),
         ('s', 'seminar'),
         ('i', 'independent_study'),
+        ('o', 'other')
     ))
 
     title = models.CharField(max_length=100, blank=True)
