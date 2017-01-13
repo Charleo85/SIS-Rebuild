@@ -39,7 +39,7 @@ class Course(models.Model):
 
 class Section(models.Model):
     semester = models.CharField(max_length=20)
-    section = models.CharField(max_length=5)
+    section_id = models.CharField(max_length=5)
     units = models.PositiveSmallIntegerField(default=0)
     sis_id = models.CharField(max_length=5)
 
@@ -85,15 +85,20 @@ class User(models.Model):
         ordering = ['username']
 
 
-class Instructor(User):
+class Instructor(models.Model):
+    name = models.CharField(max_length=100)
     computing_id = models.CharField(max_length=6, unique=True)
+
     website = models.URLField(blank=True)
+    email = models.EmailField(blank=True)
     address = models.CharField(max_length=100, blank=True)
     cell_phone = models.CharField(max_length=20, blank=True)
     other_info = models.TextField(blank=True)
 
+    user = models.OneToOneField(User, blank=True, null=True)
+
     def __str__(self):
-        return 'Instructor: ' + super('User', self).__str__() + '-' + self.computing_id
+        return self.name + '-' + self.computing_id
 
     class Meta:
         ordering = ['computing_id']
