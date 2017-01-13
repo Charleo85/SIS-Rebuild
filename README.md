@@ -10,6 +10,7 @@ CS4501 SIS Rebuild Project
 This project attempts to integrate the current functionality of [UVa SIS](https://sisuva.admin.virginia.edu), [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com), in order to provide students and faculties an efficient way to do academic planning.
 
 You may contribute your thoughts on this project to our [Trello](https://trello.com/b/XTuoK510/isa-project) page.
+The models API is documented on [Swagger](https://app.swaggerhub.com/api/charlie/SIS-R/1.0.0).
 
 All [CS 4501 (Internet Scale Application)](https://github.com/thomaspinckney3/cs4501/blob/master/README.md) course related files can be found in the `misc/` directory. Please see [cs4501.md](misc/cs4501.md) for details.
 
