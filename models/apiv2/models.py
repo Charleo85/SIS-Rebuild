@@ -95,7 +95,7 @@ class Instructor(models.Model):
     cell_phone = models.CharField(max_length=20, blank=True)
     other_info = models.TextField(blank=True)
 
-    user = models.OneToOneField(User, blank=True, null=True)
+    user = models.OneToOneField('User', blank=True, null=True)
 
     def __str__(self):
         return self.name + '-' + self.computing_id
