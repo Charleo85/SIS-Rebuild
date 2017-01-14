@@ -22,6 +22,10 @@ indexpage = [
     url(r'^$', views.index),
 ]
 
+course = [
+    url(r'^course', views.CourseView.as_view()),
+]
+
 # course = [
 #     url(r'^course/detail/(?P<sisid>[a-zA-Z0-9]+)/$', views_model.course_detail, ),
 #     url(r'^course/create/$', views_model.course_create, ),
@@ -57,4 +61,4 @@ indexpage = [
 #     url(r'^auth/record_co-view/$', views_auth.record_coview),
 # ]
 
-urlpatterns = indexpage
+urlpatterns = indexpage + course

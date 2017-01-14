@@ -4,17 +4,15 @@ from django.contrib.auth import hashers
 from .models import *
 
 
-# class CourseForm(ModelForm):
-#     def clean_mnemonic(self):
-#         return self.cleaned_data['mnemonic'].upper()
-#
-#     class Meta:
-#         model = Course
-#         fields = '__all__'
-#         widgets = { 'instructor': TextInput() }
-#         labels = { 'instructor': 'Instructor ID' }
-#
-#
+class CourseForm(ModelForm):
+    def clean_mnemonic(self):
+        return self.cleaned_data['mnemonic'].upper()
+
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+
 # class StudentForm(ModelForm):
 #     class Meta:
 #         model = Student
