@@ -99,8 +99,6 @@ APIv2 Documentation
 
 **Important: The views are written in an object-oriented way, using Django's class-based views. There's a `BaseView` class that defines the basic behaviors of a view (i.e. when it receives a GET, POST, or DELETE request). Every view class extends from this base class, and should define the methods to create/update/lookup a specific model.**
 
-**Currently, only the API for the `Course` model is completed; others would follow similar styles, and so should be quite simple to code.**
-
 - For model `Course`: base_url = `/apiv2/course`
 	- GET
 		- use keyword arguments as queries after the base_url.
