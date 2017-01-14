@@ -100,15 +100,27 @@ APIv2 Documentation
 **Important: The views are written in an object-oriented way, using Django's class-based views. There's a `BaseView` class that defines the basic behaviors of a view (i.e. when it receives a GET, POST, or DELETE request). Every view class extends from this base class, and should define the methods to create/update/lookup a specific model.**
 
 - For model `Course`: base_url = `/apiv2/course`
+
 	- GET
 		- use keyword arguments as queries after the base_url.
 		- returns an array of objects that matches the given query.
-		- example: to retrieve all courses with mnemonic CS and number 2150:
-		
-		
+		- example: to retrieve all courses with mnemonic CS and number 2150, use `/apiv2/course?mnemonic=CS&number=2150`.
 	
-
+	- POST (create)
+		- nothing should be present after the base_url.
+		- use key-value pairs as post data (also accepts JSON).
+		- returns the id of the newly created object, if successful.
 	
+	- POST (update)
+		- use keyword arguments as queries (same as GET) to filter the single object to update.
+		- use key-value pairs as post data (also accepts JSON).
+		- each valid key-value pair would correspond to one updated column for the object.
+		- returns the id of the updated object, if successful.
+	
+	- DELETE
+		- use keyword arguments as queries (same as GET) to filter the object(s) to delete.
+		- no body content should be present for this request.
+		- to force deletion of multiple objects, specify `?force=true` in the url query.
 
 Update Timeline
 --------
