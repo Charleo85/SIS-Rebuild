@@ -31,7 +31,7 @@ services:
             - "8001:8000"
         links:
             - mysql:db
-        command: bash -c "sleep 60; rm -rf /app/apiv2/migrations/; python /app/manage.py makemigrations api; python /app/manage.py makemigrations apiv2; python /app/manage.py migrate; python /app/manage.py loaddata /app/instructors.json /app/courses.json /app/students.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
+        command: bash -c "sleep 60; rm -rf /app/apiv2/migrations/; python /app/manage.py makemigrations api; python /app/manage.py makemigrations apiv2; python /app/manage.py migrate; python /app/manage.py loaddata /app/instructors.json /app/courses.json sections.json /app/students.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
         networks:
             - network1
 
