@@ -25,7 +25,7 @@ with open('GradesSpring2016.csv', newline='') as csvfile:
         if (row[25] == "Total"):
             continue
         section = {}
-        section["model"] = "api.Section"
+        section["model"] = "apiv2.Section"
         section_fields = {}
         section_fields["semester"] = "1162" #2016Spring
 
@@ -36,14 +36,14 @@ with open('GradesSpring2016.csv', newline='') as csvfile:
         else:
             course_pk += 1
             course = {}
-            course["model"] = "api.Course"
+            course["model"] = "apiv2.Course"
             course["pk"] = course_pk
             course_id = course_pk
             course_fields = {}
             course_fields["mnemonic"] = row[4]
             course_fields["number"] = row[5]
             course_fields["name"] = row[7]
-            course["field"] = course_fields
+            course["fields"] = course_fields
             courses.append(course)
             cou[name] = course_id
             # course_fields["description"] = ""
@@ -60,17 +60,17 @@ with open('GradesSpring2016.csv', newline='') as csvfile:
             else:
                 instructor_pk += 1
                 instructor = {}
-                instructor["model"] = "api.Instructor"
+                instructor["model"] = "apiv2.Instructor"
                 instructor["pk"] = instructor_pk
                 instructor_id = instructor_pk
-                instructor["model"] = "api.Instructor"
+                instructor["model"] = "apiv2.Instructor"
                 instructor_fields = {}
                 instructor_fields["computing_id"] = compid
                 instructor_fields["email"] = row[3]
                 instructor["fields"] = instructor_fields
                 instructors.append(instructor)
                 ins[compid] = instructor_id
-            section_fields["instructors"] = instructor_id
+            section_fields["instructor"] = instructor_id
         # else:
         #     print("not match")
         #     print(row[4])
@@ -84,7 +84,7 @@ with open('GradesSpring2016.csv', newline='') as csvfile:
         if isinstance(row[9], int):
             grade = {}
             grade_pk += 1
-            grade["model"] = "api.grade"
+            grade["model"] = "apiv2.grade"
             grade["pk"] = grade_pk
             grade_fields = {}
             grade_fields["average_gpa"] = row[8]
@@ -149,7 +149,7 @@ output.close()
 #         if (table.xpath('./td/strong')):
 #             if (table.xpath('./td/strong')[0].text == "Lecture"):
 #                 tab = {}
-#                 tab["model"] = "api.Course"
+#                 tab["model"] = "apiv2.Course"
 #                 fields = {}
 #                 fields["mnemonic"] = CourseMn
 #                 fields["number"] = CourseNum
@@ -180,7 +180,7 @@ output.close()
 #         id = match[0]
 #         if not(id in instructors):
 #             tab = {}
-#             tab["model"] = "api.Instructor"
+#             tab["model"] = "apiv2.Instructor"
 #             fields = {}
 #             info = name.split()
 #             fields["first_name"] = info[0]
