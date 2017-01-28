@@ -26,10 +26,8 @@ def _success(code, data_dict={}):
 
 
 def _failure(code, msg=''):
-    if msg == '':
-        error = {'status_code' : code}
-    else:
-        error = {'status_code' : code, 'error_message' : msg}
+    if msg == '': error = {'status_code' : code}
+    else: error = {'status_code' : code, 'error_message' : msg}
     return JsonResponse(error)
 
 
@@ -39,16 +37,12 @@ class BaseView(View):
 
     def get(self, request, *args, **kwargs):
         query = request.GET.dict()
-        try:
-            objs = self.model.objects.filter(**query)
-        except:
-            return _failure(400, 'invalid parameters')
+        try: objs = self.model.objects.filter(**query)
+        except: return _failure(400, 'invalid parameters')
 
         dicts = []
-        for obj in objs:
-            dicts.append(model_to_dict(obj))
-        if len(dicts) == 0:
-            return _failure(404, 'no matches found')
+        for obj in objs: dicts.append(model_to_dict(obj))
+        if len(dicts) == 0: return _failure(404, 'no matches found')
         return _success(200, {'match': dicts})
 
     def post(self, request, *args, **kwargs):
@@ -56,23 +50,19 @@ class BaseView(View):
         post_dict = request.POST.dict()
         if not post_dict:
             post_dict = json.loads(request.body.decode('utf-8'))
-        if query:
-            return self._update(query, post_dict)
-        else:
-            return self._create(post_dict)
+        if query: return self._update(query, post_dict)
+        else: return self._create(post_dict)
 
     def delete(self, request, *args, **kwargs):
         query = request.GET.dict()
         if 'force' in query:
             force = query['force']
             query.pop('force', None)
-        try:
-            objs = self.model.objects.filter(**query)
-        except:
-            return _failure(400, 'invalid parameters')
 
-        if len(objs) == 0:
-            return _failure(404, 'no matches found')
+        try: objs = self.model.objects.filter(**query)
+        except: return _failure(400, 'invalid parameters')
+        if len(objs) == 0: return _failure(404, 'no matches found')
+
         if not force and len(objs) > 1:
             msg = 'attempting to delete multiple objects, '
             msg += 'use force=true to force this deletion'
@@ -83,12 +73,10 @@ class BaseView(View):
 
     def _create(self, post_dict, exclude=[]):
         f = self.form(post_dict)
-        if not f.is_valid():
-            return _failure(400, 'invalid create info')
-        
+        if not f.is_valid(): return _failure(400, 'invalid create info')
+
         filter_dict = copy.deepcopy(post_dict)
-        for item in exclude:
-            filter_dict.pop(item, None)
+        for item in exclude: filter_dict.pop(item, None)
         try:
             if len(self.model.objects.filter(**filter_dict)) > 0:
                 return _failure(409, 'object already exists')
@@ -99,23 +87,17 @@ class BaseView(View):
         return _success(201, {'object_id': obj.id})
 
     def _update(self, get_dict, post_dict):
-        try:
-            objs = self.model.objects.filter(**get_dict)
-        except:
-            return _failure(400, 'invalid parameters')
+        try: objs = self.model.objects.filter(**get_dict)
+        except: return _failure(400, 'invalid parameters')
 
-        if len(objs) == 0:
-            return _failure(404, 'no matches found')
-        elif len(objs) > 1:
-            return _failure(400, 'attempt to update multiple objects')
+        if len(objs) == 0: return _failure(404, 'no matches found')
+        elif len(objs) > 1: return _failure(400, 'multiple objects')
 
         obj = objs[0]
-        for key, value in post_dict.items():
-            setattr(obj, key, value)
-        try:
-            obj.save()
-        except:
-            return _failure(400, 'invalid update info')
+        for key, value in post_dict.items(): setattr(obj, key, value)
+
+        try: obj.save()
+        except: return _failure(400, 'invalid update info')
         return _success(202, {'object_id': obj.id})
 
 
@@ -126,22 +108,21 @@ class CourseView(BaseView):
     def get(self, request, *args, **kwargs):
         resp = super().get(request, *args, **kwargs)
         resp_dict = json.loads(resp.content.decode('utf-8'))
-        if resp_dict['status_code'] != 200:
-            return resp
+        if resp_dict['status_code'] != 200: return resp
         resp_dict.pop('status_code', None)
 
         for obj_dict in resp_dict['match']:
-            obj = Grade.objects.get(id=obj_dict['grade'])
+            try: obj = Grade.objects.get(id=obj_dict['grade'])
+            except: continue
             obj_dict['grade'] = model_to_dict(obj)
+
         return _success(200, resp_dict)
 
     def _create(self, post_dict):
         if 'grade' in post_dict:
             grade_dict = post_dict['grade']
-            try:
-                obj = Grade.objects.create(**grade_dict)
-            except:
-                return _failure(400, 'invalid create info (grade)')
+            try: obj = Grade.objects.create(**grade_dict)
+            except: return _failure(400, 'invalid create info')
             post_dict['grade'] = obj.id
 
         resp = super()._create(post_dict, ['grade'])
@@ -158,16 +139,23 @@ class CourseView(BaseView):
 
         resp = super()._update(get_dict, post_dict)
         resp_dict = json.loads(resp.content.decode('utf-8'))
-        if resp_dict['status_code'] != 202:
-            return resp
+        if resp_dict['status_code'] != 202: return resp
 
         obj = self.model.objects.get(**get_dict).grade
-        for key, value in grade_dict.items():
-            setattr(obj, key, value)
-        try:
-            obj.save()
-        except:
-            return _failure(400, 'invalid update info (grade)')
+        if obj:
+            for key, value in grade_dict.items():
+                setattr(obj, key, value)
+            try: obj.save()
+            except: return _failure(400, 'invalid update info')
+        else:
+            try:
+                obj = Grade.objects.create(**grade_dict)
+                obj.save()
+                course_obj = self.model.objects.get(**get_dict)
+                course_obj.grade = obj
+                course_obj.save()
+            except: return _failure(400, 'invalid update info')
+
         return _success(202, {'object_id': resp_dict['object_id']})
 
 
