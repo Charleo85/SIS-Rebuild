@@ -39,7 +39,6 @@ class BaseView(View):
 
     def get(self, request, *args, **kwargs):
         query = request.GET.dict()
-<<<<<<< HEAD
         try:
             objs = self.model.objects.filter(**query)
             # {'name':'discrete math', 'department': 'cs'}
@@ -48,10 +47,7 @@ class BaseView(View):
 
         except:
             return _failure(400, 'invalid parameters')
-=======
-        try: objs = self.model.objects.filter(**query)
-        except: return _failure(400, 'invalid parameters')
->>>>>>> master
+
 
         dicts = []
         for obj in objs: dicts.append(model_to_dict(obj))
