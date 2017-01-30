@@ -1,0 +1,1361 @@
+[
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1010",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "cd9au",
+      "mnemonic": "CS",
+      "title": "Introduction to Information Technology",
+      "section": "001",
+      "location": "Olsson Hall 120",
+      "id": 17527
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1110",
+      "meet_time": "MoWeFr 2:00PM - 2:50PM",
+      "instructor": "lat7h",
+      "mnemonic": "CS",
+      "title": "Introduction to Programming",
+      "section": "001",
+      "location": "Chemistry Bldg 402",
+      "id": 17513
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1110",
+      "meet_time": "MoWeFr 11:00AM - 11:50AM",
+      "instructor": "up3f",
+      "mnemonic": "CS",
+      "title": "Introduction to Programming",
+      "section": "002",
+      "location": "Wilson Hall 301",
+      "id": 17523
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1111",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "cd9au",
+      "mnemonic": "CS",
+      "title": "Introduction to Programming",
+      "section": "001",
+      "location": "Olsson Hall 009",
+      "id": 17525
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1112",
+      "meet_time": "MoWeFr 2:00PM - 3:15PM",
+      "instructor": "jpc",
+      "mnemonic": "CS",
+      "title": "Introduction to Programming",
+      "section": "001",
+      "location": "Rice Hall 130",
+      "id": 17526
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1113",
+      "meet_time": "MoWeFr 11:00AM - 11:50AM",
+      "instructor": "ai4z",
+      "mnemonic": "CS",
+      "title": "Introduction to Programming",
+      "section": "001",
+      "location": "Thornton Hall E316",
+      "id": 18578
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2102",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "dae7c",
+      "mnemonic": "CS",
+      "title": "Discrete Mathematics",
+      "section": "001",
+      "location": "Mechanical Engr Bldg 205",
+      "id": 17531
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2102",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "dae7c",
+      "mnemonic": "CS",
+      "title": "Discrete Mathematics",
+      "section": "002",
+      "location": "Mechanical Engr Bldg 205",
+      "id": 18214
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2110",
+      "meet_time": "MoWeFr 10:00AM - 10:50AM",
+      "instructor": "dae7c",
+      "mnemonic": "CS",
+      "title": "Software Development Methods",
+      "section": "001",
+      "location": "Thornton Hall E303",
+      "id": 17528
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2110",
+      "meet_time": "MoWeFr 12:00PM - 12:50PM",
+      "instructor": "nb3f",
+      "mnemonic": "CS",
+      "title": "Software Development Methods",
+      "section": "002",
+      "location": "Rice Hall 130",
+      "id": 18061
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2110",
+      "meet_time": "MoWeFr 1:00PM - 1:50PM",
+      "instructor": "nb3f",
+      "mnemonic": "CS",
+      "title": "Software Development Methods",
+      "section": "003",
+      "location": "Mechanical Engr Bldg 205",
+      "id": 20518
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2150",
+      "meet_time": "MoWeFr 2:00PM - 2:50PM",
+      "instructor": "mrf8t",
+      "mnemonic": "CS",
+      "title": "Program and Data Representation",
+      "section": "001",
+      "location": "Wilson Hall 301",
+      "id": 17532
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2150",
+      "website": "http://aaronbloomfield.github.io/pdr",
+      "meet_time": "MoWeFr 1:00PM - 1:50PM",
+      "instructor": "asb2t",
+      "mnemonic": "CS",
+      "title": "Program and Data Representation",
+      "section": "002",
+      "location": "Rice Hall 130",
+      "id": 18581
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3102",
+      "website": "http://www.cs.virginia.edu/~robins/cs3102/",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "gr3e",
+      "mnemonic": "CS",
+      "title": "Theory of Computation",
+      "section": "001",
+      "location": "Rice Hall 130",
+      "id": 17537
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3205",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "mls4aa",
+      "mnemonic": "CS",
+      "title": "HCI in Software Development",
+      "section": "001",
+      "location": "Olsson Hall 009",
+      "id": 20520
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3240",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "mls4aa",
+      "mnemonic": "CS",
+      "title": "Advanced Software Development Techniques",
+      "section": "001",
+      "location": "Rice Hall 130",
+      "id": 18269
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3330",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "cr4bd",
+      "mnemonic": "CS",
+      "title": "Computer Architecture",
+      "section": "001",
+      "location": "Olsson Hall 120",
+      "id": 18338
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3330",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "smk9u",
+      "mnemonic": "CS",
+      "title": "Computer Architecture",
+      "section": "002",
+      "location": "Olsson Hall 009",
+      "id": 20522
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4102",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "kw3ek",
+      "mnemonic": "CS",
+      "title": "Algorithms",
+      "section": "001",
+      "location": "Clark Hall 108",
+      "id": 17662
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4414",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "kw3ek",
+      "mnemonic": "CS",
+      "title": "Operating Systems",
+      "section": "001",
+      "location": "Thornton Hall E316",
+      "id": 17540
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4434",
+      "meet_time": "MoWeFr 9:00AM - 9:50AM",
+      "instructor": "ha4d",
+      "mnemonic": "CS",
+      "title": "Dependable Computing Systems",
+      "section": "001",
+      "location": "Thornton Hall E304",
+      "id": 21444
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4444",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "ag8t",
+      "mnemonic": "CS",
+      "title": "Introduction to Parallel Computing",
+      "section": "001",
+      "location": "Thornton Hall E303",
+      "id": 18582
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4457",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "cdw7y",
+      "mnemonic": "CS",
+      "title": "Computer Networks",
+      "section": "001",
+      "location": "Olsson Hall 009",
+      "id": 18459
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4501",
+      "meet_time": "MoWe 5:00PM - 6:15PM",
+      "instructor": "ai4z",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "002",
+      "location": "Olsson Hall 120",
+      "id": 18420
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4501",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "csb7z",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "003",
+      "location": "Rice Hall 130",
+      "id": 18487
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4501",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "tp3ks",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "004",
+      "location": "Rice Hall 340",
+      "id": 18490
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4501",
+      "meet_time": "Fr 2:00PM - 3:00PM",
+      "instructor": "wrw6y",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "005",
+      "location": "Olsson Hall 009",
+      "id": 18784
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4610",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "wrw6y",
+      "mnemonic": "CS",
+      "title": "Programming Languages",
+      "section": "001",
+      "location": "Mechanical Engr Bldg 213",
+      "id": 20524
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4630",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "cr4bd",
+      "mnemonic": "CS",
+      "title": "Defense Against the Dark Arts",
+      "section": "001",
+      "location": "Rice Hall 130",
+      "id": 18584
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4640",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "up3f",
+      "mnemonic": "CS",
+      "title": "Programming Languages for Web Applications",
+      "section": "001",
+      "location": "Olsson Hall 005",
+      "id": 20525
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4720",
+      "website": "http://cs4720.cs.virginia.edu",
+      "meet_time": "MoWeFr 11:00AM - 11:50AM",
+      "instructor": "mss2x",
+      "mnemonic": "CS",
+      "title": "Mobile Application Development",
+      "section": "001",
+      "location": "Olsson Hall 120",
+      "id": 18585
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4730",
+      "meet_time": "MoWe 11:00AM - 11:50AM",
+      "instructor": "mrf8t",
+      "mnemonic": "CS",
+      "title": "Computer Game Design",
+      "section": "001",
+      "location": "Mechanical Engr Bldg 341",
+      "id": 18271
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4740",
+      "website": "http://cs4740-s17.martyhumphrey.info/",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "mah2h",
+      "mnemonic": "CS",
+      "title": "Cloud Computing",
+      "section": "001",
+      "location": "Mechanical Engr Bldg 341",
+      "id": 18463
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4750",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "nb3f",
+      "mnemonic": "CS",
+      "title": "Database Systems",
+      "section": "001",
+      "location": "Mechanical Engr Bldg 205",
+      "id": 18460
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4753",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "acw",
+      "mnemonic": "CS",
+      "title": "Electronic Commerce Technologies",
+      "section": "001",
+      "location": "Thornton Hall E316",
+      "id": 18661
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5014",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "kah3f",
+      "mnemonic": "CS",
+      "title": "Computation as a Research Tool",
+      "section": "001",
+      "location": "Thornton Hall E303",
+      "id": 18148
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5014",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "teh1m",
+      "mnemonic": "CS",
+      "title": "Computation as a Research Tool",
+      "section": "003",
+      "location": "Chemical Engineering Bldg 005",
+      "id": 18294
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6160",
+      "meet_time": "MoWe 5:00PM - 6:15PM",
+      "instructor": "mm7ux",
+      "mnemonic": "CS",
+      "title": "Theory of Computation",
+      "section": "001",
+      "location": "Chemical Engineering Bldg 005",
+      "id": 20526
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6444",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "ag8t",
+      "mnemonic": "CS",
+      "title": "Introduction to Parallel Computing",
+      "section": "001",
+      "location": "Thornton Hall E303",
+      "id": 18583
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "meet_time": "MoWe 5:00PM - 6:15PM",
+      "instructor": "kc2wc",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "001",
+      "location": "Olsson Hall 009",
+      "id": 18664
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "jwd",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "002",
+      "location": "Thornton Hall E316",
+      "id": 18665
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "website": "http://www.cs.virginia.edu/~vicente/vislang/",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "vo2m",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "004",
+      "location": "Rice Hall 340",
+      "id": 18213
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "kjs5d",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "005",
+      "location": "Rice Hall 340",
+      "id": 18461
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "dd7rq",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "007",
+      "location": "Rice Hall 340",
+      "id": 20528
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "meet_time": "Fr 9:30AM - 12:00PM",
+      "instructor": "dee2b",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "008",
+      "location": "Thornton Hall D115",
+      "id": 20529
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "meet_time": "MoWe 9:30AM - 10:45AM",
+      "instructor": "jas9f",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "009",
+      "location": "Rice Hall 340",
+      "id": 20530
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "hs6ms",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "010",
+      "location": "Olsson Hall 005",
+      "id": 20531
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6501",
+      "website": "http://rayb.info/Teaching-Spring16.html",
+      "meet_time": "TuTh 3:30PM - 4:45PM",
+      "instructor": "br8jr",
+      "mnemonic": "CS",
+      "title": "Special Topics in Computer Science",
+      "section": "011",
+      "location": "Rice Hall 340",
+      "id": 21335
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "6750",
+      "meet_time": "TuTh 5:00PM - 6:15PM",
+      "instructor": "ah7by",
+      "mnemonic": "CS",
+      "title": "Database Systems",
+      "section": "001",
+      "location": "Olsson Hall 009",
+      "id": 18643
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "8524",
+      "meet_time": "TBA",
+      "instructor": "kjs5d",
+      "mnemonic": "CS",
+      "title": "Topics in Software Engineering",
+      "section": "001",
+      "location": "TBA",
+      "id": 18016
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1110",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "jdb8pc",
+      "mnemonic": "MATH",
+      "title": "Probability/Finite Mathematics",
+      "section": "001",
+      "location": "Ruffner Hall 179",
+      "id": 10763
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1140",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "aha3e",
+      "mnemonic": "MATH",
+      "title": "Financial Mathematics",
+      "section": "001",
+      "location": "New Cabell Hall 368",
+      "id": 10764
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1140",
+      "meet_time": "MoWeFr 12:00PM - 12:50PM",
+      "instructor": "aha3e",
+      "mnemonic": "MATH",
+      "title": "Financial Mathematics",
+      "section": "002",
+      "location": "Monroe Hall 130",
+      "id": 14549
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1160",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "it2h",
+      "mnemonic": "MATH",
+      "title": "Algebra, Number Systems, and Number Theory",
+      "section": "001",
+      "location": "Monroe Hall 118",
+      "id": 10765
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1310",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "kdk7rn",
+      "mnemonic": "MATH",
+      "title": "Calculus I",
+      "section": "100",
+      "location": "Monroe Hall 134",
+      "id": 10784
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1310",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "pjb9ub",
+      "mnemonic": "MATH",
+      "title": "Calculus I",
+      "section": "200",
+      "location": "Monroe Hall 134",
+      "id": 10785
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1320",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "lp2h",
+      "mnemonic": "MATH",
+      "title": "Calculus II",
+      "section": "100",
+      "location": "Monroe Hall 110",
+      "id": 16080
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1320",
+      "meet_time": "MoWeFr 10:00AM - 10:50AM",
+      "instructor": "psb7p",
+      "mnemonic": "MATH",
+      "title": "Calculus II",
+      "section": "200",
+      "location": "Monroe Hall 111",
+      "id": 10788
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "1320",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "rhs8e",
+      "mnemonic": "MATH",
+      "title": "Calculus II",
+      "section": "300",
+      "location": "New Cabell Hall 232",
+      "id": 10789
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2310",
+      "meet_time": "MoWeFr 9:00AM - 9:50AM",
+      "instructor": "lww8k",
+      "mnemonic": "MATH",
+      "title": "Calculus III",
+      "section": "100",
+      "location": "Clark Hall G004",
+      "id": 10791
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2310",
+      "meet_time": "MoWeFr 10:00AM - 10:50AM",
+      "instructor": "lww8k",
+      "mnemonic": "MATH",
+      "title": "Calculus III",
+      "section": "200",
+      "location": "Clark Hall G004",
+      "id": 10792
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "2310",
+      "meet_time": "MoWeFr 12:00PM - 12:50PM",
+      "instructor": "xw5he",
+      "mnemonic": "MATH",
+      "title": "Calculus III",
+      "section": "300",
+      "location": "Clark Hall 101",
+      "id": 10793
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3100",
+      "website": "https://github.com/lenis2000/Syllabi/blob/master/Syllabus_3100_s17.pdf",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "lap5r",
+      "mnemonic": "MATH",
+      "title": "Introduction to Probability",
+      "section": "001",
+      "location": "Monroe Hall 124",
+      "id": 13733
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3100",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "tam7b",
+      "mnemonic": "MATH",
+      "title": "Introduction to Probability",
+      "section": "002",
+      "location": "Rouss Hall 403",
+      "id": 14024
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3100",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "tam7b",
+      "mnemonic": "MATH",
+      "title": "Introduction to Probability",
+      "section": "003",
+      "location": "Rouss Hall 403",
+      "id": 14551
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3250",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "jf8dc",
+      "mnemonic": "MATH",
+      "title": "Ordinary Differential Equations",
+      "section": "100",
+      "location": "New Cabell Hall 323",
+      "id": 10797
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3250",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "iwh",
+      "mnemonic": "MATH",
+      "title": "Ordinary Differential Equations",
+      "section": "200",
+      "location": "Monroe Hall 114",
+      "id": 10798
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3250",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "ji2k",
+      "mnemonic": "MATH",
+      "title": "Ordinary Differential Equations",
+      "section": "300",
+      "location": "Gilmer Hall 166",
+      "id": 19864
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3310",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "der",
+      "mnemonic": "MATH",
+      "title": "Basic Real Analysis",
+      "section": "001",
+      "location": "New Cabell Hall 389",
+      "id": 10802
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3310",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "yqd3p",
+      "mnemonic": "MATH",
+      "title": "Basic Real Analysis",
+      "section": "002",
+      "location": "Monroe Hall 118",
+      "id": 10803
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3315",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "asr3x",
+      "mnemonic": "MATH",
+      "title": "Advanced Calculus and Linear Algebra II",
+      "section": "100",
+      "location": "Wilson Hall 238",
+      "id": 15441
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3340",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "iwh",
+      "mnemonic": "MATH",
+      "title": "Complex Variables with Applications",
+      "section": "001",
+      "location": "Clark Hall 102",
+      "id": 10804
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3350",
+      "meet_time": "MoWe 3:30PM - 4:45PM",
+      "instructor": "jh5am",
+      "mnemonic": "MATH",
+      "title": "Applied Linear Algebra",
+      "section": "001",
+      "location": "Shannon House 107",
+      "id": 14041
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3351",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "zz2d",
+      "mnemonic": "MATH",
+      "title": "Elementary Linear Algebra",
+      "section": "001",
+      "location": "Clark Hall G004",
+      "id": 10805
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3351",
+      "meet_time": "MoWe 5:00PM - 6:15PM",
+      "instructor": "zz2d",
+      "mnemonic": "MATH",
+      "title": "Elementary Linear Algebra",
+      "section": "002",
+      "location": "Monroe Hall 110",
+      "id": 10806
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3351",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "clh4xd",
+      "mnemonic": "MATH",
+      "title": "Elementary Linear Algebra",
+      "section": "003",
+      "location": "Chemistry Bldg 303",
+      "id": 13574
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3354",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "sm4cw",
+      "mnemonic": "MATH",
+      "title": "Survey of Algebra",
+      "section": "001",
+      "location": "Clark Hall 102",
+      "id": 10807
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "3354",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "jlm6cj",
+      "mnemonic": "MATH",
+      "title": "Survey of Algebra",
+      "section": "002",
+      "location": "Rouss Hall 403",
+      "id": 10808
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4110",
+      "meet_time": "MoWeFr 10:00AM - 10:50AM",
+      "instructor": "ais6a",
+      "mnemonic": "MATH",
+      "title": "Introduction to Stochastic Processes",
+      "section": "001",
+      "location": "Clark Hall 102",
+      "id": 15447
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4140",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "hcg3m",
+      "mnemonic": "MATH",
+      "title": "Mathematics of Derivative Securities",
+      "section": "001",
+      "location": "Clark Hall 102",
+      "id": 15448
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4210",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "af7py",
+      "mnemonic": "MATH",
+      "title": "Advanced Calculus with Applied Mathematics",
+      "section": "001",
+      "location": "Clark Hall 102",
+      "id": 19866
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4220",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "af7py",
+      "mnemonic": "MATH",
+      "title": "Partial Differential Equations and Applied Mathematics",
+      "section": "001",
+      "location": "Physics Bldg 205",
+      "id": 15449
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4652",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "bjp8w",
+      "mnemonic": "MATH",
+      "title": "Introduction to Abstract Algebra",
+      "section": "001",
+      "location": "Monroe Hall 118",
+      "id": 15450
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4720",
+      "meet_time": "MoWeFr 12:00PM - 12:50PM",
+      "instructor": "vk6e",
+      "mnemonic": "MATH",
+      "title": "Introduction to Differential Geometry",
+      "section": "001",
+      "location": "Monroe Hall 110",
+      "id": 19867
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "4840",
+      "meet_time": "Fr 2:00PM - 4:15PM",
+      "instructor": "tmk5a",
+      "mnemonic": "MATH",
+      "title": "Introduction to Mathematical Research",
+      "section": "001",
+      "location": "New Cabell Hall 338",
+      "id": 15451
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5030",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "khp3k",
+      "mnemonic": "MATH",
+      "title": "The History of Mathematics",
+      "section": "001",
+      "location": "Chemistry Bldg 303",
+      "id": 19868
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5100",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "lap5r",
+      "mnemonic": "MATH",
+      "title": "Probability",
+      "section": "001",
+      "location": "Monroe Hall 124",
+      "id": 13734
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5100",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "tam7b",
+      "mnemonic": "MATH",
+      "title": "Probability",
+      "section": "002",
+      "location": "Rouss Hall 403",
+      "id": 14025
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5100",
+      "meet_time": "TuTh 2:00PM - 3:15PM",
+      "instructor": "tam7b",
+      "mnemonic": "MATH",
+      "title": "Probability",
+      "section": "003",
+      "location": "Rouss Hall 403",
+      "id": 14552
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5330",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "th8ma",
+      "mnemonic": "MATH",
+      "title": "Advanced Multivariate Calculus",
+      "section": "001",
+      "location": "New Cabell Hall 309",
+      "id": 14026
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5340",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "iwh",
+      "mnemonic": "MATH",
+      "title": "Complex Variables with Applications",
+      "section": "001",
+      "location": "Clark Hall 102",
+      "id": 10809
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5654",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "sm4cw",
+      "mnemonic": "MATH",
+      "title": "Survey of Algebra",
+      "section": "001",
+      "location": "Clark Hall 102",
+      "id": 10810
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5654",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "jlm6cj",
+      "mnemonic": "MATH",
+      "title": "Survey of Algebra",
+      "section": "002",
+      "location": "Rouss Hall 403",
+      "id": 10811
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "5700",
+      "meet_time": "MoWeFr 11:00AM - 11:50AM",
+      "instructor": "pa8e",
+      "mnemonic": "MATH",
+      "title": "Introduction to Geometry",
+      "section": "001",
+      "location": "Monroe Hall 110",
+      "id": 10812
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "7010",
+      "meet_time": "We 11:00AM - 11:50AM",
+      "instructor": "th8ma",
+      "mnemonic": "MATH",
+      "title": "Seminar on Research in Mathematics",
+      "section": "001",
+      "location": "Monroe Hall 118",
+      "id": 10813
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "7310",
+      "meet_time": "TuTh 12:30PM - 1:45PM",
+      "instructor": "aa4cr",
+      "mnemonic": "MATH",
+      "title": "Real Analysis and Linear Spaces I",
+      "section": "001",
+      "location": "Kerchof Hall 317",
+      "id": 14027
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "7360",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "hcg3m",
+      "mnemonic": "MATH",
+      "title": "Probability Theory I",
+      "section": "001",
+      "location": "Kerchof Hall 326",
+      "id": 19869
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "7600",
+      "meet_time": "MoWeFr 12:00PM - 12:50PM",
+      "instructor": "btw4e",
+      "mnemonic": "MATH",
+      "title": "Homological Algebra",
+      "section": "001",
+      "location": "Kerchof Hall 317",
+      "id": 21405
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "7752",
+      "meet_time": "MoWe 2:00PM - 3:15PM",
+      "instructor": "pa8e",
+      "mnemonic": "MATH",
+      "title": "Algebra II",
+      "section": "001",
+      "location": "Kerchof Hall 317",
+      "id": 10814
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "7800",
+      "meet_time": "MoWeFr 10:00AM - 10:50AM",
+      "instructor": "btw4e",
+      "mnemonic": "MATH",
+      "title": "Algebraic Topology I",
+      "section": "001",
+      "location": "Shannon House 107",
+      "id": 10816
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "7830",
+      "meet_time": "MoWeFr 10:00AM - 10:50AM",
+      "instructor": "vk6e",
+      "mnemonic": "MATH",
+      "title": "Fiber Bundles",
+      "section": "001",
+      "location": "Kerchof Hall 326",
+      "id": 19870
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "8850",
+      "meet_time": "TuTh 9:30AM - 10:45AM",
+      "instructor": "jeb2md",
+      "mnemonic": "MATH",
+      "title": "Topics in Algebraic Topology",
+      "section": "001",
+      "location": "Shannon House 107",
+      "id": 13485
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "8852",
+      "meet_time": "TuTh 11:00AM - 12:15PM",
+      "instructor": "ww9c",
+      "mnemonic": "MATH",
+      "title": "Representation Theory",
+      "section": "001",
+      "location": "Kerchof Hall 326",
+      "id": 19871
+    }
+  },
+  {
+    "model": "api.Course",
+    "fields": {
+      "number": "9360",
+      "meet_time": "We 5:00PM - 6:00PM",
+      "instructor": "hcg3m",
+      "mnemonic": "MATH",
+      "title": "Probability Seminar",
+      "section": "001",
+      "location": "Kerchof Hall 317",
+      "id": 15453
+    }
+  }
+]

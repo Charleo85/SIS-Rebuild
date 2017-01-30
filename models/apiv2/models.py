@@ -18,6 +18,8 @@ class Grade(models.Model):
     num_d_minus = models.PositiveSmallIntegerField(default=0, blank=True)
     num_f = models.PositiveSmallIntegerField(default=0)
 
+    num_other = models.PositiveSmallIntegerField(default=0, blank=True)
+    num_total = models.PositiveSmallIntegerField(default=0, blank=True)
     num_withdraw = models.PositiveSmallIntegerField(default=0, blank=True)
     num_drop = models.PositiveSmallIntegerField(default=0, blank=True)
 
@@ -27,8 +29,7 @@ class Course(models.Model):
     mnemonic = models.CharField(max_length=4)
     number = models.CharField(max_length=4)
     description = models.TextField(blank=True)
-    # have to set null=True here, or there will be tons of errors in migrations
-    grade = models.OneToOneField('Grade')
+    grade = models.OneToOneField('Grade', blank=True, null=True)
 
     def __str__(self):
         return self.mnemonic + self.number
@@ -38,10 +39,9 @@ class Course(models.Model):
 
 
 class Section(models.Model):
-    semester = models.CharField(max_length=20)
+    semester = models.PositiveSmallIntegerField(default=0)
     section_id = models.CharField(max_length=5)
     units = models.PositiveSmallIntegerField(default=0)
-    sis_id = models.CharField(max_length=5)
 
     section_type = models.CharField(max_length=1, choices=(
         ('e', 'lecture'),
@@ -52,6 +52,7 @@ class Section(models.Model):
         ('o', 'other')
     ))
 
+    sis_id = models.CharField(max_length=5, blank=True)
     title = models.CharField(max_length=100, blank=True)
     meeting_time = models.CharField(max_length=20, blank=True)
     location = models.CharField(max_length=20, blank=True)
@@ -61,7 +62,7 @@ class Section(models.Model):
     other_info = models.TextField(blank=True)
 
     course = models.ForeignKey('Course')
-    instructor = models.ForeignKey('Instructor')
+    instructor = models.ForeignKey('Instructor', blank=True, null=True)
     grade = models.OneToOneField('Grade', blank=True, null=True)
 
     def __str__(self):
