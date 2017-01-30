@@ -1,0 +1,54 @@
+{% load rm_underscore %}
+<html>
+{% include 'TopBar.html' %}
+
+<div style="background-color:#99a88f;" class="jumbotron">
+  <div class="container text-center">
+  {% if results.status_code == 200 %}
+    <h1>Search Results</h1>
+    <center><h5>Found {{ results.size }} result(s) in {{ results.time_taken }} seconds</h5></center>
+  {% else %}
+    <h1>Bad Request!</h1>
+  {% endif %}
+  </div>
+</div>
+
+{% if results.status_code == 200 %}
+
+{% if results.size_model.course > 0 %}
+<p><b>&nbsp&nbsp Found these course(s):</b></p>
+<ul class="list-group">
+  {% for data in results.hits %}
+    {% if data.model == 'api.Course' %}
+    <li class="list-group-item list-group-item-action"><a href="{{ data.href }}">{{ data.label }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if results.size_model.instructor > 0 %}
+<p><b>&nbsp&nbsp Found these instructor(s):</b></p>
+<ul class="list-group">
+  {% for data in results.hits %}
+    {% if data.model == 'api.Instructor' %}
+    <li class="list-group-item list-group-item-action"><a href="{{ data.href }}">{{ data.label }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if results.size_model.student > 0 %}
+<p><b>&nbsp&nbsp Found these student(s):</b></p>
+<ul class="list-group">
+  {% for data in results.hits %}
+    {% if data.model == 'api.Student' %}
+    <li class="list-group-item list-group-item-action"><a>{{ data.label }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% endif %}
+
+{% include 'BottomBar.html' %}
+</html>

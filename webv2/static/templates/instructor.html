@@ -1,0 +1,27 @@
+{% load cache %}
+<html>
+{% include 'TopBar.html' %}
+
+{% cache 300 instructorlist %}
+<div style="background-color:#99a88f;" class="jumbotron">
+  <div class="container text-center">
+    {% if status_code == 200 %}
+      <h1>List of All Instructors</h1>
+    {% else %}
+      <h1>Bad Request!</h1>
+    {% endif %}
+  </div>
+</div>
+
+{% if status_code == 200 %}
+<ul class="list-group">
+  {% for i in all_instructors %}
+  <li class="list-group-item list-group-item-action"><a href="{{ i.href }}">{{ i.instructor_name }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% endcache %}
+
+{% include 'BottomBar.html' %}
+</html>

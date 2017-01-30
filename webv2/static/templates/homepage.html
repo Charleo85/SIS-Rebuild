@@ -1,0 +1,202 @@
+<!--Template Caching Temporarily Halted for Development-->
+{#% load cache %#}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .CLAS, .SEAS {
+            margin: 0 auto;
+            width: 75%;
+        }
+        td {
+            font-size: 20px;
+            <!--padding-right: 20px; -->
+        }
+        table {
+            margin-left: 100px;
+            margin-right: 100px;
+            border-radius: 4px;
+        }
+        caption {
+            display: table-caption;
+            text-align:left;
+            font-size: 30px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+
+<body>
+{% include 'TopBar.html' %}
+
+{#% cache 300 homepage %#}
+<div class="section section-header">
+    <div class="parallax pattern-image">
+        <img src="/static/img/Rice_Hall_2.jpg"/>
+        <div class="container">
+            <div class="content">
+                <h1>SIS-Rebuild</h1>
+                <div class="separator-container">
+                    <div class="separator line-separator">∎</div>
+                </div>
+                <h5>The Best Academic Planning Experience</h5>
+                <a href="course/" class="btn btn-white btn-md" >
+                Start
+                  <i class="fa fa-rocket" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <a href="#uva-schools" data-scroll="true" data-id="#uva-schools" class="scroll-arrow hidden-xs hidden-sm">
+    <i class="fa fa-angle-down"></i>
+    </a>
+</div>
+<br>
+<div class='section section-we-made-3' id="uva-schools">
+
+    <div class="container">
+        <table class="CLAS">
+              <caption>Arts and Sciences Departments</caption>
+              <tr>
+                <td><a href="department/african-american-and-african-studies/"> African-American & African Studies </a></td>
+                <td><a href="department/latin-american-studies/"> Latin American Studies </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/american-sign-language/"> American Sign Language </a></td>
+                <td><a href="department/liberal-arts-seminars/"> Liberal Arts Seminars </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/american-studies/"> American Studies </a></td>
+                <td><a href="department/linguistics/"> Linguistics </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/anthropology/"> Anthropology </a></td>
+                <td><a href="department/mathematics/"> Mathematics </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/art/"> Art </a></td>
+                <td><a href="department/media-studies/"> Media Studies </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/astronomy/"> Astronomy </a></td>
+                <td><a href="department/medieval-studies/"> Medieval Studies </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/biology/"> Biology </a></td>
+                <td><a href="department/middle-eastern-south-asian-languages-culture/"> Middle Eastern & South Asian Languages & Cultures </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/chemistry/">Chemistry </a></td>
+                <td><a href="department/middle-eastern-studies/"> Middle Eastern Studies </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/classics/"> Classics </a></td>
+                <td><a href="department/music/"> Music </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/cognitive-science/"> Cognitive Science </a></td>
+                <td><a href="department/neuroscience/"> Neuroscience</a></td>
+              </tr>
+              <tr>
+                  <td><a href="department/college-advising-seminars/"> College Advising Seminars </a></td>
+                  <td><a href="department/pavilion-seminars/"> Pavilion Seminars </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/computer-science/"> Computer Science </a></td>
+                <td><a href="department/philosophy/"> Philosophy </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/drama/"> Drama </a></td>
+                <td><a href="department/physics/"> Physics </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/east-asian-languages-literatures-cultures/"> East Asian Languages, Literatures & Cultures </a></td>
+                <td><a href="department/political-social-thought/"> Political & Social Thought </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/east-asian-studies/"> East Asian Studies </a></td>
+                <td><a href="department/political-philosophy-policy-law/"> Political Philosophy, Policy, & Law </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/economics/"> Economics </a></td>
+                <td><a href="department/politics/"> Politics </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/english/"> English </a></td>
+                <td><a href="department/psychology/"> Psychology </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/environmental-sciences/"> Environmental Sciences </a></td>
+                <td><a href="department/public-health-sciences/"> Public Health Sciences </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/environmental-thought-practice/"> Environmental Thought & Practice </a></td>
+                <td><a href="department/religious-studies/"> Religious Studies </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/french-language-literatures/"> French Language & Literatures </a></td>
+                <td><a href="department/slavic-languages-literatures/"> Slavic Languages & Literatures </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/german-languages-literatures/"> German Languages & Literatures </a></td>
+                <td><a href="department/sociology/"> Sociology </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/global-development-studies/"> Global Development Studies </a></td>
+                <td><a href="department/south-asian-studies/"> South Asian Studies </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/history/"> History </a></td>
+                <td><a href="department/spanish-italian-portuguese/"> Spanish, Italian & Portuguese </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/jewish-studies/"> Jewish Studies </a></td>
+                <td><a href="department/statistics/"> Statistics </a></td>
+              </tr>
+              <tr>
+                  <td><a href="department/women-gender-sexuality/"> Women, Gender and Sexuality </a> </td>
+              </tr>
+            </table>
+    </div>
+<br>
+
+    <div class="container">
+        <table class="SEAS">
+              <caption>Engineering & Applied Sciences</caption>
+              <tr>
+                <td><a href="department/"> Applied Mathematics </a></td>
+                <td><a href="department/"> Electrical & Computer Engineering </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/"> Biomedical Engineering </a></td>
+                <td><a href="department/"> General Engineering </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/"> Chemical Engineering </a></td>
+                <td><a href="department/"> Materials Science & Engineering </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/"> Civil & Environmental Engineering </a></td>
+                <td><a href="department/"> Mechanical & Aerospace Engineering </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/"> Computer Science </a></td>
+                <td><a href="department/"> Science, Technology & Society </a></td>
+              </tr>
+              <tr>
+                <td><a href="department/"> Systems & Information Engineering </a></td>
+              </tr>
+        </table>
+    </div>
+</div>
+
+{#% if status_code == 200 %#}
+{#% endcache %#}
+
+
+{% include 'BottomBar.html' %}
+
+</body>
+</html>

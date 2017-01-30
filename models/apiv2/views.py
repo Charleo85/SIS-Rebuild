@@ -15,6 +15,8 @@ from .models import *
 from .forms import *
 import models.settings
 
+from django.db.models import Q
+
 
 def index(request):
     return HttpResponse('Success!\n')
@@ -41,6 +43,10 @@ class BaseView(View):
         query = request.GET.dict()
         try:
             objs = self.model.objects.filter(**query)
+            # {'name':'discrete math', 'department': 'cs'}
+            # {'all' : true}
+            # objs = self.model.objects.filter(name = 'discrete math', department = cs)
+
         except:
             return _failure(400, 'invalid parameters')
 
@@ -124,16 +130,71 @@ class CourseView(BaseView):
     form = CourseForm
 
     def get(self, request, *args, **kwargs):
-        resp = super().get(request, *args, **kwargs)
-        resp_dict = json.loads(resp.content.decode('utf-8'))
-        if resp_dict['status_code'] != 200:
-            return resp
-        resp_dict.pop('status_code', None)
+        # Below code satisfies a multi-mnemonic search
+        if 'mnemonic_list' in request.GET:
+            mnemonic_querystring = request.GET.get('mnemonic_list')
+            mnemonic_query_list = mnemonic_querystring.split(' ')
 
-        for obj_dict in resp_dict['match']:
-            obj = Grade.objects.get(id=obj_dict['grade'])
-            obj_dict['grade'] = model_to_dict(obj)
-        return _success(200, resp_dict)
+            all_courses = Course.objects.all()
+
+            if len(mnemonic_query_list) == 0:
+                return _failure(404, 'no matches found')
+            elif len(mnemonic_query_list) == 1:
+                correct_courses = all_courses.filter(mnemonic=mnemonic_query_list[0])
+            else:
+                q = Q(mnemonic=mnemonic_query_list[0])
+                for mnemonic_query in mnemonic_query_list[1:]:
+                    q = q.add(Q(mnemonic=mnemonic_query), Q.OR)
+
+                correct_courses = all_courses.filter(q)
+
+            course_dicts = []
+            for course in correct_courses:
+                course_dicts.append(model_to_dict(course))
+
+            if len(course_dicts) == 0:
+                return _failure(404, 'no matches found')
+            else:
+                for course_dictionary in course_dicts:
+                    course_grade = Grade.objects.get(id=course_dictionary['grade'])
+                    course_dictionary['grade'] = model_to_dict(course_grade)
+            return _success(200, {'match': course_dicts})
+
+        # If looking for single course detail (for course detail page), sections
+        # are needed as well.
+        elif 'mnemonic' and 'number' in request.GET:
+            mnemonic = request.GET.get('mnemonic')
+            number = request.GET.get('number')
+            try:
+                course = Course.ojects.get(mnemonic=mnemonic, number=number)
+            except:
+                return _failure(404, 'no matches found')
+
+            course_dictionary = model_to_dict(course)
+
+            course_grade = Grade.objects.get(id=course_dictionary['grade'])
+            course_dictionary['grade'] = model_to_dict(course_grade)
+
+            associated_sections = course.section_set.all()
+            section_dicts = []
+            for section in associated_sections:
+                section_dicts.append(model_to_dict(section))
+
+            course_dictionary['sections'] = section_dicts
+            return _success(200, {'match': course_dictionary})
+
+        # Tong's normal code
+        else:
+            resp = super().get(request, *args, **kwargs)
+            resp_dict = json.loads(resp.content.decode('utf-8'))
+            if resp_dict['status_code'] != 200:
+                return resp
+            resp_dict.pop('status_code', None)
+
+            for obj_dict in resp_dict['match']:
+                obj = Grade.objects.get(id=obj_dict['grade'])
+                obj_dict['grade'] = model_to_dict(obj)
+            return _success(200, resp_dict)
 
     def _create(self, post_dict):
         if 'grade' in post_dict:

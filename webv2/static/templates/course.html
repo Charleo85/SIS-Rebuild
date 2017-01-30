@@ -1,0 +1,31 @@
+{% load cache %}
+<html>
+{% include 'TopBar.html' %}
+
+{% cache 300 courselist %}
+<div style="background-color:#99a88f;" class="jumbotron">
+  <div class="container text-center">
+  {% if status_code == 200 %}
+    <h1>List of All Courses</h1>
+  {% else %}
+    <h1>Bad Request!</h1>
+  {% endif %}
+  </div>
+</div>
+
+{% if status_code == 200 %}
+<ul class="list-group">
+  {% for c in all_courses %}
+  <li class="list-group-item list-group-item-action">
+    <a href="{{ c.coursehref }}">{{ c.course_name }}</a> <br>
+    <a> ({{ c.enrollment_info }}) </a> Instructor: <a href="{{ c.instructorhref }}">{{ c.instructor }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% endcache %}
+
+{% include 'BottomBar.html' %}
+</html>
