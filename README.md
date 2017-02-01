@@ -7,7 +7,7 @@
 
 CS4501 SIS Rebuild Project
 =====
-This project attempts to integrate and improve on the current functionality of [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com) by adding improved data visualization of grade distribution data (retrieved through [FOIA](https://en.wikipedia.org/wiki/Freedom_of_Information_Act_(United_States)) in order to provide students and faculty an improved perspective that will aid in the course selection process.
+This project attempts to integrate and improve on the current functionality of [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com) by adding improved data visualization of grade distribution data (retrieved through [FOIA](https://en.wikipedia.org/wiki/Freedom_of_Information_Act_(United_States))) in order to provide students and faculty an improved perspective that will aid in the course selection process.
 	
 You may contribute your thoughts on this project to our [Trello](https://trello.com/b/XTuoK510/isa-project) page.
 The models API is documented on [Swagger](https://app.swaggerhub.com/api/charlie/SIS-R/1.0.0).
