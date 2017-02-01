@@ -7,12 +7,14 @@
 
 CS4501 SIS Rebuild Project
 =====
-This project attempts to integrate the current functionality of [UVa SIS](https://sisuva.admin.virginia.edu), [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com), in order to provide students and faculties an efficient way to do academic planning.
-
+This project attempts to integrate and improve on the current functionality of [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com) by adding improved data visualization of grade distribution data (retrieved through [FOIA](https://en.wikipedia.org/wiki/Freedom_of_Information_Act_(United_States))) in order to provide students and faculty an improved perspective that will aid in the course selection process.
+	
 You may contribute your thoughts on this project to our [Trello](https://trello.com/b/XTuoK510/isa-project) page.
 The models API is documented on [Swagger](https://app.swaggerhub.com/api/charlie/SIS-R/1.0.0).
 
 All [CS 4501 (Internet Scale Application)](https://github.com/thomaspinckney3/cs4501/blob/master/README.md) course related files can be found in the `misc/` directory. Please see [cs4501.md](misc/cs4501.md) for details.
+
+We have a working webpage on DigitalOcean: Visit homepage at: [http://162.243.117.39](http://162.243.117.39).
 
 
 Setup
@@ -42,7 +44,6 @@ $ docker start mysql
 $ chmod 755 misc/scripts/cleardb.sh && ./misc/scripts/cleardb.sh
 ```
 
-- We also have a working webpage on a DigitalOcean droplet. Visit homepage at: [http://162.243.117.39](http://162.243.117.39).
 
 APIv2 Documentation
 --------
