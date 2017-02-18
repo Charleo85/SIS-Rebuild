@@ -30,80 +30,80 @@ webv2 = [
 ]
 
 
-###############################
-misc = [
-    url(r'^admin/', include(admin.site.urls)),
-    # url(r'^$', views.home_page, name='home'),
-    # url(r'^about/$', views.about, name='about'),
-    url(r'^search/$', views.search_page, name='search_page'),
-]
+# ###############################
+# misc = [
+#     url(r'^admin/', include(admin.site.urls)),
+#     # url(r'^$', views.home_page, name='home'),
+#     # url(r'^about/$', views.about, name='about'),
+#     url(r'^search/$', views.search_page, name='search_page'),
+# ]
+#
+# course = [
+#     url(
+#         r'^course/$', views.list_item,
+#         { 'modelname' : 'course' }, name='course_list',
+#     ),
+#     url(
+#         r'^course/detail/(?P<itemid>[0-9]{5})/$',
+#         views.item_detail, { 'modelname' : 'course' }, name='course_detail',
+#     ),
+#     url(
+#         r'^course/create/$', views.create_course_listing,
+#         { 'modelname' : 'course' }, name='course_create',
+#     ),
+# ]
+#
+# ins = [
+#     url(
+#         r'^instructor/$', views.list_item,
+#         { 'modelname' : 'instructor' }, name='instructor_list'
+#     ),
+#     url(
+#         r'^instructor/detail/(?P<itemid>[a-zA-Z0-9]+)/$',
+#         views.item_detail, { 'modelname' : 'instructor' },
+#         name='instructor_detail',
+#     ),
+#     url(
+#         r'^instructor/login/$',
+#         views.login, { 'modelname' : 'instructor' },
+#         name='instructor_login',
+#     ),
+#     url(
+#         r'^instructor/profile/$',
+#         views.instructor_profile, name='instructor_profile',
+#     ),
+#     url(
+#         r'^instructor/logout/$',
+#         views.logout, { 'modelname' : 'instructor' },
+#         name='instructor_logout',
+#     ),
+#     url(
+#         r'^instructor/signup/$',
+#         views.signup, { 'modelname' : 'instructor' },
+#         name='instructor_signup',
+#     ),
+# ]
+#
+# stud = [
+#     url(
+#         r'^student/login/$',
+#         views.login, { 'modelname' : 'student' },
+#         name='student_login',
+#     ),
+#     url(
+#         r'^student/profile/$',
+#         views.student_profile, name='student_profile',
+#     ),
+#     url(
+#         r'^student/logout/$',
+#         views.logout, { 'modelname' : 'student' },
+#         name='student_logout',
+#     ),
+#     url(
+#         r'^student/signup/$',
+#         views.signup, { 'modelname' : 'student' },
+#         name='student_signup',
+#     ),
+# ]
 
-course = [
-    url(
-        r'^course/$', views.list_item,
-        { 'modelname' : 'course' }, name='course_list',
-    ),
-    url(
-        r'^course/detail/(?P<itemid>[0-9]{5})/$',
-        views.item_detail, { 'modelname' : 'course' }, name='course_detail',
-    ),
-    url(
-        r'^course/create/$', views.create_course_listing,
-        { 'modelname' : 'course' }, name='course_create',
-    ),
-]
-
-ins = [
-    url(
-        r'^instructor/$', views.list_item,
-        { 'modelname' : 'instructor' }, name='instructor_list'
-    ),
-    url(
-        r'^instructor/detail/(?P<itemid>[a-zA-Z0-9]+)/$',
-        views.item_detail, { 'modelname' : 'instructor' },
-        name='instructor_detail',
-    ),
-    url(
-        r'^instructor/login/$',
-        views.login, { 'modelname' : 'instructor' },
-        name='instructor_login',
-    ),
-    url(
-        r'^instructor/profile/$',
-        views.instructor_profile, name='instructor_profile',
-    ),
-    url(
-        r'^instructor/logout/$',
-        views.logout, { 'modelname' : 'instructor' },
-        name='instructor_logout',
-    ),
-    url(
-        r'^instructor/signup/$',
-        views.signup, { 'modelname' : 'instructor' },
-        name='instructor_signup',
-    ),
-]
-
-stud = [
-    url(
-        r'^student/login/$',
-        views.login, { 'modelname' : 'student' },
-        name='student_login',
-    ),
-    url(
-        r'^student/profile/$',
-        views.student_profile, name='student_profile',
-    ),
-    url(
-        r'^student/logout/$',
-        views.logout, { 'modelname' : 'student' },
-        name='student_logout',
-    ),
-    url(
-        r'^student/signup/$',
-        views.signup, { 'modelname' : 'student' },
-        name='student_signup',
-    ),
-]
-
-urlpatterns = webv2+ statics + misc + course + ins + stud
+urlpatterns = webv2 + statics  # + misc + course + ins + stud

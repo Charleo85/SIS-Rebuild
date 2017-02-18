@@ -29,7 +29,16 @@ def department_view(request, specific_department):
     response_dict['department'] = specific_department
     return render(request, 'department.html', response_dict)
 
-# def course_view(request, )
+
+def course_detail(request, mnemonic, number):
+    url = 'http://exp-api:8000/course/' + mnemonic + number + '/'
+    response_dict = json.loads((requests.get(url)).json())
+    return render(request, 'course_detail.html', mnemonic, number)
+
+
+# Is this necessary?
+def mnemonic_view(request, mnemonic):
+    pass
 
 
 # Version 1 Code (Here for reference)
