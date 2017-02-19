@@ -39,11 +39,11 @@ before_script:
 script:
   - >
     docker exec -it models bash -c
-    "pip install -r requirement.txt && ./manage.py test"
+    "pip install -r requirement.txt && python manage.py test"
     # run Django unit tests on models
   - >
     docker exec -it exp bash -c
-    "pip install -r requirement.txt && ./manage.py test"
+    "pip install -r requirement.txt && python manage.py test"
     # run Django unit tests on exp
 #  - >
 #    pip3 install -r requirement.txt && python3 ./misc/selenium/test_front_end_travis.py

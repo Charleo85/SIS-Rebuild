@@ -11,7 +11,6 @@ specifiers (i.e. general, or specific model name). The general index
 should include results from all models.
 """
 class SearchTestCase(TestCase):
-    pass
     # def setUp(self):
     #     self.factory = RequestFactory()
     #
