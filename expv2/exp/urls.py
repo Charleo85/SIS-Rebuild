@@ -26,14 +26,15 @@ misc = [
     url(r'^auth/record_co-view/$', views_auth.record_coview),
     ]
 
-course = [
-    url(r'^department/(?P<specific_department>)[a-z]{1,10}/$', views_model.department_courses),
+core = [
+    url(r'^department/(?P<specific_department>[\w+-]{1,100})/$', views_model.department_courses),
     url(r'^course/(?P<mnemonic>[a-zA-Z]{1,4})(?P<number>[0-9]{4})/$', views_model.course_detail),
     url(r'^course/(?P<mnemonic>[a-zA-Z]{1,4})/$', views_model.mnemonic_courses),
-    #url(r'^course/(?<sis_id>[0-9]{5})/(?<semester>[0-9]{4})', views_model.section_detail()),
+    url(r'^section/(?P<id>[0-9]{1,5})/(?P<semester>[0-9]{4})/$', views_model.section_detail),
+    url(r'^instructor/(?P<computing_id>[a-zA-Z0-9]{4,5})/$', views_model.instructor_detail),
 ]
 
-urlpatterns = misc + course
+urlpatterns = misc + core
 
 # course = [
 #     url(r'^course/$', views_model.course_all),

@@ -46,12 +46,12 @@ class BaseView(View):
             # objs = self.model.objects.filter(name = 'discrete math', department = cs)
 
         except:
-            return _failure(400, 'invalid parameters')
+            return _failure(400, 'Invalid Parameters')
 
 
         dicts = []
         for obj in objs: dicts.append(model_to_dict(obj))
-        if len(dicts) == 0: return _failure(404, 'no matches found')
+        if len(dicts) == 0: return _failure(404, 'No Matches Found')
         return _success(200, {'match': dicts})
 
     def post(self, request, *args, **kwargs):
@@ -69,8 +69,8 @@ class BaseView(View):
             query.pop('force', None)
 
         try: objs = self.model.objects.filter(**query)
-        except: return _failure(400, 'invalid parameters')
-        if len(objs) == 0: return _failure(404, 'no matches found')
+        except: return _failure(400, 'Invalid Parameters')
+        if len(objs) == 0: return _failure(404, 'No Matches Found')
 
         if not force and len(objs) > 1:
             msg = 'attempting to delete multiple objects, '
@@ -123,7 +123,7 @@ class CourseView(BaseView):
             all_courses = Course.objects.all()
 
             if len(mnemonic_query_list) == 0:
-                return _failure(404, 'no matches found')
+                return _failure(404, 'No Matches Found')
             elif len(mnemonic_query_list) == 1:
                 correct_courses = all_courses.filter(mnemonic=mnemonic_query_list[0])
             else:
@@ -156,21 +156,31 @@ class CourseView(BaseView):
             mnemonic = request.GET.get('mnemonic')
             number = request.GET.get('number')
             try:
-                # TODO: This is problematic
-                course = Course.ojects.get(mnemonic=mnemonic, number=number)
-            except:
-                return _failure(404, 'no matches found')
+                course = Course.objects.get(mnemonic=mnemonic, number=number)
+            except Course.DoesNotExist:
+                return _failure(404, 'No matches found.')
+            except Course.MultipleObjectsReturned:
+                return _failure(409, 'Multiple objects found when there should only be one.')
 
             course_dictionary = model_to_dict(course)
 
-            # AVERAGE GRADE'S FOR GENERIC COURSES NOT AVAILABLE YET
+            # TODO: AVERAGE GRADES FOR GENERIC COURSES NOT AVAILABLE YET
+            # TODO: THESE MUST BE CALCULATED EITHER IN HERE OR IN A SEPARATE SCRIPT
             # course_grade = Grade.objects.get(id=course_dictionary['grade'])
             # course_dictionary['grade'] = model_to_dict(course_grade)
 
             associated_sections = course.section_set.all()
             section_dicts = []
             for section in associated_sections:
-                section_dicts.append(model_to_dict(section))
+                section_dict = model_to_dict(section)
+
+                grade = Grade.objects.get(id=section_dict['grade'])
+                section_dict['grade'] = model_to_dict(grade)
+
+                instructor = Instructor.objects.get(id=section_dict['instructor'])
+                section_dict['instructor'] = model_to_dict(instructor)
+
+                section_dicts.append(section_dict)
 
             course_dictionary['sections'] = section_dicts
             return _success(200, {'match': course_dictionary})
@@ -230,26 +240,60 @@ class CourseView(BaseView):
         return _success(202, {'object_id': resp_dict['object_id']})
 
 
-    # Unsure if needed right now
-    class SectionView(BaseView):
-        model = Section
-        form = SectionForm
+class SectionView(BaseView):
+    model = Section
+    form = SectionForm
 
-        def get(self, request, *args, **kwargs):
-            resp = super().get(request, *args, **kwargs)
-            resp_dict = json.loads(resp.content.decode('utf-8'))
-            if resp_dict['status_code'] != 200: return resp
-            resp_dict.pop('status_code', None)
+    def get(self, request, *args, **kwargs):
+        resp = super().get(request, *args, **kwargs)
+        resp_dict = json.loads(resp.content.decode('utf-8'))
+        if resp_dict['status_code'] != 200: return resp
+        resp_dict.pop('status_code', None)
 
-            for obj_dict in resp_dict['match']:
-                try:
-                    obj = Grade.objects.get(id=obj_dict['grade'])
-                except:
-                    continue
-                obj_dict['grade'] = model_to_dict(obj)
+        for obj_dict in resp_dict['match']:
+            try:
+                grade = Grade.objects.get(id=obj_dict['grade'])
+                instructor = Instructor.objects.get(id=obj_dict['instructor'])
+            except (Grade.DoesNotExist, Instructor.DoesNotExist):
+                continue
 
-            return _success(200, resp_dict)
+            obj_dict['grade'] = model_to_dict(grade)
+            obj_dict['instructor'] = model_to_dict(instructor)
 
+        return _success(200, resp_dict)
+
+class InstructorView(BaseView):
+    model = Instructor
+    form = InstructorForm
+
+    def get(self, request, *args, **kwargs):
+        resp = super().get(request, *args, **kwargs)
+        resp_dict = json.loads(resp.content.decode('utf-8'))
+        if resp_dict['status_code'] != 200: return resp
+        resp_dict.pop('status_code', None)
+
+        for instructor_dict in resp_dict['match']:
+            try:
+                ins = Instructor.objects.get(id=instructor_dict['id'])
+                sections_taught = ins.section_set.all()
+                sections_taught_dicts = []
+                for section in sections_taught:
+                    section_dict = model_to_dict(section)
+                    try:
+                        grade = Grade.objects.get(id=section_dict['grade'])
+                        grade_dict = model_to_dict(grade)
+                        section_dict['grade'] = grade_dict
+                    except:
+                        pass
+
+                    sections_taught_dicts.append(section_dict)
+
+                if sections_taught_dicts:
+                    instructor_dict['instructor_sections'] = sections_taught_dicts
+            except:
+                continue
+
+        return _success(200, resp_dict)
 
 #
 #

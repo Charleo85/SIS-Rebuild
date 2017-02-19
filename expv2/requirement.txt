@@ -1,4 +1,4 @@
-Django==1.8.14
+Django==1.10
 elasticsearch==2.4.0
 kafka-python==1.0.0
 mod-wsgi==4.5.2

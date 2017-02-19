@@ -25,14 +25,14 @@ def about(request):
 
 def department_view(request, specific_department):
     url = 'http://exp-api:8000/department/' + specific_department
-    response_dict = json.loads((requests.get(url)).json())
+    response_dict = (requests.get(url)).json()
     response_dict['department'] = specific_department
     return render(request, 'department.html', response_dict)
 
 
 def course_detail(request, mnemonic, number):
     url = 'http://exp-api:8000/course/' + mnemonic + number + '/'
-    response_dict = json.loads((requests.get(url)).json())
+    response_dict = (requests.get(url)).json()
     return render(request, 'course_detail.html', mnemonic, number)
 
 

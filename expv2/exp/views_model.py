@@ -119,14 +119,15 @@ def department_courses(request, specific_department):
     elif specific_department == 'women-gender-sexuality':
         query = {'mnemonic_list': 'WGS'}
 
-    # TODO: ENGINEERING SCHOOL
+    # TODO: ENGINEERING SCHOOL AND CURRY SCHOOL
 
-    response_dict = json.loads(((requests.get('http://models-api:8000/apiv2/course/', query)).json()))
+    response_dict = requests.get('http://models-api:8000/apiv2/course/', query).json()
     # JSON looks like this: {match: [list of course dicts], status code : 200}
 
     for course in response_dict['match']:
-        course['course_href'] = '/' + course['mnemonic'] + course['number']
+        course['course_href'] = '/course/' + course['mnemonic'] + course['number']
 
+    # TODO: ERROR CHECKING
     # Additional Data processing here:
     # - Add the course hrefs - done
     # - Error checking
@@ -137,14 +138,15 @@ def department_courses(request, specific_department):
 
 
 # Retrieve and format data (generic course lists) pertaining to a single mnemonic
-# TODO: Allow for arbitrary mnemonic search
+# TODO: Allow for arbitrary mnemonic search, i.e. a "mnemonic selector" in the web that passes the selections here
 def mnemonic_courses(request, mnemonic):
 
     query = {'mnemonic_list': mnemonic}
-    response_dict = json.loads((requests.get('http://models-api:8000/apiv2/course/', query)).json())
+    response_dict = requests.get('http://models-api:8000/apiv2/course/', query).json()
 
-    for course in response_dict['match']:
-        course['course_href'] = '/' + course['mnemonic'] + course['number']  + '/'
+    if response_dict['status_code'] == 200 and response_dict['match']:
+        for course in response_dict['match']:
+            course['course_href'] = '/course/' + course['mnemonic'] + course['number']  + '/'
 
     return JsonResponse(response_dict)
 
@@ -154,11 +156,47 @@ def mnemonic_courses(request, mnemonic):
 def course_detail(request, mnemonic, number):
 
     query = {'mnemonic': mnemonic, 'number': number}
-    response_dict = json.loads((requests.get('http://models-api:8000/apiv2/course/', query)).json())
-    # Response dict will contain all of the average grade data as well a list of dicts of sections
+    response_dict = requests.get('http://models-api:8000/apiv2/course/', query).json()
 
-    for section in response_dict['match']['sections']:
-        section['section_href'] = '/' + section['sis_id'] + '/' + section['semester'] + '/'
+    # TODO: Calculate average GPA over all associated sections
+
+    if response_dict['status_code'] == 200 and response_dict['match']:
+        # TODO: str(section['id']) must eventually change to str(section['sisid'])
+        for section in response_dict['match']['sections']:
+            section['section_href'] = '/section/' + str(section['id']) + '/' + str(section['semester']) + '/'
+
+    return JsonResponse(response_dict)
+
+
+# TODO: SIS-ID isn't in fixture yet, so using django-generated id for now ( section_id isn't sufficient for uniqueness)
+# TODO: Figure out a way to get SIS-IDs into the fixture
+# Retrieve and format info needed to display all information for a section page
+def section_detail(request, id, semester):
+
+    # NOT SUFFICIENT!
+    query = {'id': id, 'semester': semester}
+    response_dict = requests.get('http://models-api:8000/apiv2/section/', query).json()
+
+    if response_dict['status_code'] == 200 and response_dict['match']:
+        for section in response_dict['match']:
+            section['instructor']['instructor_href'] = '/instructor/' +  section['instructor']['computing_id'] + '/'
+
+    return JsonResponse(response_dict)
+
+
+# Retrieve and format data pertaining to an instructor (courses taught, average GPA total, etc.)
+def instructor_detail(request, computing_id):
+
+    query = {'computing_id': computing_id}
+    response_dict = requests.get('http://models-api:8000/apiv2/instructor', query).json()
+
+    if response_dict['status_code'] == 200 and response_dict['match']:
+        instructor = response_dict['match'][0]
+
+        for section in instructor['instructor_sections']:
+            section['section_href'] = '/section/' + str(section['id']) + '/' + str(section['semester']) + '/'
+
+    # TODO: Calculate average GPA over all associated sections
 
     return JsonResponse(response_dict)
 
@@ -166,20 +204,6 @@ def course_detail(request, mnemonic, number):
 # Retrieve and format data pertaining to ALL Courses - is this necessary/needed? Seems like an expensive operation.
 def course_all(request):
     # Tong or Charlie, what does the query dict need so that the API gives me all courses??
-    pass
-
-
-# Retrieve and format info needed to display all information for a section page
-def section_detail(request, sis_id, semester):
-
-    query = {'sis_id': sis_id, 'semester': semester}
-    response_dict = json.loads((requests.get('http://models-api:8000/apiv2/course/', query)).json())
-    # UNFINISHED
-    return JsonResponse(response_dict)
-
-
-# Retrieve and format data pertaining to an instructor (courses taught, average GPA total, etc.)
-def instructor_information(request):
     pass
 
 

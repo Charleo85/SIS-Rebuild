@@ -24,6 +24,8 @@ index_page = [
 
 course = [
     url(r'^course', views.CourseView.as_view()),
+    url(r'^section', views.SectionView.as_view()),
+    url(r'^instructor', views.InstructorView.as_view()),
 ]
 
 urlpatterns = index_page + course
