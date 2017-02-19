@@ -115,7 +115,7 @@ class CourseView(BaseView):
     form = CourseForm
 
     def get(self, request, *args, **kwargs):
-        # Below code satisfies a multi-mnemonic search
+        # Below code satisfies a multi-mnemonic search (e.g for department search)
         if 'mnemonic_list' in request.GET:
             mnemonic_querystring = request.GET.get('mnemonic_list')
             mnemonic_query_list = mnemonic_querystring.split(' ')
@@ -129,7 +129,8 @@ class CourseView(BaseView):
             else:
                 q = Q(mnemonic=mnemonic_query_list[0])
                 for mnemonic_query in mnemonic_query_list[1:]:
-                    q = q.add(Q(mnemonic=mnemonic_query), Q.OR)
+                    q = q | Q(mnemonic=mnemonic_query)
+                    # q = q.add(Q(mnemonic=mnemonic_query), Q.OR)
 
                 correct_courses = all_courses.filter(q)
 
@@ -139,26 +140,32 @@ class CourseView(BaseView):
 
             if len(course_dicts) == 0:
                 return _failure(404, 'no matches found')
-            else:
-                for course_dictionary in course_dicts:
-                    course_grade = Grade.objects.get(id=course_dictionary['grade'])
-                    course_dictionary['grade'] = model_to_dict(course_grade)
-            return _success(200, {'match': course_dicts})
+
+            # TODO: AVERAGE GRADES FOR GENERIC COURSES NOT AVAILABLE YET
+            # TODO: THESE MUST BE CALCULATED EITHER IN HERE OR IN A SEPARATE SCRIPT
+            # else:
+            #     for course_dictionary in course_dicts:
+            #         course_grade = Grade.objects.get(id=course_dictionary['grade'])
+            #         course_dictionary['grade'] = model_to_dict(course_grade)
+
+            return _success(200, {'match': course_dicts, 'query_list': mnemonic_query_list})
 
         # If looking for single course detail (for course detail page), sections
-        # are needed as well.
+        # are needed as well!
         elif 'mnemonic' and 'number' in request.GET:
             mnemonic = request.GET.get('mnemonic')
             number = request.GET.get('number')
             try:
+                # TODO: This is problematic
                 course = Course.ojects.get(mnemonic=mnemonic, number=number)
             except:
                 return _failure(404, 'no matches found')
 
             course_dictionary = model_to_dict(course)
 
-            course_grade = Grade.objects.get(id=course_dictionary['grade'])
-            course_dictionary['grade'] = model_to_dict(course_grade)
+            # AVERAGE GRADE'S FOR GENERIC COURSES NOT AVAILABLE YET
+            # course_grade = Grade.objects.get(id=course_dictionary['grade'])
+            # course_dictionary['grade'] = model_to_dict(course_grade)
 
             associated_sections = course.section_set.all()
             section_dicts = []
@@ -221,6 +228,27 @@ class CourseView(BaseView):
             except: return _failure(400, 'invalid update info')
 
         return _success(202, {'object_id': resp_dict['object_id']})
+
+
+    # Unsure if needed right now
+    class SectionView(BaseView):
+        model = Section
+        form = SectionForm
+
+        def get(self, request, *args, **kwargs):
+            resp = super().get(request, *args, **kwargs)
+            resp_dict = json.loads(resp.content.decode('utf-8'))
+            if resp_dict['status_code'] != 200: return resp
+            resp_dict.pop('status_code', None)
+
+            for obj_dict in resp_dict['match']:
+                try:
+                    obj = Grade.objects.get(id=obj_dict['grade'])
+                except:
+                    continue
+                obj_dict['grade'] = model_to_dict(obj)
+
+            return _success(200, resp_dict)
 
 
 #

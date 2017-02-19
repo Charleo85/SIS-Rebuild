@@ -1,6 +1,6 @@
-from lxml import html
-from lxml import etree
-import requests
+# from lxml import html
+# from lxml import etree
+# import requests
 import re
 import json
 import csv
@@ -15,14 +15,14 @@ grades = []
 
 # read data from csv
 with open('GradesSpring2016.csv', newline='') as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+    csvreader = csv.reader(csvfile, delimiter=',', quotechar='"')
     grade_pk = 0
     course_pk = 0
     instructor_pk = 0
 
     for row in csvreader:
         # print(row[0])
-        if (row[25] == "Total"):
+        if row[25] == "Total":
             continue
         section = {}
         section["model"] = "apiv2.Section"
@@ -48,7 +48,6 @@ with open('GradesSpring2016.csv', newline='') as csvfile:
             cou[name] = course_id
             # course_fields["description"] = ""
         section_fields["course"] = course_id
-
 
         match = re.findall(r'([\w\.-]+)@virginia\.edu', row[3], re.IGNORECASE)
         if match:
@@ -76,37 +75,44 @@ with open('GradesSpring2016.csv', newline='') as csvfile:
         #     print(row[4])
 
 
-
         section_fields["section_id"] = row[6]
         section_fields["sis_id"] = ""
         section_fields["section_type"] = ""
         section_fields["title"] = row[7]
-        if isinstance(row[9], int):
-            grade = {}
-            grade_pk += 1
-            grade["model"] = "apiv2.grade"
-            grade["pk"] = grade_pk
-            grade_fields = {}
-            grade_fields["average_gpa"] = row[8]
-            grade_fields["num_a_plus"] = row[9]
-            grade_fields["num_a"] = row[10]
-            grade_fields["num_a_minus"] = row[11]
-            grade_fields["num_b_plus"] = row[12]
-            grade_fields["num_b"] = row[13]
-            grade_fields["num_b_minus"] = row[14]
-            grade_fields["num_c_plus"] = row[15]
-            grade_fields["num_c"] = row[16]
-            grade_fields["num_c_minus"] = row[17]
-            grade_fields["num_d_plus"] = row[18]
-            grade_fields["num_d"] = row[19]
-            grade_fields["num_d_minus"] = row[20]
-            grade_fields["num_f"] = row[21]
-            grade_fields["num_other"] = row[22]
-            grade_fields["num_withdraw"] = row[23]
-            grade_fields["num_drop"] = row[24]
-            grade_fields["num_total"] = row[25]
-            grade.append["fields"] = grade_fields
-            section_fields["grade"] = grade_pk
+
+        try:
+            float(row[9])
+
+            if isinstance(float(row[9]), float):
+                grade = {}
+                grade_pk += 1
+                grade["model"] = "apiv2.grade"
+                grade["pk"] = grade_pk
+                grade_fields = {}
+                grade_fields["average_gpa"] = row[8]
+                grade_fields["num_a_plus"] = row[9]
+                grade_fields["num_a"] = row[10]
+                grade_fields["num_a_minus"] = row[11]
+                grade_fields["num_b_plus"] = row[12]
+                grade_fields["num_b"] = row[13]
+                grade_fields["num_b_minus"] = row[14]
+                grade_fields["num_c_plus"] = row[15]
+                grade_fields["num_c"] = row[16]
+                grade_fields["num_c_minus"] = row[17]
+                grade_fields["num_d_plus"] = row[18]
+                grade_fields["num_d"] = row[19]
+                grade_fields["num_d_minus"] = row[20]
+                grade_fields["num_f"] = row[21]
+                grade_fields["num_other"] = row[22]
+                grade_fields["num_withdraw"] = row[23]
+                grade_fields["num_drop"] = row[24]
+                grade_fields["num_total"] = row[25]
+                grade["fields"] = grade_fields
+                section_fields["grade"] = grade_pk
+                grades.append(grade)
+
+        except ValueError:
+            continue
 
         section['fields'] = section_fields
         sections.append(section)
@@ -117,6 +123,11 @@ output = open("courses.json", "w")
 course_data = json.dumps(courses)
 output.write(course_data)
 output.close()
+
+output = open("grades.json", "w")
+grade_data = json.dumps(grades)
+output.write(grade_data)
+output.close
 
 output = open("instructors.json", "w")
 instructor_data = json.dumps(instructors)

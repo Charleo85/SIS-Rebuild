@@ -22,15 +22,15 @@ misc = [
     url(r'^$', views_model.index),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^homepage/$', views_model.home_page),
-    url(r'^search/$', views_model.search),
+    # url(r'^search/$', views_model.search),
     url(r'^auth/record_co-view/$', views_auth.record_coview),
     ]
 
 course = [
-    url(r'^department/?P<specific_department>/$', views_model.department_courses),
-    url(r'^course/(?P<mnemonic>[a-zA-Z]{1,4})(?P<number>[0-9]{4})/', views_model.course_detail),
-    url(r'^course/(?<mnemonic>[a-zA-Z]{1,4})/', views_model.mnemonic_courses),
-    url(r'^course/(?<sis_id>[0-9]{5})/(?<semester>[0-9]{4})', views_model.section_detail()),
+    url(r'^department/(?P<specific_department>)[a-z]{1,10}/$', views_model.department_courses),
+    url(r'^course/(?P<mnemonic>[a-zA-Z]{1,4})(?P<number>[0-9]{4})/$', views_model.course_detail),
+    url(r'^course/(?P<mnemonic>[a-zA-Z]{1,4})/$', views_model.mnemonic_courses),
+    #url(r'^course/(?<sis_id>[0-9]{5})/(?<semester>[0-9]{4})', views_model.section_detail()),
 ]
 
 urlpatterns = misc + course

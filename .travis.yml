@@ -36,7 +36,7 @@ before_script:
   - docker logs models
   - docker logs mysql-cmdline
 
-#script:
+script:
 #  - >
 #    docker exec -it models bash -c
 #    "pip install -r requirement.txt && ./manage.py test"

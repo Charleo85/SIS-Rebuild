@@ -119,9 +119,9 @@ def department_courses(request, specific_department):
     elif specific_department == 'women-gender-sexuality':
         query = {'mnemonic_list': 'WGS'}
 
-    # TO DO: ENGINEERING SCHOOL
+    # TODO: ENGINEERING SCHOOL
 
-    response_dict = json.loads((requests.get('http://models-api:8000/apiv2/course/', query)).json())
+    response_dict = json.loads(((requests.get('http://models-api:8000/apiv2/course/', query)).json()))
     # JSON looks like this: {match: [list of course dicts], status code : 200}
 
     for course in response_dict['match']:
@@ -137,6 +137,7 @@ def department_courses(request, specific_department):
 
 
 # Retrieve and format data (generic course lists) pertaining to a single mnemonic
+# TODO: Allow for arbitrary mnemonic search
 def mnemonic_courses(request, mnemonic):
 
     query = {'mnemonic_list': mnemonic}

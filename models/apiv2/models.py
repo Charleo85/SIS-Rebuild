@@ -29,7 +29,7 @@ class Course(models.Model):
     mnemonic = models.CharField(max_length=4)
     number = models.CharField(max_length=4)
     description = models.TextField(blank=True)
-    grade = models.OneToOneField('Grade', blank=True, null=True)
+    # grade = models.OneToOneField('Grade', blank=True, null=True)
 
     def __str__(self):
         return self.mnemonic + self.number
