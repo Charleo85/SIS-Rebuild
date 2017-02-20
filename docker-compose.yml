@@ -36,12 +36,12 @@ services:
         networks:
             - network1
 
-    # expv2 now!
+    # expv2 now, to switch back to v1, change the EXP variable in the .env file
     exp:
         container_name: exp
         image: zakinator123/cs4501:${TAG}
         volumes:
-            - ./expv2/:/app
+            - ./${EXP}/:/app
         ports:
             - "8002:8000"
         links:
@@ -52,12 +52,12 @@ services:
         networks:
             - network1
 
-
+    # webv2 now, to switch back to v1, change the WEB variable in the .env file
     web1:
         container_name: web1
         image: zakinator123/cs4501:${TAG}
         volumes:
-            - ./webv2/:/app
+            - ./${WEB}/:/app
         ports:
             - "80:8000"
         links:
