@@ -12,6 +12,7 @@ cou = {}
 ins = {}
 grades = []
 
+# TODO: Add names of instructors to instructor.json!!!!!
 
 # read data from csv
 with open('GradesSpring2016.csv', newline='') as csvfile:

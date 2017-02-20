@@ -25,20 +25,25 @@ def about(request):
 
 def department_view(request, specific_department):
     url = 'http://exp-api:8000/department/' + specific_department
-    response_dict = (requests.get(url)).json()
+    response_dict = requests.get(url).json()
     response_dict['department'] = specific_department
     return render(request, 'department.html', response_dict)
 
 
 def course_detail(request, mnemonic, number):
-    url = 'http://exp-api:8000/course/' + mnemonic + number + '/'
-    response_dict = (requests.get(url)).json()
-    return render(request, 'course_detail.html', mnemonic, number)
+    uva_class = mnemonic + number
+    url = 'http://exp-api:8000/course/' + uva_class + '/'
+    response_dict = requests.get(url).json()
+    response_dict['class'] = uva_class
+    return render(request, 'course_detail.html', response_dict)
 
+def section_detail(request, mnemonic, number):
+    pass
 
 # Is this necessary?
 def mnemonic_view(request, mnemonic):
     pass
+
 
 
 # Version 1 Code (Here for reference)

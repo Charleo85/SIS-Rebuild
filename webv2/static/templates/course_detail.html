@@ -10,7 +10,7 @@
 <div style="background-color:#99a88f;" class="jumbotron">
   <div class="container text-center">
   {% if status_code == 200 %}
-    <h1>{{ course.mnemonic }} {{ course.number }}</h1>
+    <h1>{{ class }}</h1>
   {% else %}
     <h1>Bad Request!</h1>
   {% endif %}
@@ -19,9 +19,12 @@
 
 {% if status_code == 200 %}
 <ul class="list-group">
-  {% for key, value in course.items %}
-    <li class="list-group-item list-group-item-action"><b>{{ key|rm_underscore }}</b>: {{ value }}</li>
-  {% endfor %}
+
+  {{match}}
+
+  <!--{#% for key, value in match %#}-->
+    <!--<li class="list-group-item list-group-item-action"><b>{#{ key|rm_underscore }#}</b>: {#{ value }#}</li>-->
+  <!--{#% endfor %#}-->
 </ul>
 {% endif %}
 

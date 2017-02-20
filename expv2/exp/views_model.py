@@ -52,9 +52,9 @@ def department_courses(request, specific_department):
         query = {'mnemonic_list': 'EVAT EVEC EVGE EVHY EVSC'}
     elif specific_department == 'environmental-thought-practice':
         query = {'mnemonic_list': 'ETP'}
-    elif specific_department == 'french-language-literature':
+    elif specific_department == 'french-languages-literatures':
         query = {'mnemonic_list': 'CREO FREN FRTR'}
-    elif specific_department == 'german-language-literature':
+    elif specific_department == 'german-languages-literatures':
         query = {'mnemonic_list': 'GERM GETR'}
     elif specific_department == 'global-development-studies':
         query = {'mnemonic_list': 'GDS GSGS GSSJ GSVS'}
