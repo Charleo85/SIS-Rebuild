@@ -26,7 +26,7 @@ services:
         image: zakinator123/cs4501:${TAG}
         volumes:
             - ./models/:/app
-            - ./data:/tmp/data
+            - ./data/Extracted_JSON/:/tmp/data
         ports:
             - "8001:8000"
         links:

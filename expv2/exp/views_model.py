@@ -124,15 +124,9 @@ def department_courses(request, specific_department):
     response_dict = requests.get('http://models-api:8000/apiv2/course/', query).json()
     # JSON looks like this: {match: [list of course dicts], status code : 200}
 
-    for course in response_dict['match']:
-        course['course_href'] = '/course/' + course['mnemonic'] + course['number']
-
-    # TODO: ERROR CHECKING
-    # Additional Data processing here:
-    # - Add the course hrefs - done
-    # - Error checking
-    #       - Perhaps if courses['match'] is empty, return a 404
-    #       - Or if courses status code is not 200, give a helpful error message
+    if response_dict['status_code'] == 200 and response_dict['match']:
+        for course in response_dict['match']:
+            course['course_href'] = '/course/' + course['mnemonic'] + course['number']
 
     return JsonResponse(response_dict)
 
@@ -157,6 +151,7 @@ def course_detail(request, mnemonic, number):
 
     query = {'mnemonic': mnemonic, 'number': number}
     response_dict = requests.get('http://models-api:8000/apiv2/course/', query).json()
+
 
     # TODO: Calculate average GPA over all associated sections
 

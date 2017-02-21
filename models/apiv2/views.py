@@ -150,7 +150,7 @@ class CourseView(BaseView):
 
             return _success(200, {'match': course_dicts, 'query_list': mnemonic_query_list})
 
-        # If looking for single course detail (for course detail page), sections
+        # If looking for single course detail (for course detail page), associated sections
         # are needed as well!
         elif 'mnemonic' and 'number' in request.GET:
             mnemonic = request.GET.get('mnemonic')
