@@ -136,17 +136,30 @@ class CourseView(BaseView):
 
             course_dicts = []
             for course in correct_courses:
-                course_dicts.append(model_to_dict(course))
+                associated_sections = course.section_set.all()
+
+                grade_sum = 0
+                grade_counter = 0
+                for section in associated_sections:
+                    section_grade = section.grade #Grade.objects.get(pk=section.grade)
+                    grade_sum += section_grade.average_gpa
+                    grade_counter += 1
+
+                try:
+                    generic_course_average_gpa = round(grade_sum / grade_counter, 3)
+                except ZeroDivisionError:
+                    generic_course_average_gpa = None
+                # g = Grade(average_gpa=generic_course_average_gpa)
+
+                # course.grade = g
+                # course.save()
+                course_python_dict = model_to_dict(course)
+                course_python_dict['average_gpa'] = generic_course_average_gpa
+                course_dicts.append(course_python_dict)
+
 
             if len(course_dicts) == 0:
-                return _failure(404, 'no matches found')
-
-            # TODO: AVERAGE GRADES FOR GENERIC COURSES NOT AVAILABLE YET
-            # TODO: THESE MUST BE CALCULATED EITHER IN HERE OR IN A SEPARATE SCRIPT
-            # else:
-            #     for course_dictionary in course_dicts:
-            #         course_grade = Grade.objects.get(id=course_dictionary['grade'])
-            #         course_dictionary['grade'] = model_to_dict(course_grade)
+                return _failure(404, 'no matches found lel')
 
             return _success(200, {'match': course_dicts, 'query_list': mnemonic_query_list})
 
@@ -171,16 +184,28 @@ class CourseView(BaseView):
 
             associated_sections = course.section_set.all()
             section_dicts = []
+            grade_sum = 0
+            grade_counter = 0
             for section in associated_sections:
                 section_dict = model_to_dict(section)
 
-                grade = Grade.objects.get(id=section_dict['grade'])
+                grade = section.grade #Grade.objects.get(id=section_dict['grade'])
                 section_dict['grade'] = model_to_dict(grade)
 
                 instructor = Instructor.objects.get(id=section_dict['instructor'])
                 section_dict['instructor'] = model_to_dict(instructor)
 
                 section_dicts.append(section_dict)
+
+                grade_sum += grade.average_gpa
+                grade_counter += 1
+
+            try:
+                generic_course_average_gpa = round(grade_sum / grade_counter, 3)
+            except ZeroDivisionError:
+                generic_course_average_gpa = None
+
+            course_dictionary['average_gpa'] = generic_course_average_gpa
 
             course_dictionary['sections'] = section_dicts
             return _success(200, {'match': course_dictionary})
@@ -193,9 +218,9 @@ class CourseView(BaseView):
                 return resp
             resp_dict.pop('status_code', None)
 
-            for obj_dict in resp_dict['match']:
-                obj = Grade.objects.get(id=obj_dict['grade'])
-                obj_dict['grade'] = model_to_dict(obj)
+            # for obj_dict in resp_dict['match']:
+            #     obj = Grade.objects.get(id=obj_dict['grade'])
+            #     obj_dict['grade'] = model_to_dict(obj)
             return _success(200, resp_dict)
 
 

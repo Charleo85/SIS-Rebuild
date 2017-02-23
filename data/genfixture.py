@@ -1,30 +1,37 @@
 import re
 import json
 import csv
+import locale
 
-def parse_FOIA_csv(file_to_parse):
-    courses = []
-    instructors = []
-    sections = []
-    cou = {}
-    ins = {}
-    grades = []
+grade_pk = 0
+course_pk = 0
+instructor_pk = 0
+courses = []
+instructors = []
+sections = []
+grades = []
 
+cou = {}
+ins = {}
+
+def parse_FOIA_csv(file_to_parse, semester_code):
     # read data from csv
-    with open(file_to_parse, newline='') as csvfile:
-        csvreader = csv.reader(csvfile, delimiter=',', quotechar='"')
-        grade_pk = 0
-        course_pk = 0
-        instructor_pk = 0
 
-        for row in csvreader:
+    with open(file_to_parse, newline='', encoding='latin-1') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',', quotechar='"')
+
+        global grade_pk
+        global course_pk
+        global instructor_pk
+
+        for row in csv_reader:
             # print(row[0])
-            if row[25] == "Total":
+            if row[0] == "Instructor Last Name":
                 continue
             section = {}
             section["model"] = "apiv2.Section"
             section_fields = {}
-            section_fields["semester"] = "1162" #2016Spring
+            section_fields["semester"] = semester_code
 
             name = row[4]+row[5]
             course_id = 0
@@ -104,7 +111,14 @@ def parse_FOIA_csv(file_to_parse):
                     grade_fields["num_other"] = row[22]
                     grade_fields["num_withdraw"] = row[23]
                     grade_fields["num_drop"] = row[24]
-                    grade_fields["num_total"] = row[25]
+
+                    try:
+                        grade_fields["num_total"] = row[25]
+                    except IndexError:
+                        total = 0
+                        for colNum in range(9, 25):
+                            total += int(row[colNum])
+                        grade_fields["num_total"] = total
                     grade["fields"] = grade_fields
                     section_fields["grade"] = grade_pk
                     grades.append(grade)
@@ -115,28 +129,31 @@ def parse_FOIA_csv(file_to_parse):
             section['fields'] = section_fields
             sections.append(section)
 
+parse_FOIA_csv('FOIA_Grades_CSV/GradesSpring2016.csv', "1162")
+parse_FOIA_csv('FOIA_Grades_CSV/GradesFall2015.csv', "1158")
+parse_FOIA_csv('FOIA_Grades_CSV/GradesSpring2015.csv', "1152")
+parse_FOIA_csv('FOIA_Grades_CSV/GradesFall2014.csv', "1148")
+parse_FOIA_csv('FOIA_Grades_CSV/GradesSpring2014.csv', "1142")
+parse_FOIA_csv('FOIA_Grades_CSV/GradesFall2013.csv', "1138")
 
-    # save data into json
-    output = open("Extracted_JSON/courses.json", "a")
-    course_data = json.dumps(courses)
-    output.write(course_data)
-    output.close()
 
-    output = open("Extracted_JSON/grades.json", "a")
-    grade_data = json.dumps(grades)
-    output.write(grade_data)
-    output.close
+# save data into json
+output = open("Extracted_JSON/courses.json", "a+")
+course_data = json.dumps(courses)
+output.write(course_data)
+output.close()
 
-    output = open("Extracted_JSON/instructors.json", "a")
-    instructor_data = json.dumps(instructors)
-    output.write(instructor_data)
-    output.close()
+output = open("Extracted_JSON/grades.json", "a+")
+grade_data = json.dumps(grades)
+output.write(grade_data)
+output.close()
 
-    output = open("Extracted_JSON/sections.json", "a")
-    section_data = json.dumps(sections)
-    output.write(section_data)
-    output.close()
+output = open("Extracted_JSON/instructors.json", "a+")
+instructor_data = json.dumps(instructors)
+output.write(instructor_data)
+output.close()
 
-# TODO: Use more semesters - need to first save FOIA Grades as CSVs in other directory
-
-parse_FOIA_csv('FOIA_Grades_CSV/GradesSpring2016.csv')
+output = open("Extracted_JSON/sections.json", "a+")
+section_data = json.dumps(sections)
+output.write(section_data)
+output.close()
