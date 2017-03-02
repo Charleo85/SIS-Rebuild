@@ -57,7 +57,7 @@ ROOT_URLCONF = 'models.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'api/templates'), ],
+        'DIRS': [os.path.join(BASE_DIR, 'api/templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'models..wsgi.application'
+WSGI_APPLICATION = 'models.wsgi.application'
 
 
 # Database
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'models..wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cs4501',
         'USER': 'www',
         'PASSWORD': '$3cureUS',

@@ -1,0 +1,145 @@
+<html>
+{% include 'TopBar.html' %}
+
+
+<div style="background-color:#99a88f;" class="jumbotron">
+  <div class="container text-center">
+    <h1>Join SIS-Rebuild</h1>
+    <div class="col-md-4 col-md-offset-4">
+      <h5> All Starts Here</h5>
+    </div>
+    <div class="col-md-4">
+      {% if modelname == 'instructor'%}
+      <h5><a href="/student/signup/"> Not an {{modelname}}?</a></h5>
+        {% else %}
+      <h5><a href="/instructor/signup/"> Not a {{modelname}}?</a></h5>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+      <div class="row row-center">
+          <div class="col-sm-6 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+              <ul class="nav nav-pills nav-justified thumbnail">
+                  <li class="active"><a href="#email">
+                      <h4 class="list-group-item-heading">Step 1</h4>
+                      <p class="list-group-item-text">Email</p>
+                  </a></li>
+                  <li><a href="#credential">
+                      <h4 class="list-group-item-heading">Step 2</h4>
+                      <p class="list-group-item-text">Credential</p>
+                  </a></li>
+                  <li><a href="#profile">
+                      <h4 class="list-group-item-heading">Step 3</h4>
+                      <p class="list-group-item-text">Profile</p>
+                  </a></li>
+              </ul>
+          </div>
+        </div>
+
+
+        <form class="form-signin" action="" method="post">
+        {% csrf_token %}
+
+        <section id="email" class="tab-content active">
+          <div class="row" >
+            <div class="col-md-4 col-md-offset-4">
+              <div class="input-group">
+                <!-- <h5 class="form-signin-heading">Username</h5> -->
+                <span class="input-group-addon" id="basic-addon1">@  </span>
+                <input type="text" class="form-control" placeholder="Username" name="username" aria-describedby="basic-addon1">
+              </div>
+              <br>
+            </div>
+
+            <div class="col-md-4 col-md-offset-4">
+              <div class="input-group">
+                <!-- <h5 class="form-signin-heading">Email</h5> -->
+                <input type="text" class="form-control" placeholder="Computing ID" name="id" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2">@virginia.edu</span>
+              </div>
+              <br>
+            </div>
+
+            <div class="col-md-4 col-md-offset-4">
+              <button class="btn btn-lg btn-primary btn-block" name="next">Next <i class="fa fa-paper-plane"></i> </button>
+            </div>
+        </div>
+      </section>
+
+      <section id="credential" class="tab-content hide">
+        <div class="row" >
+          <div class="col-md-4 col-md-offset-4">
+            <div class="input-group">
+              <!-- <h5 class="form-signin-heading">Username</h5> -->
+              <span class="input-group-addon" id="basic-addon1">> </span>
+              <input type="password" class="form-control" placeholder="Password" name="password" aria-describedby="basic-addon1">
+            </div>
+            <br>
+
+            <div class="input-group">
+              <!-- <h5 class="form-signin-heading">Username</h5> -->
+              <span class="input-group-addon" id="basic-addon1">< </span>
+              <input type="password" class="form-control" placeholder="Enter Again" name="password_again" aria-describedby="basic-addon1">
+            </div>
+            <br>
+          </div>
+
+          <div class="col-md-4">
+            <div class="input-group">
+              <h5 class="form-signin-heading">1. length at least 6</h5>
+              <h5 class="form-signin-heading">2. contains a-z</h5>
+            </div>
+            <br>
+          </div>
+
+
+          <div class="col-md-4 col-md-offset-4">
+            <button class="btn btn-lg btn-primary btn-block" name="next">Next <i class="fa fa-paper-plane"></i> </button>
+          </div>
+        </div>
+       </section>
+
+       <section id="profile" class="tab-content hide">
+         <div class="row" >
+           <div class="col-md-4 col-md-offset-4">
+             <div class="input-group">
+               <span class="input-group-addon" id="basic-addon1">^/ </span>
+               <input type="text" class="form-control" placeholder="First Name" name="first_name" aria-describedby="basic-addon1">
+             </div>
+             <br>
+           </div>
+
+           <div class="col-md-4 col-md-offset-4">
+             <div class="input-group">
+               <span class="input-group-addon" id="basic-addon1">^\ </span>
+               <input type="text" class="form-control" placeholder="Last Name" name="last_name" aria-describedby="basic-addon1">
+             </div>
+             <br>
+           </div>
+
+           <div class="col-md-4 col-md-offset-4">
+             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up <i class="fa fa-paper-plane"></i> </button>
+           </div>
+         </div>
+       </section>
+
+      </form>
+
+      {% if error %}
+      <!-- <div class="col-md-4 col-md-offset-4">
+        <div class="row" > -->
+        <center>
+           <h5 class="form-signin-heading" style="color: #900;">{{ error }}</h5>
+           <br>
+        </center>
+        <!-- </div>
+      </div> -->
+      {% endif %}
+
+</div>
+
+{% include 'BottomBar.html' %}
+
+</html>

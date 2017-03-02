@@ -164,7 +164,7 @@ def course_create(request):
 
     # Determine if course already exists
     sisid = new_course_data['id']
-    url_for_course_duplicate_check =  'http://models-api:8000/api/course/detail/' + sisid + '/'
+    url_for_course_duplicate_check = 'http://models-api:8000/api/course/detail/' + sisid + '/'
     resp = _make_get_request(url_for_course_duplicate_check)
     if resp['status_code'] == 404:
         url_for_course_creation = 'http://models-api:8000/api/course/create/'
@@ -176,7 +176,7 @@ def course_create(request):
             new_dict['model'] = 'api.Course'
             new_dict['fields'] = new_course_data
             producer.send('new-listings-topic', json.dumps(new_dict).encode('utf-8'))
-            return JsonResponse(post_response) #Success!!!
+            return JsonResponse(post_response)  # Success!!!
         else:
             error = {'status_code': 400, 'error_message': 'cannot create course; check your inputs'}
             return JsonResponse(error)

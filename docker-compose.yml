@@ -26,35 +26,44 @@ services:
         image: zakinator123/cs4501:${TAG}
         volumes:
             - ./models/:/app
-            - ./data:/tmp/data
+            - ./data/Extracted_JSON/:/tmp/data
         ports:
             - "8001:8000"
         links:
             - mysql:db
-        command: bash -c "sleep 60; rm -rf /app/apiv2/migrations/ /app/api/migrations/; python /app/manage.py makemigrations api; python /app/manage.py makemigrations apiv2; python /app/manage.py migrate; python /app/manage.py loaddata /app/instructors.json /app/courses.json /app/fixture_201612/students.json /app/fixture_201612/courses.json /app/fixture_201612/instructors.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
+#        command: bash -c "sleep 60; rm -rf /app/apiv2/migrations/ /app/api/migrations/; python /app/manage.py makemigrations api; python /app/manage.py makemigrations apiv2; python /app/manage.py migrate; python /app/manage.py loaddata /app/instructors.json /app/courses.json /app/fixture_201612/students.json /app/fixture_201612/courses.json /app/fixture_201612/instructors.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
+        command: bash -c "sleep 60; rm -rf /app/apiv2/migrations/ /app/api/migrations/; python /app/manage.py makemigrations api; python /app/manage.py makemigrations apiv2; python /app/manage.py migrate; python /app/manage.py loaddata /app/fixtures_with_precomputed_average_grades/courses_with_average_grades.json /app/fixtures_with_precomputed_average_grades/instructors.json /app/fixtures_with_precomputed_average_grades/grades.json /app/fixtures_with_precomputed_average_grades/sections.json /app/fixture_201612/students.json /app/fixture_201612/courses.json /app/fixture_201612/instructors.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
         networks:
             - network1
 
+    # TODO: Figure out why this script doesn't work automatically!
+    # Command for running the course average grade precomputation-script
+    # python manage.py shell < /app/apiv2/calculate_average_grades.py;
+
+    # expv2 now, to switch back to v1, change the EXP variable in the .env file
     exp:
         container_name: exp
         image: zakinator123/cs4501:${TAG}
         volumes:
-            - ./exp/:/app
+            - ./${EXP}/:/app
         ports:
             - "8002:8000"
         links:
             - models:models-api
-            - kafka:kafka
-            - es:es
+#            - kafka:kafka
+#            - es:es
         command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/exp/wsgi.py"
         networks:
             - network1
 
+    # webv2 now, to switch back to v1, change the WEB variable in the .env file
     web1:
         container_name: web1
         image: zakinator123/cs4501:${TAG}
         volumes:
-            - ./web/:/app
+            - ./${WEB}/:/app
+        ports:
+            - "80:8000"
         links:
             - exp:exp-api
             - redis:redis
@@ -64,30 +73,30 @@ services:
         command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
         networks:
             - network1
-
-    web2:
-        container_name: web2
-        image: zakinator123/cs4501:${TAG}
-        volumes:
-            - ./web/:/app
-        links:
-            - exp:exp-api
-            - redis:redis
-        command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
-        networks:
-            - network1
-
-    web3:
-        container_name: web3
-        image: zakinator123/cs4501:${TAG}
-        volumes:
-            - ./web/:/app
-        links:
-            - exp:exp-api
-            - redis:redis
-        command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
-        networks:
-            - network1
+#
+#    web2:
+#        container_name: web2
+#        image: zakinator123/cs4501:${TAG}
+#        volumes:
+#            - ./web/:/app
+#        links:
+#            - exp:exp-api
+#            - redis:redis
+#        command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+#        networks:
+#            - network1
+#
+#    web3:
+#        container_name: web3
+#        image: zakinator123/cs4501:${TAG}
+#        volumes:
+#            - ./web/:/app
+#        links:
+#            - exp:exp-api
+#            - redis:redis
+#        command: bash -c "mod_wsgi-express start-server --reload-on-change --working-directory /app /app/web/wsgi.py"
+#        networks:
+#            - network1
 
     redis:
         container_name: redis
@@ -95,101 +104,101 @@ services:
         networks:
             - network1
 
-    kafka:
-        image: spotify/kafka
-        container_name: kafka
-        environment:
-            ADVERTISED_HOST: kafka
-            ADVERTISED_PORT: 9092
-        hostname: kafka
-        networks:
-            - network1
-
-    es:
-        image: elasticsearch:2.0
-        container_name: es
-        ports:
-            - "9200:9200"
-        networks:
-            - network1
-
-    batch:
-        image: zakinator123/cs4501:${TAG}
-        container_name: batch
-        volumes:
-            - ./:/app
-        links:
-            - kafka:kafka
-            - es:es
-        command: bash -c "python /app/batch_script.py"
-        networks:
-            - network1
-
-    loadbalancer:
-        image: zakinator123/haproxyloadbalancer
-        container_name: lb
-        ports:
-            - "80:80"
-        links:
-            - web1:web1
-            - web2:web2
-            - web3:web3
-        networks:
-            - network1
-
-    spark-master:
-        image: gettyimages/spark
-        command: bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
-        container_name: spark-master
-        hostname: spark-master
-        environment:
-            MASTER: spark://spark-master:7077
-            SPARK_CONF_DIR: /conf
-        expose:
-            - 7001
-            - 7002
-            - 7003
-            - 7004
-            - 7005
-            - 7006
-            - 7077
-            - 6066
-        ports:
-            - 4040:4040
-            - 6066:6066
-            - 7077:7077
-            - 8080:8080
-        volumes:
-            - ./misc/data:/tmp/data
-        networks:
-            - network2
-
-    spark-worker:
-        image: gettyimages/spark
-        command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
-        container_name: spark-worker
-        hostname: spark-worker
-        environment:
-            SPARK_CONF_DIR: /conf
-            SPARK_WORKER_CORES: 2
-            SPARK_WORKER_MEMORY: 512m
-            SPARK_WORKER_PORT: 8881
-            SPARK_WORKER_WEBUI_PORT: 8081
-        links:
-            - spark-master
-        expose:
-            - 7012
-            - 7013
-            - 7014
-            - 7015
-            - 7016
-            - 8881
-        ports:
-            - 8081:8081
-        volumes:
-            - ./misc/data:/tmp/data
-        networks:
-            - network2
+#    kafka:
+#        image: spotify/kafka
+#        container_name: kafka
+#        environment:
+#            ADVERTISED_HOST: kafka
+#            ADVERTISED_PORT: 9092
+#        hostname: kafka
+#        networks:
+#            - network1
+#
+#    es:
+#        image: elasticsearch:2.0
+#        container_name: es
+#        ports:
+#            - "9200:9200"
+#        networks:
+#            - network1
+#
+#    batch:
+#        image: zakinator123/cs4501:${TAG}
+#        container_name: batch
+#        volumes:
+#            - ./:/app
+#        links:
+#            - kafka:kafka
+#            - es:es
+#        command: bash -c "python /app/batch_script.py"
+#        networks:
+#            - network1
+#
+#    loadbalancer:
+#        image: zakinator123/haproxyloadbalancer
+#        container_name: lb
+#        ports:
+#            - "80:80"
+#        links:
+#            - web1:web1
+#            - web2:web2
+#            - web3:web3
+#        networks:
+#            - network1
+#
+#    spark-master:
+#        image: gettyimages/spark
+#        command: bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
+#        container_name: spark-master
+#        hostname: spark-master
+#        environment:
+#            MASTER: spark://spark-master:7077
+#            SPARK_CONF_DIR: /conf
+#        expose:
+#            - 7001
+#            - 7002
+#            - 7003
+#            - 7004
+#            - 7005
+#            - 7006
+#            - 7077
+#            - 6066
+#        ports:
+#            - 4040:4040
+#            - 6066:6066
+#            - 7077:7077
+#            - 8080:8080
+#        volumes:
+#            - ./misc/data:/tmp/data
+#        networks:
+#            - network2
+#
+#    spark-worker:
+#        image: gettyimages/spark
+#        command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+#        container_name: spark-worker
+#        hostname: spark-worker
+#        environment:
+#            SPARK_CONF_DIR: /conf
+#            SPARK_WORKER_CORES: 2
+#            SPARK_WORKER_MEMORY: 512m
+#            SPARK_WORKER_PORT: 8881
+#            SPARK_WORKER_WEBUI_PORT: 8081
+#        links:
+#            - spark-master
+#        expose:
+#            - 7012
+#            - 7013
+#            - 7014
+#            - 7015
+#            - 7016
+#            - 8881
+#        ports:
+#            - 8081:8081
+#        volumes:
+#            - ./misc/data:/tmp/data
+#        networks:
+#            - network2
 
 networks:
     network1:

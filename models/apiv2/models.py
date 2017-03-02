@@ -23,6 +23,9 @@ class Grade(models.Model):
     num_withdraw = models.PositiveSmallIntegerField(default=0, blank=True)
     num_drop = models.PositiveSmallIntegerField(default=0, blank=True)
 
+    def __str__(self):
+        return str(self.average_gpa)
+
 
 class Course(models.Model):
     name = models.CharField(max_length=100)
@@ -30,6 +33,8 @@ class Course(models.Model):
     number = models.CharField(max_length=4)
     description = models.TextField(blank=True)
     grade = models.OneToOneField('Grade', blank=True, null=True)
+    average_gpa = models.DecimalField(max_digits=4, decimal_places=3, default=0, blank=True, null=True)
+
 
     def __str__(self):
         return self.mnemonic + self.number
@@ -66,7 +71,7 @@ class Section(models.Model):
     grade = models.OneToOneField('Grade', blank=True, null=True)
 
     def __str__(self):
-        return self.semester +'-'+ self.course.mnemonic + self.course.number +'-'+ self.section
+         return str(self.title)# +'-'+ self.course.mnemonic + str(self.course.number) #  +'-'+ self.section
 
     class Meta:
         ordering = ['semester', 'sis_id']

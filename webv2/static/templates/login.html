@@ -1,0 +1,82 @@
+<html>
+{% include 'TopBar.html' %}
+
+
+<div style="background-color:#99a88f;" class="jumbotron">
+  <div class="container text-center">
+    <h1>Welcome back, {{ modelname }}</h1>
+  </div>
+</div>
+
+
+<div class="container center_div">
+
+
+  <div class="col-md-4">
+    <h2 class="form-signin-heading">Please sign in</h2>
+      {% if modelname == 'instructor'%}
+    <h5><a href="/student/login/"><small><span class="glyphicon glyphicon-refresh"></span></small> Not an {{modelname}}?</a></h5>
+      <h5><a href="/instructor/signup/"><small><span class="glyphicon glyphicon-user"></span></small> Instructor sign up</a></h5>
+        {% else %}
+    <h5><a href="/instructor/login/"><small><span class="glyphicon glyphicon-refresh"></span></small> Not a {{modelname}}?</a></h5>
+    <h5><a href="/student/signup/"><small><span class="glyphicon glyphicon-user"></span></small> Student sign up</a></h5>
+      {% endif %}
+  </div>
+
+  <div class="col-md-4">
+      <p></p>
+        <form class="form-signin" action="" method="post">
+            <!-- <div class="row row-centered" > -->
+            {% csrf_token %}
+
+              <div class="row" >
+              <!-- <div class="col-md-6"> -->
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon2">@  </span>
+                  <input type="text" class="form-control" name="username" placeholder="Username" aria-describedby="basic-addon2">
+                </div>
+                <br>
+                <!-- </div> -->
+              </div>
+
+              <div class="row" >
+                <!-- <div class="col-md-6"> -->
+                  <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon2">$  </span>
+                    <input type="password" class="form-control" name="password" placeholder="Password" aria-describedby="basic-addon2">
+                  </div>
+                <!-- </div> -->
+              </div>
+
+              <div class="row" >
+                <div class="col-md-8">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row" >
+                <!-- <div class="col-md-8"> -->
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in  <i class="fa fa-paper-plane"></i> </button>
+                </div>
+              <!-- </div> -->
+          <!-- </div> -->
+      </form>
+    </div>
+    {% if error %}
+    <div class="col-md-3 col-md-offset-1">
+      <div class="row" >
+        <h5 class="form-signin-heading" style="color: #900;">{{ error }}</h5>
+      </div>
+    </div>
+    {% endif %}
+
+
+</div>
+
+{% include 'BottomBar.html' %}
+</html>

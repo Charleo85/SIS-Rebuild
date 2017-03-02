@@ -1,0 +1,36 @@
+{#% load cache %#}
+{% load rm_underscore %}
+<html>
+{% include 'TopBar.html' %}
+
+<!--Caching temporarily suspended-->
+{#% cache 300 course course.id %#}
+
+
+<div style="background-color:#99a88f;" class="jumbotron">
+  <div class="container text-center">
+  {% if status_code == 200 %}
+    <h1>{{ department }}</h1>
+  {% else %}
+    <h1>Bad Request!</h1>
+  {% endif %}
+  </div>
+</div>
+
+{% if status_code == 200 %}
+<ul class="list-group">
+
+  {{match}}
+
+</ul>
+{% endif %}
+
+{#% endcache %#}
+
+{% include 'BottomBar.html' %}
+</html>
+
+
+ <!--{#% for key, value in match %#}-->
+    <!--<li class="list-group-item list-group-item-action"><b>{#{# key|rm_underscore #}#</b>: {## value #}#</li>-->
+  <!--{#% endfor %#}-->

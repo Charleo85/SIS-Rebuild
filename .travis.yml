@@ -6,16 +6,16 @@ python:
   - "3.5"
 cache:
   - pip
-  - pip3
+  #- pip3
 
 # if specific versions of docker or docker-compose are needed, see travis-CI docs
 services:
   - docker # default is docker 1.8.2 and docker-compose 1.4.2 (as of Oct. 2016)
 
-notifications:
-  slack: cs4501-isa:8PZbPGWlRGRcJOHou2DzuQ02
+#notifications:
+#  slack: cs4501-isa:8PZbPGWlRGRcJOHou2DzuQ02
 
-install:
+#install:
 
 before_script:
   - mkdir ~/cs4501/
@@ -39,16 +39,16 @@ before_script:
 script:
   - >
     docker exec -it models bash -c
-    "pip install -r requirement.txt && ./manage.py test"
+    "pip install -r requirement.txt && python manage.py test"
     # run Django unit tests on models
   - >
     docker exec -it exp bash -c
-    "pip install -r requirement.txt && ./manage.py test"
+    "pip install -r requirement.txt && python manage.py test"
     # run Django unit tests on exp
-  - >
-    pip3 install -r requirement.txt && python3 ./misc/selenium/test_front_end_travis.py
-    # run selenium front end tests with xvfb
-after_success:
+#  - >
+#    pip3 install -r requirement.txt && python3 ./misc/selenium/test_front_end_travis.py
+#    # run selenium front end tests with xvfb
+#after_success:
 
 after_script:
   - docker-compose stop

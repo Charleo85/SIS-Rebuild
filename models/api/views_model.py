@@ -59,8 +59,10 @@ def course_create(request):
         except (ObjectDoesNotExist, ValueError):
             exist = False
 
+        status_code = 401
         if not exist:
             form = CourseForm(request.POST)
+            status_code = 402
             if form.is_valid():
                 form.save()
                 data = form.cleaned_data
@@ -69,7 +71,7 @@ def course_create(request):
                 data['current_enrolled'] = 0
                 return _success(data, 'course', 201)
 
-    return _failure(400)
+    return _failure(status_code)
 
 
 def course_delete(request):

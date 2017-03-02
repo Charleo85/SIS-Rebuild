@@ -5,7 +5,7 @@
 [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://162.243.117.39)
 
 
-CS4501 SIS Rebuild Project
+Grades at UVa
 =====
 This project attempts to integrate and improve on the current functionality of [Lou's list](http://rabi.phys.virginia.edu/mySIS/CS2/) and [the Course Forum](http://www.thecourseforum.com) by adding improved data visualization of grade distribution data (retrieved through [FOIA](https://en.wikipedia.org/wiki/Freedom_of_Information_Act_(United_States))) in order to provide students and faculty an improved perspective that will aid in the course selection process.
 	

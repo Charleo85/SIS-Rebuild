@@ -12,6 +12,17 @@ class CourseForm(ModelForm):
         model = Course
         fields = '__all__'
 
+class SectionForm(ModelForm):
+
+    class Meta:
+        model = Section
+        fields = '__all__'
+
+class InstructorForm(ModelForm):
+
+    class Meta:
+        model = Instructor
+        fields = '__all__'
 
 # class StudentForm(ModelForm):
 #     class Meta:

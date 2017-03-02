@@ -1,0 +1,12 @@
+<html>
+{% include 'TopBar.html' %}
+
+<div style="background-color:#99a88f;" class="jumbotron">
+  <div class="container text-center">
+    <h1>{{ title }}</h1>
+    <h5>{{ message|safe }}</h5>
+  </div>
+</div>
+
+{% include 'BottomBar.html' %}
+</html>
