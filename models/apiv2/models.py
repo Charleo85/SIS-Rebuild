@@ -24,7 +24,7 @@ class Grade(models.Model):
     num_drop = models.PositiveSmallIntegerField(default=0, blank=True)
 
     def __str__(self):
-        return self.average_gpa
+        return str(self.average_gpa)
 
 
 class Course(models.Model):
@@ -33,7 +33,7 @@ class Course(models.Model):
     number = models.CharField(max_length=4)
     description = models.TextField(blank=True)
     grade = models.OneToOneField('Grade', blank=True, null=True)
-    # average_gpa = models.DecimalField(max_digits=4, decimal_places=3, default=0, blank=True)
+    average_gpa = models.DecimalField(max_digits=4, decimal_places=3, default=0, blank=True, null=True)
 
 
     def __str__(self):

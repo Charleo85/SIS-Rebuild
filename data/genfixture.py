@@ -129,6 +129,7 @@ def parse_FOIA_csv(file_to_parse, semester_code):
             section['fields'] = section_fields
             sections.append(section)
 
+parse_FOIA_csv('FOIA_Grades_CSV/GradesFall2016.csv', "1168")
 parse_FOIA_csv('FOIA_Grades_CSV/GradesSpring2016.csv', "1162")
 parse_FOIA_csv('FOIA_Grades_CSV/GradesFall2015.csv', "1158")
 parse_FOIA_csv('FOIA_Grades_CSV/GradesSpring2015.csv', "1152")

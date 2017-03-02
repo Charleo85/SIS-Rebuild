@@ -32,9 +32,13 @@ services:
         links:
             - mysql:db
 #        command: bash -c "sleep 60; rm -rf /app/apiv2/migrations/ /app/api/migrations/; python /app/manage.py makemigrations api; python /app/manage.py makemigrations apiv2; python /app/manage.py migrate; python /app/manage.py loaddata /app/instructors.json /app/courses.json /app/fixture_201612/students.json /app/fixture_201612/courses.json /app/fixture_201612/instructors.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
-        command: bash -c "sleep 60; rm -rf /app/apiv2/migrations/ /app/api/migrations/; python /app/manage.py makemigrations api; python /app/manage.py makemigrations apiv2; python /app/manage.py migrate; python /app/manage.py loaddata /tmp/data/courses.json /tmp/data/instructors.json /tmp/data/grades.json /tmp/data/sections.json /app/fixture_201612/students.json /app/fixture_201612/courses.json /app/fixture_201612/instructors.json; python /app/apiv2/calculate_average_grades.py; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
+        command: bash -c "sleep 60; rm -rf /app/apiv2/migrations/ /app/api/migrations/; python /app/manage.py makemigrations api; python /app/manage.py makemigrations apiv2; python /app/manage.py migrate; python /app/manage.py loaddata /app/fixtures_with_precomputed_average_grades/courses_with_average_grades.json /app/fixtures_with_precomputed_average_grades/instructors.json /app/fixtures_with_precomputed_average_grades/grades.json /app/fixtures_with_precomputed_average_grades/sections.json /app/fixture_201612/students.json /app/fixture_201612/courses.json /app/fixture_201612/instructors.json; mod_wsgi-express start-server --reload-on-change --working-directory /app /app/models/wsgi.py"
         networks:
             - network1
+
+    # TODO: Figure out why this script doesn't work automatically!
+    # Command for running the course average grade precomputation-script
+    # python manage.py shell < /app/apiv2/calculate_average_grades.py;
 
     # expv2 now, to switch back to v1, change the EXP variable in the .env file
     exp:

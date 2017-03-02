@@ -152,9 +152,6 @@ def course_detail(request, mnemonic, number):
     query = {'mnemonic': mnemonic, 'number': number}
     response_dict = requests.get('http://models-api:8000/apiv2/course/', query).json()
 
-
-    # TODO: Calculate average GPA over all associated sections
-
     if response_dict['status_code'] == 200 and response_dict['match']:
         # TODO: str(section['id']) must eventually change to str(section['sisid'])
         for section in response_dict['match']['sections']:
@@ -212,102 +209,6 @@ def index(request):
 
 
 ##########################
-#
-# def _process_course(course_dict):
-#     new_dict = {}
-#     new_dict['coursehref'] = '/course/detail/' + course_dict['id'] + '/'
-#     new_dict['instructorhref'] = '/instructor/detail/'
-#     new_dict['instructorhref'] += course_dict['instructor'] + '/'
-#
-#     new_dict['course_name'] = course_dict['mnemonic'] + ' '
-#     new_dict['course_name'] += course_dict['number']
-#     if course_dict['section'] != '':
-#         new_dict['course_name'] += " - " + course_dict['section']
-#     if course_dict['title'] != '':
-#         new_dict['course_name'] += "<br>" + course_dict['title']
-#
-#     new_dict['instructor'] = _get_instructor(course_dict['instructor'])
-#     return new_dict
-
-
-# def course_all(request):
-#     url = 'http://models-api:8000/api/course/all/'
-#     resp = _make_get_request(url)
-#
-#     new_data = {}
-#     new_data['status_code'] = resp['status_code']
-#
-#     course_data = []
-#     for course_dict in resp['all_courses']:
-#         new_dict = {}
-#         new_dict['coursehref'] = '/course/detail/' + course_dict['id'] + '/'
-#         new_dict['instructorhref'] = '/instructor/detail/'
-#         new_dict['instructorhref'] += course_dict['instructor'] + '/'
-#
-#         new_dict['course_name'] = course_dict['mnemonic'] + ' '
-#         new_dict['course_name'] += course_dict['number']
-#         if course_dict['section'] != '':
-#             new_dict['course_name'] += " - " + course_dict['section']
-#         if course_dict['title'] != '':
-#             new_dict['course_name'] += ": " + course_dict['title']
-#
-#         new_dict['instructor'] = _get_instructor(course_dict['instructor'])
-#         new_dict['enrollment_info'] = str(course_dict['current_enrolled'])
-#         new_dict['enrollment_info'] += '/' + str(course_dict['max_students'])
-#         course_data.append(new_dict)
-#
-#     new_data['all_courses'] = course_data
-#     return JsonResponse(new_data)
-#
-#
-# def course_detail(request, sisid):
-#     url = 'http://models-api:8000/api/course/detail/' + sisid + '/'
-#     resp = _make_get_request(url)
-#
-#     if resp['status_code'] == 200:
-#         new_dict = resp['course']
-#         for key in list(new_dict):
-#             if new_dict[key] == '':
-#                 new_dict.pop(key, None)
-#
-#         new_dict['instructor'] = _get_instructor(new_dict['instructor'])
-#         resp['course'] = new_dict
-#
-#     return JsonResponse(resp)
-
-
-
-# Course creation should not be done through exp layer
-# since it is only done through fixture parsing/loading in models layer
-
-# def course_create(request):
-#     new_course_data = request.POST.dict()
-#     instructor_id = new_course_data['instructor']
-#
-#     # Determine if course already exists
-#     sisid = new_course_data['id']
-#     url_for_course_duplicate_check =  'http://models-api:8000/api/course/detail/' + sisid + '/'
-#     resp = _make_get_request(url_for_course_duplicate_check)
-#     if resp['status_code'] == 404:
-#         url_for_course_creation = 'http://models-api:8000/api/course/create/'
-#         post_response = _make_post_request(url_for_course_creation, new_course_data)
-#         if post_response["status_code"] == 201:
-#             # Index the new course into elastic search
-#             producer = KafkaProducer(bootstrap_servers='kafka:9092')
-#             new_dict = {}
-#             new_dict['model'] = 'api.Course'
-#             new_dict['fields'] = new_course_data
-#             producer.send('new-listings-topic', json.dumps(new_dict).encode('utf-8'))
-#             return JsonResponse(post_response) #Success!!!
-#         else:
-#             error = {'status_code': 400, 'error_message': 'cannot create course; check your inputs'}
-#             return JsonResponse(error)
-#     else:
-#         # Course already exists, return error message
-#         error = {'status_code': 400, 'error_message': 'course already exists'}
-#         return JsonResponse(error)
-#
-#
 # def search(request):
 #     if request.method != 'POST':
 #         data = {'status_code': 400, 'error_msg': 'incorrect request type'}
@@ -368,42 +269,3 @@ def index(request):
 #
 #     # returns the final constructed data set
 #     return JsonResponse(result)
-#
-#
-# def instructor_all(request):
-#     url = 'http://models-api:8000/api/instructor/all/'
-#     resp = _make_get_request(url)
-#
-#     new_data = {}
-#     new_data['status_code'] = resp['status_code']
-#
-#     instructor_data = []
-#     for ins_dict in resp['all_instructors']:
-#         new_dict = {}
-#         new_dict['href'] = '/instructor/detail/' + ins_dict['id'] + '/'
-#         new_dict['instructor_name'] = ins_dict['first_name'] + ' '
-#         new_dict['instructor_name'] += ins_dict['last_name']
-#         new_dict['instructor_name'] += ' (' + ins_dict['id'] + ')'
-#         instructor_data.append(new_dict)
-#
-#     new_data['all_instructors'] = instructor_data
-#     return JsonResponse(new_data)
-#
-#
-# def instructor_detail(request, compid):
-#     url = 'http://models-api:8000/api/instructor/detail/' + compid + '/'
-#     resp = _make_get_request(url)
-#
-#     if resp['status_code'] == 200:
-#         teaching = ''
-#         teaching_courses = resp['instructor']['teaching_courses']
-#         if teaching_courses == []:
-#             resp['instructor'].pop('teaching_courses', None)
-#         else:
-#             for i in range(len(teaching_courses)):
-#                 teaching += teaching_courses[i]
-#                 if (i != len(teaching_courses) - 1):
-#                     teaching += ', '
-#             resp['instructor']['teaching_courses'] = teaching
-#
-#     return JsonResponse(resp)

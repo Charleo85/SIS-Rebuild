@@ -14,8 +14,6 @@ from .forms import *
 
 
 def home_page(request):
-    # url = 'http://exp-api:8000/homepage/'
-    # resp = _make_get_request(url)
     return render(request, 'homepage.html')
 
 
@@ -37,6 +35,7 @@ def course_detail(request, mnemonic, number):
     response_dict['class'] = uva_class
     return render(request, 'course_detail.html', response_dict)
 
+# TODO: Since there are no SIS-ids yet, there is no unique section identifier
 def section_detail(request, mnemonic, number):
     pass
 
