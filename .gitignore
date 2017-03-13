@@ -1,15 +1,8 @@
 # Ignore cache
 **/__pycache__/
 
-# Ignore DS_Store
-.DS_Store
-models/.DS_Store
-
 # Ignore Pycharm idea files
 .idea/
 
 # Ignore migrations
 **/migrations/
-
-# Ignore pyc
-*.pyc
