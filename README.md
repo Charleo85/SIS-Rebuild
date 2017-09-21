@@ -4,6 +4,7 @@
 <a href="https://travis-ci.com"><img src="https://travis-ci.com/Charleo85/SIS-Rebuild.svg?token=p3baya2L6nJfueKHztqt&branch=master"></a>
 [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://162.243.117.39)
 
+*** Disclaimer: You are not supposed to reuse the code in this repo to for your current CS 4501 Internet Scale Application class project. Learning the framworks from their docs is an essential point of learning in this class;)
 
 Grades at UVa
 =====
